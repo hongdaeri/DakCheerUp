@@ -144,24 +144,24 @@
 							<li class="left"><span class="date-time">yesterday
 									11:23pm</span> <a href="javascript:" class="name">Sowse Bawdy</a> <a
 								href="javascript:" class="image"><img alt=""
-									src="assets/img/user-12.jpg" /></a>
+									src="/resources/img/user-12.jpg" /></a>
 								<div class="message">Lorem ipsum dolor sit amet,
 									consectetuer adipiscing elit volutpat. Praesent mattis interdum
 									arcu eu feugiat.</div></li>
 							<li class="right"><span class="date-time">08:12am</span> <a
 								href="#" class="name"><span class="label label-primary">ADMIN</span>
 									Me</a> <a href="javascript:" class="image"><img alt=""
-									src="assets/img/user-13.jpg" /></a>
+									src="/resources/img/user-13.jpg" /></a>
 								<div class="message">Nullam posuere, nisl a varius
 									rhoncus, risus tellus hendrerit neque.</div></li>
 							<li class="left"><span class="date-time">09:20am</span> <a
 								href="#" class="name">Neck Jolly</a> <a href="javascript:"
-								class="image"><img alt="" src="assets/img/user-10.jpg" /></a>
+								class="image"><img alt="" src="/resources/img/user-10.jpg" /></a>
 								<div class="message">Euismod tincidunt ut laoreet dolore
 									magna aliquam erat volutpat.</div></li>
 							<li class="left"><span class="date-time">11:15am</span> <a
 								href="#" class="name">Shag Strap</a> <a href="javascript:"
-								class="image"><img alt="" src="assets/img/user-14.jpg" /></a>
+								class="image"><img alt="" src="/resources/img/user-14.jpg" /></a>
 								<div class="message">Nullam iaculis pharetra pharetra.
 									Proin sodales tristique sapien mattis placerat.</div></li>
 						</ul>
@@ -214,42 +214,42 @@
 				</div>
 				<ul class="registered-users-list clearfix">
 					<li><a href="javascript:"><img
-							src="assets/img/user-5.jpg" alt="" /></a>
+							src="/resources/img/user-5.jpg" alt="" /></a>
 						<h4 class="username text-ellipsis">
 							Savory Posh <small>Algerian</small>
 						</h4></li>
 					<li><a href="javascript:"><img
-							src="assets/img/user-3.jpg" alt="" /></a>
+							src="/resources/img/user-3.jpg" alt="" /></a>
 						<h4 class="username text-ellipsis">
 							Ancient Caviar <small>Korean</small>
 						</h4></li>
 					<li><a href="javascript:"><img
-							src="assets/img/user-1.jpg" alt="" /></a>
+							src="/resources/img/user-1.jpg" alt="" /></a>
 						<h4 class="username text-ellipsis">
 							Marble Lungs <small>Indian</small>
 						</h4></li>
 					<li><a href="javascript:"><img
-							src="assets/img/user-8.jpg" alt="" /></a>
+							src="/resources/img/user-8.jpg" alt="" /></a>
 						<h4 class="username text-ellipsis">
 							Blank Bloke <small>Japanese</small>
 						</h4></li>
 					<li><a href="javascript:"><img
-							src="assets/img/user-2.jpg" alt="" /></a>
+							src="/resources/img/user-2.jpg" alt="" /></a>
 						<h4 class="username text-ellipsis">
 							Hip Sculling <small>Cuban</small>
 						</h4></li>
 					<li><a href="javascript:"><img
-							src="assets/img/user-6.jpg" alt="" /></a>
+							src="/resources/img/user-6.jpg" alt="" /></a>
 						<h4 class="username text-ellipsis">
 							Flat Moon <small>Nepalese</small>
 						</h4></li>
 					<li><a href="javascript:"><img
-							src="assets/img/user-4.jpg" alt="" /></a>
+							src="/resources/img/user-4.jpg" alt="" /></a>
 						<h4 class="username text-ellipsis">
 							Packed Puffs <small>Malaysian></small>
 						</h4></li>
 					<li><a href="javascript:"><img
-							src="assets/img/user-9.jpg" alt="" /></a>
+							src="/resources/img/user-9.jpg" alt="" /></a>
 						<h4 class="username text-ellipsis">
 							Clay Hike <small>Swedish</small>
 						</h4></li>
