@@ -57,7 +57,7 @@
   <div class="vertical-box-column">
     <div class="vertical-box">
       <div class="vertical-box-row">
-        <div lass="vertical-box-cell">
+        <div class="vertical-box-cell">
           <div class="vertical-box-inner-cell">
 							
 							
