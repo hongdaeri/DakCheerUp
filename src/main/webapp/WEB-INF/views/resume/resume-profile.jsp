@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-md-12">
       <!-- begin panel -->
-      <form name="profile" class="form-horizontal" action="/resume/profile" method="POST">
+      <form id="profile" name="profile" class="form-horizontal" action="/resume/profile" method="POST">
         <div class="panel panel-inverse" data-height="100%" data-sortable-id="ui-widget-1">
           <div class="panel-heading">
             <div class="panel-heading-btn">
@@ -24,23 +24,23 @@
                 <tbody>
                 <tr>
                   <td class="warning ">이름</td>
-                  <td class="text-left"> <strong>%NAME%</strong></td>
+                  <td class="text-left"> <strong>${profile.profileName}</strong></td>
                   <td class="warning text-center ">한문</td>
                   <td>
-                    <input type="text" class="form-control input-sm" placeholder="洪吉動" value="洪吉動" />
+                    <input name="profileCname" type="text" class="form-control input-sm" placeholder="洪吉動" value="${profile.profileCname}" />
                   </td>
                   <td class="warning text-center ">영문</td>
                   <td>
-                    <input type="text" class="form-control input-sm" placeholder="Gil Dong Hong" value="Gil Dong Hong" />
+                    <input name=profileEname  type="text" class="form-control input-sm" placeholder="Gil Dong Hong" value="${profile.profileEname}" />
                   </td>
                 </tr>
                 <tr>
                   <td scope="row" class="warning ">주민등록번호</td>
                   <td colspan="2">
                     <div class="row">
-                      <div class="col-xs-5  p-r-0"><input type="text" class="form-control input-sm" maxlength="6"/></div>
+                      <div class="col-xs-5  p-r-0"><input type="text"  name="profileJuminFront" class="form-control input-sm" maxlength="6" value="${profile.profileJuminFront}"/></div>
                       <div class="col-xs-1  p-0 text-center">-</div>
-                      <div class="col-xs-6  p-l-0"><input type="password" class="form-control input-sm" maxlength="7" /></div>
+                      <div class="col-xs-6  p-l-0"><input type="password"  name="profileJuminBack" class="form-control input-sm" maxlength="7" value="${profile.profileJuminBack}" /></div>
                     </div>
                   </td>
                   <td colspan="3" class="text-left">
@@ -53,11 +53,11 @@
                 <tr>
                   <td class="warning ">휴대폰</td>
                   <td>
-                    <input type="text" class="form-control input-sm masked-input-phone"/>
+                    <input type="text"  name="profilePhone" class="form-control input-sm masked-input-phone" value="${profile.profilePhone}"/>
                   </td>
                   <td class="warning ">이메일</td>
                   <td>
-                    <input type="email" class="form-control input-sm"/>
+                    <input type="email"  name="profileEmail" class="form-control input-sm" value="${profile.profileEmail}"/>
                   </td>
                   <td class="warning ">홈페이지 및 활동 SNS</td>
                   <td>
@@ -67,22 +67,22 @@
                 <tr>
                   <td class="warning ">주소</td>
                   <td colspan="5">
-                    <input type="text" class="form-control input-sm"/>
+                    <input type="text"  name="profileAddr" class="form-control input-sm" value="${profile.profileAddr}"/>
                   </td>
 
                 </tr>
                 <tr>
                   <td class="warning ">취미</td>
                   <td>
-                    <input type="text" class="form-control input-sm"/>
+                    <input type="text"  name="profileHobby" class="form-control input-sm" value="${profile.profileHobby}"/>
                   </td>
                   <td class="warning ">특기</td>
                   <td>
-                    <input type="text" class="form-control input-sm"/>
+                    <input type="text"  name="profileForte" class="form-control input-sm" value="${profile.profileForte}"/>
                   </td>
                   <td class="warning ">종교</td>
                   <td>
-                    <select class="form-control input-sm">
+                    <select class="form-control input-sm" name="profileReligion">
                       <option value="NIL" selected>--선택하세요--</option>
                       <option value="AF">기독교</option>
                       <option value="AF">불교</option>
@@ -95,7 +95,7 @@
                 <tr>
                   <td class="warning ">혼인여부</td>
                   <td>
-                    <select class="form-control input-sm">
+                    <select class="form-control input-sm" name="profileMarriage" >
                       <option value="NIL" selected>--선택하세요--</option>
                       <option value="AF">미혼</option>
                       <option value="AF">혼인</option>
@@ -103,7 +103,7 @@
                   </td>
                   <td class="warning ">보훈여부</td>
                   <td>
-                    <select class="form-control input-sm">
+                    <select class="form-control input-sm" name="profileVeterans" >
                       <option value="NIL" selected>--선택하세요--</option>
                       <option value="AF">대상</option>
                       <option value="AF">비대상</option>
@@ -111,7 +111,7 @@
                   </td>
                   <td class="warning ">장애여부</td>
                   <td>
-                    <select class="form-control input-sm">
+                    <select class="form-control input-sm" name="profileDisability" >
                       <option value="NIL" selected>--선택하세요--</option>
                       <option value="AF">장애</option>
                       <option value="AF">비장애</option>
@@ -127,12 +127,12 @@
                 <tr>
                   <td colspan="2" class="warning">개인웹사이트</td>
                   <td colspan="2" class="warning">네이버블로그</td>
-                  <td colspan="2" class="warning">네이버블로그</td>
+                  <td colspan="2" class="warning">티스토리</td>
                 </tr>
                 <tr>
-                  <td colspan="2"><input type="text" class="form-control input-sm" value="http://"/></td>
-                  <td colspan="2"><input type="text" class="form-control input-sm" value="http://"/></td>
-                  <td colspan="2"><input type="text" class="form-control input-sm" value="http://"/></td>
+                  <td colspan="2"><input type="text"  name="profileWebsite" class="form-control input-sm" placeholder="http://" value="${profile.profileWebsite}"/></td>
+                  <td colspan="2"><input type="text"  name="profileNaverBlog" class="form-control input-sm" placeholder="http://" value="${profile.profileNaverBlog}"/></td>
+                  <td colspan="2"><input type="text"  name="profileTistory" class="form-control input-sm" placeholder="http://" value="${profile.profileTistory}"/></td>
                 </tr>
                 <tr>
                   <td class="warning">페이스북</td>
@@ -143,18 +143,18 @@
                   <td class="warning">유투브</td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control input-sm" value="@아이디"/></td>
-                  <td><input type="text" class="form-control input-sm" value="@아이디"/></td>
-                  <td><input type="text" class="form-control input-sm" value="@아이디"/></td>
-                  <td><input type="text" class="form-control input-sm" value="@아이디"/></td>
-                  <td><input type="text" class="form-control input-sm" value="@아이디"/></td>
-                  <td><input type="text" class="form-control input-sm" value="@아이디"/></td>
+                  <td><input type="text"  name="profileFacebook" class="form-control input-sm" placeholder="@아이디" value="${profile.profileFacebook}"/></td>
+                  <td><input type="text"  name="profileTwitter" class="form-control input-sm" placeholder="@아이디" value="${profile.profileTwitter}"/></td>
+                  <td><input type="text"  name="profileInstagram" class="form-control input-sm" placeholder="@아이디" value="${profile.profileInstagram}"/></td>
+                  <td><input type="text"  name="profileTumblr" class="form-control input-sm" placeholder="@아이디" value="${profile.profileTumblr}"/></td>
+                  <td><input type="text"  name="profilePinterest" class="form-control input-sm" placeholder="@아이디" value="${profile.profilePinterest}"/></td>
+                  <td><input type="text"  name="profileYoutube" class="form-control input-sm" placeholder="@아이디" value="${profile.profileYoutube}"/></td>
                 </tr>
                 </tbody>
               </table>
             </div>
             <div class="m-t-0 m-b-10 text-right">
-              <a href="javascript:" class="btn btn-warning btn-sm">&nbsp; 저장 &nbsp;</a>
+              <a href="#" onclick="document.getElementById('profile').submit()" class="btn btn-warning btn-sm">&nbsp; 저장 &nbsp;</a>
             </div>
           </div>
         </div>
