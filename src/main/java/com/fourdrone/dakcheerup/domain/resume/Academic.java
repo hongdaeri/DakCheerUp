@@ -12,6 +12,7 @@ import java.util.List;
  */
 public class Academic {
 	
+	private String memberId;
 	private AcademicHigh academicHigh;
 	private AcademicUniv academicUniv;
 	private String academicFinal;
@@ -75,6 +76,16 @@ public class Academic {
 	 */
 	public void setAcademicUnivList(List<AcademicUniv> academicUnivList) {
 		this.academicUnivList = academicUnivList;
+	}
+
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	
 	

@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fourdrone.dakcheerup.mapper.ResumeMapper">
+	
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * *
+	 *                                                   *
+	 *               GET RESUME                          * 
+	 *                                                   *
+	 * * * * * * * * * * * * * * * * * * * * * * * * * -->	 
+	
+	<!-- 회원의 모든 이력정보 (NOT)  -->
+	<select id="getResume" resultMap="com.fourdrone.dakcheerup.domain.Resume"  parameterType="String">
+        SELECT  * FROM  TB_RESUME
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+    
+	<!-- 이력서 설정  -->
+	<select id="getResumeConfig" resultMap="com.fourdrone.dakcheerup.domain.resume.ResumeConfig"  parameterType="String">
+        SELECT  * FROM  TB_RESUME_CONFIG
+        WHERE MEMBER_ID = #{memberId}
+    </select>   
+    
+    <!-- 기본인적사항  -->
+	<select id="getProfile" resultMap="com.fourdrone.dakcheerup.domain.resume.Profile"  parameterType="String">
+        SELECT  * FROM  TB_RESUME_PROFILE
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+    
+    <!-- 형제관계  -->
+	<select id="getBrother" resultMap="com.fourdrone.dakcheerup.domain.resume.Brother"  parameterType="String">
+        SELECT  * FROM  TB_RESUME_BROTHER
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+    
+    <!-- 가족관계  단일항목 -->
+	<select id="getFamily" resultMap="com.fourdrone.dakcheerup.domain.resume.Family"  parameterType="Integer">
+        SELECT  * FROM  TB_RESUME_FAMILY
+        WHERE FAMILY_NO = #{familyNo}
+    </select>
+    
+     <!-- 가족관계 리스트  -->
+	<select id="getFamilyList" resultMap="com.fourdrone.dakcheerup.domain.resume.Family"  parameterType="String">
+        SELECT  * FROM  TB_RESUME_FAMILY
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+          
+    <!-- 병역사항  -->
+	<select id="getMilitary" resultMap="com.fourdrone.dakcheerup.domain.resume.Military"  parameterType="String">
+        SELECT  * FROM  TB_RESUME_MILITARY
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+    
+          
+    <!-- 학력사항   -->
+	<select id="getAcademic" resultMap="com.fourdrone.dakcheerup.domain.resume.Academic"  parameterType="String">
+        SELECT  * FROM  TB_RESUME_ACADEMIC
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+    
+    <!-- 학력사항 - 고등학교   -->
+	<select id="getAcademicHigh" resultMap="com.fourdrone.dakcheerup.domain.resume.AcademicHigh"  parameterType="String">
+        SELECT  * FROM  TB_RESUME_ACADEMIC_HIGHSCHOOL
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+    
+    <!-- 학력사항 - 대학교 - 단일항목  -->
+	<select id="getAcademicUniv" resultMap="com.fourdrone.dakcheerup.domain.resume.AcademicUniv"  parameterType="Integer">
+        SELECT  * FROM  TB_RESUME_ACADEMIC_UNIVERSITY
+        WHERE ACADEMIC_UNIV_NO = #{academicUnivNo}
+    </select>
+    
+    <!-- 학력사항 - 대학교 - 리스트 -->
+	<select id="getAcademicUnivList" resultMap="com.fourdrone.dakcheerup.domain.resume.AcademicUniv"  parameterType="String">
+        SELECT  * FROM  TB_RESUME_ACADEMIC_UNIVERSITY
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+    
+    <!-- 수상내역 - 단일항목  -->
+	<select id="getAward" resultMap="com.fourdrone.dakcheerup.domain.resume.Award"  parameterType="Integer">
+        SELECT  * FROM  TB_RESUME_AWARD
+        WHERE AWARD_NO = #{awardNo}
+    </select>
+    
+    <!-- 수상내역 - 리스트 -->
+	<select id="getAwardList" resultMap="com.fourdrone.dakcheerup.domain.resume.Award"  parameterType="String">
+        SELECT  * FROM  TB_RESUME_AWARD
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+    
+     <!-- 교육이수내역_단일  -->
+	<select id="getEducation" resultMap="com.fourdrone.dakcheerup.domain.resume.Education"  parameterType="Integer">
+        SELECT  * FROM  TB_RESUME_EDUCATION
+        WHERE EDUCATION_NO = #{educationNo}
+    </select>
+    
+    <!-- 교육이수내역_리스트 -->
+	<select id="getEducationList" resultMap="com.fourdrone.dakcheerup.domain.resume.Education"  parameterType="String">
+        SELECT  * FROM  TB_RESUME_EDUCATION
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+    
+     <!-- 경력및실습사항_단일  -->
+	<select id="getCareer" resultMap="com.fourdrone.dakcheerup.domain.resume.Career"  parameterType="Integer">
+        SELECT  * FROM  TB_RESUME_CAREER
+        WHERE CAREER_NO = #{careerNo}
+    </select>
+    
+    <!-- 경력및실습사항_리스트 -->
+	<select id="getCareerList" resultMap="com.fourdrone.dakcheerup.domain.resume.Career"  parameterType="String">
+        SELECT  * FROM  TB_RESUME_CAREER
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+    
+    <!-- 글로벌경험_단일  -->
+	<select id="getGlobal" resultMap="com.fourdrone.dakcheerup.domain.resume.Global"  parameterType="Integer">
+        SELECT  * FROM  TB_RESUME_GLOBAL
+        WHERE GLOBAL_NO = #{globalNo}
+    </select>
+    
+    <!-- 글로벌경험_리스트 -->
+	<select id="getGlobalList" resultMap="com.fourdrone.dakcheerup.domain.resume.Global"  parameterType="String">
+        SELECT  * FROM  TB_RESUME_GLOBAL
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+    
+    <!-- 어학능력_단일  -->
+	<select id="getLanguageAbility" resultMap="com.fourdrone.dakcheerup.domain.resume.LanguageAbility"  parameterType="Integer">
+        SELECT  * FROM  TB_RESUME_LANGUAGE_ABILITY
+        WHERE LANG_ABILITY_NO = #{langAbilityNo}
+    </select>
+    
+    <!-- 어학능력_리스트 -->
+	<select id="getLanguageAbilityList" resultMap="com.fourdrone.dakcheerup.domain.resume.LanguageAbility"  parameterType="String">
+        SELECT  * FROM  TB_RESUME_LANGUAGE_ABILITY
+        WHERE MEMBER_ID = #{memberId}
+    </select>    
+    
+    <!-- 어학시험_단일  -->
+	<select id="getLanguageExam" resultMap="com.fourdrone.dakcheerup.domain.resume.LanguageExam"  parameterType="Integer">
+        SELECT  * FROM  TB_RESUME_LANGUAGE_EXAM
+        WHERE LANG_EXAM_NO = #{langExamNo}
+    </select>
+    
+    <!-- 어학시험_리스트 -->
+	<select id="getLanguageExamList" resultMap="com.fourdrone.dakcheerup.domain.resume.LanguageExam"  parameterType="String">
+        SELECT  * FROM  TB_RESUME_LANGUAGE_EXAM
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+    
+    <!-- 자격증_단일  -->
+	<select id="getLicense" resultMap="com.fourdrone.dakcheerup.domain.resume.License"  parameterType="Integer">
+        SELECT  * FROM  TB_RESUME_LICENSE
+        WHERE LICENSE_NO = #{licenseNo}
+    </select>
+    
+    <!-- 자격증_리스트 -->
+	<select id="getLicenseList" resultMap="com.fourdrone.dakcheerup.domain.resume.License"  parameterType="String">
+        SELECT  * FROM  TB_RESUME_LICENSE
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+
+	<!-- OA능력_단일  -->
+	<select id="getOA" resultMap="com.fourdrone.dakcheerup.domain.resume.OA"  parameterType="String">
+        SELECT  * FROM  TB_RESUME_OA
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+    
+    <!-- 참여프로젝트_단일  -->
+	<select id="getProject" resultMap="com.fourdrone.dakcheerup.domain.resume.Project"  parameterType="Integer">
+        SELECT  * FROM  TB_RESUME_PROJECT
+        WHERE PROJECT_NO = #{projectNo}
+    </select>
+    
+    <!-- 참여프로젝트_리스트 -->
+	<select id="getProjectList" resultMap="com.fourdrone.dakcheerup.domain.resume.Project"  parameterType="String">
+        SELECT  * FROM  TB_RESUME_PROJECT
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+    
+    <!-- 봉사활동_단일  -->
+	<select id="getVoluntary" resultMap="com.fourdrone.dakcheerup.domain.resume.Voluntary"  parameterType="Integer">
+        SELECT  * FROM  TB_RESUME_VOLUNTARY
+        WHERE VOLUNTARY_NO = #{voluntaryNo}
+    </select>
+    
+    <!-- 봉사활동_리스트 -->
+	<select id="getVoluntaryList" resultMap="com.fourdrone.dakcheerup.domain.resume.Voluntary"  parameterType="String">
+        SELECT  * FROM  TB_RESUME_VOLUNTARY
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+    
+    <!-- 저술내역_단일  -->
+	<select id="getWrite" resultMap="com.fourdrone.dakcheerup.domain.resume.Write"  parameterType="Integer">
+        SELECT  * FROM  TB_RESUME_WRITE
+        WHERE WRITE_NO = #{writeNo}
+    </select>
+    
+    <!-- 저술내역_리스트 -->
+	<select id="getWriteList" resultMap="com.fourdrone.dakcheerup.domain.resume.Write"  parameterType="String">
+        SELECT  * FROM  TB_RESUME_WRITE
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+   
+   	<!-- 강점/성격 단일 -->
+	<select id="getStrength" resultMap="com.fourdrone.dakcheerup.domain.resume.Strength"  parameterType="String">
+        SELECT  * FROM  TB_RESUME_STRENGTH
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+    
+    <!-- SWOT분석 단일 -->
+	<select id="getSwot" resultMap="com.fourdrone.dakcheerup.domain.resume.Swot"  parameterType="String">
+        SELECT  * FROM  TB_RESUME_SWOT
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+	
+	
+	
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * *
+	 *                                                   *
+	 *               ADD RESUME                          * 
+	 *                                                   *
+	 * * * * * * * * * * * * * * * * * * * * * * * * * -->	 
+	 
+	<!-- 이력서  -->
+	<insert id="addResume" parameterType="com.fourdrone.dakcheerup.domain.Resume" >
+        INSERT INTO TB_RESUME (MEMBER_ID, RESUME_FIRST_REG_DATE, RESUME_LAST_REG_DATE, RESUME_LAST_PRINT_DATE)
+        VALUES (#{memberId}, #{resumeFirstRegDate}, #{resumeLastRegDate}, #{resumeLastPrintDate})
+    </insert>
+    
+	<!-- 이력서 설정  -->
+	<insert id="addResumeConfig" parameterType="com.fourdrone.dakcheerup.domain.resume.ResumeConfig">
+        INSERT INTO  TB_RESUME_CONFIG (MEMBER_ID, RESUME_CONFIG_VIEW_ITEM, RESUME_CONFIG_LAST_REG_DATE)
+        VALUES (#{memberId}, #{resumeConfigViewItem}, #{resumeConfigLastRegDate})
+    </insert>   
+    
+    <!-- 기본인적사항  -->
+	<insert id="addProfile" parameterType="com.fourdrone.dakcheerup.domain.resume.Profile">
+        INSERT INTO  TB_RESUME_PROFILE (MEMBER_ID, PROFILE_NAME, PROFILE_REG_DATE)
+        VALUES (#{memberId}, #{profileName}, #{profileRegDate})
+    </insert>
+    
+    <!-- 형제관계  -->
+	<insert id="addBrother" parameterType="com.fourdrone.dakcheerup.domain.resume.Brother">
+        INSERT INTO  TB_RESUME_BROTHER (MEMBER_ID, BROTHER_REG_DATE)
+        VALUES (#{memberId}, #{brotherRegDate})
+    </insert>
+    
+    <!-- 가족관계 -->
+	<insert id="addFamily" parameterType="com.fourdrone.dakcheerup.domain.resume.Family">
+        INSERT INTO  TB_RESUME_FAMILY (MEMBER_ID, FAMILY_NO, FAMILY_RELATION, FAMILY_NAME, FAMILY_AGE, FAMILY_JOB, FAMILY_LIVE,  FAMILY_REG_DATE )
+        VALUES (#{memberId}, #{familyNo}, #{familyRelation}, #{familyName}, #{familyAge}, #{familyJob}, #{familyLive}, #{familyRegDate})
+    </insert>
+    
+          
+    <!-- 병역사항  -->
+	<insert id="addMilitary" parameterType="com.fourdrone.dakcheerup.domain.resume.Military">
+        INSERT INTO  TB_RESUME_MILITARY (MEMBER_ID, MILITARY_REG_DATE )
+        VALUES (#{memberId}, #{militaryRegDate})
+    </insert>
+    
+          
+    <!-- 학력사항   -->
+	<insert id="addAcademic" parameterType="com.fourdrone.dakcheerup.domain.resume.Academic">
+        INSERT INTO  TB_RESUME_ACADEMIC (MEMBER_ID)
+       	VALUES (#{memberId})
+    </insert>
+    
+    <!-- 학력사항 - 고등학교   -->
+	<insert id="addAcademicHigh" parameterType="com.fourdrone.dakcheerup.domain.resume.AcademicHigh">
+        INSERT INTO  TB_RESUME_ACADEMIC_HIGHSCHOOL (MEMBER_ID, ACADEMIC_HIGH_REG_DATE )
+        VALUES (#{memberId}, #{academicHighRegDate})
+    </insert>
+    
+    <!-- 학력사항 - 대학교 -   -->
+	<insert id="addAcademicUniv" parameterType="com.fourdrone.dakcheerup.domain.resume.AcademicUniv">
+        INSERT INTO  TB_RESUME_ACADEMIC_UNIVERSITY (MEMBER_ID, ACADEMIC_UNIV_NO, ACADEMIC_UNIV_PERIOD_FIRST, ACADEMIC_UNIV_PERIOD_FIRST_OPTION, ACADEMIC_UNIV_PERIOD_LAST, ACADEMIC_UNIV_PERIOD_LAST_OPTION, ACADEMIC_UNIV_NAME,  ACADEMIC_UNIV_DEGREE,ACADEMIC_UNIV_MAJOR,  ACADEMIC_UNIV_SCORE, ACADEMIC_UNIV_SCORE_OPTION, ACADEMIC_UNIV_DOUBLE_NAME, ACADEMIC_UNIV_DOUBLE_OPTION, ACADEMIC_UNIV_REG_DATE )
+        VALUES (#{memberId}, #{academicUnivNo}, #{academicUnivPeriodFirst}, #{academicUnivPeriodFirstOption}, #{academicUnivPeriodLast}, #{academicUnivPeriodLastOption}, #{academicUnivName}, #{academicUnivDegree}, #{academicUnivMajor}, #{academicUnivScore}, #{academicUnivScoreOption}, #{academicUnivDoubleName}, #{academicUnivDoubleOption}, #{academicUnivRegDate})
+    </insert>
+ 
+    
+    <!-- 수상내역   -->
+	<insert id="addAward" parameterType="com.fourdrone.dakcheerup.domain.resume.Award">
+        INSERT INTO  TB_RESUME_AWARD (MEMBER_ID, AWARD_NO, AWARD_DATE, AWARD_NAME, AWARD_ORG, AWARD_SECTION, AWARD_REG_DATE)
+        VALUES (#{memberId}, #{awardNo}, #{awardDate}, #{awardName}, #{awardOrg}, #{awardSection}, #{awardRegDate})
+    </insert>    
+   
+     <!-- 교육이수내역  -->
+	<insert id="addEducation" parameterType="com.fourdrone.dakcheerup.domain.resume.Education">
+        INSERT INTO  TB_RESUME_EDUCATION (MEMBER_ID, EDUCATION_NO, EDUCATION_PERIOD, EDUCATION_NAME, EDUCATION_ORG, EDUCATION_REG_DATE)
+        VALUES (#{memberId}, #{educationNo}, #{educationPeriod}, #{educationName}, #{educationOrg}, #{educationRegDate})
+    </insert>
+    
+    
+     <!-- 경력및실습사항  -->
+	<insert id="addCareer" parameterType="com.fourdrone.dakcheerup.domain.resume.Career">
+        INSERT INTO  TB_RESUME_CAREER (MEMBER_ID, CAREER_NO, CAREER_PERIOD, CAREER_COMPANY, CAREER_POSITION, CAREER_WORK, CAREER_POST, CAREER_REG_DATE)
+        VALUES (#{memberId}, #{careerNo}, #{careerPeriod}, #{careerCompany}, #{careerPosition}, #{careerWork}, #{careerPost}, #{careerRegDate})
+    </insert>
+    
+    
+    <!-- 글로벌경험  -->
+	<insert id="addGlobal" parameterType="com.fourdrone.dakcheerup.domain.resume.Global">
+        INSERT INTO  TB_RESUME_GLOBAL (MEMBER_ID, GLOBAL_NO, GLOBAL_PERIOD, GLOBAL_NATION, GLOBAL_PURPOSE, GLOBAL_CONTENT, GLOBAL_REG_DATE)
+        VALUES (#{memberId}, #{globalNo}, #{globalPeriod}, #{globalNation}, #{globalPurpose}, #{globalContent}, #{globalRegDate})
+    </insert>
+    
+    
+    <!-- 어학능력  -->
+	<insert id="addLanguageAbility" parameterType="com.fourdrone.dakcheerup.domain.resume.LanguageAbility">
+        INSERT INTO  TB_RESUME_LANGUAGE_ABILITY (MEMBER_ID, LANG_ABILITY_NO, LANG_ABILITY_NAME, LANG_ABILITY_CONVERSATION, LANG_ABILITY_COMPOSITION, LANG_ABILITY_READING, LANG_ABILITY_REG_DATE)
+        VALUES (#{memberId}, #{langAbilityNo}, #{LangAbilityName}, #{LangAbilityConversation}, #{LangAbilityComposition}, #{LangAbilityReading}, #{LangAbilityRegDate})
+    </insert>
+     
+    
+    <!-- 어학시험  -->
+	<insert id="addLanguageExam" parameterType="com.fourdrone.dakcheerup.domain.resume.LanguageExam">
+        INSERT INTO  TB_RESUME_LANGUAGE_EXAM(MEMBER_ID, LANG_EXAM_NO, LANG_EXAM_LNAME, LANG_EXAM_ENAME, LANG_EXAM_SCORE, LANG_EXAM_TYPE, LANG_EXAM_ORG, LANG_EXAM_REG_DATE)
+        VALUES (#{memberId}, #{langExamNo}, #{langExamLName}, #{langExamEName}, #{langExamScore}, #{langExamType}, #{langExamOrg}, #{langExamRegDate})
+    </insert>
+ 
+    
+    <!-- 자격증  -->
+	<insert id="addLicense" parameterType="com.fourdrone.dakcheerup.domain.resume.License">
+        INSERT INTO  TB_RESUME_LICENSE (MEMBER_ID, LICENSE_NO, LICENSE_DATE, LICENSE_NAME, LICENSE_ORG, LICENSE_PASS, LICENSE_REG_DATE)
+        VALUES (#{memberId}, #{licenseNo}, #{licenseDate}, #{licenseName}, #{licenseOrg}, #{licensePass}, #{licenseRegDate})
+    </insert>
+    
+
+	<!-- OA능력 -->
+	<insert id="addOA" parameterType="com.fourdrone.dakcheerup.domain.resume.OA">
+        INSERT INTO  TB_RESUME_OA (MEMBER_ID, OA_REG_DATE)
+        VALUES (#{memberId}, #{oaRegDate})
+    </insert>
+    
+    <!-- 참여프로젝트  -->
+	<insert id="addProject" parameterType="com.fourdrone.dakcheerup.domain.resume.Project">
+        INSERT INTO  TB_RESUME_PROJECT (MEMBER_ID, PROJECT_NO, PROJECT_PERIOD, PROJECT_NAME, PROJECT_CONTEXT, PROJECT_SECTION, PROJECT_REG_DATE)
+        VALUES (#{memberId}, #{projectNo}, #{projectPeriod}, #{projectName}, #{projectContext}, #{projectSection}, #{projectRegDate})
+    </insert>
+    
+    
+    <!-- 봉사활동  -->
+	<insert id="addVoluntary" parameterType="com.fourdrone.dakcheerup.domain.resume.Voluntary">
+        INSERT INTO  TB_RESUME_VOLUNTARY (MEMBER_ID, VOLUNTARY_NO, VOLUNTARY_PERIOD, VOLUNTARY_ORG, VOLUNTARY_CONTENT, VOLUNTARY_REG_DATE)
+        VALUES (#{memberId}, #{voluntaryNo}, #{voluntaryPeriod}, #{voluntaryOrg}, #{voluntaryContent}, #{voluntaryRegDate})
+    </insert>
+    
+    
+    <!-- 저술내역  -->
+	<insert id="addWrite" parameterType="com.fourdrone.dakcheerup.domain.resume.Write">
+        INSERT INTO  TB_RESUME_WRITE (MEMBER_ID, WRITE_NO, WRITE_DATE, WRITE_SECTION, WRITE_NAME, WRITE_ORG, WRITE_REG_DATE)
+        VALUES (#{memberId}, #{writeNo}, #{writeDate}, #{writeSection}, #{writeName}, #{writeOrg}, #{writeRegDate})
+    </insert>
+    
+   
+   	<!-- 강점/성격  -->
+	<insert id="addStrength" parameterType="com.fourdrone.dakcheerup.domain.resume.Strength">
+        INSERT INTO  TB_RESUME_STRENGTH (MEMBER_ID, STRENGTH_ITEM, CHARACTER_ITEM, STRENGTH_REG_DATE)
+        VALUES (#{memberId}, #{strengthItem}, #{characterItem},  #{strengthRegDate})
+    </insert>
+    
+    <!-- SWOT분석  -->
+	<insert id="addSwot" parameterType="com.fourdrone.dakcheerup.domain.resume.Swot">
+        INSERT INTO TB_RESUME_SWOT (MEMBER_ID, SWOT_REG_DATE)
+        VALUES (#{memberId},  #{swotRegDate})
+    </insert>
+
+
+
+
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * *
+	 *                                                   *
+	 *               MOD RESUME                          * 
+	 *                                                   *
+	 * * * * * * * * * * * * * * * * * * * * * * * * * -->	 
+
+     
+	<!-- 이력서  -->
+	<update id="modResume" parameterType="com.fourdrone.dakcheerup.domain.Resume" >
+        UPDATE	TB_RESUME 
+        SET 	RESUME_FIRST_REG_DATE = #{resumeFirstRegDate}, 
+        		RESUME_LAST_REG_DATE = #{resumeLastRegDate},
+        		RESUME_LAST_PRINT_DATE =#{resumeLastPrintDate} 
+        WHERE 	MEMBER_ID = #{memberId}
+    </update>
+    
+	<!-- 이력서 설정  -->
+	<update id="modResumeConfig" parameterType="com.fourdrone.dakcheerup.domain.resume.ResumeConfig">
+        UPDATE 	TB_RESUME_CONFIG
+        SET 	RESUME_CONFIG_VIEW_ITEM = #{resumeConfigViewItem}, 
+        		RESUME_CONFIG_LAST_REG_DATE = #{resumeConfigLastRegDate}
+        WHERE 	MEMBER_ID = #{memberId}
+    </update>   
+    
+    <!-- 기본인적사항  -->
+	<update id="modprofile" parameterType="com.fourdrone.dakcheerup.domain.resume.Profile">
+        UPDATE 	TB_RESUME_PROFILE 
+        SET 	PROFILE_NAME = #{profileName}, 				PROFILE_ENAME = #{profileEname}, 			PROFILE_CNAME = #{profileCname}, 			PROFILE_JUMIN_FRONT = #{profileJuminFront}, 	PROFILE_JUMIN_BACK = #{profileJuminBack},
+        		PROFILE_PHONE = #{profilePhone}, 			PROFILE_EMAIL = #{profileEmail}, 			PROFILE_ADDR = #{profileAddr}, 				PROFILE_HOBBY = #{profileHobby}, 				PROFILE_FORTE = #{profileForte},
+        		PROFILE_RELIGION = #{profileReligion}, 		PROFILE_VETERANS = #{profileVeterans},		PROFILE_MARRIAGE = #{profileMarriage}, 		PROFILE_WEBSITE = #{profileWebsite}, 			PROFILE_DISABILITY = #{profileDisability}, 
+        		PROFILE_NAVER_BLOG = #{profileNaverBlog},	PROFILE_TISTORY = #{profileTistory},		PROFILE_INSTAGRAM = #{profileInstagram}, 	PROFILE_FACEBOOK = #{profileFacebook}, 			PROFILE_PINTEREST = #{profilePinterest},
+        		PROFILE_TWITTER = #{profileTwitter},		PROFILE_TUMBLR = #{profileTumblr},			PROFILE_YOUTUBE = #{profileYoutube},		PROFILE_REG_DATE = #{profileRegDate}
+        WHERE 	MEMBER_ID = #{memberId}
+    </update>
+    
+    <!-- 형제관계  -->
+	<update id="modBrother" parameterType="com.fourdrone.dakcheerup.domain.resume.Brother">
+        UPDATE 	TB_RESUME_BROTHER
+        SET 	BROTHER_MALE = #{brotherMale},	
+        		BROTHER_FEMALE = #{brotherFemale},	
+        		BROTHER_ME = #{brotherMe},	
+        		BROTHER_REG_DATE = #{brotherRegDate}
+        WHERE 	MEMBER_ID = #{memberId}
+    </update>
+    
+    <!-- 가족관계 -->
+	<update id="modFamily" parameterType="com.fourdrone.dakcheerup.domain.resume.Family">
+        UPDATE 	TB_RESUME_FAMILY 
+        SET 	FAMILY_RELATION = #{familyRelation}, 
+        		FAMILY_NAME = #{familyName}, 
+        		FAMILY_AGE = #{familyAge}, 
+        		FAMILY_JOB = #{familyJob}, 
+        		FAMILY_LIVE = #{familyLive},  
+        		FAMILY_REG_DATE = #{familyRegDate} 
+        WHERE 	FAMILY_NO = #{familyNo}
+    </update>
+    
+          
+    <!-- 병역사항  -->
+	<update id="modMilitary" parameterType="com.fourdrone.dakcheerup.domain.resume.Military">
+        UPDATE 	TB_RESUME_MILITARY 
+        SET		MILITARY_PERIOD = #{militaryPeriod},
+        		MILITARY_SECTION = #{militarySection},
+        		MILITARY_GROUP = #{militaryGroup},
+        		MILITARY_RANK = #{militaryRank},
+        		MILITARY_WORK = #{militaryWork},
+        		MILITARY_REASON = #{militaryReason},
+        		MILITARY_REG_DATE = #{militaryRegDate}
+        WHERE 	MEMBER_ID = #{memberId}
+    </update>
+    
+          
+    <!-- 학력사항   -->
+	<update id="modAcademic" parameterType="com.fourdrone.dakcheerup.domain.resume.Academic">
+        UPDATE 	TB_RESUME_ACADEMIC 
+        SET		ACADEMIC_FINAL = #{academicFinal}
+       	WHERE 	MEMBER_ID = #{memberId}
+    </update>
+    
+    <!-- 학력사항 - 고등학교   -->
+	<update id="modAcademicHigh" parameterType="com.fourdrone.dakcheerup.domain.resume.AcademicHigh">
+        UPDATE 	TB_RESUME_ACADEMIC_HIGHSCHOOL 
+        SET		ACADEMIC_HIGH_PERIOD = #{academicHighPeriod},
+        		ACADEMIC_HIGH_AREA = #{academicHighArea},
+        		ACADEMIC_HIGH_NAME = #{academicHighName},
+        		ACADEMIC_HIGH_SECTION = #{academicHighSection},
+        		ACADEMIC_HIGH_MAJOR = #{academicHighMajor},
+        		ACADEMIC_HIGH_REG_DATE = #{academicHighRegDate}
+       WHERE	MEMBER_ID = #{memberId}
+    </update>
+    
+    <!-- 학력사항 - 대학교 -   -->
+	<update id="modAcademicUniv" parameterType="com.fourdrone.dakcheerup.domain.resume.AcademicUniv">
+        UPDATE 	TB_RESUME_ACADEMIC_UNIVERSITY 
+        SET 	ACADEMIC_UNIV_PERIOD_FIRST = #{academicUnivPeriodFirst},
+        		ACADEMIC_UNIV_PERIOD_FIRST_OPTION = #{academicUnivPeriodFirstOption},
+				ACADEMIC_UNIV_PERIOD_LAST = #{academicUnivPeriodLast}, 
+				ACADEMIC_UNIV_PERIOD_LAST_OPTION = #{academicUnivPeriodLastOption},
+				ACADEMIC_UNIV_NAME = #{academicUnivName}, 
+				ACADEMIC_UNIV_DEGREE = #{academicUnivDegree},
+				ACADEMIC_UNIV_MAJOR = #{academicUnivMajor},  
+				ACADEMIC_UNIV_SCORE = #{academicUnivScore}, 
+				ACADEMIC_UNIV_SCORE_OPTION = #{academicUnivScoreOption},
+				ACADEMIC_UNIV_DOUBLE_NAME = #{academicUnivDoubleName},
+				ACADEMIC_UNIV_DOUBLE_OPTION = #{academicUnivDoubleOption},
+				ACADEMIC_UNIV_REG_DATE = #{academicUnivRegDate}
+        WHERE 	ACADEMIC_UNIV_NO = #{academicUnivNo}
+    </update>
+ 
+    
+    <!-- 수상내역   -->
+	<update id="modAward" parameterType="com.fourdrone.dakcheerup.domain.resume.Award">
+        UPDATE 	TB_RESUME_AWARD 
+		SET		AWARD_DATE = #{awardDate},
+				AWARD_NAME = #{awardName},
+				AWARD_ORG = #{awardOrg}, 
+				AWARD_SECTION = #{awardSection}, 
+				AWARD_REG_DATE = #{awardRegDate}
+        WHERE	AWARD_NO = #{awardNo}
+    </update>    
+   
+     <!-- 교육이수내역  -->
+	<update id="modEducation" parameterType="com.fourdrone.dakcheerup.domain.resume.Education">
+        UPDATE 	TB_RESUME_EDUCATION 
+		SET		EDUCATION_PERIOD = #{educationPeriod}, 
+				EDUCATION_NAME = #{educationName}, 
+				EDUCATION_ORG = #{educationOrg}, 
+				EDUCATION_REG_DATE = #{educationRegDate}
+        WHERE	EDUCATION_NO = #{educationNo}
+    </update>
+    
+    
+     <!-- 경력및실습사항  -->
+	<update id="modCareer" parameterType="com.fourdrone.dakcheerup.domain.resume.Career">
+        UPDATE 	TB_RESUME_CAREER 
+        SET		CAREER_PERIOD = #{careerPeriod}, 
+        		CAREER_COMPANY = #{careerCompany}, 
+        		CAREER_POSITION = #{careerPosition}, 
+        		CAREER_WORK = #{careerWork}, 
+        		CAREER_POST = #{careerPost}, 
+        		CAREER_REG_DATE = #{careerRegDate}
+        WHERE	CAREER_NO = #{careerNo}
+    </update>
+    
+    
+    <!-- 글로벌경험  -->
+	<update id="modGlobal" parameterType="com.fourdrone.dakcheerup.domain.resume.Global">
+        UPDATE 	TB_RESUME_GLOBAL 
+		SET		GLOBAL_PERIOD = #{globalPeriod}, 
+				GLOBAL_NATION = #{globalNation}, 
+				GLOBAL_PURPOSE = #{globalPurpose}, 
+				GLOBAL_CONTENT = #{globalContent}, 
+				GLOBAL_REG_DATE = #{globalRegDate}
+        WHERE 	GLOBAL_NO = #{globalNo}
+    </update>
+    
+    
+    <!-- 어학능력  -->
+	<update id="modLanguageAbility" parameterType="com.fourdrone.dakcheerup.domain.resume.LanguageAbility">
+        UPDATE 	TB_RESUME_LANGUAGE_ABILITY 
+		SET 	LANG_ABILITY_NAME = #{LangAbilityName}, 
+				LANG_ABILITY_CONVERSATION = #{LangAbilityConversation}, 
+				LANG_ABILITY_COMPOSITION = #{LangAbilityComposition}, 
+				LANG_ABILITY_READING = #{LangAbilityReading}, 
+				LANG_ABILITY_REG_DATE = #{LangAbilityRegDate}
+        WHERE 	LANG_ABILITY_NO = #{langAbilityNo}
+    </update>
+     
+    
+    <!-- 어학시험  -->
+	<update id="modLanguageExam" parameterType="com.fourdrone.dakcheerup.domain.resume.LanguageExam">
+        UPDATE 	TB_RESUME_LANGUAGE_EXAM
+		SET		LANG_EXAM_LNAME = #{langExamLName}, 
+				LANG_EXAM_ENAME = #{langExamEName}, 
+				LANG_EXAM_SCORE = #{langExamScore}, 
+				LANG_EXAM_TYPE = #{langExamType}, 
+				LANG_EXAM_ORG = #{langExamOrg}, 
+				LANG_EXAM_REG_DATE = #{langExamRegDate}
+        WHERE	LANG_EXAM_NO = #{langExamNo}
+    </update>
+ 
+    
+    <!-- 자격증  -->
+	<update id="modLicense" parameterType="com.fourdrone.dakcheerup.domain.resume.License">
+        UPDATE 	TB_RESUME_LICENSE
+		SET		LICENSE_DATE = #{licenseDate}, 
+				LICENSE_NAME = #{licenseName}, 
+				LICENSE_ORG = #{licenseOrg}, 
+				LICENSE_PASS = #{licensePass}, 
+				LICENSE_REG_DATE = #{licenseRegDate}
+        WHERE	LICENSE_NO = #{licenseNo}
+    </update>
+    
+
+	<!-- OA능력 -->
+	<update id="modOA" parameterType="com.fourdrone.dakcheerup.domain.resume.OA">
+        UPDATE 	TB_RESUME_OA 
+		SET		OA_DOC = #{oaDoc}, 
+				OA_EXCEL = #{oaExcel}, 
+				OA_PPT = #{oaPpt}, 
+				OA_INTERNET = #{oaInternet}, 
+				OA_GRAPHIC = #{oaGraphic}, 
+				OA_REG_DATE = #{oaRegDate}
+       WHERE	MEMBER_ID = #{memberId}
+    </update>
+    
+    <!-- 참여프로젝트  -->
+	<update id="modProject" parameterType="com.fourdrone.dakcheerup.domain.resume.Project">
+        UPDATE 	TB_RESUME_PROJECT
+		SET		PROJECT_PERIOD = #{projectPeriod}, 
+				PROJECT_NAME = #{projectName}, 
+				PROJECT_CONTEXT = #{projectContext}, 
+				PROJECT_SECTION = #{projectSection}, 
+				PROJECT_REG_DATE = #{projectRegDate}
+        WHERE	PROJECT_NO = #{projectNo}
+    </update>
+    
+    
+    <!-- 봉사활동  -->
+	<update id="modVoluntary" parameterType="com.fourdrone.dakcheerup.domain.resume.Voluntary">
+        UPDATE 	TB_RESUME_VOLUNTARY 
+		SET		VOLUNTARY_PERIOD = #{voluntaryPeriod}, 
+				VOLUNTARY_ORG = #{voluntaryOrg}, 
+				VOLUNTARY_CONTENT = #{voluntaryContent}, 
+				VOLUNTARY_REG_DATE = #{voluntaryRegDate}
+        WHERE	VOLUNTARY_NO = #{voluntaryNo}
+    </update>
+    
+    
+    <!-- 저술내역  -->
+	<update id="modWrite" parameterType="com.fourdrone.dakcheerup.domain.resume.Write">
+        UPDATE 	TB_RESUME_WRITE 
+		SET		WRITE_DATE = #{writeDate}, 
+				WRITE_SECTION = #{writeSection}, 
+				WRITE_NAME = #{writeName}, 
+				WRITE_ORG = #{writeOrg}, 
+				WRITE_REG_DATE = #{writeRegDate}
+        WHERE	WRITE_NO = #{writeNo}
+    </update>
+    
+   
+   	<!-- 강점/성격  -->
+	<update id="modStrength" parameterType="com.fourdrone.dakcheerup.domain.resume.Strength">
+        UPDATE 	TB_RESUME_STRENGTH
+        SET		STRENGTH_ITEM = #{strengthItem},
+        		CHARACTER_ITEM = #{characterItem},
+        		STRENGTH_REG_DATE = #{strengthRegDate}
+       	WHERE	MEMBER_ID = #{memberId}
+    </update>
+    
+    <!-- SWOT분석  -->
+	<update id="modSwot" parameterType="com.fourdrone.dakcheerup.domain.resume.Swot">
+        UPDATE 	TB_RESUME_SWOT 
+        SET		SWOT_STRENGTH = #{swotStrength},
+        		SWOT_WEAKNESS = #{swotWeakness},
+        		SWOT_OPPORTUNITIES = #{swotOpportunities},
+        		SWOT_THREATS = #{swotThreats},
+        		SWOT_SO = #{swotSo},
+        		SWOT_ST = #{swotSt},
+        		SWOT_WO = #{swotWo},
+        		SWOT_WT = #{swotWt},
+        		SWOT_REG_DATE = #{swotRegDate}        
+        WHERE	MEMBER_ID = #{memberId}
+    </update>
+
+
+
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * *
+	 *                                                   *
+	 *               DEL RESUME                          * 
+	 *                                                   *
+	 * * * * * * * * * * * * * * * * * * * * * * * * * -->	 
+	
+     
+	<!-- 이력서  -->
+	<delete id="delResume" parameterType="String" >
+        DELETE	TB_RESUME	
+        WHERE 	MEMBER_ID = #{memberId}
+    </delete>
+    
+	<!-- 이력서 설정  -->
+	<delete id="delResumeConfig" parameterType="String">
+        DELETE 	TB_RESUME_CONFIG
+        WHERE 	MEMBER_ID = #{memberId}
+    </delete>   
+    
+    <!-- 기본인적사항  -->
+	<delete id="delprofile" parameterType="String">
+        DELETE 	TB_RESUME_PROFILE 
+        WHERE 	MEMBER_ID = #{memberId}
+    </delete>
+    
+    <!-- 형제관계  -->
+	<delete id="delBrother" parameterType="String">
+        DELETE 	TB_RESUME_BROTHER
+        WHERE 	MEMBER_ID = #{memberId}
+    </delete>
+    
+    <!-- 가족관계 -->
+	<delete id="delFamily" parameterType="Integer">
+        DELETE 	TB_RESUME_FAMILY 
+        WHERE 	FAMILY_NO = #{familyNo}
+    </delete>
+    
+          
+    <!-- 병역사항  -->
+	<delete id="delMilitary" parameterType="String">
+        DELETE 	TB_RESUME_MILITARY 
+        WHERE 	MEMBER_ID = #{memberId}
+    </delete>
+    
+          
+    <!-- 학력사항   -->
+	<delete id="delAcademic" parameterType="String">
+        DELETE 	TB_RESUME_ACADEMIC 
+       	WHERE 	MEMBER_ID = #{memberId}
+    </delete>
+    
+    <!-- 학력사항 - 고등학교   -->
+	<delete id="delAcademicHigh" parameterType="String">
+        DELETE 	TB_RESUME_ACADEMIC_HIGHSCHOOL 
+        WHERE	MEMBER_ID = #{memberId}
+    </delete>
+    
+    <!-- 학력사항 - 대학교 -   -->
+	<delete id="delAcademicUniv" parameterType="Integer">
+        DELETE 	TB_RESUME_ACADEMIC_UNIVERSITY 
+        WHERE 	ACADEMIC_UNIV_NO = #{academicUnivNo}
+    </delete> 
+    
+    <!-- 수상내역   -->
+	<delete id="delAward" parameterType="Integer">
+        DELETE 	TB_RESUME_AWARD 
+        WHERE	AWARD_NO = #{awardNo}
+    </delete>    
+   
+     <!-- 교육이수내역  -->
+	<delete id="delEducation" parameterType="Integer">
+        DELETE 	TB_RESUME_EDUCATION 
+        WHERE	EDUCATION_NO = #{educationNo}
+    </delete>
+    
+    
+     <!-- 경력및실습사항  -->
+	<delete id="delCareer" parameterType="Integer">
+        DELETE 	TB_RESUME_CAREER 
+        WHERE	CAREER_NO = #{careerNo}
+    </delete>
+    
+    
+    <!-- 글로벌경험  -->
+	<delete id="delGlobal" parameterType="Integer">
+        DELETE 	TB_RESUME_GLOBAL 		
+        WHERE 	GLOBAL_NO = #{globalNo}
+    </delete>
+    
+    
+    <!-- 어학능력  -->
+	<delete id="delLanguageAbility" parameterType="Integer">
+        DELETE 	TB_RESUME_LANGUAGE_ABILITY 		
+        WHERE 	LANG_ABILITY_NO = #{langAbilityNo}
+    </delete>
+     
+    
+    <!-- 어학시험  -->
+	<delete id="delLanguageExam" parameterType="Integer">
+        DELETE 	TB_RESUME_LANGUAGE_EXAM		
+        WHERE	LANG_EXAM_NO = #{langExamNo}
+    </delete>
+ 
+    
+    <!-- 자격증  -->
+	<delete id="delLicense" parameterType="Integer">
+        DELETE 	TB_RESUME_LICENSE		
+        WHERE	LICENSE_NO = #{licenseNo}
+    </delete>
+    
+
+	<!-- OA능력 -->
+	<delete id="delOA" parameterType="String">
+       	DELETE 	TB_RESUME_OA 
+       	WHERE	MEMBER_ID = #{memberId}
+    </delete>
+    
+    <!-- 참여프로젝트  -->
+	<delete id="delProject" parameterType="Integer">
+        DELETE 	TB_RESUME_PROJECT
+        WHERE	PROJECT_NO = #{projectNo}
+    </delete>
+    
+    
+    <!-- 봉사활동  -->
+	<delete id="delVoluntary" parameterType="Integer">
+        DELETE 	TB_RESUME_VOLUNTARY 
+        WHERE	VOLUNTARY_NO = #{voluntaryNo}
+    </delete>
+    
+    
+    <!-- 저술내역  -->
+	<delete id="delWrite" parameterType="Integer">
+        DELETE 	TB_RESUME_WRITE 
+        WHERE	WRITE_NO = #{writeNo}
+    </delete>
+    
+   
+   	<!-- 강점/성격  -->
+	<delete id="delStrength" parameterType="String">
+        DELETE 	TB_RESUME_STRENGTH
+       	WHERE	MEMBER_ID = #{memberId}
+    </delete>
+    
+    <!-- SWOT분석  -->
+	<delete id="delSwot" parameterType="String">
+        DELETE 	TB_RESUME_SWOT             
+        WHERE	MEMBER_ID = #{memberId}
+    </delete>
+
+</mapper>

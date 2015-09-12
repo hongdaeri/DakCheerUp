@@ -2,8 +2,15 @@ package com.fourdrone.dakcheerup.controller;
 
 import com.fourdrone.dakcheerup.domain.Resume;
 import com.fourdrone.dakcheerup.domain.member.Member;
+import com.fourdrone.dakcheerup.domain.resume.Academic;
+import com.fourdrone.dakcheerup.domain.resume.AcademicHigh;
+import com.fourdrone.dakcheerup.domain.resume.Brother;
+import com.fourdrone.dakcheerup.domain.resume.Military;
+import com.fourdrone.dakcheerup.domain.resume.OA;
 import com.fourdrone.dakcheerup.domain.resume.Profile;
 import com.fourdrone.dakcheerup.domain.resume.ResumeConfig;
+import com.fourdrone.dakcheerup.domain.resume.Strength;
+import com.fourdrone.dakcheerup.domain.resume.Swot;
 import com.fourdrone.dakcheerup.service.AccountService;
 import com.fourdrone.dakcheerup.service.ResumeService;
 
@@ -142,19 +149,66 @@ public class AccountController {
         resume.setMemberId(memberId);
         this.resumeService.addResume(resume);
         
-        // RESUME_CONFIG 테이블 생성.
-        ResumeConfig resumeConfig = new ResumeConfig();
-        resumeConfig.setMemberId(memberId);
-        resumeConfig.setResumeConfigViewItem("NNNNNNNNNNNNNNNNNNNN");
-        resumeConfig.setResumeConfigLastRegDate(time);        
-        this.resumeService.addResumeConfig(resumeConfig);
         
-        // RESUME - PROFILE 테이블 생성.
-        Profile profile = new Profile();
-        profile.setMemberId(memberId);
-        profile.setProfileName(memberName);
-        profile.setProfileRegDate(time);
-        this.resumeService.addProfile(profile);
+        /* RESUME 단일 테이블 생성*/        
+	        // RESUME_CONFIG 테이블 생성.
+	        ResumeConfig resumeConfig = new ResumeConfig();
+	        resumeConfig.setMemberId(memberId);
+	        resumeConfig.setResumeConfigViewItem("NNNNNNNNNNNNNNNNNNNN");
+	        resumeConfig.setResumeConfigLastRegDate(time);        
+	        this.resumeService.addResumeConfig(resumeConfig);
+	        
+	        // RESUME - PROFILE 테이블 생성.
+	        Profile profile = new Profile();
+	        profile.setMemberId(memberId);
+	        profile.setProfileName(memberName);
+	        profile.setProfileRegDate(time);
+	        this.resumeService.addProfile(profile);
+	        
+	        // RESUME - Brother 테이블 생성.
+	        Brother brother = new Brother();
+	        brother.setMemberId(memberId);
+	        brother.setBrotherRegDate(time);
+	        this.resumeService.addBrother(brother);
+	        
+	        // RESUME - Military 테이블 생성.
+	        Military military = new Military();
+	        military.setMemberId(memberId);
+	        military.setMilitaryRegDate(time);
+	        this.resumeService.addMilitary(military);
+	        
+	        // RESUME - Academic 테이블 생성.
+	        Academic academic = new Academic();
+	        academic.setMemberId(memberId);
+	        this.resumeService.addAcademic(academic);
+	        
+	        // RESUME - AcademicHigh 테이블 생성.
+	        AcademicHigh academicHigh = new AcademicHigh();
+	        academicHigh.setMemberId(memberId);
+	        academicHigh.setAcademicHighRegDate(time);
+	        this.resumeService.addAcademicHigh(academicHigh);
+	        
+	        // RESUME - OA 테이블 생성.
+	        OA oa = new OA();
+	        oa.setMemberId(memberId);
+	        oa.setOaRegDate(time);
+	        this.resumeService.addOA(oa);
+	        
+	        // RESUME - strength 테이블 생성.
+	        Strength strength = new Strength();
+	        strength.setMemberId(memberId);   
+	        strength.setStrengthItem("NNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
+	        strength.setCharacterItem("NNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
+	        strength.setStrengthRegDate(time);
+	        this.resumeService.addStrength(strength);
+	        
+	        // RESUME - Swot 테이블 생성.
+	        Swot swot = new Swot();
+	        swot.setMemberId(memberId);
+	        swot.setSwotRegDate(time);
+	        this.resumeService.addSwot(swot);
+	        
+        /* RESUME 단일 테이블 생성 끝 */
         
         return "redirect:test";
     }
