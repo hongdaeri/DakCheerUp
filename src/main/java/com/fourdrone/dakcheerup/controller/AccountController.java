@@ -1,8 +1,11 @@
 package com.fourdrone.dakcheerup.controller;
 
+import com.fourdrone.dakcheerup.domain.Resume;
 import com.fourdrone.dakcheerup.domain.member.Member;
+import com.fourdrone.dakcheerup.domain.resume.Profile;
+import com.fourdrone.dakcheerup.domain.resume.ResumeConfig;
 import com.fourdrone.dakcheerup.service.AccountService;
-
+import com.fourdrone.dakcheerup.service.ResumeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
 import com.fourdrone.dakcheerup.util.DES;
 
@@ -25,6 +30,7 @@ import com.fourdrone.dakcheerup.util.DES;
 public class AccountController {
 
     @Autowired  private AccountService accountService;
+    @Autowired private ResumeService resumeService;
 
 
 
@@ -49,7 +55,7 @@ public class AccountController {
             Member member = new Member();
             member.setMemberId(DES.decrypt(memberId));
             member.setMemberPassword(DES.decrypt(memberPassword));
-            //로그인 처리 하기.
+            //로그인 처리 하기. ( 세션만들기) 
             Member loginMember = this.accountService.getMemberForLogin(member);
             session.setAttribute("memberLoginInfo", loginMember.getMemberId());
             return "redirect:test";
@@ -80,7 +86,8 @@ public class AccountController {
                 // 암호화
                 String en_id = DES.encrypt(loginMember.getMemberId());
                 String en_pw = DES.encrypt(loginMember.getMemberPassword());
-
+                
+                //쿠키생성
                 Cookie miCookie = new Cookie("mi", en_id);
                 miCookie.setMaxAge(30 * 24 * 60 * 60);
                 response.addCookie(miCookie);
@@ -89,7 +96,7 @@ public class AccountController {
                 mpCookie.setMaxAge(30 * 24 * 60 * 60);
                 response.addCookie(mpCookie);
             }
-
+            // 세션등록 
             session.setAttribute("memberLoginInfo",loginMember.getMemberId());
             return "redirect:test";
         }
@@ -118,9 +125,37 @@ public class AccountController {
     //회원가입 처리
     @RequestMapping(value ="/signUp", method = RequestMethod.POST)
     public String signUp(@ModelAttribute("member") Member member) {
-
-        member.setRegDate(new Timestamp(System.currentTimeMillis()));
+    	
+    	String memberId = member.getMemberId();
+    	String memberName = member.getMemberName();
+    	
+    	// 현재시각 구하기.
+    	Timestamp time = new Timestamp(System.currentTimeMillis());
+		
+    	// MEMBER 테이블 생성.
+        member.setRegDate(time);
         this.accountService.addMember(member);
+        
+        // RESUME 테이블 생성.
+        Resume resume = new Resume(); 
+        resume.setResumeFirstRegDate(time);
+        resume.setMemberId(memberId);
+        this.resumeService.addResume(resume);
+        
+        // RESUME_CONFIG 테이블 생성.
+        ResumeConfig resumeConfig = new ResumeConfig();
+        resumeConfig.setMemberId(memberId);
+        resumeConfig.setResumeConfigViewItem("NNNNNNNNNNNNNNNNNNNN");
+        resumeConfig.setResumeConfigLastRegDate(time);        
+        this.resumeService.addResumeConfig(resumeConfig);
+        
+        // RESUME - PROFILE 테이블 생성.
+        Profile profile = new Profile();
+        profile.setMemberId(memberId);
+        profile.setProfileName(memberName);
+        profile.setProfileRegDate(time);
+        this.resumeService.addProfile(profile);
+        
         return "redirect:test";
     }
 

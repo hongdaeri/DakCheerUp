@@ -15,8 +15,18 @@ public class Project {
 	private int projectNo;					//프로젝트_번호 	
 	private String projectPeriod;			//프로젝트 기간
 	private String projectName;				//프로젝트_명 
-	private String projectContext;			//프로젝트_세부내용 		
+	private String projectContext;			//프로젝트_세부내용 	
+	private String projectSection;			//프로젝트_구분
 	private Timestamp projectRegDate;		//프로젝트_등록일 
+	
+	public String getProjectSection() {
+		return projectSection;
+	}
+	public void setProjectSection(String projectSection) {
+		this.projectSection = projectSection;
+	}
+
+	
 	/**
 	 * @return the memberId
 	 */

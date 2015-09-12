@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 public class LanguageAbility {
 
 	private String memberId;					//회원_아이디 
-	private int LangAbilityNo;					//어학능력_번호 	
+	private int langAbilityNo;					//어학능력_번호 	
 	private String LangAbilityName;				//어학능력_언어명 	
 	private String LangAbilityConversation;		//어학능력_회화능력 
 	private String LangAbilityComposition;		//어학능력_작문능력 
@@ -31,7 +31,7 @@ public class LanguageAbility {
 	 * @return the langAbilityNo
 	 */
 	public int getLangAbilityNo() {
-		return LangAbilityNo;
+		return langAbilityNo;
 	}
 	/**
 	 * @return the langAbilityName
@@ -73,7 +73,7 @@ public class LanguageAbility {
 	 * @param langAbilityNo the langAbilityNo to set
 	 */
 	public void setLangAbilityNo(int langAbilityNo) {
-		LangAbilityNo = langAbilityNo;
+		this.langAbilityNo = langAbilityNo;
 	}
 	/**
 	 * @param langAbilityName the langAbilityName to set

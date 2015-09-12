@@ -32,7 +32,7 @@
                   <a href="/resume/addtion-profile" class="list-group-item list-group-item-inverse text-ellipsis">추가인적사항</a>
                   <a href="/resume/academic" class="list-group-item list-group-item-inverse text-ellipsis">학력사항</a>
                   <a href="/resume/oa" class="list-group-item list-group-item-inverse text-ellipsis">OA능력</a>
-                  <a href="/resume/character" class="list-group-item list-group-item-inverse text-ellipsis">강점/성격</a>
+                  <a href="/resume/strength" class="list-group-item list-group-item-inverse text-ellipsis">강점/성격</a>
                   <a href="/resume/license" class="list-group-item list-group-item-inverse text-ellipsis">자격증/면허증</a>
                   <a href="/resume/lang-ability" class="list-group-item list-group-item-inverse text-ellipsis">어학능력</a>
                   <a href="/resume/lang-exam" class="list-group-item list-group-item-inverse text-ellipsis">어학시험</a>

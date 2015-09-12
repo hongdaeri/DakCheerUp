@@ -17,7 +17,6 @@ public class Family {
 	private int familyAge;				//가족관계_연령 
 	private String familyJob;			//가족관계_현재직업 
 	private String familyLive;			//가족관계_동거여부 (동거/비동거)
-	private String familyComment;		//가족관계_한줄소개 
 	private Timestamp familyRegDate;	//가족관계_등록일
 	
 	/**
@@ -62,12 +61,7 @@ public class Family {
 	public String getFamilyLive() {
 		return familyLive;
 	}
-	/**
-	 * @return the familyComment
-	 */
-	public String getFamilyComment() {
-		return familyComment;
-	}
+
 	/**
 	 * @return the familyRegDate
 	 */
@@ -116,12 +110,7 @@ public class Family {
 	public void setFamilyLive(String familyLive) {
 		this.familyLive = familyLive;
 	}
-	/**
-	 * @param familyComment the familyComment to set
-	 */
-	public void setFamilyComment(String familyComment) {
-		this.familyComment = familyComment;
-	}
+
 	/**
 	 * @param familyRegDate the familyRegDate to set
 	 */

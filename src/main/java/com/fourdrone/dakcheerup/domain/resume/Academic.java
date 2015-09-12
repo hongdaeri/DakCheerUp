@@ -14,7 +14,17 @@ public class Academic {
 	
 	private AcademicHigh academicHigh;
 	private AcademicUniv academicUniv;
+	private String academicFinal;
 	
+	public String getAcademicFinal() {
+		return academicFinal;
+	}
+
+
+	public void setAcademicFinal(String academicFinal) {
+		this.academicFinal = academicFinal;
+	}
+
 	private List <AcademicUniv> academicUnivList;
 	
 	public Academic()

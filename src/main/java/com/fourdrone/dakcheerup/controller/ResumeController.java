@@ -61,10 +61,10 @@ public class ResumeController {
         return "resume/resume-oa";
     }
 
-    @RequestMapping(value="/character", method = RequestMethod.GET)
+    @RequestMapping(value="/strength", method = RequestMethod.GET)
     public String getResumeCharacter(ModelMap model) {
         model.addAttribute("message", "Hello world!!!");
-        return "resume/resume-character";
+        return "resume/resume-strength";
     }
 
     @RequestMapping(value="/license", method = RequestMethod.GET)
