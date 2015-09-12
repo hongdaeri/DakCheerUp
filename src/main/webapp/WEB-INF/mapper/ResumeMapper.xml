@@ -5,6 +5,264 @@
 
 <mapper namespace="com.fourdrone.dakcheerup.mapper.ResumeMapper">
 	
+	<!--  이력서 -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.Resume" id="ResumeResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="resumeFirstRegDate" column="RESUME_FIRST_REG_DATE" />
+        <result property="resumeLastRegDate" column="RESUME_LAST_REG_DATE" />
+        <result property="resumeLastPrintDate" column="RESUME_LAST_PRINT_DATE" />
+    </resultMap>
+    
+    <!--  이력서_설정 -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.resume.ResumeConfig" id="ResumeConfigResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="resumeConfigViewItem" column="RESUME_CONFIG_VIEW_ITEM" />
+        <result property="resumeConfigLastRegDate" column="RESUME_CONFIG_LAST_REG_DATE" />  
+    </resultMap>
+	
+	<!--  기본인적사항 -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.resume.Profile" id="ProfileResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="profileName" column="PROFILE_NAME" />
+        <result property="profileEname" column="PROFILE_ENAME" />
+        <result property="profileCname" column="PROFILE_CNAME" />
+        <result property="profileJuminFront" column="PROFILE_JUMIN_FRONT" />
+        <result property="profileJuminBack" column="PROFILE_JUMIN_BACK" />
+        <result property="profilePhone" column="PROFILE_PHONE" />
+        <result property="profileEmail" column="PROFILE_EMAIL" />
+        <result property="profileAddr" column="PROFILE_ADDR" />
+        <result property="profileHobby" column="PROFILE_HOBBY" />
+        <result property="profileForte" column="PROFILE_FORTE" />
+        <result property="profileReligion" column="PROFILE_RELIGION" />
+        <result property="profileVeterans" column="PROFILE_VETERANS" />
+        <result property="profileMarriage" column="PROFILE_MARRIAGE" />
+        <result property="profileDisability" column="PROFILE_DISABILITY" />
+        <result property="profileWebsite" column="PROFILE_WEBSITE" />
+        <result property="profileTwitter" column="PROFILE_TWITTER" />
+        <result property="profileNaverBlog" column="PROFILE_NAVER_BLOG" />
+        <result property="profileTistory" column="PROFILE_TISTORY" />
+        <result property="profileInstagram" column="PROFILE_INSTAGRAM" />
+        <result property="profileFacebook" column="PROFILE_FACEBOOK" />
+        <result property="profilePinterest" column="PROFILE_PINTEREST" />
+        <result property="profileTumblr" column="PROFILE_TUMBLR" />
+        <result property="profileYoutube" column="PROFILE_YOUTUBE" />
+        <result property="profileYoutube" column="PROFILE_REG_DATE" />        
+    </resultMap>
+    
+    <!--  교육이수  -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.resume.Education" id="EducationResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="educationNo" column="EDUCATION_NO" />
+        <result property="educationPeriod" column="EDUCATION_PERIOD" />
+        <result property="educationName" column="EDUCATION_NAME" />
+        <result property="educationOrg" column="EDUCATION_ORG" />
+        <result property="educationRegDate" column="EDUCATION_REG_DATE" />              
+    </resultMap>
+    
+	<!--  참여프로젝트-->
+	<resultMap type="com.fourdrone.dakcheerup.domain.resume.Project" id="ProjectResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="projectNo" column="PROJECT_NO" />
+        <result property="projectPeriod" column="PROJECT_PERIOD" />
+        <result property="projectName" column="PROJECT_NAME" />
+        <result property="projectContext" column="PROJECT_CONTEXT" />
+        <result property="projectSection" column="PROJECT_SECTION" />
+        <result property="projectRegDate" column="PROJECT_REG_DATE" />
+    </resultMap>
+    
+    <!--  OA능력   -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.resume.OA" id="OAResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="oaDoc" column="OA_DOC" />
+        <result property="oaExcel" column="OA_EXCEL" />
+        <result property="oaPpt" column="OA_PPT" />
+        <result property="oaInternet" column="OA_INTERNET" />
+        <result property="oaGraphic" column="OA_GRAPHIC" />
+        <result property="oaRegDate" column="OA_REG_DATE" />
+    </resultMap>
+    
+    <!--  병역사항  -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.resume.Military" id="MilitaryResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="militaryPeriod" column="MILITARY_PERIOD" />
+        <result property="militarySection" column="MILITARY_SECTION" />
+        <result property="militaryGroup" column="MILITARY_GROUP" />
+        <result property="militaryRank" column="MILITARY_RANK" />
+        <result property="militaryWork" column="MILITARY_WORK" />
+        <result property="militaryReason" column="MILITARY_REASON" />
+        <result property="militaryRegDate" column="MILITARY_REG_DATE" />      
+    </resultMap>
+    
+    <!--  저술내역 -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.resume.Write" id="WriteResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="writeNo" column="WRITE_NO" />
+        <result property="writeDate" column="WRITE_DATE" />
+        <result property="writeSection" column="WRITE_SECTION" />
+        <result property="writeName" column="WRITE_NAME" />
+        <result property="writeOrg" column="WRITE_ORG" />
+        <result property="writeRegDate" column="WRITE_REG_DATE" />
+    </resultMap>
+    
+    <!--  가족관계 -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.resume.Family" id="FamilyResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="familyNo" column="FAMILY_NO" />
+        <result property="familyRelation" column="FAMILY_RELATION" />
+        <result property="familyName" column="FAMILY_NAME" />
+        <result property="familyAge" column="FAMILY_AGE" />
+        <result property="familyJob" column="FAMILY_JOB" />
+       	<result property="familyLive" column="FAMILY_LIVE" />
+        <result property="familyRegDate" column="FAMILY_REG_DATE" />
+    </resultMap>
+    
+    <!--  자격증 -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.resume.License" id="LicenseResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="licenseNo" column="LICENSE_NO" />
+        <result property="licenseDate" column="LICENSE_DATE" />
+        <result property="licenseName" column="LICENSE_NAME" />
+        <result property="licenseOrg" column="LICENSE_ORG" />
+        <result property="licensePass" column="LICENSE_PASS" />
+        <result property="licenseRegDate" column="LICENSE_REG_DATE" />
+    </resultMap>
+    
+    <!--  가족관계_형제관계 -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.resume.Brother" id="BrotherResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="brotherMale" column="BROTHER_MALE" />
+        <result property="brotherFemale" column="BROTHER_FEMALE" />
+        <result property="brotherMe" column="BROTHER_ME" />
+        <result property="brotherRegDate" column="BROTHER_REG_DATE" />   
+    </resultMap>
+    
+       
+    <!--  수상실적 -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.resume.Award" id="AwardResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="awardNo" column="AWARD_NO" />
+        <result property="awardDate" column="AWARD_DATE" />
+        <result property="awardName" column="AWARD_NAME" />
+        <result property="awardOrg" column="AWARD_ORG" />
+        <result property="awardSection" column="AWARD_SECTION" />
+        <result property="awardRegDate" column="AWARD_REG_DATE" />
+    </resultMap>
+    
+    <!--  SWOT분석 -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.resume.Swot" id="SwotResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="swotStrength" column="SWOT_STRENGTH" />
+        <result property="swotWeakness" column="SWOT_WEAKNESS" />
+        <result property="swotOpportunities" column="SWOT_OPPORTUNITIES" />
+        <result property="swotThreats" column="SWOT_THREATS" />
+        <result property="swotSo" column="SWOT_SO" />
+        <result property="swotSt" column="SWOT_ST" />
+        <result property="swotWo" column="SWOT_WO" />
+        <result property="swotWt" column="SWOT_WT" />
+        <result property="swotRegDate" column="SWOT_REG_DATE" />
+    </resultMap>
+    
+    <!--  어학능력 -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.resume.LanguageAbility" id="LanguageAbilityResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="langAbilityNo" column="LANG_ABILITY_NO" />
+        <result property="LangAbilityName" column="LANG_ABILITY_NAME" />
+        <result property="LangAbilityConversation" column="LANG_ABILITY_CONVERSATION" />
+        <result property="LangAbilityComposition" column="LANG_ABILITY_COMPOSITION" />
+        <result property="LangAbilityReading" column="LANG_ABILITY_READING" />
+        <result property="LangAbilityRegDate" column="LANG_ABILITY_REG_DATE" />
+    </resultMap>
+    
+    <!--  어학시험 -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.resume.LanguageExam" id="LanguageExamResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="langExamNo" column="LANG_EXAM_NO" />
+        <result property="langExamLName" column="LANG_EXAM_LNAME" />
+        <result property="langExamEName" column="LANG_EXAM_ENAME" />
+        <result property="langExamScore" column="LANG_EXAM_SCORE" />
+        <result property="langExamType" column="LANG_EXAM_TYPE" />
+        <result property="langExamOrg" column="LANG_EXAM_ORG" />
+        <result property="langExamRegDate" column="LANG_EXAM_REG_DATE" />
+    </resultMap>
+    
+    <!--  경력및실습 -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.resume.Career" id="CareerResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="careerNo" column="CAREER_NO" />
+        <result property="careerPeriod" column="CAREER_PERIOD" />
+        <result property="careerCompany" column="CAREER_COMPANY" />
+        <result property="careerPosition" column="CAREER_POSITION" />
+        <result property="careerWork" column="CAREER_WORK" />
+        <result property="careerPost" column="CAREER_POST" />
+        <result property="careerRegDate" column="CAREER_REG_DATE" />
+    </resultMap>
+    
+    <!--  봉사활동 -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.resume.Voluntary" id="VoluntaryResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="voluntaryNo" column="VOLUNTARY_NO" />
+        <result property="voluntaryPeriod" column="VOLUNTARY_PERIOD" />
+        <result property="voluntaryOrg" column="VOLUNTARY_ORG" />
+        <result property="voluntaryContent" column="VOLUNTARY_CONTENT" />
+        <result property="voluntaryRegDate" column="VOLUNTARY_REG_DATE" />
+    </resultMap>
+    
+    <!--  글로벌경험 -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.resume.Global" id="GlobalResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="globalNo" column="GLOBAL_NO" />
+        <result property="globalPeriod" column="GLOBAL_PERIOD" />
+        <result property="globalNation" column="GLOBAL_NATION" />
+        <result property="globalPurpose" column="GLOBAL_PURPOSE" />
+        <result property="globalContent" column="GLOBAL_CONTENT" />
+        <result property="globalRegDate" column="GLOBAL_REG_DATE" />
+    </resultMap>
+    
+    <!--  강점/성격  -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.resume.Strength" id="StrengthResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="strengthItem" column="STRENGTH_ITEM" />
+        <result property="characterItem" column="CHARACTER_ITEM" />
+        <result property="strengthRegDate" column="STRENGTH_REG_DATE" />
+    </resultMap>
+    
+    <!--  학력사항  -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.resume.Academic" id="AcademicResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="academicFinal" column="ACADEMIC_FINAL" />  
+    </resultMap>
+    
+    <!--  학력_고등학교 -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.resume.AcademicHigh" id="AcademicHighResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="academicHighPeriod" column="ACADEMIC_HIGH_PERIOD" />
+        <result property="academicHighArea" column="ACADEMIC_HIGH_AREA" />
+        <result property="academicHighName" column="ACADEMIC_HIGH_NAME" />
+        <result property="academicHighSection" column="ACADEMIC_HIGH_SECTION" />
+        <result property="academicHighMajor" column="ACADEMIC_HIGH_MAJOR" />
+        <result property="academicHighRegDate" column="ACADEMIC_HIGH_REG_DATE" />   
+    </resultMap>
+    
+  	<!--  학력사항 : 대학교 -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.resume.AcademicUniv" id="AcademicUnivResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="academicUnivNo" column="ACADEMIC_UNIV_NO" />
+        <result property="academicUnivPeriodFirst" column="ACADEMIC_UNIV_PERIOD_FIRST" />
+        <result property="academicUnivPeriodFirstOption" column="ACADEMIC_UNIV_PERIOD_FIRST_OPTION" />
+        <result property="academicUnivPeriodLast" column="ACADEMIC_UNIV_PERIOD_LAST" />
+        <result property="academicUnivPeriodLastOption" column="ACADEMIC_UNIV_PERIOD_LAST_OPTION" />
+        <result property="academicUnivDegree" column="ACADEMIC_UNIV_DEGREE" />
+        <result property="academicUnivName" column="ACADEMIC_UNIV_NAME" />
+        <result property="academicUnivMajor" column="ACADEMIC_UNIV_MAJOR" />
+        <result property="academicUnivScore" column="ACADEMIC_UNIV_SCORE" />
+        <result property="academicUnivScoreOption" column="ACADEMIC_UNIV_SCORE_OPTION" />
+        <result property="academicUnivDoubleName" column="ACADEMIC_UNIV_DOUBLE_NAME" />
+        <result property="academicUnivDoubleOption" column="ACADEMIC_UNIV_DOUBLE_OPTION" />
+        <result property="academicUnivRegDate" column="ACADEMIC_UNIV_REG_DATE" />
+    </resultMap>
+    
+    
+	
 	<!-- * * * * * * * * * * * * * * * * * * * * * * * * *
 	 *                                                   *
 	 *               GET RESUME                          * 
@@ -12,206 +270,206 @@
 	 * * * * * * * * * * * * * * * * * * * * * * * * * -->	 
 	
 	<!-- 회원의 모든 이력정보 (NOT)  -->
-	<select id="getResume" resultMap="com.fourdrone.dakcheerup.domain.Resume"  parameterType="String">
+	<select id="getResume" resultMap="ResumeResult"  parameterType="String">
         SELECT  * FROM  TB_RESUME
         WHERE MEMBER_ID = #{memberId}
     </select>
     
 	<!-- 이력서 설정  -->
-	<select id="getResumeConfig" resultMap="com.fourdrone.dakcheerup.domain.resume.ResumeConfig"  parameterType="String">
+	<select id="getResumeConfig" resultMap="ResumeConfigResult"  parameterType="String">
         SELECT  * FROM  TB_RESUME_CONFIG
         WHERE MEMBER_ID = #{memberId}
     </select>   
     
     <!-- 기본인적사항  -->
-	<select id="getProfile" resultMap="com.fourdrone.dakcheerup.domain.resume.Profile"  parameterType="String">
+	<select id="getProfile" resultMap="ProfileResult"  parameterType="String">
         SELECT  * FROM  TB_RESUME_PROFILE
         WHERE MEMBER_ID = #{memberId}
     </select>
     
     <!-- 형제관계  -->
-	<select id="getBrother" resultMap="com.fourdrone.dakcheerup.domain.resume.Brother"  parameterType="String">
+	<select id="getBrother" resultMap="BrotherResult"  parameterType="String">
         SELECT  * FROM  TB_RESUME_BROTHER
         WHERE MEMBER_ID = #{memberId}
     </select>
     
     <!-- 가족관계  단일항목 -->
-	<select id="getFamily" resultMap="com.fourdrone.dakcheerup.domain.resume.Family"  parameterType="Integer">
+	<select id="getFamily" resultMap="FamilyResult"  parameterType="Integer">
         SELECT  * FROM  TB_RESUME_FAMILY
         WHERE FAMILY_NO = #{familyNo}
     </select>
     
      <!-- 가족관계 리스트  -->
-	<select id="getFamilyList" resultMap="com.fourdrone.dakcheerup.domain.resume.Family"  parameterType="String">
+	<select id="getFamilyList" resultMap="FamilyResult"  parameterType="String">
         SELECT  * FROM  TB_RESUME_FAMILY
         WHERE MEMBER_ID = #{memberId}
     </select>
           
     <!-- 병역사항  -->
-	<select id="getMilitary" resultMap="com.fourdrone.dakcheerup.domain.resume.Military"  parameterType="String">
+	<select id="getMilitary" resultMap="MilitaryResult"  parameterType="String">
         SELECT  * FROM  TB_RESUME_MILITARY
         WHERE MEMBER_ID = #{memberId}
     </select>
     
           
     <!-- 학력사항   -->
-	<select id="getAcademic" resultMap="com.fourdrone.dakcheerup.domain.resume.Academic"  parameterType="String">
+	<select id="getAcademic" resultMap="AcademicResult"  parameterType="String">
         SELECT  * FROM  TB_RESUME_ACADEMIC
         WHERE MEMBER_ID = #{memberId}
     </select>
     
     <!-- 학력사항 - 고등학교   -->
-	<select id="getAcademicHigh" resultMap="com.fourdrone.dakcheerup.domain.resume.AcademicHigh"  parameterType="String">
+	<select id="getAcademicHigh" resultMap="AcademicHighResult"  parameterType="String">
         SELECT  * FROM  TB_RESUME_ACADEMIC_HIGHSCHOOL
         WHERE MEMBER_ID = #{memberId}
     </select>
     
     <!-- 학력사항 - 대학교 - 단일항목  -->
-	<select id="getAcademicUniv" resultMap="com.fourdrone.dakcheerup.domain.resume.AcademicUniv"  parameterType="Integer">
+	<select id="getAcademicUniv" resultMap="AcademicUnivResult"  parameterType="Integer">
         SELECT  * FROM  TB_RESUME_ACADEMIC_UNIVERSITY
         WHERE ACADEMIC_UNIV_NO = #{academicUnivNo}
     </select>
     
     <!-- 학력사항 - 대학교 - 리스트 -->
-	<select id="getAcademicUnivList" resultMap="com.fourdrone.dakcheerup.domain.resume.AcademicUniv"  parameterType="String">
+	<select id="getAcademicUnivList" resultMap="AcademicUnivResult"  parameterType="String">
         SELECT  * FROM  TB_RESUME_ACADEMIC_UNIVERSITY
         WHERE MEMBER_ID = #{memberId}
     </select>
     
     <!-- 수상내역 - 단일항목  -->
-	<select id="getAward" resultMap="com.fourdrone.dakcheerup.domain.resume.Award"  parameterType="Integer">
+	<select id="getAward" resultMap="AwardResult"  parameterType="Integer">
         SELECT  * FROM  TB_RESUME_AWARD
         WHERE AWARD_NO = #{awardNo}
     </select>
     
     <!-- 수상내역 - 리스트 -->
-	<select id="getAwardList" resultMap="com.fourdrone.dakcheerup.domain.resume.Award"  parameterType="String">
+	<select id="getAwardList" resultMap="AwardResult"  parameterType="String">
         SELECT  * FROM  TB_RESUME_AWARD
         WHERE MEMBER_ID = #{memberId}
     </select>
     
      <!-- 교육이수내역_단일  -->
-	<select id="getEducation" resultMap="com.fourdrone.dakcheerup.domain.resume.Education"  parameterType="Integer">
+	<select id="getEducation" resultMap="EducationResult"  parameterType="Integer">
         SELECT  * FROM  TB_RESUME_EDUCATION
         WHERE EDUCATION_NO = #{educationNo}
     </select>
     
     <!-- 교육이수내역_리스트 -->
-	<select id="getEducationList" resultMap="com.fourdrone.dakcheerup.domain.resume.Education"  parameterType="String">
+	<select id="getEducationList" resultMap="EducationResult"  parameterType="String">
         SELECT  * FROM  TB_RESUME_EDUCATION
         WHERE MEMBER_ID = #{memberId}
     </select>
     
      <!-- 경력및실습사항_단일  -->
-	<select id="getCareer" resultMap="com.fourdrone.dakcheerup.domain.resume.Career"  parameterType="Integer">
+	<select id="getCareer" resultMap="CareerResult"  parameterType="Integer">
         SELECT  * FROM  TB_RESUME_CAREER
         WHERE CAREER_NO = #{careerNo}
     </select>
     
     <!-- 경력및실습사항_리스트 -->
-	<select id="getCareerList" resultMap="com.fourdrone.dakcheerup.domain.resume.Career"  parameterType="String">
+	<select id="getCareerList" resultMap="CareerResult"  parameterType="String">
         SELECT  * FROM  TB_RESUME_CAREER
         WHERE MEMBER_ID = #{memberId}
     </select>
     
     <!-- 글로벌경험_단일  -->
-	<select id="getGlobal" resultMap="com.fourdrone.dakcheerup.domain.resume.Global"  parameterType="Integer">
+	<select id="getGlobal" resultMap="GlobalResult"  parameterType="Integer">
         SELECT  * FROM  TB_RESUME_GLOBAL
         WHERE GLOBAL_NO = #{globalNo}
     </select>
     
     <!-- 글로벌경험_리스트 -->
-	<select id="getGlobalList" resultMap="com.fourdrone.dakcheerup.domain.resume.Global"  parameterType="String">
+	<select id="getGlobalList" resultMap="GlobalResult"  parameterType="String">
         SELECT  * FROM  TB_RESUME_GLOBAL
         WHERE MEMBER_ID = #{memberId}
     </select>
     
     <!-- 어학능력_단일  -->
-	<select id="getLanguageAbility" resultMap="com.fourdrone.dakcheerup.domain.resume.LanguageAbility"  parameterType="Integer">
+	<select id="getLanguageAbility" resultMap="LanguageAbilityResult"  parameterType="Integer">
         SELECT  * FROM  TB_RESUME_LANGUAGE_ABILITY
         WHERE LANG_ABILITY_NO = #{langAbilityNo}
     </select>
     
     <!-- 어학능력_리스트 -->
-	<select id="getLanguageAbilityList" resultMap="com.fourdrone.dakcheerup.domain.resume.LanguageAbility"  parameterType="String">
+	<select id="getLanguageAbilityList" resultMap="LanguageAbilityResult"  parameterType="String">
         SELECT  * FROM  TB_RESUME_LANGUAGE_ABILITY
         WHERE MEMBER_ID = #{memberId}
     </select>    
     
     <!-- 어학시험_단일  -->
-	<select id="getLanguageExam" resultMap="com.fourdrone.dakcheerup.domain.resume.LanguageExam"  parameterType="Integer">
+	<select id="getLanguageExam" resultMap="LanguageExamResult"  parameterType="Integer">
         SELECT  * FROM  TB_RESUME_LANGUAGE_EXAM
         WHERE LANG_EXAM_NO = #{langExamNo}
     </select>
     
     <!-- 어학시험_리스트 -->
-	<select id="getLanguageExamList" resultMap="com.fourdrone.dakcheerup.domain.resume.LanguageExam"  parameterType="String">
+	<select id="getLanguageExamList" resultMap="LanguageExamResult"  parameterType="String">
         SELECT  * FROM  TB_RESUME_LANGUAGE_EXAM
         WHERE MEMBER_ID = #{memberId}
     </select>
     
     <!-- 자격증_단일  -->
-	<select id="getLicense" resultMap="com.fourdrone.dakcheerup.domain.resume.License"  parameterType="Integer">
+	<select id="getLicense" resultMap="LicenseResult"  parameterType="Integer">
         SELECT  * FROM  TB_RESUME_LICENSE
         WHERE LICENSE_NO = #{licenseNo}
     </select>
     
     <!-- 자격증_리스트 -->
-	<select id="getLicenseList" resultMap="com.fourdrone.dakcheerup.domain.resume.License"  parameterType="String">
+	<select id="getLicenseList" resultMap="LicenseResult"  parameterType="String">
         SELECT  * FROM  TB_RESUME_LICENSE
         WHERE MEMBER_ID = #{memberId}
     </select>
 
 	<!-- OA능력_단일  -->
-	<select id="getOA" resultMap="com.fourdrone.dakcheerup.domain.resume.OA"  parameterType="String">
+	<select id="getOA" resultMap="OAResult"  parameterType="String">
         SELECT  * FROM  TB_RESUME_OA
         WHERE MEMBER_ID = #{memberId}
     </select>
     
     <!-- 참여프로젝트_단일  -->
-	<select id="getProject" resultMap="com.fourdrone.dakcheerup.domain.resume.Project"  parameterType="Integer">
+	<select id="getProject" resultMap="ProjectResult"  parameterType="Integer">
         SELECT  * FROM  TB_RESUME_PROJECT
         WHERE PROJECT_NO = #{projectNo}
     </select>
     
     <!-- 참여프로젝트_리스트 -->
-	<select id="getProjectList" resultMap="com.fourdrone.dakcheerup.domain.resume.Project"  parameterType="String">
+	<select id="getProjectList" resultMap="ProjectResult"  parameterType="String">
         SELECT  * FROM  TB_RESUME_PROJECT
         WHERE MEMBER_ID = #{memberId}
     </select>
     
     <!-- 봉사활동_단일  -->
-	<select id="getVoluntary" resultMap="com.fourdrone.dakcheerup.domain.resume.Voluntary"  parameterType="Integer">
+	<select id="getVoluntary" resultMap="VoluntaryResult"  parameterType="Integer">
         SELECT  * FROM  TB_RESUME_VOLUNTARY
         WHERE VOLUNTARY_NO = #{voluntaryNo}
     </select>
     
     <!-- 봉사활동_리스트 -->
-	<select id="getVoluntaryList" resultMap="com.fourdrone.dakcheerup.domain.resume.Voluntary"  parameterType="String">
+	<select id="getVoluntaryList" resultMap="VoluntaryResult"  parameterType="String">
         SELECT  * FROM  TB_RESUME_VOLUNTARY
         WHERE MEMBER_ID = #{memberId}
     </select>
     
     <!-- 저술내역_단일  -->
-	<select id="getWrite" resultMap="com.fourdrone.dakcheerup.domain.resume.Write"  parameterType="Integer">
+	<select id="getWrite" resultMap="WriteResult"  parameterType="Integer">
         SELECT  * FROM  TB_RESUME_WRITE
         WHERE WRITE_NO = #{writeNo}
     </select>
     
     <!-- 저술내역_리스트 -->
-	<select id="getWriteList" resultMap="com.fourdrone.dakcheerup.domain.resume.Write"  parameterType="String">
+	<select id="getWriteList" resultMap="WriteResult"  parameterType="String">
         SELECT  * FROM  TB_RESUME_WRITE
         WHERE MEMBER_ID = #{memberId}
     </select>
    
    	<!-- 강점/성격 단일 -->
-	<select id="getStrength" resultMap="com.fourdrone.dakcheerup.domain.resume.Strength"  parameterType="String">
+	<select id="getStrength" resultMap="StrengthResult"  parameterType="String">
         SELECT  * FROM  TB_RESUME_STRENGTH
         WHERE MEMBER_ID = #{memberId}
     </select>
     
     <!-- SWOT분석 단일 -->
-	<select id="getSwot" resultMap="com.fourdrone.dakcheerup.domain.resume.Swot"  parameterType="String">
+	<select id="getSwot" resultMap="SwotResult"  parameterType="String">
         SELECT  * FROM  TB_RESUME_SWOT
         WHERE MEMBER_ID = #{memberId}
     </select>

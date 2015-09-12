@@ -6,10 +6,10 @@
 <!--여기는 매핑할 Mapper 의 풀 패키지명을 적어준다-->
 <mapper namespace="com.fourdrone.dakcheerup.mapper.AccountMapper">
     <resultMap type="com.fourdrone.dakcheerup.domain.member.Member" id="MemberResult">
-        <result property="memberId" column="member_id" />
-        <result property="memberPassword" column="member_password" />
-        <result property="memberName" column="member_name" />
-        <result property="regDate" column="member_reg_date" />
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="memberPassword" column="MEMBER_PASSWORD" />
+        <result property="memberName" column="MEMBER_NAME" />
+        <result property="regDate" column="MEMBER_REG_DATE" />
     </resultMap>
 
     <select id="getMemberList" resultMap="MemberResult">
