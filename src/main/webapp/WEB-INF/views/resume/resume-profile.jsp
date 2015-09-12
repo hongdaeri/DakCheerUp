@@ -72,49 +72,50 @@
 
                 </tr>
                 <tr>
-                  <td class="warning ">취미</td>
+                  <td class="warning">취미</td>
                   <td>
                     <input type="text"  name="profileHobby" class="form-control input-sm" value="${profile.profileHobby}"/>
                   </td>
-                  <td class="warning ">특기</td>
+                  <td class="warning">특기</td>
                   <td>
                     <input type="text"  name="profileForte" class="form-control input-sm" value="${profile.profileForte}"/>
                   </td>
-                  <td class="warning ">종교</td>
-                  <td>
-                    <select class="form-control input-sm" name="profileReligion">
-                      <option value="NIL" selected>--선택하세요--</option>
-                      <option value="AF">기독교</option>
-                      <option value="AF">불교</option>
-                      <option value="AF">천주교</option>
-                      <option value="AF">기타 종교</option>
+                  <td class="warning">종교</td>
+                  <td>                   
+                    <select class="form-control input-sm" name="profileReligion">                                                            	
+                      <option value="NIL" <c:if test="${profile.profileReligion eq 'NIL'}">selected</c:if>>--선택하세요--</option>
+                      <option value="기독교" <c:if test="${profile.profileReligion eq '기독교'}">selected</c:if>>기독교</option>
+                      <option value="불교" <c:if test="${profile.profileReligion eq '불교'}">selected</c:if>>불교</option>
+                      <option value="천주교" <c:if test="${profile.profileReligion eq '천주교'}">selected</c:if>>천주교</option>
+                      <option value="기타 " <c:if test="${profile.profileReligion eq '기타'}">selected</c:if>>기타 종교</option>                      
                     </select>
                   </td>
+                  
                 </tr>
 
                 <tr>
                   <td class="warning ">혼인여부</td>
                   <td>
                     <select class="form-control input-sm" name="profileMarriage" >
-                      <option value="NIL" selected>--선택하세요--</option>
-                      <option value="AF">미혼</option>
-                      <option value="AF">혼인</option>
+                      <option value="NIL" <c:if test="${profile.profileMarriage eq 'NIL'}">selected</c:if>>--선택하세요--</option>
+                      <option value="미혼" <c:if test="${profile.profileMarriage eq '미혼'}">selected</c:if>>미혼</option>
+                      <option value="혼인" <c:if test="${profile.profileMarriage eq '혼인'}">selected</c:if>>혼인</option>
                     </select>
                   </td>
                   <td class="warning ">보훈여부</td>
                   <td>
                     <select class="form-control input-sm" name="profileVeterans" >
-                      <option value="NIL" selected>--선택하세요--</option>
-                      <option value="AF">대상</option>
-                      <option value="AF">비대상</option>
+                      <option value="NIL" <c:if test="${profile.profileVeterans eq 'NIL'}">selected</c:if>>--선택하세요--</option>
+                      <option value="대상" <c:if test="${profile.profileVeterans eq '대상'}">selected</c:if>>대상</option>
+                      <option value="비대상" <c:if test="${profile.profileVeterans eq '비대상'}">selected</c:if>>비대상</option>
                     </select>
                   </td>
                   <td class="warning ">장애여부</td>
                   <td>
                     <select class="form-control input-sm" name="profileDisability" >
-                      <option value="NIL" selected>--선택하세요--</option>
-                      <option value="AF">장애</option>
-                      <option value="AF">비장애</option>
+                      <option value="NIL" <c:if test="${profile.profileDisability eq 'NIL'}">selected</c:if>>--선택하세요--</option>
+                      <option value="장애" <c:if test="${profile.profileDisability eq '장애'}">selected</c:if>>장애</option>
+                      <option value="비장애" <c:if test="${profile.profileDisability eq '비장애'}">selected</c:if>>비장애</option>
                     </select>
                   </td>
                 </tr>
