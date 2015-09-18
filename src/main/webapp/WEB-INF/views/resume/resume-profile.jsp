@@ -27,11 +27,11 @@
                   <td class="text-left"> <strong>${profile.profileName}</strong></td>
                   <td class="warning text-center ">한문</td>
                   <td>
-                    <input name="profileCname" type="text" class="form-control input-sm" placeholder="洪吉動" value="${profile.profileCname}" />
+                    <input name="profileCname" type="text" class="form-control input-sm" placeholder="洪吉動" maxlength="10" value="${profile.profileCname}" />
                   </td>
                   <td class="warning text-center ">영문</td>
                   <td>
-                    <input name=profileEname  type="text" class="form-control input-sm" placeholder="Gil Dong Hong" value="${profile.profileEname}" />
+                    <input name=profileEname  type="text" class="form-control input-sm" placeholder="Gil Dong Hong" maxlength="10" value="${profile.profileEname}" />
                   </td>
                 </tr>
                 <tr>
@@ -57,7 +57,7 @@
                   </td>
                   <td class="warning ">이메일</td>
                   <td>
-                    <input type="email"  name="profileEmail" class="form-control input-sm" value="${profile.profileEmail}"/>
+                    <input type="email"  name="profileEmail" class="form-control input-sm" maxlength="20" value="${profile.profileEmail}"/>
                   </td>
                   <td class="warning ">홈페이지 및 활동 SNS</td>
                   <td>
@@ -67,18 +67,18 @@
                 <tr>
                   <td class="warning ">주소</td>
                   <td colspan="5">
-                    <input type="text"  name="profileAddr" class="form-control input-sm" value="${profile.profileAddr}"/>
+                    <input type="text"  name="profileAddr" class="form-control input-sm" maxlength="50" value="${profile.profileAddr}"/>
                   </td>
 
                 </tr>
                 <tr>
                   <td class="warning">취미</td>
                   <td>
-                    <input type="text"  name="profileHobby" class="form-control input-sm" value="${profile.profileHobby}"/>
+                    <input type="text"  name="profileHobby" class="form-control input-sm" maxlength="10" value="${profile.profileHobby}"/>
                   </td>
                   <td class="warning">특기</td>
                   <td>
-                    <input type="text"  name="profileForte" class="form-control input-sm" value="${profile.profileForte}"/>
+                    <input type="text"  name="profileForte" class="form-control input-sm" maxlength="10" value="${profile.profileForte}"/>
                   </td>
                   <td class="warning">종교</td>
                   <td>                   
@@ -133,7 +133,7 @@
                 <tr>
                   <td colspan="2"><input type="text"  name="profileWebsite" class="form-control input-sm" placeholder="http://" value="${profile.profileWebsite}"/></td>
                   <td colspan="2"><input type="text"  name="profileNaverBlog" class="form-control input-sm" placeholder="http://" value="${profile.profileNaverBlog}"/></td>
-                  <td colspan="2"><input type="text"  name="profileTistory" class="form-control input-sm" placeholder="http://" value="${profile.profileTistory}"/></td>
+                  <td colspan="2"><input type="text"  name="profileTistory" class="form-control input-sm"  placeholder="http://" value="${profile.profileTistory}"/></td>
                 </tr>
                 <tr>
                   <td class="warning">페이스북</td>

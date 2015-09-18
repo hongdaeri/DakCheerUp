@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-md-12">
       <!-- begin panel -->
-      <div id="resume-oa" class="panel panel-inverse" data-sortable-id="ui-widget-4">
+      <div class="panel panel-inverse" data-sortable-id="ui-widget-4">
         <div class="panel-heading">
           <div class="panel-heading-btn">
             <a href="javascript:" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
@@ -17,7 +17,7 @@
           <h4 class="panel-title">OA 활용능력</h4>
         </div>
         <div class="panel-body">
-          <form class="form-horizontal" name="oa" action="/resume/oa" method="POST">
+          <form id="resume-oa" class="form-horizontal" name="oa" action="/resume/oa" method="POST">
             <div class="table-responsive">
               <table class="table table-bordered table-condensed table-valign-middle text-center">
                 <tbody>
@@ -30,43 +30,43 @@
                 </tr>
                 <tr>
                   <td>
-                    <select class="form-control input-sm">
-                      <option value="NIL" selected>-- 선택하세요 --</option>
-                      <option value="AF">상</option>
-                      <option value="AF">중</option>
-                      <option value="AF">하</option>
+                    <select class="form-control input-sm" name="oaDoc">
+                      <option value="NIL" <c:if test="${oa.oaDoc eq 'NIL'}">selected</c:if>>--선택하세요--</option>
+                      <option value="상" <c:if test="${oa.oaDoc eq '상'}">selected</c:if>>상</option>
+                      <option value="중" <c:if test="${oa.oaDoc eq '중'}">selected</c:if>>중</option>
+                      <option value="하" <c:if test="${oa.oaDoc eq '하'}">selected</c:if>>하</option>                      
                     </select>
                   </td>
                   <td>
-                    <select class="form-control input-sm">
-                      <option value="NIL" selected>-- 선택하세요 --</option>
-                      <option value="AF">상</option>
-                      <option value="AF">중</option>
-                      <option value="AF">하</option>
+                    <select class="form-control input-sm" name="oaExcel">
+                      <option value="NIL" <c:if test="${oa.oaExcel eq 'NIL'}">selected</c:if>>--선택하세요--</option>
+                      <option value="상" <c:if test="${oa.oaExcel eq '상'}">selected</c:if>>상</option>
+                      <option value="중" <c:if test="${oa.oaExcel eq '중'}">selected</c:if>>중</option>
+                      <option value="하" <c:if test="${oa.oaExcel eq '하'}">selected</c:if>>하</option>
                     </select>
                   </td>
                   <td>
-                    <select class="form-control input-sm">
-                      <option value="NIL" selected>-- 선택하세요 --</option>
-                      <option value="AF">상</option>
-                      <option value="AF">중</option>
-                      <option value="AF">하</option>
+                    <select class="form-control input-sm" name="oaPpt">
+                      <option value="NIL" <c:if test="${oa.oaPpt eq 'NIL'}">selected</c:if>>--선택하세요--</option>
+                      <option value="상" <c:if test="${oa.oaPpt eq '상'}">selected</c:if>>상</option>
+                      <option value="중" <c:if test="${oa.oaPpt eq '중'}">selected</c:if>>중</option>
+                      <option value="하" <c:if test="${oa.oaPpt eq '하'}">selected</c:if>>하</option>
                     </select>
                   </td>
                   <td>
-                    <select class="form-control input-sm">
-                      <option value="NIL" selected>-- 선택하세요 --</option>
-                      <option value="AF">상</option>
-                      <option value="AF">중</option>
-                      <option value="AF">하</option>
+                    <select class="form-control input-sm" name="oaInternet">
+                      <option value="NIL" <c:if test="${oa.oaInternet eq 'NIL'}">selected</c:if>>--선택하세요--</option>
+                      <option value="상" <c:if test="${oa.oaInternet eq '상'}">selected</c:if>>상</option>
+                      <option value="중" <c:if test="${oa.oaInternet eq '중'}">selected</c:if>>중</option>
+                      <option value="하" <c:if test="${oa.oaInternet eq '하'}">selected</c:if>>하</option>
                     </select>
                   </td>
                   <td>
-                    <select class="form-control input-sm">
-                      <option value="NIL" selected>-- 선택하세요 --</option>
-                      <option value="AF">상</option>
-                      <option value="AF">중</option>
-                      <option value="AF">하</option>
+                    <select class="form-control input-sm" name="oaGraphic">
+                      <option value="NIL" <c:if test="${oa.oaGraphic eq 'NIL'}">selected</c:if>>--선택하세요--</option>
+                      <option value="상" <c:if test="${oa.oaGraphic eq '상'}">selected</c:if>>상</option>
+                      <option value="중" <c:if test="${oa.oaGraphic eq '중'}">selected</c:if>>중</option>
+                      <option value="하" <c:if test="${oa.oaGraphic eq '하'}">selected</c:if>>하</option>
                     </select>
                   </td>
                 </tr>
@@ -75,7 +75,7 @@
             </div>
 
             <div class="m-t-0 m-b-10 text-right">
-              <a href="javascript:" class="btn btn-warning btn-sm">&nbsp; 저장 &nbsp;</a>
+              <a href="#" onClick="document.getElementById('resume-oa').submit()" class="btn btn-warning btn-sm">&nbsp; 저장 &nbsp;</a>
             </div>
           </form>
         </div>

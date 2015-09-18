@@ -11,70 +11,40 @@ import java.sql.Timestamp;
  */
 public class Brother {
 	private String memberId;			//회원_아이디
-	private int brotherMale;			//형제관계_몇남 
-	private int brotherFemale;			//형제관계_몇녀중 
-	private int brotherMe;				//형제관계_몇째
+	private String brotherMale;			//형제관계_몇남 
+	private String brotherFemale;			//형제관계_몇녀중 
+	private String brotherMe;				//형제관계_몇째
 	private Timestamp brotherRegDate;	//형제관계_등록일 
-	
-	/**
-	 * @return the memberId
-	 */
 	public String getMemberId() {
 		return memberId;
 	}
-	/**
-	 * @return the brotherMale
-	 */
-	public int getBrotherMale() {
-		return brotherMale;
-	}
-	/**
-	 * @return the brotherFemale
-	 */
-	public int getBrotherFemale() {
-		return brotherFemale;
-	}
-	/**
-	 * @return the brotherMe
-	 */
-	public int getBrotherMe() {
-		return brotherMe;
-	}
-	/**
-	 * @return the brotherRegDate
-	 */
-	public Timestamp getBrotherRegDate() {
-		return brotherRegDate;
-	}
-	/**
-	 * @param memberId the memberId to set
-	 */
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	/**
-	 * @param brotherMale the brotherMale to set
-	 */
-	public void setBrotherMale(int brotherMale) {
+	public String getBrotherMale() {
+		return brotherMale;
+	}
+	public void setBrotherMale(String brotherMale) {
 		this.brotherMale = brotherMale;
 	}
-	/**
-	 * @param brotherFemale the brotherFemale to set
-	 */
-	public void setBrotherFemale(int brotherFemale) {
+	public String getBrotherFemale() {
+		return brotherFemale;
+	}
+	public void setBrotherFemale(String brotherFemale) {
 		this.brotherFemale = brotherFemale;
 	}
-	/**
-	 * @param brotherMe the brotherMe to set
-	 */
-	public void setBrotherMe(int brotherMe) {
+	public String getBrotherMe() {
+		return brotherMe;
+	}
+	public void setBrotherMe(String brotherMe) {
 		this.brotherMe = brotherMe;
 	}
-	/**
-	 * @param brotherRegDate the brotherRegDate to set
-	 */
+	public Timestamp getBrotherRegDate() {
+		return brotherRegDate;
+	}
 	public void setBrotherRegDate(Timestamp brotherRegDate) {
 		this.brotherRegDate = brotherRegDate;
 	}
+	
 	
 }
