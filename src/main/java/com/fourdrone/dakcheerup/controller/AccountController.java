@@ -85,8 +85,11 @@ public class AccountController {
     //로그인 처리
     @RequestMapping(value ="/login", method = RequestMethod.POST)
     public String login(@ModelAttribute("member") Member member, HttpSession session, HttpServletResponse response, HttpServletRequest request){
-        Member loginMember = this.accountService.getMemberForLogin(member);
-        if(loginMember != null)
+       
+    	// 데이터베이스에서 입력받은 데이터를 토대로 쿼리검색을 해서 그 결과를 Member라는 객체에 저장한다.
+    	Member loginMember = this.accountService.getMemberForLogin(member);
+
+    	if(loginMember != null)
         {
 
              if (request.getParameter("autoLogin")!=null) {
