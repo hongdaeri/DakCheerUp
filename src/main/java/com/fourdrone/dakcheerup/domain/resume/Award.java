@@ -18,6 +18,9 @@ public class Award {
 	private String awardOrg;				//수상실적_기관 	
 	private String awardSection;			//수상실적_구분 (팀,개인)		
 	private Timestamp awardRegDate;			//수상실적_등록일 
+	
+	
+	
 	/**
 	 * @return the memberId
 	 */

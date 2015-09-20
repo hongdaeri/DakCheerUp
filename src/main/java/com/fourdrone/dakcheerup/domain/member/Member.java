@@ -7,33 +7,34 @@ public class Member {
 	private String memberName;		// 회원_이름
 	private Timestamp regDate;		// 회원_가입
 	
-	//getter
+	
+	
+	
 	public String getMemberId() {
 		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	public String getMemberPassword() {
 		return memberPassword;
 	}
-	public String getMemberName() {
-		return memberName;
-	}
-	public Timestamp getRegDate() {
-		return regDate;
-	}
-	
-	//setter
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
-	}
 	public void setMemberPassword(String memberPassword) {
 		this.memberPassword = memberPassword;
+	}
+	public String getMemberName() {
+		return memberName;
 	}
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
 	}
+	public Timestamp getRegDate() {
+		return regDate;
+	}
 	public void setRegDate(Timestamp regDate) {
 		this.regDate = regDate;
 	}
-
+	
+	
 
 }

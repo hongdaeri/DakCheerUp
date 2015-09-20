@@ -68,6 +68,7 @@ public class ResumeController {
 	    
 	    List<Family> familyList = this.resumeService.getFamilyList(memberId);
 	    model.addAttribute("familyList", familyList);
+	    System.out.println(familyList.toString());
 	    
 	    Military military = this.resumeService.getMilitary(memberId);
 	    model.addAttribute("military", military);	
@@ -176,11 +177,16 @@ public class ResumeController {
 	    model.addAttribute("profile", profile);
 	    return "resume/resume-lang-exam";
 	}
+	
+	
+	
 	@RequestMapping(value="/award", method = RequestMethod.GET)
-	public String getResumeAward(ModelMap model) {
+	public String getResumeAward(Award award, ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
 		Profile profile = this.resumeService.getProfile(memberId);
-	    model.addAttribute("profile", profile);
+	
+		
+		model.addAttribute("profile", profile);
 	    return "resume/resume-award";
 	}
 	

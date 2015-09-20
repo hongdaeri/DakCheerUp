@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="./config/resume_head.jsp" flush="false" />
 
-<div data-scrollbar="false" data-height="100%" class="m-l-15 m-r-15">
+<div data-scrollbar="true" data-height="100%" class="m-l-15 m-r-15">
   <div class="row">
     <div class="col-md-12">
       <!-- begin panel -->
@@ -46,38 +46,82 @@
                   <td>현재직업</td>
                   <td>동거여부</td>
                 </tr>
-                <tr>
-                  <td><a href="javascript:" class="btn btn-danger btn-icon btn-xs btn-circle" data-click="resume-delete"><i class="ion-minus-round fa fa-lg text-white"></i></a></td>
-                  <td>
-                    <select class="form-control input-sm" name="familyRelation">
-                      <option value="NIL" <c:if test="${family.familyRelation eq 'NIL'}">selected</c:if>>--선택하세요--</option>
-                      <option value="친할아버지" <c:if test="${family.familyRelation eq '친할아버지'}">selected</c:if>>친할아버지</option>
-                      <option value="친할머니" <c:if test="${family.familyRelation eq '친할머니'}">selected</c:if>>친할머니</option>
-                      <option value="외할아버지" <c:if test="${family.familyRelation eq '외할아버지'}">selected</c:if>>외할아버지</option>
-                      <option value="외할머니 " <c:if test="${family.familyRelation eq '외할머니'}">selected</c:if>>외할머니</option> 
-                      <option value="아버지" <c:if test="${family.familyRelation eq '아버지'}">selected</c:if>>아버지</option>
-                      <option value="어머니" <c:if test="${family.familyRelation eq '어머니'}">selected</c:if>>어머니</option> 
-                      <option value="손위 형제 " <c:if test="${family.familyRelation eq '손위 형제'}">selected</c:if>>손위 형제</option> 
-                      <option value="손위 자매" <c:if test="${family.familyRelation eq '손위 자매'}">selected</c:if>>손위 자매</option>
-                      <option value="손아래 형제" <c:if test="${family.familyRelation eq '손아래 형제'}">selected</c:if>>손아래 형제</option>
-                      <option value="손아래 자매" <c:if test="${family.familyRelation eq '손아래 자매'}">selected</c:if>>손아래 자매</option>                
-                    </select>
-                  </td>
-                  <td>
-                  	<input type="text" class="form-control input-sm"  name="familyName" value="${family.familyName}" maxlength="10"/>
-                  </td>
-                  <td>
-                    <input type="text" class="form-control input-sm"  name="familyAge" value="${family.familyAge}" maxlength="3"/>
-                  </td>
-                  <td><input type="text" class="form-control input-sm"  name="familyJob" value="${family.familyJob}" maxlength="8"/></td>
-                  <td>
-                    <select class="form-control input-sm" name="familyLive">
-                      <option value="NIL" <c:if test="${family.familyLive eq 'NIL'}">selected</c:if>>--선택하세요--</option>
-                      <option value="동거" <c:if test="${family.familyLive eq '동거'}">selected</c:if>>동거</option>
-                      <option value="비동거" <c:if test="${family.familyLive eq '비동거'}">selected</c:if>>비동거</option>                      
-                    </select>
-                  </td>
-                </tr>
+                <c:choose>
+	                <c:when test="${empty familyList}">
+					   <tr>
+					     <td>					     	
+					     	<a href="javascript:" class="btn btn-danger btn-icon btn-xs btn-circle" data-click="resume-delete"><i class="ion-minus-round fa fa-lg text-white"></i></a>
+					     </td>
+					     <td>
+		                    <select class="form-control input-sm" name="familyRelation">
+		                      <option value="NIL" <c:if test="${family.familyRelation eq 'NIL'}">selected</c:if>>--선택하세요--</option>
+		                      <option value="친할아버지" <c:if test="${family.familyRelation eq '친할아버지'}">selected</c:if>>친할아버지</option>
+		                      <option value="친할머니" <c:if test="${family.familyRelation eq '친할머니'}">selected</c:if>>친할머니</option>
+		                      <option value="외할아버지" <c:if test="${family.familyRelation eq '외할아버지'}">selected</c:if>>외할아버지</option>
+		                      <option value="외할머니 " <c:if test="${family.familyRelation eq '외할머니'}">selected</c:if>>외할머니</option> 
+		                      <option value="아버지" <c:if test="${family.familyRelation eq '아버지'}">selected</c:if>>아버지</option>
+		                      <option value="어머니" <c:if test="${family.familyRelation eq '어머니'}">selected</c:if>>어머니</option> 
+		                      <option value="손위 형제 " <c:if test="${family.familyRelation eq '손위 형제'}">selected</c:if>>손위 형제</option> 
+		                      <option value="손위 자매" <c:if test="${family.familyRelation eq '손위 자매'}">selected</c:if>>손위 자매</option>
+		                      <option value="손아래 형제" <c:if test="${family.familyRelation eq '손아래 형제'}">selected</c:if>>손아래 형제</option>
+		                      <option value="손아래 자매" <c:if test="${family.familyRelation eq '손아래 자매'}">selected</c:if>>손아래 자매</option>                
+		                    </select>
+		                 </td>
+		                 <td>
+		                  	<input type="text" class="form-control input-sm"  name="familyName" value="${family.familyName}" maxlength="10"/>
+		                 </td>
+		                 <td>
+		                    <input type="text" class="form-control input-sm"  name="familyAge" value="${family.familyAge}" maxlength="3"/>
+		                 </td>
+		                 <td><input type="text" class="form-control input-sm"  name="familyJob" value="${family.familyJob}" maxlength="8"/></td>
+		                 <td>
+		                    <select class="form-control input-sm" name="familyLive">
+		                      <option value="NIL" <c:if test="${family.familyLive eq 'NIL'}">selected</c:if>>--선택하세요--</option>
+		                      <option value="동거" <c:if test="${family.familyLive eq '동거'}">selected</c:if>>동거</option>
+		                      <option value="비동거" <c:if test="${family.familyLive eq '비동거'}">selected</c:if>>비동거</option>                      
+		                    </select>
+		                </td>
+				  	</c:when>
+				  	<c:otherwise>
+				  		<c:forEach items="${familyList}" var="family">
+					     	<tr>
+			                  <td>
+			                  	<input type="hidden" name="familyNo" value="${family.familyNo}"/>
+			                  	<a href="javascript:" class="btn btn-danger btn-icon btn-xs btn-circle" data-click="resume-delete"><i class="ion-minus-round fa fa-lg text-white"></i></a>
+			                  </td>
+			                  <td>
+			                    <select class="form-control input-sm" name="familyRelation">
+			                      <option value="NIL" <c:if test="${family.familyRelation eq 'NIL'}">selected</c:if>>--선택하세요--</option>
+			                      <option value="친할아버지" <c:if test="${family.familyRelation eq '친할아버지'}">selected</c:if>>친할아버지</option>
+			                      <option value="친할머니" <c:if test="${family.familyRelation eq '친할머니'}">selected</c:if>>친할머니</option>
+			                      <option value="외할아버지" <c:if test="${family.familyRelation eq '외할아버지'}">selected</c:if>>외할아버지</option>
+			                      <option value="외할머니 " <c:if test="${family.familyRelation eq '외할머니'}">selected</c:if>>외할머니</option> 
+			                      <option value="아버지" <c:if test="${family.familyRelation eq '아버지'}">selected</c:if>>아버지</option>
+			                      <option value="어머니" <c:if test="${family.familyRelation eq '어머니'}">selected</c:if>>어머니</option> 
+			                      <option value="손위 형제 " <c:if test="${family.familyRelation eq '손위 형제'}">selected</c:if>>손위 형제</option> 
+			                      <option value="손위 자매" <c:if test="${family.familyRelation eq '손위 자매'}">selected</c:if>>손위 자매</option>
+			                      <option value="손아래 형제" <c:if test="${family.familyRelation eq '손아래 형제'}">selected</c:if>>손아래 형제</option>
+			                      <option value="손아래 자매" <c:if test="${family.familyRelation eq '손아래 자매'}">selected</c:if>>손아래 자매</option>                
+			                    </select>
+			                  </td>
+			                  <td>
+			                  	<input type="text" class="form-control input-sm"  name="familyName" value="${family.familyName}" maxlength="10"/>
+			                  </td>
+			                  <td>
+			                    <input type="text" class="form-control input-sm"  name="familyAge" value="${family.familyAge}" maxlength="3"/>
+			                  </td>
+			                  <td><input type="text" class="form-control input-sm"  name="familyJob" value="${family.familyJob}" maxlength="8"/></td>
+			                  <td>
+			                    <select class="form-control input-sm" name="familyLive">
+			                      <option value="NIL" <c:if test="${family.familyLive eq 'NIL'}">selected</c:if>>--선택하세요--</option>
+			                      <option value="동거" <c:if test="${family.familyLive eq '동거'}">selected</c:if>>동거</option>
+			                      <option value="비동거" <c:if test="${family.familyLive eq '비동거'}">selected</c:if>>비동거</option>                      
+			                    </select>
+			                  </td>
+			                </tr>    
+		                </c:forEach>	
+				    </c:otherwise>
+				  </c:choose>                
                 </tbody>
               </table>
             </div>

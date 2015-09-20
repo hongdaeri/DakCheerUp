@@ -55,6 +55,7 @@ public class AccountController {
             if (cookies[i].getName().equals("mp"))
                 memberPassword = cookies[i].getValue();
         }
+        
         // 쿠키상에 id와 pw가 모두 있다면
         if(memberId!=null && memberPassword != null)
         {
