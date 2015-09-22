@@ -1,6 +1,7 @@
 package com.fourdrone.dakcheerup.controller;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.fourdrone.dakcheerup.domain.Resume;
 import com.fourdrone.dakcheerup.domain.member.Member;
 import com.fourdrone.dakcheerup.domain.resume.*;
-import com.fourdrone.dakcheerup.domain.resume.Profile;
-
 import com.fourdrone.dakcheerup.service.AccountService;
 import com.fourdrone.dakcheerup.service.ResumeService;
 
@@ -253,4 +252,6 @@ public class ResumeController {
 	    model.addAttribute("profile", profile);
 	    return "resume/resume-config";
 	}
+	
+	
 }

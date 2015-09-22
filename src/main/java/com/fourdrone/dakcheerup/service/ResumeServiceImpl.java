@@ -62,9 +62,11 @@ public class ResumeServiceImpl implements ResumeService {
 
 	@Override
 	public Military getMilitary(String memberId) {
-		ResumeMapper resumeMapper = sqlSession.getMapper(ResumeMapper.class);
-	    return resumeMapper.getMilitary(memberId);
+		ResumeMapper resumeMapper = sqlSession.getMapper(ResumeMapper.class);	    	
+		return resumeMapper.getMilitary(memberId);
 	}
+	
+
 
 	@Override
 	public Academic getAcademic(String memberId) {
@@ -659,10 +661,5 @@ public class ResumeServiceImpl implements ResumeService {
 		ResumeMapper resumeMapper = sqlSession.getMapper(ResumeMapper.class);	
 		resumeMapper.delWrite(writeNo);			
 	}
-
-
-
-
-    
 
 }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Created by h0ngz on 2015. 8. 17..
  */
 public interface ResumeService {
-	
+		
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * *
 	 *                                                   *
 	 *               GET RESUME                          * 

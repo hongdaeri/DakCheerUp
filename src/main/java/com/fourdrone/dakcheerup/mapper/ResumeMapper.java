@@ -10,6 +10,7 @@ import java.util.ArrayList;
  * Created by h0ngz on 2015. 8. 17..
  */
 public interface ResumeMapper {
+
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * *
 	 *                                                   *
 	 *               GET RESUME                          * 
@@ -287,4 +288,5 @@ public interface ResumeMapper {
     
     // 저술내역
     void delWrite(int writeNo);
+
 }

@@ -261,8 +261,9 @@
         <result property="academicUnivRegDate" column="ACADEMIC_UNIV_REG_DATE" />
     </resultMap>
     
+       
+ 
     
-	
 	<!-- * * * * * * * * * * * * * * * * * * * * * * * * *
 	 *                                                   *
 	 *               GET RESUME                          * 

@@ -28,6 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import com.fourdrone.dakcheerup.util.DES;
@@ -38,7 +39,6 @@ public class AccountController {
 
     @Autowired  private AccountService accountService;
     @Autowired private ResumeService resumeService;
-
 
 
     // 로그인 화면 처리
