@@ -601,13 +601,13 @@ CREATE TABLE TB_RESUME_ACADEMIC_UNIVERSITY (
 	ACADEMIC_UNIV_PERIOD_FIRST_OPTION VARCHAR(4)  NULL,     -- 학력_대학교_재학기간_첫번째_구분
 	ACADEMIC_UNIV_PERIOD_LAST         VARCHAR(7)  NULL,     -- 학력_대학교_재학기간_마지막
 	ACADEMIC_UNIV_PERIOD_LAST_OPTION  VARCHAR(8)  NULL,     -- 학력_대학교_재학기간_마지막_구분
-	ACADEMIC_UNIV_NAME                VARCHAR(30) NULL,     -- 학력_대학교_학교명
+	ACADEMIC_UNIV_NAME                VARCHAR(50) NULL,     -- 학력_대학교_학교명
 	ACADEMIC_UNIV_DEGREE              VARCHAR(8)  NULL,     -- 학력_대학교_학위
-	ACADEMIC_UNIV_MAJOR               VARCHAR(30) NULL,     -- 학력_대학교_전공
+	ACADEMIC_UNIV_MAJOR               VARCHAR(50) NULL,     -- 학력_대학교_전공
 	ACADEMIC_UNIV_SCORE               VARCHAR(5)  NULL,     -- 학력_대학교_학점
 	ACADEMIC_UNIV_SCORE_OPTION        VARCHAR(7)  NULL,     -- 학력_대학교_학점_구분
 	ACADEMIC_UNIV_DOUBLE_OPTION       VARCHAR(8)  NULL,     -- 학력_대학교_부_복수전공_구분
-	ACADEMIC_UNIV_DOUBLE_NAME         VARCHAR(30) NULL,     -- 학력_대학교_부_복수전공
+	ACADEMIC_UNIV_DOUBLE_NAME         VARCHAR(50) NULL,     -- 학력_대학교_부_복수전공
 	ACADEMIC_UNIV_REG_DATE            TIMESTAMP   NULL      -- 학력_대학교_등록일
 );
 

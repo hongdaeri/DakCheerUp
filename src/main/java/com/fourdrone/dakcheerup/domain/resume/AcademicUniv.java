@@ -23,7 +23,7 @@ public class AcademicUniv {
 	private String academicUnivName;					//학력_대학교_학교명
 	private String academicUnivMajor;					//학력_대학교_전공 
 	
-	private int academicUnivScore;						//학력_대학교_점수 
+	private String academicUnivScore;						//학력_대학교_점수 
 	private String academicUnivScoreOption;				//학력_대학교_점수_구분 
 	
 	private String academicUnivDoubleName;				//학력_대학교_부_복수전공
@@ -160,14 +160,14 @@ public class AcademicUniv {
 	/**
 	 * @return the academicUnivScore
 	 */
-	public int getAcademicUnivScore() {
+	public String getAcademicUnivScore() {
 		return academicUnivScore;
 	}
 
 	/**
 	 * @param academicUnivScore the academicUnivScore to set
 	 */
-	public void setAcademicUnivScore(int academicUnivScore) {
+	public void setAcademicUnivScore(String academicUnivScore) {
 		this.academicUnivScore = academicUnivScore;
 	}
 

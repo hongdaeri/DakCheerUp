@@ -34,7 +34,7 @@ public class ResumeController {
 	    return "resume/resume";
 	}
 	
-	// 기본인적사항 
+	// 기본인적사항  불러오기
 	@RequestMapping(value="/profile", method = RequestMethod.GET)
 	public String getResumeProfile(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
@@ -45,6 +45,7 @@ public class ResumeController {
 	    return "resume/resume-profile";
 	}
 	
+	// 기본인적사항 데이터 처리
 	@RequestMapping(value ="/profile", method = RequestMethod.POST)
     public String postResumeProfile(@ModelAttribute("profile") Profile profile) {  	    	
 		String memberId = (String)session.getAttribute("memberLoginInfo");
@@ -61,20 +62,20 @@ public class ResumeController {
 	@RequestMapping(value="/addtion-profile", method = RequestMethod.GET)
 	public String getResumeAddtionProfile(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
-		
+		//형제관계 불러오기
 		Brother brother = this.resumeService.getBrother(memberId);
 	    model.addAttribute("brother", brother);	 
-	    
+	    //가족사항 리스트 불러오기
 	    List<Family> familyList = this.resumeService.getFamilyList(memberId);
 	    model.addAttribute("familyList", familyList);
-	    System.out.println(familyList.toString());
-	    
+	    //병역 불러오기
 	    Military military = this.resumeService.getMilitary(memberId);
 	    model.addAttribute("military", military);	
 	    
 	    return "resume/resume-addtion-profile";
 	}
 	
+	// 추가인적사항(형제관계, 가족관계, 병역사항) 데이터 처리
 	@RequestMapping(value="/addtion-profile", method = RequestMethod.POST)
 	public String postResumeAddtionProfile(ModelMap model, HttpServletRequest request) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
@@ -95,18 +96,22 @@ public class ResumeController {
 		String[] familyAgeList = request.getParameterValues("familyAge");
 		String[] familyJobList = request.getParameterValues("familyJob");
 		String[] familyLiveList = request.getParameterValues("familyLive");
-		for(int i=0; i<familyNoList.length; i++)
+		
+		if(request.getParameterValues("familyNoList") != null)
 		{
-			Family family = new Family();
-			family.setFamilyNo(Integer.parseInt(familyNoList[i]));
-			family.setMemberId(memberId);			
-			family.setFamilyRegDate(new Timestamp(System.currentTimeMillis()));
-			family.setFamilyRelation(familyRelationList[i]);
-			family.setFamilyName(familyNameList[i]);			
-			family.setFamilyAge(familyAgeList[i]);		
-			family.setFamilyJob(familyJobList[i]);
-			family.setFamilyLive(familyLiveList[i]);		
-			this.resumeService.modFamily(family);
+			for(int i=0; i<familyNoList.length; i++)
+			{
+				Family family = new Family();
+				family.setFamilyNo(Integer.parseInt(familyNoList[i]));
+				family.setMemberId(memberId);			
+				family.setFamilyRegDate(new Timestamp(System.currentTimeMillis()));
+				family.setFamilyRelation(familyRelationList[i]);
+				family.setFamilyName(familyNameList[i]);			
+				family.setFamilyAge(familyAgeList[i]);		
+				family.setFamilyJob(familyJobList[i]);
+				family.setFamilyLive(familyLiveList[i]);		
+				this.resumeService.modFamily(family);
+			}
 		}
 		
 		//  Family 항목 추가
@@ -149,9 +154,9 @@ public class ResumeController {
 		return "redirect:/resume/addtion-profile";
 	}
 	
-	// 추가인적사항 ( 형제관계, 가족관계, 병역사항 ) 
+	// 추가인적사항 가족관계 삭제
 	@RequestMapping(value="/addtion-profile/delFamily", method = RequestMethod.GET)
-	public String getResumeAddtionProfile(@RequestParam("familyNo") int familyNo, ModelMap model) {
+	public String delResumeAddtionProfileFamily(@RequestParam("familyNo") int familyNo, ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");		
 		Family family = this.resumeService.getFamily(familyNo);
 		if(family.getMemberId().equals(memberId))
@@ -161,12 +166,124 @@ public class ResumeController {
 	}
 	
 	
+	// 학력사항 불러오기
 	@RequestMapping(value="/academic", method = RequestMethod.GET)
 	public String getResumeAcademic(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
-		Profile profile = this.resumeService.getProfile(memberId);
-	    model.addAttribute("profile", profile);	    
+		//고등학교 불러오기
+		AcademicHigh academicHigh = this.resumeService.getAcademicHigh(memberId);
+	    model.addAttribute("academicHigh", academicHigh);	 
+	    //대학교 리스트 불러오기
+	    List<AcademicUniv> academicUnivList = this.resumeService.getAcademicUnivList(memberId);
+	    model.addAttribute("academicUnivList", academicUnivList);
+	    	    	    
 	    return "resume/resume-academic";
+	}
+	
+	// 학력사항 (고등학교, 대학교) 데이터 처리
+	@RequestMapping(value="/academic", method = RequestMethod.POST)
+	public String postResumeAcademic(ModelMap model, HttpServletRequest request) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		
+		//고등학교 테이블 업데이트
+		AcademicHigh academicHigh = new AcademicHigh();
+		academicHigh.setMemberId(memberId);
+		academicHigh.setAcademicHighRegDate(new Timestamp(System.currentTimeMillis()));
+		academicHigh.setAcademicHighArea(request.getParameter("academicHighArea"));
+		academicHigh.setAcademicHighMajor(request.getParameter("academicHighMajor"));
+		academicHigh.setAcademicHighName(request.getParameter("academicHighName"));
+		academicHigh.setAcademicHighPeriod(request.getParameter("academicHighPeriod"));
+		academicHigh.setAcademicHighSection(request.getParameter("academicHighSection"));
+		this.resumeService.modAcademicHigh(academicHigh);
+		
+		
+		// 대학교 항목 업데이트
+		String[] academicUnivNoList = request.getParameterValues("academicUnivPeriodNo");
+		String[] academicUnivPeriodFirstList = request.getParameterValues("academicUnivPeriodFirst");
+		String[] academicUnivPeriodFirstOptionList = request.getParameterValues("academicUnivPeriodFirstOption");
+		String[] academicUnivPeriodLastList = request.getParameterValues("academicUnivPeriodLast");
+		String[] academicUnivPeriodLastOptionList = request.getParameterValues("academicUnivPeriodLastOption");
+		String[] academicUnivDegreeList = request.getParameterValues("academicUnivDegree");
+		String[] academicUnivNameList = request.getParameterValues("academicUnivName");
+		String[] academicUnivMajorList = request.getParameterValues("academicUnivMajor");
+		String[] academicUnivScoreList = request.getParameterValues("academicUnivScore");
+		String[] academicUnivScoreOptionList = request.getParameterValues("academicUnivScoreOption");
+		String[] academicUnivDoubleNameList = request.getParameterValues("academicUnivDoubleName");
+		String[] academicUnivDoubleOptionList = request.getParameterValues("academicUnivDoubleOption");
+		
+		if(request.getParameterValues("academicUnivPeriodNo") != null)
+		{
+			for(int i=0; i<academicUnivNoList.length; i++)
+			{
+				AcademicUniv academicUniv = new AcademicUniv();
+				academicUniv.setMemberId(memberId);
+				academicUniv.setAcademicUnivNo(Integer.parseInt(academicUnivNoList[i]));
+				academicUniv.setAcademicUnivRegDate(new Timestamp(System.currentTimeMillis()));
+				academicUniv.setAcademicUnivPeriodFirst(academicUnivPeriodFirstList[i]);
+				academicUniv.setAcademicUnivPeriodFirstOption(academicUnivPeriodFirstOptionList[i]);
+				academicUniv.setAcademicUnivPeriodLast(academicUnivPeriodLastList[i]);
+				academicUniv.setAcademicUnivPeriodLastOption(academicUnivPeriodLastOptionList[i]);
+				academicUniv.setAcademicUnivDegree(academicUnivDegreeList[i]);
+				academicUniv.setAcademicUnivName(academicUnivNameList[i]);
+				academicUniv.setAcademicUnivMajor(academicUnivMajorList[i]);
+				academicUniv.setAcademicUnivScore(academicUnivScoreList[i]);
+				academicUniv.setAcademicUnivScoreOption(academicUnivScoreOptionList[i]);
+				academicUniv.setAcademicUnivDoubleName(academicUnivDoubleNameList[i]);
+				academicUniv.setAcademicUnivDoubleOption(academicUnivDoubleOptionList[i]);
+				this.resumeService.modAcademicUniv(academicUniv);
+			}
+		}
+		
+		// 대학교 항목 추가
+		String[] newAcademicUnivPeriodFirstList = request.getParameterValues("newAcademicUnivPeriodFirst");
+		String[] newAcademicUnivPeriodFirstOptionList = request.getParameterValues("newAcademicUnivPeriodFirstOption");
+		String[] newAcademicUnivPeriodLastList = request.getParameterValues("newAcademicUnivPeriodLast");
+		String[] newAcademicUnivPeriodLastOptionList = request.getParameterValues("newAcademicUnivPeriodLastOption");
+		String[] newAcademicUnivDegreeList = request.getParameterValues("newAcademicUnivDegree");
+		String[] newAcademicUnivNameList = request.getParameterValues("newAcademicUnivName");
+		String[] newAcademicUnivMajorList = request.getParameterValues("newAcademicUnivMajor");
+		String[] newAcademicUnivScoreList = request.getParameterValues("newAcademicUnivScore");
+		String[] newAcademicUnivScoreOptionList = request.getParameterValues("newAcademicUnivScoreOption");
+		String[] newAcademicUnivDoubleNameList = request.getParameterValues("newAcademicUnivDoubleName");
+		String[] newAcademicUnivDoubleOptionList = request.getParameterValues("newAcademicUnivDoubleOption");
+		
+		
+		if(request.getParameterValues("newAcademicUnivPeriodFirst") != null)
+		{
+			for(int i=0; i<newAcademicUnivPeriodFirstList.length; i++)
+			{
+				AcademicUniv academicUniv = new AcademicUniv();
+				academicUniv.setMemberId(memberId);
+				academicUniv.setAcademicUnivRegDate(new Timestamp(System.currentTimeMillis()));
+				academicUniv.setAcademicUnivPeriodFirst(newAcademicUnivPeriodFirstList[i]);
+				academicUniv.setAcademicUnivPeriodFirstOption(newAcademicUnivPeriodFirstOptionList[i]);
+				academicUniv.setAcademicUnivPeriodLast(newAcademicUnivPeriodLastList[i]);
+				academicUniv.setAcademicUnivPeriodLastOption(newAcademicUnivPeriodLastOptionList[i]);
+				academicUniv.setAcademicUnivDegree(newAcademicUnivDegreeList[i]);
+				academicUniv.setAcademicUnivName(newAcademicUnivNameList[i]);
+				academicUniv.setAcademicUnivMajor(newAcademicUnivMajorList[i]);
+				academicUniv.setAcademicUnivScore(newAcademicUnivScoreList[i]);
+				academicUniv.setAcademicUnivScoreOption(newAcademicUnivScoreOptionList[i]);
+				academicUniv.setAcademicUnivDoubleName(newAcademicUnivDoubleNameList[i]);
+				academicUniv.setAcademicUnivDoubleOption(newAcademicUnivDoubleOptionList[i]);
+				this.resumeService.addAcademicUniv(academicUniv);
+			}
+		}
+				
+		
+		
+		return "redirect:/resume/academic";
+	}
+	
+	// 학력사항, 대학교 삭제
+	@RequestMapping(value="/academic/delUniv", method = RequestMethod.GET)
+	public String getResumeAddtionProfile(@RequestParam("familyNo") int familyNo, ModelMap model) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");		
+		Family family = this.resumeService.getFamily(familyNo);
+		if(family.getMemberId().equals(memberId))
+			this.resumeService.delFamily(familyNo);
+	    
+	    return "redirect:/resume/resume-academic";
 	}
 	
 	// OA 능력
