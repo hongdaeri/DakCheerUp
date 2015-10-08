@@ -24,7 +24,7 @@
                 <tbody>
                 <tr>
                   <td class="warning ">이름</td>
-                  <td class="text-left"> <strong>${profile.profileName}</strong></td>
+                  <td class="text-left"> <strong>${profile.profileName}</strong><input type="hidden" name="profileName" value="${profile.profileName}"/></td>
                   <td class="warning text-center ">한문</td>
                   <td>
                     <input name="profileCname" type="text" class="form-control input-sm" placeholder="洪吉動" maxlength="10" value="${profile.profileCname}" />

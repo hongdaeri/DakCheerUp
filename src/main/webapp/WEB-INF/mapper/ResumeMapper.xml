@@ -906,144 +906,144 @@
      
 	<!-- 이력서  -->
 	<delete id="delResume" parameterType="String" >
-        DELETE	TB_RESUME	
+        DELETE	FROM	TB_RESUME	
         WHERE 	MEMBER_ID = #{memberId}
     </delete>
     
 	<!-- 이력서 설정  -->
 	<delete id="delResumeConfig" parameterType="String">
-        DELETE 	TB_RESUME_CONFIG
+        DELETE 	FROM	TB_RESUME_CONFIG
         WHERE 	MEMBER_ID = #{memberId}
     </delete>   
     
     <!-- 기본인적사항  -->
 	<delete id="delprofile" parameterType="String">
-        DELETE 	TB_RESUME_PROFILE 
+        DELETE 	FROM	TB_RESUME_PROFILE 
         WHERE 	MEMBER_ID = #{memberId}
     </delete>
     
     <!-- 형제관계  -->
 	<delete id="delBrother" parameterType="String">
-        DELETE 	TB_RESUME_BROTHER
+        DELETE 	FROM	TB_RESUME_BROTHER
         WHERE 	MEMBER_ID = #{memberId}
     </delete>
     
     <!-- 가족관계 -->
 	<delete id="delFamily" parameterType="Integer">
-        DELETE 	TB_RESUME_FAMILY 
+        DELETE 	FROM	TB_RESUME_FAMILY 
         WHERE 	FAMILY_NO = #{familyNo}
     </delete>
     
           
     <!-- 병역사항  -->
 	<delete id="delMilitary" parameterType="String">
-        DELETE 	TB_RESUME_MILITARY 
+        DELETE 	FROM	TB_RESUME_MILITARY 
         WHERE 	MEMBER_ID = #{memberId}
     </delete>
     
           
     <!-- 학력사항   -->
 	<delete id="delAcademic" parameterType="String">
-        DELETE 	TB_RESUME_ACADEMIC 
+        DELETE 	FROM	TB_RESUME_ACADEMIC 
        	WHERE 	MEMBER_ID = #{memberId}
     </delete>
     
     <!-- 학력사항 - 고등학교   -->
 	<delete id="delAcademicHigh" parameterType="String">
-        DELETE 	TB_RESUME_ACADEMIC_HIGHSCHOOL 
+        DELETE 	FROM	TB_RESUME_ACADEMIC_HIGHSCHOOL 
         WHERE	MEMBER_ID = #{memberId}
     </delete>
     
     <!-- 학력사항 - 대학교 -   -->
 	<delete id="delAcademicUniv" parameterType="Integer">
-        DELETE 	TB_RESUME_ACADEMIC_UNIVERSITY 
+        DELETE 	FROM	TB_RESUME_ACADEMIC_UNIVERSITY 
         WHERE 	ACADEMIC_UNIV_NO = #{academicUnivNo}
     </delete> 
     
     <!-- 수상내역   -->
 	<delete id="delAward" parameterType="Integer">
-        DELETE 	TB_RESUME_AWARD 
+        DELETE 	FROM	TB_RESUME_AWARD 
         WHERE	AWARD_NO = #{awardNo}
     </delete>    
    
      <!-- 교육이수내역  -->
 	<delete id="delEducation" parameterType="Integer">
-        DELETE 	TB_RESUME_EDUCATION 
+        DELETE 	FROM	TB_RESUME_EDUCATION 
         WHERE	EDUCATION_NO = #{educationNo}
     </delete>
     
     
      <!-- 경력및실습사항  -->
 	<delete id="delCareer" parameterType="Integer">
-        DELETE 	TB_RESUME_CAREER 
+        DELETE 	FROM	TB_RESUME_CAREER 
         WHERE	CAREER_NO = #{careerNo}
     </delete>
     
     
     <!-- 글로벌경험  -->
 	<delete id="delGlobal" parameterType="Integer">
-        DELETE 	TB_RESUME_GLOBAL 		
+        DELETE 	FROM	TB_RESUME_GLOBAL 		
         WHERE 	GLOBAL_NO = #{globalNo}
     </delete>
     
     
     <!-- 어학능력  -->
 	<delete id="delLanguageAbility" parameterType="Integer">
-        DELETE 	TB_RESUME_LANGUAGE_ABILITY 		
+        DELETE 	FROM	TB_RESUME_LANGUAGE_ABILITY 		
         WHERE 	LANG_ABILITY_NO = #{langAbilityNo}
     </delete>
      
     
     <!-- 어학시험  -->
 	<delete id="delLanguageExam" parameterType="Integer">
-        DELETE 	TB_RESUME_LANGUAGE_EXAM		
+        DELETE 	FROM	TB_RESUME_LANGUAGE_EXAM		
         WHERE	LANG_EXAM_NO = #{langExamNo}
     </delete>
  
     
     <!-- 자격증  -->
 	<delete id="delLicense" parameterType="Integer">
-        DELETE 	TB_RESUME_LICENSE		
+        DELETE 	FROM	TB_RESUME_LICENSE		
         WHERE	LICENSE_NO = #{licenseNo}
     </delete>
     
 
 	<!-- OA능력 -->
 	<delete id="delOA" parameterType="String">
-       	DELETE 	TB_RESUME_OA 
+       	DELETE 	FROM	TB_RESUME_OA 
        	WHERE	MEMBER_ID = #{memberId}
     </delete>
     
     <!-- 참여프로젝트  -->
 	<delete id="delProject" parameterType="Integer">
-        DELETE 	TB_RESUME_PROJECT
+        DELETE 	FROM	TB_RESUME_PROJECT
         WHERE	PROJECT_NO = #{projectNo}
     </delete>
     
     
     <!-- 봉사활동  -->
 	<delete id="delVoluntary" parameterType="Integer">
-        DELETE 	TB_RESUME_VOLUNTARY 
+        DELETE 	FROM	TB_RESUME_VOLUNTARY 
         WHERE	VOLUNTARY_NO = #{voluntaryNo}
     </delete>
     
     
     <!-- 저술내역  -->
 	<delete id="delWrite" parameterType="Integer">
-        DELETE 	TB_RESUME_WRITE 
+        DELETE 	FROM	TB_RESUME_WRITE 
         WHERE	WRITE_NO = #{writeNo}
     </delete>
     
    
    	<!-- 강점/성격  -->
 	<delete id="delStrength" parameterType="String">
-        DELETE 	TB_RESUME_STRENGTH
+        DELETE 	FROM	TB_RESUME_STRENGTH
        	WHERE	MEMBER_ID = #{memberId}
     </delete>
     
     <!-- SWOT분석  -->
 	<delete id="delSwot" parameterType="String">
-        DELETE 	TB_RESUME_SWOT             
+        DELETE 	FROM	TB_RESUME_SWOT             
         WHERE	MEMBER_ID = #{memberId}
     </delete>
 

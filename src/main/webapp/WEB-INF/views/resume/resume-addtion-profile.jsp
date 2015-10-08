@@ -20,7 +20,7 @@
           <form id="resume-add-profile" class="form-horizontal" action="/resume/addtion-profile" method="POST">
             <h5>가족관계</h5>
             <div class="table-responsive">
-              <table class="table table-bordered table-condensed table-valign-middle text-center">
+              <table id="familytbl" class="table table-bordered table-condensed table-valign-middle text-center">
                 <tbody>
                 <tr>
                   <td colspan="2" class="warning">형제관계</td>
@@ -36,10 +36,10 @@
                       </tr>
                     </table>
                   </td>
-
                 </tr>
+                
                 <tr class="warning">
-                  <td><a href="javascript:" class="" data-click="resume-add"><i class="ion-plus-round fa fa-lg text-success"></i></a></td>
+                  <td><a href="javascript:add_familyRow();"><i class="ion-plus-round fa fa-lg text-success"></i></a></td>
                   <td>관계</td>
                   <td>성명</td>
                   <td>연령</td>
@@ -50,44 +50,46 @@
 	                <c:when test="${empty familyList}">
 					   <tr>
 					     <td>					     	
-					     	<a href="javascript:" class="btn btn-danger btn-icon btn-xs btn-circle" data-click="resume-delete"><i class="ion-minus-round fa fa-lg text-white"></i></a>
+					     	<a href="javascript:" class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>
 					     </td>
 					     <td>
-		                    <select class="form-control input-sm" name="familyRelation">
-		                      <option value="NIL" <c:if test="${family.familyRelation eq 'NIL'}">selected</c:if>>--선택하세요--</option>
-		                      <option value="친할아버지" <c:if test="${family.familyRelation eq '친할아버지'}">selected</c:if>>친할아버지</option>
-		                      <option value="친할머니" <c:if test="${family.familyRelation eq '친할머니'}">selected</c:if>>친할머니</option>
-		                      <option value="외할아버지" <c:if test="${family.familyRelation eq '외할아버지'}">selected</c:if>>외할아버지</option>
-		                      <option value="외할머니 " <c:if test="${family.familyRelation eq '외할머니'}">selected</c:if>>외할머니</option> 
-		                      <option value="아버지" <c:if test="${family.familyRelation eq '아버지'}">selected</c:if>>아버지</option>
-		                      <option value="어머니" <c:if test="${family.familyRelation eq '어머니'}">selected</c:if>>어머니</option> 
-		                      <option value="손위 형제 " <c:if test="${family.familyRelation eq '손위 형제'}">selected</c:if>>손위 형제</option> 
-		                      <option value="손위 자매" <c:if test="${family.familyRelation eq '손위 자매'}">selected</c:if>>손위 자매</option>
-		                      <option value="손아래 형제" <c:if test="${family.familyRelation eq '손아래 형제'}">selected</c:if>>손아래 형제</option>
-		                      <option value="손아래 자매" <c:if test="${family.familyRelation eq '손아래 자매'}">selected</c:if>>손아래 자매</option>                
+		                    <select class="form-control input-sm" name="newFamilyRelation">
+		                      <option value="NIL">--선택하세요--</option>
+		                      <option value="친할아버지">친할아버지</option>
+		                      <option value="친할머니">친할머니</option>
+		                      <option value="외할아버지">외할아버지</option>
+		                      <option value="외할머니 ">외할머니</option> 
+		                      <option value="아버지">아버지</option>
+		                      <option value="어머니">어머니</option> 
+		                      <option value="손위 형제 ">손위 형제</option> 
+		                      <option value="손위 자매">손위 자매</option>
+		                      <option value="손아래 형제">손아래 형제</option>
+		                      <option value="손아래 자매">손아래 자매</option>                
 		                    </select>
 		                 </td>
 		                 <td>
-		                  	<input type="text" class="form-control input-sm"  name="familyName" value="${family.familyName}" maxlength="10"/>
+		                  	<input type="text" class="form-control input-sm"  name="newFamilyName" maxlength="10"/>
 		                 </td>
 		                 <td>
-		                    <input type="text" class="form-control input-sm"  name="familyAge" value="${family.familyAge}" maxlength="3"/>
+		                    <input type="text" class="form-control input-sm"  name="newFamilyAge" maxlength="3"/>
 		                 </td>
-		                 <td><input type="text" class="form-control input-sm"  name="familyJob" value="${family.familyJob}" maxlength="8"/></td>
 		                 <td>
-		                    <select class="form-control input-sm" name="familyLive">
-		                      <option value="NIL" <c:if test="${family.familyLive eq 'NIL'}">selected</c:if>>--선택하세요--</option>
-		                      <option value="동거" <c:if test="${family.familyLive eq '동거'}">selected</c:if>>동거</option>
-		                      <option value="비동거" <c:if test="${family.familyLive eq '비동거'}">selected</c:if>>비동거</option>                      
+		                 <input type="text" class="form-control input-sm"  name="newFamilyJob" maxlength="8"/></td>
+		                 <td>
+		                    <select class="form-control input-sm" name="newFamilyLive">
+		                      <option value="NIL">--선택하세요--</option>
+		                      <option value="동거">동거</option>
+		                      <option value="비동거">비동거</option>                      
 		                    </select>
 		                </td>
+		              </tr>
 				  	</c:when>
-				  	<c:otherwise>
+				  	<c:when test="${not empty familyList}">
 				  		<c:forEach items="${familyList}" var="family">
 					     	<tr>
 			                  <td>
 			                  	<input type="hidden" name="familyNo" value="${family.familyNo}"/>
-			                  	<a href="javascript:" class="btn btn-danger btn-icon btn-xs btn-circle" data-click="resume-delete"><i class="ion-minus-round fa fa-lg text-white"></i></a>
+			                  	<a href="/resume/addtion-profile/delFamily?familyNo=${family.familyNo}" class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>
 			                  </td>
 			                  <td>
 			                    <select class="form-control input-sm" name="familyRelation">
@@ -120,7 +122,7 @@
 			                  </td>
 			                </tr>    
 		                </c:forEach>	
-				    </c:otherwise>
+				    </c:when>
 				  </c:choose>                
                 </tbody>
               </table>

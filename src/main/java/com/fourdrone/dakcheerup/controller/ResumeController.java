@@ -13,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fourdrone.dakcheerup.domain.Resume;
 import com.fourdrone.dakcheerup.domain.member.Member;
@@ -29,8 +30,7 @@ public class ResumeController {
 		
 	@RequestMapping(value="", method = RequestMethod.GET)
 	public String getResume(ModelMap model) {
-	    model.addAttribute("message", "Hello world!!!");
-	    
+	   
 	    return "resume/resume";
 	}
 	
@@ -88,16 +88,51 @@ public class ResumeController {
 		brother.setBrotherMe(request.getParameter("brotherMe"));		
 		this.resumeService.modBrother(brother);
 		
-		// FAMILY 테이블 업데이트
-		Family family = new Family();
-		family.setMemberId(memberId);
-		family.setFamilyRegDate(new Timestamp(System.currentTimeMillis()));
-		family.setFamilyRelation(request.getParameter("familyRelation"));
-		family.setFamilyName(request.getParameter("familyName"));			
-		family.setFamilyAge(request.getParameter("familyAge"));		
-		family.setFamilyJob(request.getParameter("familyJob"));
-		family.setFamilyLive(request.getParameter("familyLive"));		
-		this.resumeService.addFamily(family);
+		// FAMILY 항목 수정 
+		String[] familyNoList = request.getParameterValues("familyNo");
+		String[] familyRelationList = request.getParameterValues("familyRelation");
+		String[] familyNameList = request.getParameterValues("familyName");
+		String[] familyAgeList = request.getParameterValues("familyAge");
+		String[] familyJobList = request.getParameterValues("familyJob");
+		String[] familyLiveList = request.getParameterValues("familyLive");
+		for(int i=0; i<familyNoList.length; i++)
+		{
+			Family family = new Family();
+			family.setFamilyNo(Integer.parseInt(familyNoList[i]));
+			family.setMemberId(memberId);			
+			family.setFamilyRegDate(new Timestamp(System.currentTimeMillis()));
+			family.setFamilyRelation(familyRelationList[i]);
+			family.setFamilyName(familyNameList[i]);			
+			family.setFamilyAge(familyAgeList[i]);		
+			family.setFamilyJob(familyJobList[i]);
+			family.setFamilyLive(familyLiveList[i]);		
+			this.resumeService.modFamily(family);
+		}
+		
+		//  Family 항목 추가
+		if(request.getParameterValues("newFamilyRelation") != null)
+		{
+			String[] newFamilyRelationList = request.getParameterValues("newFamilyRelation");
+			String[] newFamilyNameList = request.getParameterValues("newFamilyName");
+			String[] newFamilyAgeList = request.getParameterValues("newFamilyAge");
+			String[] newFamilyJobList = request.getParameterValues("newFamilyJob");
+			String[] newFamilyLiveList = request.getParameterValues("newFamilyLive");
+			
+			
+			for(int i=0; i<newFamilyRelationList.length; i++)
+			{
+				Family family = new Family();
+				family.setMemberId(memberId);			
+				family.setFamilyRegDate(new Timestamp(System.currentTimeMillis()));
+				family.setFamilyRelation(newFamilyRelationList[i]);
+				family.setFamilyName(newFamilyNameList[i]);			
+				family.setFamilyAge(newFamilyAgeList[i]);		
+				family.setFamilyJob(newFamilyJobList[i]);
+				family.setFamilyLive(newFamilyLiveList[i]);		
+				this.resumeService.addFamily(family);
+			}
+		}
+		
 		
 		// MILITARY 테이블 업데이트
 		Military military = new Military();
@@ -112,6 +147,17 @@ public class ResumeController {
 		this.resumeService.modMilitary(military);
 		
 		return "redirect:/resume/addtion-profile";
+	}
+	
+	// 추가인적사항 ( 형제관계, 가족관계, 병역사항 ) 
+	@RequestMapping(value="/addtion-profile/delFamily", method = RequestMethod.GET)
+	public String getResumeAddtionProfile(@RequestParam("familyNo") int familyNo, ModelMap model) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");		
+		Family family = this.resumeService.getFamily(familyNo);
+		if(family.getMemberId().equals(memberId))
+			this.resumeService.delFamily(familyNo);
+	    
+	    return "redirect:/resume/addtion-profile";
 	}
 	
 	

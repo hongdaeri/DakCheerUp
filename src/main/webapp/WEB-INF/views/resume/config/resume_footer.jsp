@@ -17,6 +17,8 @@
   <script src="/resources/js/form-wysiwyg.demo.min.js"></script>
   <script src="/resources/plugins/switchery/switchery.min.js"></script>
   <script src="/resources/js/form-slider-switcher.demo.min.js"></script>
+  
+  <script src="/resources/js/add-tag.js"></script>
   <script>
     //example
 
