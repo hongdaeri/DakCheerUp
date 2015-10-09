@@ -82,6 +82,7 @@
             </table>
 
             <div class="table-responsive">
+            <div id = "academicUnivDiv">
               <table id="academicUnivTbl" class="table table-bordered table-condensed table-valign-middle text-center">
                 <tbody>
                   <c:choose>
@@ -281,6 +282,7 @@
 
                 </tbody>
               </table>
+              </div>
             </div>
             <div class="m-t-0 m-b-10 text-right">
               <a href="#" onClick="document.getElementById('academic').submit()" class="btn btn-warning btn-sm">&nbsp; 저장 &nbsp;</a>
