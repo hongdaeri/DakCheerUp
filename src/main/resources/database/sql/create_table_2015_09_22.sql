@@ -56,7 +56,7 @@ CREATE TABLE TB_RESUME_EDUCATION (
 	EDUCATION_NO       INT         NOT NULL, -- 교육이수_번호
 	EDUCATION_PERIOD   VARCHAR(17) NULL,     -- 교육이수_기간
 	EDUCATION_NAME     VARCHAR(40) NULL,     -- 교육이수_명
-	EDUCATION_ORG      VARCHAR(30) NULL,     -- 교육이수_기관
+	EDUCATION_ORG      VARCHAR(50) NULL,     -- 교육이수_기관
 	EDUCATION_REG_DATE TIMESTAMP   NOT NULL, -- 교육이수_등록일
 	MEMBER_ID          VARCHAR(20) NULL      -- 회원_아이디
 );

@@ -768,12 +768,72 @@ public class ResumeController {
 	    return "redirect:/resume/voluntary";
 	}
 	
+	// 교육이수 불러오기
 	@RequestMapping(value="/education", method = RequestMethod.GET)
 	  public String getResumeEducation(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
-		Profile profile = this.resumeService.getProfile(memberId);
-	    model.addAttribute("profile", profile);
+		List<Education> educationList = this.resumeService.getEducationList(memberId);
+	    model.addAttribute("educationList", educationList);
 	    return "resume/resume-education";
+	}
+	// 교육이수 데이터처리
+	@RequestMapping(value="/education", method = RequestMethod.POST)
+	  public String postResumeEducation(ModelMap model, HttpServletRequest request) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		
+		// 교육이수  업데이트
+		String[] educationNoList = request.getParameterValues("educationNo");
+		String[] educationPeriodList = request.getParameterValues("educationPeriod");
+		String[] educationNameList = request.getParameterValues("educationName");
+		String[] educationOrgList = request.getParameterValues("educationOrg");
+	
+		if(request.getParameterValues("educationNo") != null)
+		{
+			for(int i=0; i<educationNoList.length; i++)
+			{
+				Education education = new Education();
+				education.setMemberId(memberId);
+				education.setEducationRegDate(new Timestamp(System.currentTimeMillis()));
+				education.setEducationNo(Integer.parseInt(educationNoList[i]));	
+				education.setEducationPeriod(educationPeriodList[i]);
+				education.setEducationName(educationNameList[i]);
+				education.setEducationOrg(educationOrgList[i]);
+								
+				this.resumeService.modEducation(education);
+			}
+		}
+		
+		// 교육이수  항목 추가
+		String[] newEducationPeriodList = request.getParameterValues("newEducationPeriod");
+		String[] newEducationNameList = request.getParameterValues("newEducationName");
+		String[] newEducationOrgList = request.getParameterValues("newEducationOrg");
+		
+		if(request.getParameterValues("newEducationPeriod") != null)
+		{
+			for(int i=0; i<newEducationPeriodList.length; i++)
+			{
+				Education education = new Education();
+				education.setMemberId(memberId);
+				education.setEducationRegDate(new Timestamp(System.currentTimeMillis()));
+				education.setEducationPeriod(newEducationPeriodList[i]);
+				education.setEducationName(newEducationNameList[i]);
+				education.setEducationOrg(newEducationOrgList[i]);
+								
+				this.resumeService.addEducation(education);
+			}
+		}
+	    return "redirect:/resume/education";
+	}
+	
+	// 교육이수 항목 삭제
+	@RequestMapping(value="/education/delEducation", method = RequestMethod.GET)
+	  public String delResumeEducation(@RequestParam("educationNo") int educationNo, ModelMap model) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		Education education = this.resumeService.getEducation(educationNo);
+		if(education.getMemberId().equals(memberId))
+			this.resumeService.delEducation(educationNo);
+		
+	    return "redirect:/resume/education";
 	}
 	
 	@RequestMapping(value="/project", method = RequestMethod.GET)

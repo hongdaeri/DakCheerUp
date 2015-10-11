@@ -17,38 +17,61 @@
           <h4 class="panel-title">교육이수내역</h4>
         </div>
         <div class="panel-body">
-          <form name="education" class="form-horizontal" action="/resume/education" method="POST">
+          <form id="resume-education-form" name="education" class="form-horizontal" action="/resume/education" method="POST">
             <div class="table-responsive">
-              <table class="table table-bordered table-condensed table-valign-middle text-center">
+              <table id="educationTbl" class="table table-bordered table-condensed table-valign-middle text-center">
                 <tbody>
                 <tr class="warning">
                   <td class="width-50">
-                    <a href="javascript:" class="" data-click="resume-add"><i class="ion-plus-round fa fa-lg text-success"></i></a>
+                    <a href="javascript:add_education();"><i class="ion-plus-round fa fa-lg text-success"></i></a>
                   </td>
                   <td class="width-150">기간</td>
                   <td>과정명</td>
                   <td class="width-250">교육기관</td>
                 </tr>
-                <tr>
-                  <td>
-                    <a href="javascript:" class="btn btn-danger btn-icon btn-xs btn-circle" data-click="resume-delete"><i class="ion-minus-round fa fa-lg text-white"></i></a>
-                  </td>
-                  <td>
-                    <input type="text" class="form-control input-sm masked-input-period"/>
-                  </td>
-                  <td>
-                    <input type="text" class="form-control input-sm"/>
-                  </td>
-                  <td>
-                    <input type="text" class="form-control input-sm"/>
-                  </td>
-                </tr>
+                <c:choose>
+                	<c:when test="${empty educationList}">
+		                <tr>
+		                  <td>
+		                    <a href="javascript:" class="btn btn-danger btn-icon btn-xs btn-circle" data-click="resume-delete"><i class="ion-minus-round fa fa-lg text-white"></i></a>
+		                  </td>
+		                  <td>
+		                    <input name="newEducationPeriod" type="text" class="form-control input-sm masked-input-period"/>
+		                  </td>
+		                  <td>
+		                    <input name="newEducationName" maxlength="20" type="text" class="form-control input-sm"/>
+		                  </td>
+		                  <td>
+		                    <input name="newEducationOrg" maxlength="25" type="text" class="form-control input-sm"/>
+		                  </td>
+		                </tr>
+		        	</c:when>
+		        	<c:when test="${not empty educationList}">
+		        		<c:forEach items="${educationList}" var="education">
+			                <tr>
+			                  <td>
+			                    <a href="/resume/education/delEducation?educationNo=${education.educationNo}" class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>
+			                  </td>
+			                  <td>
+			                  	<input name="educationNo" value="${education.educationNo}" type="hidden" />
+			                    <input name="educationPeriod" value="${education.educationPeriod}" type="text" class="form-control input-sm masked-input-period"/>
+			                  </td>
+			                  <td>
+			                    <input name="educationName" value="${education.educationName}" maxlength="20" type="text" class="form-control input-sm"/>
+			                  </td>
+			                  <td>
+			                    <input name="educationOrg" value="${education.educationOrg}" maxlength="25" type="text" class="form-control input-sm"/>
+			                  </td>
+			                </tr>
+		                </c:forEach>
+		        	</c:when>
+		        </c:choose>
                 </tbody>
               </table>
             </div>
 
             <div class="m-t-0 m-b-10 text-right">
-              <a href="#" onClick="document.getElementById('@@@').submit()" class="btn btn-warning btn-sm">&nbsp; 저장 &nbsp;</a>
+              <a href="#" onClick="document.getElementById('resume-education-form').submit()" class="btn btn-warning btn-sm">&nbsp; 저장 &nbsp;</a>
             </div>
           </form>
         </div>

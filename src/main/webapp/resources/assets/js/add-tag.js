@@ -276,3 +276,24 @@ function add_voluntary()
 	
 	$(".masked-input-period").mask("9999.99 - 9999.99");
 }
+
+//교육이수
+function del_education(){	educationTbl.deleteRow(-1); }
+function add_education()
+{
+	var row = educationTbl.insertRow(-1); // inserRow(0) = 맨처음삽입, insert(-1) 맨마지막 삽입.
+	
+	var cell1 = row.insertCell(0);
+	var cell2 = row.insertCell(1);
+	var cell3 = row.insertCell(2);
+	var cell4 = row.insertCell(3);
+	
+
+	cell1.innerHTML = '<a onClick="del_education();" class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>';
+	cell2.innerHTML = '<input name="newEducationPeriod" type="text" class="form-control input-sm masked-input-period"/>';
+	cell3.innerHTML = '<input name="newEducationName" maxlength="20" type="text" class="form-control input-sm"/>';
+	cell4.innerHTML = '<input name="newEducationOrg" maxlength="25" type="text" class="form-control input-sm"/>';
+	
+	
+	$(".masked-input-period").mask("9999.99 - 9999.99");
+}
