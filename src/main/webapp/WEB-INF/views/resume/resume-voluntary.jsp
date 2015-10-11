@@ -17,38 +17,61 @@
           <h4 class="panel-title">봉사활동 / 대외활동</h4>
         </div>
         <div class="panel-body">
-          <form name="voluntary" class="form-horizontal" action="/resume/voluntary" method="POST">
+          <form id="resume-voluntary-form" name="voluntary" class="form-horizontal" action="/resume/voluntary" method="POST">
             <div class="table-responsive">
-              <table class="table table-bordered table-condensed table-valign-middle text-center">
+              <table id="voluntaryTbl" class="table table-bordered table-condensed table-valign-middle text-center">
                 <tbody>
                 <tr class="warning">
                   <td class="width-50">
-                    <a href="javascript:" class="" data-click="resume-add"><i class="ion-plus-round fa fa-lg text-success"></i></a>
+                    <a href="javascript:add_voluntary();"><i class="ion-plus-round fa fa-lg text-success"></i></a>
                   </td>
                   <td class="width-150">기간</td>
                   <td>봉사기관</td>
                   <td>활동내용</td>
                 </tr>
-                <tr>
-                  <td>
-                    <a href="javascript:" class="btn btn-danger btn-icon btn-xs btn-circle" data-click="resume-delete"><i class="ion-minus-round fa fa-lg text-white"></i></a>
-                  </td>
-                  <td>
-                    <input type="text" class="form-control input-sm masked-input-period"/>
-                  </td>
-                  <td>
-                    <input type="text" class="form-control input-sm"/>
-                  </td>
-                  <td>
-                    <input type="text" class="form-control input-sm"/>
-                  </td>
-                </tr>
+                <c:choose>
+                	<c:when test="${empty voluntaryList}">
+		                <tr>
+		                  <td>
+		                    <a href="javascript:" class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>
+		                  </td>
+		                  <td>
+		                    <input name="newVoluntaryPeriod" type="text" class="form-control input-sm masked-input-period"/>
+		                  </td>
+		                  <td>
+		                    <input name="newVoluntaryOrg"  maxlength="25" type="text" class="form-control input-sm"/>
+		                  </td>
+		                  <td>
+		                    <input name="newVoluntaryContent" maxlength="50" type="text" class="form-control input-sm"/>
+		                  </td>
+		                </tr>
+                	</c:when>
+                	<c:when test="${not empty voluntaryList}">
+	                	<c:forEach items="${voluntaryList}" var="voluntary">
+			                <tr>
+			                  <td>
+			                    <a href="/resume/voluntary/delVoluntary?voluntaryNo=${voluntary.voluntaryNo}" class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>
+			                  </td>
+			                  <td>
+			                  	<input name="voluntaryNo" value="${voluntary.voluntaryNo}" type="hidden" />
+			                    <input name="voluntaryPeriod" value="${voluntary.voluntaryPeriod}" type="text" class="form-control input-sm masked-input-period"/>
+			                  </td>
+			                  <td>
+			                    <input name="voluntaryOrg" value="${voluntary.voluntaryOrg}" maxlength="25" type="text" class="form-control input-sm"/>
+			                  </td>
+			                  <td>
+			                    <input name="voluntaryContent" value="${voluntary.voluntaryContent}" maxlength="50" type="text" class="form-control input-sm"/>
+			                  </td>
+			                </tr>
+			        	</c:forEach>
+                	</c:when>
+                </c:choose>
                 </tbody>
               </table>
             </div>
 
             <div class="m-t-0 m-b-10 text-right">
-              <a href="#" onClick="document.getElementById('@@@').submit()" class="btn btn-warning btn-sm">&nbsp; 저장 &nbsp;</a>
+              <a href="#" onClick="document.getElementById('resume-voluntary-form').submit()" class="btn btn-warning btn-sm">&nbsp; 저장 &nbsp;</a>
             </div>
           </form>
         </div>

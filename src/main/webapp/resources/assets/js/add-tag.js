@@ -212,7 +212,7 @@ function add_LangExamRow()
 
 }
 
-//어학시험
+//수상실적
 function del_award(){	awardTbl.deleteRow(-1); }
 function add_award()
 {
@@ -233,7 +233,7 @@ function add_award()
 	$(".masked-input-yyyy-mm").mask("9999.99");
 }
 
-//어학시험
+//경력 및 실습사항
 function del_career(){	careerTbl.deleteRow(-1); }
 function add_career()
 {
@@ -252,6 +252,27 @@ function add_career()
 	cell4.innerHTML = '<input name="newCareerPost" type="text" class="form-control input-sm"/>';
 	cell5.innerHTML = '<input name="newCareerPosition" type="text" class="form-control input-sm"/>';
 	cell6.innerHTML = '<input name="newCareerWork" type="text" class="form-control input-sm"/>';
+	
+	$(".masked-input-period").mask("9999.99 - 9999.99");
+}
+
+//봉사활동
+function del_voluntary(){	voluntaryTbl.deleteRow(-1); }
+function add_voluntary()
+{
+	var row = voluntaryTbl.insertRow(-1); // inserRow(0) = 맨처음삽입, insert(-1) 맨마지막 삽입.
+	
+	var cell1 = row.insertCell(0);
+	var cell2 = row.insertCell(1);
+	var cell3 = row.insertCell(2);
+	var cell4 = row.insertCell(3);
+	
+
+	cell1.innerHTML = '<a onClick="del_voluntary();" class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>';
+	cell2.innerHTML = '<input name="newVoluntaryPeriod" type="text" class="form-control input-sm masked-input-period"/>';
+	cell3.innerHTML = '<input name="newVoluntaryOrg"  maxlength="25" type="text" class="form-control input-sm"/>';
+	cell4.innerHTML = '<input name="newVoluntaryContent" maxlength="50" type="text" class="form-control input-sm"/>';
+	
 	
 	$(".masked-input-period").mask("9999.99 - 9999.99");
 }

@@ -701,12 +701,71 @@ public class ResumeController {
 	    return "redirect:/resume/career";
 	}
 	
+	//봉사활동 불러오기
 	@RequestMapping(value="/voluntary", method = RequestMethod.GET)
 	public String getResumeVoluntary(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
-		Profile profile = this.resumeService.getProfile(memberId);
-	    model.addAttribute("profile", profile);
+		List<Voluntary> voluntaryList = this.resumeService.getVoluntaryList(memberId);
+	    model.addAttribute("voluntaryList", voluntaryList);
 	    return "resume/resume-voluntary";
+	}
+	//봉사활동 데이터처리
+	@RequestMapping(value="/voluntary", method = RequestMethod.POST)
+	public String postResumeVoluntary(ModelMap model, HttpServletRequest request) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		
+		// 봉사활동  업데이트
+		String[] voluntaryNoList = request.getParameterValues("voluntaryNo");
+		String[] voluntaryPeriodList = request.getParameterValues("voluntaryPeriod");
+		String[] voluntaryOrgList = request.getParameterValues("voluntaryOrg");
+		String[] voluntaryContentList = request.getParameterValues("voluntaryContent");
+	
+		if(request.getParameterValues("voluntaryNo") != null)
+		{
+			for(int i=0; i<voluntaryNoList.length; i++)
+			{
+				Voluntary voluntary = new Voluntary();
+				voluntary.setMemberId(memberId);
+				voluntary.setVoluntaryNo(Integer.parseInt(voluntaryNoList[i]));
+				voluntary.setVoluntaryRegDate(new Timestamp(System.currentTimeMillis()));
+				voluntary.setVoluntaryPeriod(voluntaryPeriodList[i]);
+				voluntary.setVoluntaryContent(voluntaryContentList[i]);
+				voluntary.setVoluntaryOrg(voluntaryOrgList[i]);
+								
+				this.resumeService.modVoluntary(voluntary);
+			}
+		}
+		
+		// 봉사활동  항목 추가
+		String[] newVoluntaryPeriodList = request.getParameterValues("newVoluntaryPeriod");
+		String[] newVoluntaryOrgList = request.getParameterValues("newVoluntaryOrg");
+		String[] newVoluntaryContentList = request.getParameterValues("newVoluntaryContent");
+		
+		if(request.getParameterValues("newVoluntaryPeriod") != null)
+		{
+			for(int i=0; i<newVoluntaryPeriodList.length; i++)
+			{
+				Voluntary voluntary = new Voluntary();
+				voluntary.setMemberId(memberId);
+				voluntary.setVoluntaryRegDate(new Timestamp(System.currentTimeMillis()));
+				voluntary.setVoluntaryPeriod(newVoluntaryPeriodList[i]);
+				voluntary.setVoluntaryContent(newVoluntaryContentList[i]);
+				voluntary.setVoluntaryOrg(newVoluntaryOrgList[i]);
+								
+				this.resumeService.addVoluntary(voluntary);
+			}
+		}
+	    return "redirect:/resume/voluntary";
+	}
+	//봉사활동 항목 삭제
+	@RequestMapping(value="/voluntary/delVoluntary", method = RequestMethod.GET)
+	public String delResumeVoluntary(@RequestParam("voluntaryNo") int voluntaryNo, ModelMap model) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		Voluntary voluntary = this.resumeService.getVoluntary(voluntaryNo);
+		if(voluntary.getMemberId().equals(memberId))
+			this.resumeService.delVoluntary(voluntaryNo);
+					   
+	    return "redirect:/resume/voluntary";
 	}
 	
 	@RequestMapping(value="/education", method = RequestMethod.GET)
