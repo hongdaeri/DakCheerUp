@@ -551,15 +551,79 @@ public class ResumeController {
 	}
 	
 	
+	//수상내역 불러오기
 	@RequestMapping(value="/award", method = RequestMethod.GET)
-	public String getResumeAward(Award award, ModelMap model) {
+	public String getResumeAward(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
-		Profile profile = this.resumeService.getProfile(memberId);
-	
-		
-		model.addAttribute("profile", profile);
+		List<Award> awardList = this.resumeService.getAwardList(memberId);
+	    model.addAttribute("awardList", awardList);	
 	    return "resume/resume-award";
 	}
+	// 수상내역 데이터처리
+	@RequestMapping(value="/award", method = RequestMethod.POST)
+	public String postResumeAward(ModelMap model, HttpServletRequest request) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		
+		// 수상내역 업데이트
+		String[] awardNoList = request.getParameterValues("awardNo");
+		String[] awardDateList = request.getParameterValues("awardDate");
+		String[] awardNameList = request.getParameterValues("awardName");
+		String[] awardOrgList = request.getParameterValues("awardOrg");
+		String[] awardSectionList = request.getParameterValues("awardSection");
+		
+		if(request.getParameterValues("awardNo") != null)
+		{
+			for(int i=0; i<awardNoList.length; i++)
+			{
+				Award award = new Award();
+				award.setMemberId(memberId);
+				award.setAwardRegDate(new Timestamp(System.currentTimeMillis()));
+				award.setAwardNo(Integer.parseInt(awardNoList[i]));
+				award.setAwardDate(awardDateList[i]);
+				award.setAwardName(awardNameList[i]);
+				award.setAwardOrg(awardOrgList[i]);
+				award.setAwardSection(awardSectionList[i]);
+				
+				this.resumeService.modAward(award);
+			}
+		}
+		
+		// 수상내역 항목 추가
+		String[] newAwardDateList = request.getParameterValues("newAwardDate");
+		String[] newAwardNameList = request.getParameterValues("newAwardName");
+		String[] newAwardOrgList = request.getParameterValues("newAwardOrg");
+		String[] newAwardSectionList = request.getParameterValues("newAwardSection");
+		
+		if(request.getParameterValues("newAwardDate") != null)
+		{
+			for(int i=0; i<newAwardDateList.length; i++)
+			{
+				Award award = new Award();
+				award.setMemberId(memberId);
+				award.setAwardRegDate(new Timestamp(System.currentTimeMillis()));
+				award.setAwardDate(newAwardDateList[i]);
+				award.setAwardName(newAwardNameList[i]);
+				award.setAwardOrg(newAwardOrgList[i]);
+				award.setAwardSection(newAwardSectionList[i]);
+				
+				this.resumeService.addAward(award);
+			}
+		}
+	    return "redirect:/resume/award";
+	}
+	
+	// 수상내역 삭제
+	@RequestMapping(value="/award/delAward", method = RequestMethod.GET)
+	public String delResumeAward(@RequestParam("awardNo") int awardNo, ModelMap model) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		Award award = this.resumeService.getAward(awardNo);		
+		if(award.getMemberId().equals(memberId))
+			this.resumeService.delAward(awardNo);
+			   
+	    return "redirect:/resume/award";
+	}
+	
+	
 	
 	@RequestMapping(value="/career", method = RequestMethod.GET)
 	public String getResumeCareer(ModelMap model) {

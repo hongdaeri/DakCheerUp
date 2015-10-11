@@ -216,3 +216,25 @@ function add_LangExamRow()
 	cell5.innerHTML = '<input name="newLangExamOrg" type="text" class="form-control input-sm"/>';
 
 }
+
+//어학시험
+function del_award(){	awardTbl.deleteRow(-1); }
+function add_award()
+{
+	var row = awardTbl.insertRow(-1); // inserRow(0) = 맨처음삽입, insert(-1) 맨마지막 삽입.
+	
+	var cell1 = row.insertCell(0);
+	var cell2 = row.insertCell(1);
+	var cell3 = row.insertCell(2);
+	var cell4 = row.insertCell(3);
+	var cell5 = row.insertCell(4);
+	
+
+	cell1.innerHTML = '<a onClick="del_award();" class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>';
+	cell2.innerHTML = '<input name="newAwardDate" type="text" class="form-control input-sm masked-input-yyyy-mm"/>';
+	cell3.innerHTML = '<input name="newAwardName" type="text" class="form-control input-sm"/>';
+	cell4.innerHTML = '<input name="newAwardOrg" type="text" class="form-control input-sm"/>';
+	cell5.innerHTML = '<select name="newAwardSection" class="form-control input-sm">        <option value="NIL" selected>-- 선택 --</option>        <option value="공동">공동</option>        <option value="개인">개인</option>      </select>';
+
+	  $(".masked-input-yyyy-mm").mask("9999.99");
+}
