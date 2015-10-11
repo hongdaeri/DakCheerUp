@@ -976,12 +976,74 @@ public class ResumeController {
 	    return "redirect:/resume/write";
 	}
 	
+	//글로벌 경험 불러오기
 	@RequestMapping(value="/global", method = RequestMethod.GET)
 	public String getResumeGlobal(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
-		Profile profile = this.resumeService.getProfile(memberId);
-	    model.addAttribute("profile", profile);
+		List<Global> globalList = this.resumeService.getGlobalList(memberId);
+	    model.addAttribute("globalList", globalList);
 	    return "resume/resume-global";
+	}
+	//글로벌경험 데이터처리
+	@RequestMapping(value="/global", method = RequestMethod.POST)
+	public String postResumeGlobal(ModelMap model, HttpServletRequest request) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		
+		// 글로벌경험  업데이트
+		String[] globalNoList = request.getParameterValues("globalNo");
+		String[] globalPeriodList = request.getParameterValues("globalPeriod");
+		String[] globalNationList = request.getParameterValues("globalNation");
+		String[] globalPurposeList = request.getParameterValues("globalPurpose");
+		String[] globalContentList = request.getParameterValues("globalContent");
+	
+		if(request.getParameterValues("globalNo") != null)
+		{
+			for(int i=0; i<globalNoList.length; i++)
+			{
+				Global global = new Global();
+				global.setMemberId(memberId);
+				global.setGlobalRegDate(new Timestamp(System.currentTimeMillis()));
+				global.setGlobalNo(Integer.parseInt(globalNoList[i]));
+				global.setGlobalPeriod(globalPeriodList[i]);
+				global.setGlobalNation(globalNationList[i]);
+				global.setGlobalPurpose(globalPurposeList[i]);
+				global.setGlobalContent(globalContentList[i]);
+								
+				this.resumeService.modGlobal(global);
+			}
+		}
+		
+		// 글로벌경험  항목 추가
+		String[] newGlobalPeriodList = request.getParameterValues("newGlobalPeriod");
+		String[] newGlobalNationList = request.getParameterValues("newGlobalNation");
+		String[] newGlobalPurposeList = request.getParameterValues("newGlobalPurpose");
+		String[] newGlobalContentList = request.getParameterValues("newGlobalContent");
+		
+		if(request.getParameterValues("newGlobalPeriod") != null)
+		{
+			for(int i=0; i<newGlobalPeriodList.length; i++)
+			{
+				Global global = new Global();
+				global.setMemberId(memberId);
+				global.setGlobalRegDate(new Timestamp(System.currentTimeMillis()));
+				global.setGlobalPeriod(newGlobalPeriodList[i]);
+				global.setGlobalNation(newGlobalNationList[i]);
+				global.setGlobalPurpose(newGlobalPurposeList[i]);
+				global.setGlobalContent(newGlobalContentList[i]);
+								
+				this.resumeService.addGlobal(global);
+			}
+		}
+	    return "redirect:/resume/global";
+	}
+	//글로벌경험 항목삭제
+	@RequestMapping(value="/global/delGlobal", method = RequestMethod.GET)
+	public String delResumeGlobal(@RequestParam("globalNo") int globalNo, ModelMap model) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		Global global = this.resumeService.getGlobal(globalNo);
+		if(global.getMemberId().equals(memberId))
+			this.resumeService.delGlobal(globalNo);
+	    return "redirect:/resume/global";
 	}
 	
 	@RequestMapping(value="/swot", method = RequestMethod.GET)

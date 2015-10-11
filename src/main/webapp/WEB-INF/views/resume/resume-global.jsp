@@ -17,51 +17,82 @@
           <h4 class="panel-title">글로벌 경험</h4>
         </div>
         <div class="panel-body">
-          <form name="global" class="form-horizontal" action="/resume/global" method="POST">
+          <form id="resume-global-form" name="global" class="form-horizontal" action="/resume/global" method="POST">
             <div class="table-responsive">
-              <table class="table table-bordered table-condensed table-valign-middle text-center">
+              <table id="globalTbl" class="table table-bordered table-condensed table-valign-middle text-center">
                 <tbody>
                 <tr class="warning">
                   <td class="width-50">
-                    <a href="javascript:" class="" data-click="resume-add"><i class="ion-plus-round fa fa-lg text-success"></i></a>
+                    <a href="javascript:add_global();"><i class="ion-plus-round fa fa-lg text-success"></i></a>
                   </td>
                   <td class="width-160">기간</td>
                   <td class="width-170">국가</td>
                   <td class="width-130">사유(목적)</td>
                   <td>활동내용</td>
                 </tr>
-                <tr>
-                  <td>
-                    <a href="javascript:" class="btn btn-danger btn-icon btn-xs btn-circle" data-click="resume-delete"><i class="ion-minus-round fa fa-lg text-white"></i></a>
-                  </td>
-                  <td>
-                    <input type="text" class="form-control input-sm masked-input-period"/>
-                  </td>
-                  <td>
-                    <select class="form-control input-sm" id="global-nation-select">
-                      <option value="NIL" selected>-- 선택 --</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select class="form-control input-sm">
-                      <option value="NIL" selected>-- 선택 --</option>
-                      <option value="NIL" selected>어학연수</option>
-                      <option value="NIL" selected>교환학생</option>
-                      <option value="NIL" selected>여행</option>
-                      <option value="NIL" selected>거주</option>
-                      <option value="NIL" selected>기타</option>
-                    </select>
-                  </td>
-                  <td>
-                    <input type="text" class="form-control input-sm"/>
-                  </td>
-                </tr>
+                <c:choose>
+                	<c:when test="${empty globalList}">
+		                <tr>
+		                  <td>
+		                    <a href="javascript:" class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>
+		                  </td>
+		                  <td>
+		                    <input name="newGlobalPeriod" type="text" class="form-control input-sm masked-input-period"/>
+		                  </td>
+		                  <td>
+		                	<input name="newGlobalNation" type="text" maxlength="10" class="globalNation form-control input-sm">
+		                  </td>
+		                  <td>
+		                    <select name="newGlobalPurpose" class="form-control input-sm">
+		                      <option value="NIL" selected>-- 선택 --</option>
+		                      <option value="어학연수" >어학연수</option>
+		                      <option value="교환학생" >교환학생</option>
+		                      <option value="여행" >여행</option>
+		                      <option value="거주" >거주</option>
+		                      <option value="기타" >기타</option>
+		                    </select>
+		                  </td>
+		                  <td>
+		                    <input name="newGlobalContent" type="text" maxlength="50"  class="form-control input-sm"/>
+		                  </td>
+		                </tr>
+                	</c:when>
+                	<c:when test="${not empty globalList}">
+                		<c:forEach items="${globalList}" var="global">
+			            	<tr>
+			                  <td>
+			                    <a href="/resume/global/delGlobal?globalNo=${global.globalNo}" class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>
+			                  </td>
+			                  <td>
+			                  	<input name="globalNo" value="${global.globalNo}" type="hidden" />
+			                    <input name="globalPeriod" value="${global.globalPeriod}" type="text" class="form-control input-sm masked-input-period"/>
+			                  </td>
+			                  <td>
+			                    <input name="globalNation" value="${global.globalNation}" type="text" maxlength="10" class="globalNation form-control input-sm">
+			                  </td>
+			                  <td>
+			                    <select name="globalPurpose" class="form-control input-sm">
+			                      <option value="NIL" <c:if test="${global.globalPurpose eq 'NIL'}">selected</c:if>>-- 선택 --</option>
+			                      <option value="어학연수" <c:if test="${global.globalPurpose eq '어학연수'}">selected</c:if>>어학연수</option>
+			                      <option value="교환학생" <c:if test="${global.globalPurpose eq '교환학생'}">selected</c:if>>교환학생</option>
+			                      <option value="여행" <c:if test="${global.globalPurpose eq '여행'}">selected</c:if>>여행</option>
+			                      <option value="거주" <c:if test="${global.globalPurpose eq '거주'}">selected</c:if>>거주</option>
+			                      <option value="기타" <c:if test="${global.globalPurpose eq '기타'}">selected</c:if>>기타</option>
+			                    </select>
+			                  </td>
+			                  <td>
+			                    <input name="globalContent" value="${global.globalContent}" maxlength="50" type="text" class="form-control input-sm"/>
+			                  </td>
+			                </tr>
+			        	</c:forEach>  
+                	</c:when>
+                </c:choose>
                 </tbody>
               </table>
             </div>
 
             <div class="m-t-0 m-b-10 text-right">
-              <a href="#" onClick="document.getElementById('@@@').submit()" class="btn btn-warning btn-sm">&nbsp; 저장 &nbsp;</a>
+              <a href="#" onClick="document.getElementById('resume-global-form').submit()" class="btn btn-warning btn-sm">&nbsp; 저장 &nbsp;</a>
             </div>
           </form>
         </div>

@@ -352,3 +352,24 @@ function add_write()
 	
 	$(".masked-input-yyyy-mm").mask("9999.99");
 }
+
+//글로벌경험
+function del_global(){	globalTbl.deleteRow(-1); }
+function add_global()
+{
+	var row = globalTbl.insertRow(-1); // inserRow(0) = 맨처음삽입, insert(-1) 맨마지막 삽입.
+	
+	var cell1 = row.insertCell(0);
+	var cell2 = row.insertCell(1);
+	var cell3 = row.insertCell(2);
+	var cell4 = row.insertCell(3);
+	var cell5 = row.insertCell(4);
+
+	cell1.innerHTML = '<a onClick="del_global();" class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>';
+	cell2.innerHTML = '<input name="newGlobalPeriod" type="text" class="form-control input-sm masked-input-period"/>';
+	cell3.innerHTML = '<input name="newGlobalNation" type="text" maxlength="10" class="globalNation form-control input-sm">';
+	cell4.innerHTML = '<select name="newGlobalPurpose" class="form-control input-sm">        <option value="NIL" selected>-- 선택 --</option>        <option value="어학연수" >어학연수</option>        <option value="교환학생" >교환학생</option>        <option value="여행" >여행</option>        <option value="거주" >거주</option>        <option value="기타" >기타</option>      </select>';
+	cell5.innerHTML = '<input name="newGlobalContent" type="text" maxlength="50"  class="form-control input-sm"/>';
+	
+	$(".masked-input-period").mask("9999.99 - 9999.99");
+}
