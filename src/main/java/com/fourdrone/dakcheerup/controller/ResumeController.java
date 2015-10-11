@@ -906,12 +906,74 @@ public class ResumeController {
 	    return "redirect:/resume/project";
 	}
 	
+	//저술내역 불러오기
 	@RequestMapping(value="/write", method = RequestMethod.GET)
 	public String getResumeWrite(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
-		Profile profile = this.resumeService.getProfile(memberId);
-	    model.addAttribute("profile", profile);
+		List<Write> writeList = this.resumeService.getWriteList(memberId);
+	    model.addAttribute("writeList", writeList);
 	    return "resume/resume-write";
+	}
+	//저술내역 데이터처리
+	@RequestMapping(value="/write", method = RequestMethod.POST)
+	public String postResumeWrite(ModelMap model, HttpServletRequest request) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		
+		// 저술내역  업데이트
+		String[] writeNoList = request.getParameterValues("writeNo");
+		String[] writeDateList = request.getParameterValues("writeDate");
+		String[] writeSectionList = request.getParameterValues("writeSection");
+		String[] writeNameList = request.getParameterValues("writeName");
+		String[] writeOrgList = request.getParameterValues("writeOrg");
+	
+		if(request.getParameterValues("writeNo") != null)
+		{
+			for(int i=0; i<writeNoList.length; i++)
+			{
+				Write write = new Write();
+				write.setMemberId(memberId);
+				write.setWriteRegDate(new Timestamp(System.currentTimeMillis()));
+				write.setWriteNo(Integer.parseInt(writeNoList[i]));
+				write.setWriteDate(writeDateList[i]);
+				write.setWriteName(writeNameList[i]);
+				write.setWriteSection(writeSectionList[i]);
+				write.setWriteOrg(writeOrgList[i]);
+								
+				this.resumeService.modWrite(write);
+			}
+		}
+		
+		// 저술내역  항목 추가
+		String[] newWriteDateList = request.getParameterValues("newWriteDate");
+		String[] newWriteSectionList = request.getParameterValues("newWriteSection");
+		String[] newWriteNameList = request.getParameterValues("newWriteName");
+		String[] newWriteOrgList = request.getParameterValues("newWriteOrg");
+		
+		if(request.getParameterValues("newWriteDate") != null)
+		{
+			for(int i=0; i<newWriteDateList.length; i++)
+			{
+				Write write = new Write();
+				write.setMemberId(memberId);
+				write.setWriteRegDate(new Timestamp(System.currentTimeMillis()));
+				write.setWriteDate(newWriteDateList[i]);
+				write.setWriteName(newWriteNameList[i]);
+				write.setWriteSection(newWriteSectionList[i]);
+				write.setWriteOrg(newWriteOrgList[i]);
+								
+				this.resumeService.addWrite(write);
+			}
+		}
+	    return "redirect:/resume/write";
+	}
+	//저술내역 항목삭제
+	@RequestMapping(value="/write/delWrite", method = RequestMethod.GET)
+	public String getResumeWrite(@RequestParam("writeNo") int writeNo, ModelMap model) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		Write write = this.resumeService.getWrite(writeNo);
+		if(write.getMemberId().equals(memberId))
+			this.resumeService.delWrite(writeNo);
+	    return "redirect:/resume/write";
 	}
 	
 	@RequestMapping(value="/global", method = RequestMethod.GET)

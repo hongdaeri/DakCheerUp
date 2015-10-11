@@ -331,3 +331,24 @@ function add_project()
 
 	$(".masked-input-period").mask("9999.99 - 9999.99");
 }
+
+//저술내역
+function del_write(){	writeTbl.deleteRow(-1); }
+function add_write()
+{
+	var row = writeTbl.insertRow(-1); // inserRow(0) = 맨처음삽입, insert(-1) 맨마지막 삽입.
+	
+	var cell1 = row.insertCell(0);
+	var cell2 = row.insertCell(1);
+	var cell3 = row.insertCell(2);
+	var cell4 = row.insertCell(3);
+	var cell5 = row.insertCell(4);
+
+	cell1.innerHTML = '<a onClick="del_write();" class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>';
+	cell2.innerHTML = '<input name="newWriteDate" type="text" class="form-control input-sm masked-input-yyyy-mm"/>';
+	cell3.innerHTML = '<select name="newWriteSection" class="form-control input-sm">        <option value="NIL" selected>-- 선택 --</option>        <option value="도서">도서</option>        <option value="논문">논문</option>        <option value="투고">투고</option>        <option value="보도자료">보도자료</option>        <option value="발표문서">발표문서</option>      </select>';
+	cell4.innerHTML = '<input name="newWriteName" maxlength="30" type="text" class="form-control input-sm"/>';
+	cell5.innerHTML = '<input name="newWriteOrg" maxlength="20" type="text" class="form-control input-sm"/>';
+	
+	$(".masked-input-yyyy-mm").mask("9999.99");
+}

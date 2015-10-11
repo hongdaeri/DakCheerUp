@@ -134,7 +134,7 @@ CREATE TABLE TB_RESUME_WRITE (
 	WRITE_NO       INT         NOT NULL, -- 저술내역_번호
 	WRITE_DATE     VARCHAR(7)  NULL,     -- 저술내역_발행일
 	WRITE_SECTION  VARCHAR(10) NULL,     -- 저술내역_분류
-	WRITE_NAME     VARCHAR(40) NULL,     -- 저술내역_저술명
+	WRITE_NAME     VARCHAR(60) NULL,     -- 저술내역_저술명
 	WRITE_ORG      VARCHAR(40) NULL,     -- 저술내역_발행처
 	WRITE_REG_DATE TIMESTAMP   NULL,     -- 저술내역_등록일
 	MEMBER_ID      VARCHAR(20) NULL      -- 회원_아이디
