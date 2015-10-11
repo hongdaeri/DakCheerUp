@@ -30,7 +30,65 @@ public class ResumeController {
 		
 	@RequestMapping(value="", method = RequestMethod.GET)
 	public String getResume(ModelMap model) {
-	   
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		
+		Profile profile = this.resumeService.getProfile(memberId);
+	    model.addAttribute("profile", profile);  
+	    
+		//형제관계 불러오기
+		Brother brother = this.resumeService.getBrother(memberId);
+	    model.addAttribute("brother", brother);	 
+	    //가족사항 리스트 불러오기
+	    List<Family> familyList = this.resumeService.getFamilyList(memberId);
+	    model.addAttribute("familyList", familyList);
+	    //병역 불러오기
+	    Military military = this.resumeService.getMilitary(memberId);
+	    model.addAttribute("military", military);
+	    
+	    //고등학교 불러오기
+		AcademicHigh academicHigh = this.resumeService.getAcademicHigh(memberId);
+	    model.addAttribute("academicHigh", academicHigh);	 
+	    //대학교 리스트 불러오기
+	    List<AcademicUniv> academicUnivList = this.resumeService.getAcademicUnivList(memberId);
+	    model.addAttribute("academicUnivList", academicUnivList);
+	    
+	    OA oa = this.resumeService.getOA(memberId);
+	    model.addAttribute("oa", oa);  
+	    
+	    List<License> licenseList = this.resumeService.getLicenseList(memberId);
+	    model.addAttribute("licenseList", licenseList);  
+	    
+	    List<LanguageAbility> languageAbilityList = this.resumeService.getLanguageAbilityList(memberId);
+	    model.addAttribute("languageAbilityList", languageAbilityList);	 
+	    
+	    List<LanguageExam> languageExamList = this.resumeService.getLanguageExamList(memberId);
+	    model.addAttribute("languageExamList", languageExamList);
+	    
+	    List<Award> awardList = this.resumeService.getAwardList(memberId);
+	    model.addAttribute("awardList", awardList);	
+	    
+	    List<Career> careerList = this.resumeService.getCareerList(memberId);
+	    model.addAttribute("careerList", careerList);	
+	    
+	    List<Voluntary> voluntaryList = this.resumeService.getVoluntaryList(memberId);
+	    model.addAttribute("voluntaryList", voluntaryList);
+	    
+	    List<Education> educationList = this.resumeService.getEducationList(memberId);
+	    model.addAttribute("educationList", educationList);
+	    
+	    List<Project> projectList = this.resumeService.getProjectList(memberId);
+	    model.addAttribute("projectList", projectList);
+	    
+	    List<Write> writeList = this.resumeService.getWriteList(memberId);
+	    model.addAttribute("writeList", writeList);
+	    
+	    List<Global> globalList = this.resumeService.getGlobalList(memberId);
+	    model.addAttribute("globalList", globalList);
+	    
+	    Swot swot = this.resumeService.getSwot(memberId);
+	    model.addAttribute("swot", swot);
+	    
+		
 	    return "resume/resume";
 	}
 	

@@ -141,5 +141,4 @@
   </div>
 </div>
 
-
 <jsp:include page="./config/resume_footer.jsp" flush="false" />
