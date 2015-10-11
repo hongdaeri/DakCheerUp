@@ -297,3 +297,37 @@ function add_education()
 	
 	$(".masked-input-period").mask("9999.99 - 9999.99");
 }
+
+//참여프로젝트
+function del_project(){	
+	projectTbl.deleteRow(-1); 
+	projectTbl.deleteRow(-1); 
+}
+function add_project()
+{
+	var row = projectTbl.insertRow(-1); // inserRow(0) = 맨처음삽입, insert(-1) 맨마지막 삽입.
+	
+	var cell1 = row.insertCell(0);
+	cell1.rowSpan = "2";
+	var cell2 = row.insertCell(1);
+	var cell3 = row.insertCell(2);
+	var cell4 = row.insertCell(3);
+	
+
+	cell1.innerHTML = '<a onClick="del_project();" class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>';
+	cell2.innerHTML = '<input name="newProjectPeriod" type="text" class="form-control input-sm masked-input-period"/>';
+	cell3.innerHTML = '<select name="newProjectSection" class="form-control input-sm">        <option value="NIL" selected>-- 선택 --</option>        <option value="공동">공동</option>        <option value="개인">개인</option>      </select>';
+	cell4.innerHTML = '<input name="newProjectName" maxlength="30" type="text" class="form-control input-sm"/>';
+	
+	var row2 = projectTbl.insertRow(-1); // inserRow(0) = 맨처음삽입, insert(-1) 맨마지막 삽입.
+	
+	var cell5 = row2.insertCell(0);
+	cell5.className = "warning";
+	var cell6 = row2.insertCell(1);
+	cell6.colSpan="2";
+
+	cell5.innerHTML = '상세 내용';
+	cell6.innerHTML = '<textarea name="newProjectContext" class="textarea form-control noresize" rows="9">&#8734; 자유롭게 기술하세요. 아래는 예시 입니다.\n&#8734; IT 프로젝트였다면 사용 언어,기술, DBMS, OS 등을 언급 해 주시는 것이 좋습니다.\n1) 소속업체 :\n2) 의뢰업체 :\n3) 목표 :\n4) 구성원 :\n5) 참여도 :\n6) 담당업무 :\n7) 주요실적 : </textarea>';
+
+	$(".masked-input-period").mask("9999.99 - 9999.99");
+}

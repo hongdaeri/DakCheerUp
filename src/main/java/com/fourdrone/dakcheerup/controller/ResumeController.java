@@ -836,12 +836,74 @@ public class ResumeController {
 	    return "redirect:/resume/education";
 	}
 	
+	// 프로젝트경험 불러오기
 	@RequestMapping(value="/project", method = RequestMethod.GET)
 	  public String getResumeProject(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
-		Profile profile = this.resumeService.getProfile(memberId);
-	    model.addAttribute("profile", profile);
+		List<Project> projectList = this.resumeService.getProjectList(memberId);
+	    model.addAttribute("projectList", projectList);
 	    return "resume/resume-project";
+	}
+	// 프로젝트경험 데이터처리
+	@RequestMapping(value="/project", method = RequestMethod.POST)
+	  public String postResumeProject(ModelMap model, HttpServletRequest request) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		
+		// 프로젝트경험  업데이트
+		String[] projectNoList = request.getParameterValues("projectNo");
+		String[] projectPeriodList = request.getParameterValues("projectPeriod");
+		String[] projectNameList = request.getParameterValues("projectName");
+		String[] projectContextList = request.getParameterValues("projectContext");
+		String[] projectSectionList = request.getParameterValues("projectSection");
+	
+		if(request.getParameterValues("projectNo") != null)
+		{
+			for(int i=0; i<projectNoList.length; i++)
+			{
+				Project project = new Project();
+				project.setMemberId(memberId);
+				project.setProjectRegDate(new Timestamp(System.currentTimeMillis()));
+				project.setProjectNo(Integer.parseInt(projectNoList[i]));
+				project.setProjectContext(projectContextList[i]);
+				project.setProjectName(projectNameList[i]);
+				project.setProjectPeriod(projectPeriodList[i]);
+				project.setProjectSection(projectSectionList[i]);
+								
+				this.resumeService.modProject(project);
+			}
+		}
+		
+		// 프로젝트경험  항목 추가
+		String[] newProjectPeriodList = request.getParameterValues("newProjectPeriod");
+		String[] newProjectNameList = request.getParameterValues("newProjectName");
+		String[] newProjectContextList = request.getParameterValues("newProjectContext");
+		String[] newProjectSectionList = request.getParameterValues("newProjectSection");
+		
+		if(request.getParameterValues("newProjectPeriod") != null)
+		{
+			for(int i=0; i<newProjectPeriodList.length; i++)
+			{
+				Project project = new Project();
+				project.setMemberId(memberId);
+				project.setProjectRegDate(new Timestamp(System.currentTimeMillis()));
+				project.setProjectContext(newProjectContextList[i]);
+				project.setProjectName(newProjectNameList[i]);
+				project.setProjectPeriod(newProjectPeriodList[i]);
+				project.setProjectSection(newProjectSectionList[i]);
+								
+				this.resumeService.addProject(project);
+			}
+		}
+	    return "redirect:/resume/project";
+	}
+	// 프로젝트경험 항목 삭제
+	@RequestMapping(value="/project/delProject", method = RequestMethod.GET)
+	  public String delResumeProject(@RequestParam("projectNo") int projectNo, ModelMap model) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		Project project = this.resumeService.getProject(projectNo);
+		if(project.getMemberId().equals(memberId))
+			this.resumeService.delProject(projectNo);
+	    return "redirect:/resume/project";
 	}
 	
 	@RequestMapping(value="/write", method = RequestMethod.GET)
