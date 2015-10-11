@@ -277,16 +277,19 @@ public class ResumeController {
 	
 	// 학력사항, 대학교 삭제
 	@RequestMapping(value="/academic/delUniv", method = RequestMethod.GET)
-	public String getResumeAddtionProfile(@RequestParam("familyNo") int familyNo, ModelMap model) {
+	public String delResumeAcademic(@RequestParam("academicUnivNo") int academicUnivNo, ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");		
-		Family family = this.resumeService.getFamily(familyNo);
-		if(family.getMemberId().equals(memberId))
-			this.resumeService.delFamily(familyNo);
+		AcademicUniv academicUniv = this.resumeService.getAcademicUniv(academicUnivNo);	
+		if(academicUniv.getMemberId().equals(memberId))
+			this.resumeService.delAcademicUniv(academicUnivNo);
 	    
-	    return "redirect:/resume/resume-academic";
+	    return "redirect:/resume/academic";
 	}
 	
-	// OA 능력
+	
+	
+	
+	// OA 능력 불러오기
 	@RequestMapping(value="/oa", method = RequestMethod.GET)
 	public String getResumeOA(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
@@ -295,6 +298,8 @@ public class ResumeController {
 	    model.addAttribute("oa", oa);     
 	    return "resume/resume-oa";
 	}
+	
+	// OA 능력 저장하기.
 	@RequestMapping(value="/oa", method = RequestMethod.POST)
 	public String postResumeOA(	@ModelAttribute("oa") OA oa) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
@@ -308,6 +313,8 @@ public class ResumeController {
 	}
 	
 	
+	
+	// 강점/성격 불러오기.
 	@RequestMapping(value="/strength", method = RequestMethod.GET)
 	public String getResumeCharacter(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
@@ -316,12 +323,80 @@ public class ResumeController {
 	    return "resume/resume-strength";
 	}
 	
+	
+	// 자격증 면허증 불러오기.
 	@RequestMapping(value="/license", method = RequestMethod.GET)
 	public String getResumeLicense(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
-		Profile profile = this.resumeService.getProfile(memberId);
-	    model.addAttribute("profile", profile);	    
+		List<License> licenseList = this.resumeService.getLicenseList(memberId);
+	    model.addAttribute("licenseList", licenseList);     
 	    return "resume/resume-license";
+	}
+	// 자격증 면허증 데이터 처리
+	@RequestMapping(value="/license", method = RequestMethod.POST)
+	public String postResumeLicense(ModelMap model, HttpServletRequest request) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+				
+		// 자격증 업데이트
+		String[] licenseNoList = request.getParameterValues("licenseNo");
+		String[] licenseDateList = request.getParameterValues("licenseDate");
+		String[] licenseNameList = request.getParameterValues("licenseName");
+		String[] licenseOrgList = request.getParameterValues("licenseOrg");
+		String[] licensePassList = request.getParameterValues("licensePass");
+		
+		if(request.getParameterValues("licenseNo") != null)
+		{
+			for(int i=0; i<licenseNoList.length; i++)
+			{
+				License license = new License();
+				license.setMemberId(memberId);
+				license.setLicenseRegDate(new Timestamp(System.currentTimeMillis()));
+				license.setLicenseNo(Integer.parseInt(licenseNoList[i]));
+				license.setLicenseDate(licenseDateList[i]);
+				license.setLicenseName(licenseNameList[i]);
+				license.setLicenseOrg(licenseOrgList[i]);
+				license.setLicensePass(licensePassList[i]);				
+				this.resumeService.modLicense(license);
+			}
+		}
+		
+		// 자격증 항목 추가
+		String[] newLicenseDateList = request.getParameterValues("newLicenseDate");
+		String[] newLicenseNameList = request.getParameterValues("newLicenseName");
+		String[] newLicenseOrgList = request.getParameterValues("newLicenseOrg");
+		String[] newLicensePassList = request.getParameterValues("newLicensePass");
+		
+		
+		if(request.getParameterValues("newLicenseDate") != null)
+		{
+			for(int i=0; i<newLicenseDateList.length; i++)
+			{
+				License license = new License();
+				license.setMemberId(memberId);
+				license.setLicenseRegDate(new Timestamp(System.currentTimeMillis()));
+				license.setLicenseDate(newLicenseDateList[i]);
+				license.setLicenseName(newLicenseNameList[i]);
+				license.setLicenseOrg(newLicenseOrgList[i]);
+				license.setLicensePass(newLicensePassList[i]);				
+				this.resumeService.addLicense(license);				
+			}
+		}
+				
+		
+		
+		return "redirect:/resume/license";
+	}
+	
+	// 자격증/면허증 삭제
+	@RequestMapping(value="/license/delLicense", method = RequestMethod.GET)
+	public String delResumeLicense(@RequestParam("licenseNo") int licenseNo, ModelMap model) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");		
+		License license = this.resumeService.getLicense(licenseNo);
+		
+		if(license.getMemberId().equals(memberId))
+			this.resumeService.delLicense(licenseNo);
+	    
+	    return "redirect:/resume/license";
 	}
 	
 	@RequestMapping(value="/lang-ability", method = RequestMethod.GET)

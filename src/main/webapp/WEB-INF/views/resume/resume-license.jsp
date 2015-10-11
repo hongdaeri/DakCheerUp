@@ -17,49 +17,81 @@
           <h4 class="panel-title">자격증/면허증</h4>
         </div>
         <div class="panel-body">
-          <form class="form-horizontal" name="license" action="/resume/license" method="POST">
-            <div class="table-responsive">
-              <table class="table table-bordered table-condensed table-valign-middle text-center">
-                <tbody>
+          <form id="resume-license-form" class="form-horizontal" name="license" action="/resume/license" method="POST">
+            <div class="table-responsive">             
+              <table id="licenseTbl" class="table table-bordered table-condensed table-valign-middle text-center">  
+               <tbody>                
                 <tr class="warning">
                   <td>
-                    <a href="javascript:" class="" data-click="resume-add"><i class="ion-plus-round fa fa-lg text-success"></i></a>
+                    <a href="javascript:add_LicenseRow();"><i class="ion-plus-round fa fa-lg text-success"></i></a>
                   </td>
                   <td>취득일자</td>
                   <td>자격/면허명</td>
                   <td>발급기관</td>
                   <td>합격구분</td>
                 </tr>
-                <tr>
-                  <td>
-                    <a href="javascript:" class="btn btn-danger btn-icon btn-xs btn-circle" data-click="resume-delete"><i class="ion-minus-round fa fa-lg text-white"></i></a>
-                  </td>
-                  <td>
-                    <input type="text" class="form-control input-sm masked-input-yyyy-mm-dd"/>
-                  </td>
-                  <td>
-                    <input type="text" class="form-control input-sm"/>
-                  </td>
-                  <td>
-                    <input type="text" class="form-control input-sm"/>
-                  </td>
-                  <td>
-                    <select class="form-control input-sm">
-                      <option value="NIL" selected>-- 합격구분 --</option>
-                      <option value="AF">1차합격</option>
-                      <option value="AF">2차합격</option>
-                      <option value="AF">필기합격</option>
-                      <option value="AF">실기합격</option>
-                      <option value="AF">최종합격</option>
-                    </select>
-                  </td>
-                </tr>
-                </tbody>
+                <c:choose>
+                	<c:when test="${empty licenseList}">
+		                <tr>
+		                  <td>
+		                    <a href="javascript:add_LicenseRow();" class="btn btn-danger btn-icon btn-xs btn-circle" ><i class="ion-minus-round fa fa-lg text-white"></i></a>
+		                  </td>
+		                  <td>
+		                    <input  name="newLicenseDate" type="text" class="form-control input-sm masked-input-yyyy-mm-dd"/>
+		                  </td>
+		                  <td>
+		                    <input  name="newLicenseName" type="text" class="form-control input-sm" maxlength="15"/>
+		                  </td>
+		                  <td>
+		                    <input  name="newLicenseOrg" type="text" class="form-control input-sm" maxlength="15"/>
+		                  </td>
+		                  <td>
+		                    <select  name="newLicensePass" class="form-control input-sm">
+		                      <option value="NIL" selected>-- 합격구분 --</option>
+		                      <option value="1차합격">1차합격</option>
+		                      <option value="2차합격">2차합격</option>
+		                      <option value="필기합격">필기합격</option>
+		                      <option value="실기합격">실기합격</option>
+		                      <option value="최종합격">최종합격</option>
+		                    </select>
+		                  </td>
+		                </tr>
+		     		</c:when>
+               		<c:when test="${not empty licenseList}">
+               			<c:forEach items="${licenseList}" var="license">
+	               			<tr>
+			                  <td>
+			                    <a href="/resume/license/delLicense?licenseNo=${license.licenseNo}" class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>
+			                  </td>
+			                  <td>
+			                  	<input name="licenseNo" value="${license.licenseNo}" type="hidden"/>
+			                    <input name="licenseDate" value="${license.licenseDate}" type="text" class="form-control input-sm masked-input-yyyy-mm-dd"/>
+			                  </td>
+			                  <td>
+			                    <input name="licenseName" value="${license.licenseName}" type="text" class="form-control input-sm" maxlength="15"/>
+			                  </td>
+			                  <td>
+			                    <input name="licenseOrg" value="${license.licenseOrg}" type="text" class="form-control input-sm" maxlength="15"/>
+			                  </td>
+			                  <td>
+			                    <select class="form-control input-sm" name="licensePass">
+			                      <option value="NIL"<c:if test="${license.licensePass eq 'NIL'}">selected</c:if>>-- 합격구분 --</option>
+			                      <option value="1차합격" <c:if test="${license.licensePass eq '1차합격'}">selected</c:if>>1차합격</option>
+			                      <option value="2차합격" <c:if test="${license.licensePass eq '2차합격'}">selected</c:if>>2차합격</option>
+			                      <option value="필기합격" <c:if test="${license.licensePass eq '필기합격'}">selected</c:if>>필기합격</option>
+			                      <option value="실기합격" <c:if test="${license.licensePass eq '실기합격'}">selected</c:if>>실기합격</option>
+			                      <option value="최종합격" <c:if test="${license.licensePass eq '최종합격'}">selected</c:if>>최종합격</option>
+			                    </select>
+			                  </td>
+			                </tr>
+			        	</c:forEach>
+               		</c:when>
+               	</c:choose>
+                </tbody> 
               </table>
             </div>
-
             <div class="m-t-0 m-b-10 text-right">
-              <a href="#" onClick="document.getElementById('@@@').submit()" class="btn btn-warning btn-sm">&nbsp; 저장 &nbsp;</a>
+              <a href="#" onClick="document.getElementById('resume-license-form').submit()" class="btn btn-warning btn-sm">&nbsp; 저장 &nbsp;</a>
             </div>
           </form>
         </div>

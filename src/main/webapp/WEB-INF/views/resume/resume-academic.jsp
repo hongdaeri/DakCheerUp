@@ -183,13 +183,16 @@
 	                <c:when test="${not empty academicUnivList}">
 	                  	<c:forEach items="${academicUnivList}" var="academicUniv">
 			                <tr>
-			                  <td rowspan="3" class="width-60 warning"><a href="javascript:" class="btn btn-danger btn-icon btn-xs btn-circle" data-click="resume-delete"><i class="ion-minus-round fa fa-lg text-white"></i></a></td>
+			                  <td rowspan="3" class="width-60 warning">
+			                  	<a href="/resume/academic/delUniv?academicUnivNo=${academicUniv.academicUnivNo}"  class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>
+			                  </td>
 			                  <td class="warning">재학기간</td>
 			                  <td colspan="3">
 			                    <div class="row m-0 p-0">
 			                      <div class="col-xs-4">
 			                        <div class="row">
 			                          <div class="col-xs-7 m-0 p-1">
+			                          	<input type="hidden" name="academicUnivNo" value="${academicUniv.academicUnivNo }"/>
 			                          	<input type="text" class="form-control input-sm masked-input-yyyy-mm" name="academicUnivPeriodFirst" value="${academicUniv.academicUnivPeriodFirst}"/>
 			                          </div>
 			                          <div class="col-xs-5 m-0 p-1">

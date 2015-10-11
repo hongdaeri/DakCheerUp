@@ -145,5 +145,32 @@ function add_academicUnivRow()
             +'      </tr>'
             +'    </table>'
             +'   </div>'
+            
+       
+
+	      $(".masked-input-yyyy-mm").mask("9999.99");
+
+}
+
+//자격증/면허증
+function del_LicenseRow(){	licenseTbl.deleteRow(-1); }
+function add_LicenseRow()
+{
+	var row = licenseTbl.insertRow(-1); // inserRow(0) = 맨처음삽입, insert(-1) 맨마지막 삽입.
+	
+	var cell1 = row.insertCell(0);
+	var cell2 = row.insertCell(1);
+	var cell3 = row.insertCell(2);
+	var cell4 = row.insertCell(3);
+	var cell5 = row.insertCell(4);
+	
+
+	cell1.innerHTML = '<a onClick="del_LicenseRow();" class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>';
+	cell2.innerHTML = '<input  name="newLicenseDate" type="text" class="form-control input-sm masked-input-yyyy-mm-dd"/>';
+	cell3.innerHTML = '<input  name="newLicenseName" type="text" class="form-control input-sm" maxlength="15"/>';
+	cell4.innerHTML = '<input  name="newLicenseOrg" type="text" class="form-control input-sm" maxlength="15"/>';
+	cell5.innerHTML = '<select  name="newLicensePass" class="form-control input-sm"><option value="NIL" selected>-- 합격구분 --</option>        <option value="1차합격">1차합격</option>        <option value="2차합격">2차합격</option>        <option value="필기합격">필기합격</option>        <option value="실기합격">실기합격</option>        <option value="최종합격">최종합격</option>      </select>';
+
+   $(".masked-input-yyyy-mm-dd").mask("9999.99.99");
 
 }
