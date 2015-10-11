@@ -17,13 +17,13 @@
           <h4 class="panel-title">경력 및 실습사항 </h4>
         </div>
         <div class="panel-body">
-          <form name="career" class="form-horizontal" action="/resume/career" method="POST">
+          <form id="resume-career-form" name="career" class="form-horizontal" action="/resume/career" method="POST">
             <div class="table-responsive">
-              <table class="table table-bordered table-condensed table-valign-middle text-center">
+              <table id="careerTbl" class="table table-bordered table-condensed table-valign-middle text-center">
                 <tbody>
                 <tr class="warning">
                   <td class="width-50">
-                    <a href="javascript:" class="" data-click="resume-add"><i class="ion-plus-round fa fa-lg text-success"></i></a>
+                    <a href="javascript:add_career();"><i class="ion-plus-round fa fa-lg text-success"></i></a>
                   </td>
                   <td class="width-150">기간</td>
                   <td>회사명</td>
@@ -31,32 +31,61 @@
                   <td>직위</td>
                   <td>담당업무</td>
                 </tr>
-                <tr>
-                  <td>
-                    <a href="javascript:" class="btn btn-danger btn-icon btn-xs btn-circle" data-click="resume-delete"><i class="ion-minus-round fa fa-lg text-white"></i></a>
-                  </td>
-                  <td>
-                    <input type="text" class="form-control input-sm masked-input-period"/>
-                  </td>
-                  <td>
-                    <input type="text" class="form-control input-sm"/>
-                  </td>
-                  <td>
-                    <input type="text" class="form-control input-sm"/>
-                  </td>
-                  <td>
-                    <input type="text" class="form-control input-sm"/>
-                  </td>
-                  <td>
-                    <input type="text" class="form-control input-sm"/>
-                  </td>
-                </tr>
+                <c:choose>
+                	<c:when test="${empty careerList}">
+		                <tr>                  
+		                  <td>
+		                    <a href="javascript:" class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>
+		                  </td>
+		                  <td>
+		                    <input name="newCareerPeriod" type="text" class="form-control input-sm masked-input-period"/>
+		                  </td>
+		                  <td>
+		                    <input name="newCareerCompany" type="text"  maxlength="15"  class="form-control input-sm"/>
+		                  </td>
+		                  <td>
+		                    <input name="newCareerPost" type="text" maxlength="15"  class="form-control input-sm"/>
+		                  </td>
+		                  <td>
+		                    <input name="newCareerPosition" type="text" maxlength="15"  class="form-control input-sm"/>
+		                  </td>
+		                  <td>
+		                    <input name="newCareerWork" type="text" maxlength="15" class="form-control input-sm"/>
+		                  </td>
+		                </tr>
+	                </c:when>
+	                <c:when test="${not empty careerList}">
+	                	<c:forEach items="${careerList}" var="career">
+			                <tr>                  
+			                  <td>
+			                    <a href="/resume/career/delCareer?careerNo=${career.careerNo}" class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>
+			                  </td>
+			                  <td>
+			                  	<input name="careerNo" value="${career.careerNo}" type="hidden" />
+			                    <input name="careerPeriod" value="${career.careerPeriod}" type="text" class="form-control input-sm masked-input-period"/>
+			                  </td>
+			                  <td>
+			                    <input name="careerCompany"  value="${career.careerCompany}" maxlength="15" type="text" class="form-control input-sm"/>
+			                  </td>
+			                  <td>
+			                    <input name="careerPost"  value="${career.careerPost}" maxlength="15" type="text" class="form-control input-sm"/>
+			                  </td>
+			                  <td>
+			                    <input name="careerPosition"  value="${career.careerPosition}" maxlength="15" type="text" class="form-control input-sm"/>
+			                  </td>
+			                  <td>
+			                    <input name="careerWork"  value="${career.careerWork}" maxlength="15" type="text" class="form-control input-sm"/>
+			                  </td>
+			                </tr>
+		                </c:forEach>
+	                </c:when>
+                </c:choose>
                 </tbody>
               </table>
             </div>
 
             <div class="m-t-0 m-b-10 text-right">
-              <a href="#" onClick="document.getElementById('@@@').submit()" class="btn btn-warning btn-sm">&nbsp; 저장 &nbsp;</a>
+              <a href="#" onClick="document.getElementById('resume-career-form').submit()" class="btn btn-warning btn-sm">&nbsp; 저장 &nbsp;</a>
             </div>
           </form>
         </div>

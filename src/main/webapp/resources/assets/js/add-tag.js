@@ -146,8 +146,6 @@ function add_academicUnivRow()
             +'    </table>'
             +'   </div>'
             
-       
-
 	      $(".masked-input-yyyy-mm").mask("9999.99");
 
 }
@@ -164,7 +162,6 @@ function add_LicenseRow()
 	var cell4 = row.insertCell(3);
 	var cell5 = row.insertCell(4);
 	
-
 	cell1.innerHTML = '<a onClick="del_LicenseRow();" class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>';
 	cell2.innerHTML = '<input  name="newLicenseDate" type="text" class="form-control input-sm masked-input-yyyy-mm-dd"/>';
 	cell3.innerHTML = '<input  name="newLicenseName" type="text" class="form-control input-sm" maxlength="15"/>';
@@ -186,7 +183,6 @@ function add_LangAbilityRow()
 	var cell3 = row.insertCell(2);
 	var cell4 = row.insertCell(3);
 	var cell5 = row.insertCell(4);
-	
 
 	cell1.innerHTML = '<a onClick="del_LangAbilityRow();" class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>';
 	cell2.innerHTML = '<select class="form-control input-sm" name="newLangAbilityName">        <option value="NIL" selected>-- 언어선택 --</option>        <option value="한국어">한국어</option>        <option value="영어">영어</option>        <option value="일본어">일본어</option>        <option value="중국어">중국어</option>        <option value="불어">불어</option>       <option value="스페인어">스페인어</option>        <option value="러시아어">러시아어</option>        <option value="광동어">광동어</option>        <option value="네덜란드어">네덜란드어</option>        <option value="네팔어">네팔어</option>        <option value="노르웨이어">노르웨이어</option>        <option value="따갈로그어">따갈로그어</option>        <option value="라오스어">라오스어</option>        <option value="라오어">라오어</option>        <option value="루마니아어">루마니아어</option>        <option value="말레이인니어">말레이인니어</option>        <option value="몽골어">몽골어</option>       <option value="미얀마어">미얀마어</option>        <option value="베트남어">베트남어</option>        <option value="벵갈어">벵갈어</option>        <option value="세르비아어">세르비아어</option>       <option value="스와힐리어">스와힐리어</option>        <option value="스웨덴어">스웨덴어</option>        <option value="슬로바키아어">슬로바키아어</option>        <option value="슬로베니아어">슬로베니아어</option>        <option value="아랍어">아랍어</option>        <option value="우루두어">우루두어</option>        <option value="우즈벡어">우즈벡어</option>        <option value="이란어">이란어</option>        <option value="이탈리아어">이탈리아어</option>        <option value="인니어">인니어</option>        <option value="인도네시아어">인도네시아어</option>        <option value="인도어">인도어</option>        <option value="체코어">체코어</option>        <option value="카자흐어">카자흐어</option>        <option value="캄보디아어">캄보디아어</option>        <option value="크로아티아어">크로아티아어</option>        <option value="타갈로그어">타갈로그어</option>        <option value="태국어">태국어</option>        <option value="터키어">터키어</option>        <option value="페르시아어">페르시아어</option>        <option value="포르투갈어">포르투갈어</option>        <option value="폴란드어">폴란드어</option>        <option value="필리핀어">필리핀어</option>        <option value="헝가리어">헝가리어</option>        <option value="희랍어">희랍어</option>        <option value="힌디어">힌디어</option>        <option value="기타">기타</option>      </select>';
@@ -208,7 +204,6 @@ function add_LangExamRow()
 	var cell4 = row.insertCell(3);
 	var cell5 = row.insertCell(4);
 	
-
 	cell1.innerHTML = '<a onClick="del_LangExamRow();" class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>';
 	cell2.innerHTML = '<SELECT class="form-control input-sm" name="newLangExamLName" onChange="BuildLangExamOp(this);">        <OPTION Value="NIL">-- 선택 --        <OPTION Value="영어">영어        <OPTION Value="일어">일어        <OPTION Value="중국어">중국어        <OPTION Value="독일어">독일어        <OPTION Value="불어">불어        <OPTION Value="스페인어">스페인어        <OPTION Value="러시아어">러시아어        <OPTION Value="이탈리아어">이탈리아어        <OPTION Value="한국어">한국어        <OPTION Value="한자">한자      </Select>';
 	cell3.innerHTML = '<SELECT class="form-control input-sm LangExamEName" name="newLangExamEName">        <OPTION Value="NIL">-- 선택 --        </Select>';
@@ -228,7 +223,6 @@ function add_award()
 	var cell3 = row.insertCell(2);
 	var cell4 = row.insertCell(3);
 	var cell5 = row.insertCell(4);
-	
 
 	cell1.innerHTML = '<a onClick="del_award();" class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>';
 	cell2.innerHTML = '<input name="newAwardDate" type="text" class="form-control input-sm masked-input-yyyy-mm"/>';
@@ -236,5 +230,28 @@ function add_award()
 	cell4.innerHTML = '<input name="newAwardOrg" type="text" class="form-control input-sm"/>';
 	cell5.innerHTML = '<select name="newAwardSection" class="form-control input-sm">        <option value="NIL" selected>-- 선택 --</option>        <option value="공동">공동</option>        <option value="개인">개인</option>      </select>';
 
-	  $(".masked-input-yyyy-mm").mask("9999.99");
+	$(".masked-input-yyyy-mm").mask("9999.99");
+}
+
+//어학시험
+function del_career(){	careerTbl.deleteRow(-1); }
+function add_career()
+{
+	var row = careerTbl.insertRow(-1); // inserRow(0) = 맨처음삽입, insert(-1) 맨마지막 삽입.
+	
+	var cell1 = row.insertCell(0);
+	var cell2 = row.insertCell(1);
+	var cell3 = row.insertCell(2);
+	var cell4 = row.insertCell(3);
+	var cell5 = row.insertCell(4);
+	var cell6 = row.insertCell(5);
+
+	cell1.innerHTML = '<a onClick="del_career();" class="btn btn-danger btn-icon btn-xs btn-circle"><i class="ion-minus-round fa fa-lg text-white"></i></a>';
+	cell2.innerHTML = '<input name="newCareerPeriod" type="text" class="form-control input-sm masked-input-period"/>';
+	cell3.innerHTML = '<input name="newCareerCompany" type="text" class="form-control input-sm"/>';
+	cell4.innerHTML = '<input name="newCareerPost" type="text" class="form-control input-sm"/>';
+	cell5.innerHTML = '<input name="newCareerPosition" type="text" class="form-control input-sm"/>';
+	cell6.innerHTML = '<input name="newCareerWork" type="text" class="form-control input-sm"/>';
+	
+	$(".masked-input-period").mask("9999.99 - 9999.99");
 }

@@ -624,13 +624,81 @@ public class ResumeController {
 	}
 	
 	
-	
+	// 경력 및 실습사항 불러오기
 	@RequestMapping(value="/career", method = RequestMethod.GET)
 	public String getResumeCareer(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
-		Profile profile = this.resumeService.getProfile(memberId);
-	    model.addAttribute("profile", profile);
+		List<Career> careerList = this.resumeService.getCareerList(memberId);
+	    model.addAttribute("careerList", careerList);	
 	    return "resume/resume-career";
+	}
+	
+	// 경력 및 실습사항  데이터 처리
+	@RequestMapping(value="/career", method = RequestMethod.POST)
+	public String postResumeCareer(ModelMap model,  HttpServletRequest request) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		
+		// 경력 및 실습사항  업데이트
+		String[] careerNoList = request.getParameterValues("careerNo");
+		String[] careerPeriodList = request.getParameterValues("careerPeriod");
+		String[] careerCompanyList = request.getParameterValues("careerCompany");
+		String[] careerPositionList = request.getParameterValues("careerPosition");
+		String[] careerWorkList = request.getParameterValues("careerWork");
+		String[] careerPostList = request.getParameterValues("careerPost");
+	
+		if(request.getParameterValues("careerNo") != null)
+		{
+			for(int i=0; i<careerNoList.length; i++)
+			{
+				Career career = new Career();
+				career.setMemberId(memberId);
+				career.setCareerRegDate(new Timestamp(System.currentTimeMillis()));
+				career.setCareerNo(Integer.parseInt(careerNoList[i]));
+				career.setCareerPeriod(careerPeriodList[i]);
+				career.setCareerCompany(careerCompanyList[i]);
+				career.setCareerPosition(careerPositionList[i]);
+				career.setCareerWork(careerWorkList[i]);
+				career.setCareerPost(careerPostList[i]);
+								
+				this.resumeService.modCareer(career);
+			}
+		}
+		
+		// 경력 및 실습사항  항목 추가
+		String[] newCareerPeriodList = request.getParameterValues("newCareerPeriod");
+		String[] newCareerCompanyList = request.getParameterValues("newCareerCompany");
+		String[] newCareerPositionList = request.getParameterValues("newCareerPosition");
+		String[] newCareerWorkList = request.getParameterValues("newCareerWork");
+		String[] newCareerPostList = request.getParameterValues("newCareerPost");
+		
+		if(request.getParameterValues("newCareerPeriod") != null)
+		{
+			for(int i=0; i<newCareerPeriodList.length; i++)
+			{
+				Career career = new Career();
+				career.setMemberId(memberId);
+				career.setCareerRegDate(new Timestamp(System.currentTimeMillis()));
+				career.setCareerPeriod(newCareerPeriodList[i]);
+				career.setCareerCompany(newCareerCompanyList[i]);
+				career.setCareerPosition(newCareerPositionList[i]);
+				career.setCareerWork(newCareerWorkList[i]);
+				career.setCareerPost(newCareerPostList[i]);
+								
+				this.resumeService.addCareer(career);
+			}
+		}
+		return "redirect:/resume/career";
+	}
+	
+	// 경력 및 실습사항  삭제
+	@RequestMapping(value="/career/delCareer", method = RequestMethod.GET)
+	public String delResumeCareer(@RequestParam("careerNo") int careerNo, ModelMap model) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		Career career = this.resumeService.getCareer(careerNo);
+		if(career.getMemberId().equals(memberId))
+			this.resumeService.delCareer(careerNo);
+			   
+	    return "redirect:/resume/career";
 	}
 	
 	@RequestMapping(value="/voluntary", method = RequestMethod.GET)
