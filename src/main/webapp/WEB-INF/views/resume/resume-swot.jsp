@@ -17,7 +17,7 @@
           <h4 class="panel-title">SWOT 자기분석</h4>
         </div>
         <div class="panel-body">
-          <form name="swot" class="form-horizontal" action="/resume/swot" method="POST">
+          <form id="resume-swot-form" name="swot" class="form-horizontal" action="/resume/swot" method="POST">
             <div class="table-responsive">
               <table id="resume-family-table" class="table table-bordered table-condensed table-valign-middle text-center">
                 <tbody>
@@ -27,10 +27,10 @@
                 </tr>
                 <tr>
                   <td>
-                    <textarea class="textarea form-control noresize" style="resize:none" rows="4"></textarea>
+                    <textarea class="textarea form-control noresize" name="swotStrength" style="resize:none" rows="4">${swot.swotStrength}</textarea>
                   </td>
                   <td>
-                    <textarea class="textarea form-control noresize" rows="4"></textarea>
+                    <textarea class="textarea form-control noresize" name="swotWeakness" rows="4">${swot.swotWeakness}</textarea>
                   </td>
                 </tr>
                 <tr class="warning">
@@ -39,10 +39,10 @@
                 </tr>
                 <tr>
                   <td>
-                    <textarea class="textarea form-control noresize" rows="4"></textarea>
+                    <textarea class="textarea form-control noresize" name="swotOpportunities" rows="4">${swot.swotOpportunities}</textarea>
                   </td>
                   <td>
-                    <textarea class="textarea form-control noresize" rows="4"></textarea>
+                    <textarea class="textarea form-control noresize" name="swotThreats" rows="4">${swot.swotThreats}</textarea>
                   </td>
                 </tr>
                 </tbody>
@@ -51,26 +51,26 @@
                 <tbody>
                 <tr>
                   <td class="warning">SO전략 (강점-기회)</td>
-                  <td><input type="text" class="form-control input-sm"/></td>
+                  <td><input  name="swotSo" value="${swot.swotSo}" type="text" class="form-control input-sm"/></td>
                 </tr>
                 <tr>
                   <td class="warning">ST전략 (강점-위협)</td>
-                  <td><input type="text" class="form-control input-sm"/></td>
+                  <td><input  name="swotSt" value="${swot.swotSt}" type="text" class="form-control input-sm"/></td>
                 </tr>
                 <tr>
                   <td class="warning">WO전략 (약점-기회)</td>
-                  <td><input type="text" class="form-control input-sm"/></td>
+                  <td><input  name="swotWo" value="${swot.swotWo}" type="text" class="form-control input-sm"/></td>
                 </tr>
                 <tr>
                   <td class="warning">WT전략 (약점-위협)</td>
-                  <td><input type="text" class="form-control input-sm"/></td>
+                  <td><input  name="swotWt" value="${swot.swotWt}" type="text" class="form-control input-sm"/></td>
                 </tr>
                 </tbody>
               </table>
             </div>
 
             <div class="m-t-0 m-b-10 text-right">
-              <a href="#" onClick="document.getElementById('@@@').submit()" class="btn btn-warning btn-sm">&nbsp; 저장 &nbsp;</a>
+              <a href="#" onClick="document.getElementById('resume-swot-form').submit()" class="btn btn-warning btn-sm">&nbsp; 저장 &nbsp;</a>
             </div>
           </form>
         </div>

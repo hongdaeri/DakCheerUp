@@ -1046,13 +1046,27 @@ public class ResumeController {
 	    return "redirect:/resume/global";
 	}
 	
+	//SWOT분석 불러오기
 	@RequestMapping(value="/swot", method = RequestMethod.GET)
 	public String getResumeSwot(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
-		Profile profile = this.resumeService.getProfile(memberId);
-	    model.addAttribute("profile", profile);
+		Swot swot = this.resumeService.getSwot(memberId);
+	    model.addAttribute("swot", swot);
 	    return "resume/resume-swot";
 	}
+	
+	// 기본인적사항 데이터 처리
+	@RequestMapping(value ="/swot", method = RequestMethod.POST)
+    public String postResumeSwot(@ModelAttribute("swot") Swot swot) {  	    	
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		
+    	// PROFILE 테이블 업데이트
+		swot.setMemberId(memberId);
+		swot.setSwotRegDate(new Timestamp(System.currentTimeMillis()));
+        this.resumeService.modSwot(swot);
+                
+        return "redirect:/resume/swot";
+    }
 	
 	@RequestMapping(value="/config", method = RequestMethod.GET)
 	public String getResumeConfig(ModelMap model) {
