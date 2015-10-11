@@ -399,22 +399,156 @@ public class ResumeController {
 	    return "redirect:/resume/license";
 	}
 	
+	
+	// 어학능력 불러오기
 	@RequestMapping(value="/lang-ability", method = RequestMethod.GET)
 	public String getResumeLangAbility(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
-		Profile profile = this.resumeService.getProfile(memberId);
-	    model.addAttribute("profile", profile);	 
+		List<LanguageAbility> languageAbilityList = this.resumeService.getLanguageAbilityList(memberId);
+	    model.addAttribute("languageAbilityList", languageAbilityList);	 
 	    return "resume/resume-lang-ability";
 	}
 	
+	// 어학능력 데이터처리
+	@RequestMapping(value="/lang-ability", method = RequestMethod.POST)
+	public String postResumeLangAbility(ModelMap model,  HttpServletRequest request) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		
+		// 어학능력 업데이트
+		String[] langAbilityNoList = request.getParameterValues("langAbilityNo");
+		String[] langAbilityNameList = request.getParameterValues("langAbilityName");
+		String[] langAbilityConversationList = request.getParameterValues("langAbilityConversation");
+		String[] langAbilityCompositionList = request.getParameterValues("langAbilityComposition");
+		String[] langAbilityReadingList = request.getParameterValues("langAbilityReading");
+		
+		if(request.getParameterValues("langAbilityNo") != null)
+		{
+			for(int i=0; i<langAbilityNoList.length; i++)
+			{
+				LanguageAbility languageAbility = new LanguageAbility();
+				languageAbility.setMemberId(memberId);
+				languageAbility.setLangAbilityRegDate(new Timestamp(System.currentTimeMillis()));
+				languageAbility.setLangAbilityNo(Integer.parseInt(langAbilityNoList[i]));
+				languageAbility.setLangAbilityName(langAbilityNameList[i]);
+				languageAbility.setLangAbilityConversation(langAbilityConversationList[i]);
+				languageAbility.setLangAbilityReading(langAbilityReadingList[i]);
+				languageAbility.setLangAbilityComposition(langAbilityCompositionList[i]);
+					
+				this.resumeService.modLanguageAbility(languageAbility);
+			}
+		}
+		
+		// 어학능력 항목 추가
+		String[] newLangAbilityNameList = request.getParameterValues("newLangAbilityName");
+		String[] newLangAbilityConversationList = request.getParameterValues("newLangAbilityConversation");
+		String[] newLangAbilityCompositionList = request.getParameterValues("newLangAbilityComposition");
+		String[] newLangAbilityReadingList = request.getParameterValues("newLangAbilityReading");
+		
+		if(request.getParameterValues("newLangAbilityName") != null)
+		{
+			for(int i=0; i<newLangAbilityNameList.length; i++)
+			{
+				LanguageAbility languageAbility = new LanguageAbility();
+				languageAbility.setMemberId(memberId);
+				languageAbility.setLangAbilityRegDate(new Timestamp(System.currentTimeMillis()));
+				languageAbility.setLangAbilityName(newLangAbilityNameList[i]);
+				languageAbility.setLangAbilityConversation(newLangAbilityConversationList[i]);
+				languageAbility.setLangAbilityReading(newLangAbilityReadingList[i]);
+				languageAbility.setLangAbilityComposition(newLangAbilityCompositionList[i]);			
+				this.resumeService.addLanguageAbility(languageAbility);		
+			}
+		}
+		
+		return "redirect:/resume/lang-ability";
+	}
+	
+	// 어학능력 삭제
+	@RequestMapping(value="/lang-ability/delLangAbility", method = RequestMethod.GET)
+	public String delResumeLangAbility(@RequestParam("langAbilityNo") int langAbilityNo, ModelMap model) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");		
+		LanguageAbility languageAbility = this.resumeService.getLanguageAbility(langAbilityNo);
+		if(languageAbility.getMemberId().equals(memberId))
+			this.resumeService.delLanguageAbility(langAbilityNo);
+	    
+	    return "redirect:/resume/lang-ability";
+	}
+	
+	//어학시험 불러오기
 	@RequestMapping(value="/lang-exam", method = RequestMethod.GET)
 	public String getResumeLangExam(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
-		Profile profile = this.resumeService.getProfile(memberId);
-	    model.addAttribute("profile", profile);
+		List<LanguageExam> languageExamList = this.resumeService.getLanguageExamList(memberId);
+	    model.addAttribute("languageExamList", languageExamList);	 
 	    return "resume/resume-lang-exam";
 	}
 	
+	//어학시험 데이터 처리
+	@RequestMapping(value="/lang-exam", method = RequestMethod.POST)
+	public String postResumeLangExam(ModelMap model, HttpServletRequest request) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+
+		// 어학시험 업데이트
+		String[] langExamNoList = request.getParameterValues("langExamNo");
+		String[] langExamLNameList = request.getParameterValues("langExamLName");
+		String[] langExamENameList = request.getParameterValues("langExamEName");
+		String[] langExamScoreList = request.getParameterValues("langExamScore");
+		String[] langExamTypeList = request.getParameterValues("langExamType");
+		String[] langExamOrgList = request.getParameterValues("langExamOrg");
+		
+		if(request.getParameterValues("langExamNo") != null)
+		{
+			for(int i=0; i<langExamNoList.length; i++)
+			{
+				LanguageExam languageExam = new LanguageExam();
+				languageExam.setMemberId(memberId);
+				languageExam.setLangExamNo(Integer.parseInt(langExamNoList[i]));
+				languageExam.setLangExamRegDate(new Timestamp(System.currentTimeMillis()));
+				languageExam.setLangExamLName(langExamLNameList[i]);
+				languageExam.setLangExamEName(langExamENameList[i]);
+				languageExam.setLangExamScore(langExamScoreList[i]);
+				languageExam.setLangExamType(langExamTypeList[i]);
+				languageExam.setLangExamOrg(langExamOrgList[i]);
+					
+				this.resumeService.modLanguageExam(languageExam);
+			}
+		}
+		
+		// 어학시험 항목 추가
+		String[] newLangExamLNameList = request.getParameterValues("newLangExamLName");
+		String[] newLangExamENameList = request.getParameterValues("newLangExamEName");
+		String[] newLangExamScoreList = request.getParameterValues("newLangExamScore");
+		String[] newLangExamTypeList = request.getParameterValues("newLangExamType");
+		String[] newLangExamOrgList = request.getParameterValues("newLangExamOrg");
+		
+		if(request.getParameterValues("newLangExamLName") != null)
+		{
+			for(int i=0; i<newLangExamLNameList.length; i++)
+			{
+				LanguageExam languageExam = new LanguageExam();
+				languageExam.setMemberId(memberId);
+				languageExam.setLangExamRegDate(new Timestamp(System.currentTimeMillis()));
+				languageExam.setLangExamLName(newLangExamLNameList[i]);
+				languageExam.setLangExamEName(newLangExamENameList[i]);
+				languageExam.setLangExamScore(newLangExamScoreList[i]);
+				languageExam.setLangExamType(newLangExamTypeList[i]);
+				languageExam.setLangExamOrg(newLangExamOrgList[i]);
+					
+				this.resumeService.addLanguageExam(languageExam);
+			}
+		}
+		
+		return "redirect:/resume/lang-exam";
+	}
+	// 어학시험 삭제
+	@RequestMapping(value="/lang-exam/delLangExam", method = RequestMethod.GET)
+	public String delResumeLangExam(@RequestParam("langExamNo") int langExamNo, ModelMap model) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");		
+		LanguageExam languageExam = this.resumeService.getLanguageExam(langExamNo);
+		if(languageExam.getMemberId().equals(memberId))
+			this.resumeService.delLanguageExam(langExamNo);
+	    
+	    return "redirect:/resume/lang-exam";
+	}
 	
 	
 	@RequestMapping(value="/award", method = RequestMethod.GET)
