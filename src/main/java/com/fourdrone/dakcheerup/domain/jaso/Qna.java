@@ -16,9 +16,6 @@ public class Qna{
 	private String qnaQuestion;				//문항_질문 
 	private String qnaAnswer;				//문항_답변 
 	
-	private int qnaTextLimit;				//문항_글자수_제한 
-	private String qnaTextLimitType;		//문항_글자수_제한_형식  (Byte, Text)
-	private String qnaTextLimitSpaceYN;		//문항_글자수_공백_포함여부 (Y,N)
 	
 	private boolean qnaInterestYn;			//문항_관심_유무 
 	private Timestamp qnaInterestDate;		//문항_관심_등록일 	
@@ -56,24 +53,7 @@ public class Qna{
 	public String getQnaAnswer() {
 		return qnaAnswer;
 	}
-	/**
-	 * @return the qnaTextLimit
-	 */
-	public int getQnaTextLimit() {
-		return qnaTextLimit;
-	}
-	/**
-	 * @return the qnaTextLimitType
-	 */
-	public String getQnaTextLimitType() {
-		return qnaTextLimitType;
-	}
-	/**
-	 * @return the qnaTextLimitSpaceYN
-	 */
-	public String getQnaTextLimitSpaceYN() {
-		return qnaTextLimitSpaceYN;
-	}
+	
 	/**
 	 * @return the qnaInterestYn
 	 */
@@ -128,24 +108,7 @@ public class Qna{
 	public void setQnaAnswer(String qnaAnswer) {
 		this.qnaAnswer = qnaAnswer;
 	}
-	/**
-	 * @param qnaTextLimit the qnaTextLimit to set
-	 */
-	public void setQnaTextLimit(int qnaTextLimit) {
-		this.qnaTextLimit = qnaTextLimit;
-	}
-	/**
-	 * @param qnaTextLimitType the qnaTextLimitType to set
-	 */
-	public void setQnaTextLimitType(String qnaTextLimitType) {
-		this.qnaTextLimitType = qnaTextLimitType;
-	}
-	/**
-	 * @param qnaTextLimitSpaceYN the qnaTextLimitSpaceYN to set
-	 */
-	public void setQnaTextLimitSpaceYN(String qnaTextLimitSpaceYN) {
-		this.qnaTextLimitSpaceYN = qnaTextLimitSpaceYN;
-	}
+	
 	/**
 	 * @param qnaInterestYn the qnaInterestYn to set
 	 */

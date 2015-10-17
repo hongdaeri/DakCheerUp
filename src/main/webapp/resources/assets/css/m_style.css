@@ -110,4 +110,14 @@ textarea { resize:none; }
     background: #f2f2f2;
 }
 
+.qna-textarea { 
+	font-size : 10pt;
+	background: #f4f6f7;
+	border : none;	
+}
 
+.qna-title { 	
+	
+	background: #f4f6f7;
+	border : none;	
+}

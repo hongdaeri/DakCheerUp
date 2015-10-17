@@ -466,9 +466,6 @@ CREATE TABLE TB_JASO_QNA (
 	MEMBER_ID               VARCHAR(20) NULL,     -- 회원_아이디
 	QNA_QUESTION            VARCHAR(60) NULL,     -- 문항_질문
 	QNA_ANSWER              TEXT        NULL,     -- 문항_답변
-	QNA_TEXT_LIMIT          INT         NULL,     -- 문항_글자수_제한
-	QNA_TEXT_LIMIT_TYPE     VARCHAR(4)  NULL,     -- 문항_글자수_제한_형식
-	QNA_TEXT_LIMIT_SPACE_YN VARCHAR(1)  NULL,     -- 문항_글자수_공백_포함여부
 	QNA_INTEREST_YN         VARCHAR(1)  NULL,     -- 문항_관심_유무
 	QNA_INTEREST_DATE       TIMESTAMP   NULL,     -- 문항_관심_저장일
 	QNA_REG_DATE            TIMESTAMP   NULL,     -- 문항_생성일
