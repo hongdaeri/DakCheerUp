@@ -1,6 +1,11 @@
 package com.fourdrone.dakcheerup.controller;
 
+import com.fourdrone.dakcheerup.domain.Jaso;
 import com.fourdrone.dakcheerup.domain.Resume;
+import com.fourdrone.dakcheerup.domain.jaso.Group;
+import com.fourdrone.dakcheerup.domain.jaso.File;
+import com.fourdrone.dakcheerup.domain.jaso.Qna;
+import com.fourdrone.dakcheerup.domain.jaso.QnaLog;
 import com.fourdrone.dakcheerup.domain.member.Member;
 import com.fourdrone.dakcheerup.domain.resume.Academic;
 import com.fourdrone.dakcheerup.domain.resume.AcademicHigh;
@@ -12,6 +17,7 @@ import com.fourdrone.dakcheerup.domain.resume.ResumeConfig;
 import com.fourdrone.dakcheerup.domain.resume.Strength;
 import com.fourdrone.dakcheerup.domain.resume.Swot;
 import com.fourdrone.dakcheerup.service.AccountService;
+import com.fourdrone.dakcheerup.service.JasoService;
 import com.fourdrone.dakcheerup.service.ResumeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +45,7 @@ public class AccountController {
 
     @Autowired  private AccountService accountService;
     @Autowired private ResumeService resumeService;
+    @Autowired private JasoService jasoService;
 
 
     // 로그인 화면 처리
@@ -109,7 +116,7 @@ public class AccountController {
             }
             // 세션등록 
             session.setAttribute("memberLoginInfo",loginMember.getMemberId());
-            return "redirect:test";
+            return "redirect:/";
         }
         else {
             return "redirect:";
@@ -212,9 +219,71 @@ public class AccountController {
 	        swot.setSwotRegDate(time);
 	        this.resumeService.addSwot(swot);
 	        
-        /* RESUME 단일 테이블 생성 끝 */
+	    /* RESUME 단일 테이블 생성 끝 */
+	        
+	        
+        // RESUME 테이블 생성.
+        Jaso jaso = new Jaso(); 
+        jaso.setJasoFirstRegDate(time);
+        jaso.setMemberId(memberId);
+        this.jasoService.addJaso(jaso);
         
-        return "redirect:test";
+        
+        /* 자소서 기본 그룹 및 기본 파일, 자소문항 생성 */   
+        
+        	// 기본그룹 생성
+        	Group group = new Group();
+        	group.setMemberId(memberId);
+        	group.setGroupName("기본그룹");
+        	group.setGroupRegDate(time);
+        	this.jasoService.addGroup(group);
+        	
+        	// 기본그룹 생성정보 가져오기        	
+        	group =  jasoService.getGroupLastItem(memberId);
+        	int groupNo = group.getGroupNo();        	
+        	
+        	//기본 파일생성
+        	File file = new File();
+        	file.setMemberId(memberId);
+        	file.setGroupNo(groupNo);
+        	file.setFileName("기본 자기소개서");
+        	file.setFileTrashYn("N");
+        	file.setFileInterestYn("N");
+        	file.setFileRegDate(time);
+        	this.jasoService.addFile(file);
+        
+        	
+        	// 기본 파일 생성정보 가져오기
+        	file =  jasoService.getFileLastItem(memberId);
+        	int fileNo = file.getFileNo();
+        	
+        	//기본 문항 생성 
+        	Qna qna = new Qna();
+        	qna.setFileNo(fileNo);
+        	qna.setMemberId(memberId);
+        	qna.setQnaQuestion("성장과정을 구체적으로 기술해 주십시오.");
+        	qna.setQnaAnswer("");
+        	qna.setQnaInterestYn("N");
+        	qna.setQnaRegDate(time);
+        	this.jasoService.addQna(qna);        	
+        
+        	qna.setQnaQuestion("자신의 성격에 대해 구체적으로 기술해 주십시오.");        
+        	this.jasoService.addQna(qna);
+        	
+        	qna.setQnaQuestion("사회생활 및 경력사항에 대하여 구체적으로 기술해 주십시오. ");
+        	this.jasoService.addQna(qna);
+       
+        	qna.setQnaQuestion("나의 인생관과 목표에 대하여 기술해 주십시오. ");     
+        	this.jasoService.addQna(qna);
+        
+        	qna.setQnaQuestion("입사 후 포부에 대하여 구체적으로 기술해 주십시오.");      
+        	this.jasoService.addQna(qna);
+        	
+        	
+        	
+        /* 자소서 기본 그룹 및 기본 파일, 자소문항 생성  끝 */
+        
+        return "redirect:";
     }
 
 }

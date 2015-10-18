@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.fourdrone.dakcheerup.domain.Resume;
 import com.fourdrone.dakcheerup.domain.resume.*;
-import com.fourdrone.dakcheerup.mapper.AccountMapper;
 import com.fourdrone.dakcheerup.mapper.ResumeMapper;
 
 @Repository

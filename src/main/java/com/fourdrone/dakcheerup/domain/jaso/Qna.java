@@ -17,7 +17,7 @@ public class Qna{
 	private String qnaAnswer;				//문항_답변 
 	
 	
-	private boolean qnaInterestYn;			//문항_관심_유무 
+	private String qnaInterestYn;			//문항_관심_유무 
 	private Timestamp qnaInterestDate;		//문항_관심_등록일 	
 	
 	private Timestamp qnaRegDate;			//문항_등록일 
@@ -57,7 +57,7 @@ public class Qna{
 	/**
 	 * @return the qnaInterestYn
 	 */
-	public boolean isQnaInterestYn() {
+	public String isQnaInterestYn() {
 		return qnaInterestYn;
 	}
 	/**
@@ -112,7 +112,7 @@ public class Qna{
 	/**
 	 * @param qnaInterestYn the qnaInterestYn to set
 	 */
-	public void setQnaInterestYn(boolean qnaInterestYn) {
+	public void setQnaInterestYn(String qnaInterestYn) {
 		this.qnaInterestYn = qnaInterestYn;
 	}
 	/**

@@ -373,3 +373,17 @@ function add_global()
 	
 	$(".masked-input-period").mask("9999.99 - 9999.99");
 }
+
+/****************************************************
+ *    JASO ADD  QNA ACTION
+ *
+ ****************************************************/
+
+function add_qna()
+{
+	alert("야호122");
+	$("#qna-tab-nav ul li:nth-last-child(2)").append("<li class='active'><a href='#nav-tab-2' data-toggle='tab'>질문 n</a></li>").trigger("create");
+	
+	alert("야호1");
+
+}

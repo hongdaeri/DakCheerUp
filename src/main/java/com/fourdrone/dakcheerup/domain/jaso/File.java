@@ -16,16 +16,19 @@ public class File {
 	
 	private String fileName;			//파일_이름 
 	
-	private boolean fileTrashYn;		//파일_휴지통상태유무
+	private String fileTrashYn;			//파일_휴지통상태유무
 	private Timestamp fileTrashDate;	//파일 휴지통 이동일 
 	
-	private boolean fileInterestYn;		//파일_관심_상태유무
+	private String fileInterestYn;		//파일_관심_상태유무
 	private Timestamp fileInterestDate;	//파일 관심 저장일 
 		
 	private Timestamp fileRegDate;		//파일_등록일 
 	private Timestamp fileEditDate;		//파일_수정일 
 	private Timestamp fileDeadlineDate;	//파일_마감일 
 	
+	
+	private int qnaTotalCount;			//총질문수
+	private int qnaAnswerCount;			//답변수
 	
 	/**
 	 * @return the fileNo
@@ -54,7 +57,7 @@ public class File {
 	/**
 	 * @return the fileTrashYn
 	 */
-	public boolean isFileTrashYn() {
+	public String isFileTrashYn() {
 		return fileTrashYn;
 	}
 	/**
@@ -66,7 +69,7 @@ public class File {
 	/**
 	 * @return the fileInterestYn
 	 */
-	public boolean isFileInterestYn() {
+	public String isFileInterestYn() {
 		return fileInterestYn;
 	}
 	/**
@@ -120,7 +123,7 @@ public class File {
 	/**
 	 * @param fileTrashYn the fileTrashYn to set
 	 */
-	public void setFileTrashYn(boolean fileTrashYn) {
+	public void setFileTrashYn(String fileTrashYn) {
 		this.fileTrashYn = fileTrashYn;
 	}
 	/**
@@ -132,7 +135,7 @@ public class File {
 	/**
 	 * @param fileInterestYn the fileInterestYn to set
 	 */
-	public void setFileInterestYn(boolean fileInterestYn) {
+	public void setFileInterestYn(String fileInterestYn) {
 		this.fileInterestYn = fileInterestYn;
 	}
 	/**
@@ -158,6 +161,18 @@ public class File {
 	 */
 	public void setFileDeadlineDate(Timestamp fileDeadlineDate) {
 		this.fileDeadlineDate = fileDeadlineDate;
+	}
+	public int getQnaTotalCount() {
+		return qnaTotalCount;
+	}
+	public void setQnaTotalCount(int qnaTotalCount) {
+		this.qnaTotalCount = qnaTotalCount;
+	}
+	public int getQnaAnswerCount() {
+		return qnaAnswerCount;
+	}
+	public void setQnaAnswerCount(int qnaAnswerCount) {
+		this.qnaAnswerCount = qnaAnswerCount;
 	}
 	
 	

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fourdrone.dakcheerup.mapper.JasoMapper">
+	
+	<!--  자소서  -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.Jaso" id="JasoResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="jasoFirstRegDate" column="JASO_FIRST_REG_DATE" />
+        <result property="jasoFirstRegDate" column="JASO_LAST_REG_DATE" />
+    </resultMap>
+    
+ 	
+	<!--  파일  -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.jaso.File" id="FileResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="fileNo" column="FILE_NO" />
+        <result property="groupNo" column="GROUP_NO" />
+        <result property="fileName" column="FILE_NAME" />
+        <result property="fileTrashYn" column="FILE_TRASH_YN" />
+        <result property="fileTrashDate" column="FILE_TRASH_DATE" />
+        <result property="fileInterestYn" column="FILE_INTEREST_YN" />
+        <result property="fileInterestDate" column="FILE_INTEREST_DATE" />
+        <result property="fileRegDate" column="FILE_REG_DATE" />
+        <result property="fileEditDate" column="FILE_EDIT_DATE" />
+        <result property="fileDeadlineDate" column="FILE_DEADLINE_DATE" />
+    </resultMap>
+    
+    <!--  그룹  -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.jaso.Group" id="GroupResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="groupNo" column="GROUP_NO" />
+        <result property="groupName" column="GROUP_NAME" />
+        <result property="groupRegDate" column="GROUP_REG_DATE" />
+    </resultMap>
+    
+	<!-- 문항 -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.jaso.Qna" id="QnaResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="qnaNo" column="QNA_NO" />
+        <result property="fileNo" column="FILE_NO" />
+        <result property="qnaQuestion" column="QNA_QUESTION" />
+        <result property="qnaAnswer" column="QNA_ANSWER" />
+        <result property="qnaInterestYn" column="QNA_INTEREST_YN" />
+        <result property="qnaInterestDate" column="QNA_INTEREST_DATE" />
+        <result property="qnaRegDate" column="QNA_REG_DATE" />
+        <result property="qnaEditDate" column="QNA_EDIT_DATE" />
+    </resultMap>
+    
+    <!-- 문항_로그   -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.jaso.QnaLog" id="QnaLogResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="qnaNo" column="QNA_NO" />
+        <result property="qnaLogNo" column="QNA_LOG_NO" />
+        <result property="qnaLogState" column="QNA_LOG_STATE" />
+        <result property="qnaLogTmpQuestion" column="QNA_LOG_TMP_QUESTION" />
+        <result property="qnaLogTmpAnswer" column="QNA_LOG_TMP_ANSWER" />
+        <result property="qnaLogRegDate" column="QNA_LOG_REG_DATE" />
+    </resultMap>
+    
+       
+ 
+    
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * *
+	 *                                                   *
+	 *               GET RESUME                          * 
+	 *                                                   *
+	 * * * * * * * * * * * * * * * * * * * * * * * * * -->	 
+	
+	<!-- 회원의 모든 자소서 내역(NOT)  -->
+	<select id="getJaso" resultMap="JasoResult"  parameterType="String">
+        SELECT  * FROM  TB_JASO
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+    
+	<!-- 자소서_파일_단일항목  -->
+	<select id="getFile" resultMap="FileResult"  parameterType="Integer">
+        SELECT  * FROM  TB_JASO_FILE
+        WHERE FILE_NO = #{fileNo}
+    </select>  
+    <!-- 자소서_파일 _리스트 -->
+	<select id="getFileList" resultMap="FileResult"  parameterType="String">
+        SELECT  * FROM  TB_JASO_FILE
+        WHERE MEMBER_ID = #{memberId}
+    </select>  
+    
+    <!-- 자소서_문항_단일항목  -->
+	<select id="getQna" resultMap="QnaResult"  parameterType="Integer">
+        SELECT  * FROM  TB_JASO_QNA
+        WHERE QNA_NO = #{qnaNo}
+    </select>
+     <!-- 자소서_문항 _리스트 -->
+	<select id="getQnaList" resultMap="QnaResult"  parameterType="String">
+        SELECT  * FROM  TB_JASO_QNA
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+    
+    <!-- 자소서_문항_로그 _단일항목 -->
+	<select id="getQnaLog" resultMap="QnaLogResult"  parameterType="Integer">
+        SELECT  * FROM  TB_JASO_QNA_LOG
+        WHERE QNA_LOG_NO = #{qnaLogNo}
+    </select>
+    
+    <!-- 자소서_문항_로그_리스트  -->
+	<select id="getQnaLogList" resultMap="QnaLogResult"  parameterType="String">
+        SELECT  * FROM  TB_JASO_QNA_LOG
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+    
+       
+    <!-- 자소서_그룹_단일항목 -->
+	<select id="getGroup" resultMap="GroupResult"  parameterType="Integer">
+        SELECT	*	FROM  TB_JASO_GROUP
+        WHERE GROUP_NO = #{groupNo}
+    </select>
+    
+    <!-- 자소서_그룹_리스트 -->
+	<select id="getGroupList" resultMap="GroupResult"  parameterType="String">
+        SELECT  * FROM  TB_JASO_GROUP
+        WHERE MEMBER_ID = #{memberId}        
+    </select>
+ 
+ 
+ 	<!-- 자소서_최근생성_그룹_단일항목 -->
+	<select id="getGroupLastItem" resultMap="GroupResult"  parameterType="String">
+        SELECT	*	FROM  TB_JASO_GROUP
+        WHERE MEMBER_ID = #{memberId}
+        ORDER BY GROUP_REG_DATE DESC 
+        limit 1;
+    </select>
+    
+    <!-- 자소서_최근생성_문항_단일항목  -->
+	<select id="getQnaLastItem" resultMap="QnaResult"  parameterType="String">
+        SELECT  * FROM  TB_JASO_QNA
+       	WHERE MEMBER_ID = #{memberId}
+       	ORDER BY QNA_REG_DATE DESC 
+       	limit 1;
+    </select>
+    
+    <!-- 자소서_최근생성_파일_단일항목  -->
+	<select id="getFileLastItem" resultMap="FileResult"  parameterType="String">
+        SELECT  * FROM  TB_JASO_FILE
+        WHERE MEMBER_ID = #{memberId}
+        ORDER BY FILE_REG_DATE DESC 
+        limit 1;
+    </select>  
+    
+    <!-- 자소서_파일로부터의_문항_리스트  -->
+	<select id="getQnaListFromFileNo" resultMap="QnaResult"  parameterType="Integer">
+        SELECT  * FROM  TB_JASO_QNA
+       	WHERE FILE_NO = #{fileNo}       	
+    </select>
+    
+    
+   
+    
+    
+    
+	
+	
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * *
+	 *                                                   *
+	 *               ADD RESUME                          * 
+	 *                                                   *
+	 * * * * * * * * * * * * * * * * * * * * * * * * * -->	 
+	
+	<!-- 회원의 자소서   -->
+	<insert id="addJaso" parameterType="com.fourdrone.dakcheerup.domain.Jaso">
+        INSERT INTO  TB_JASO (MEMBER_ID,JASO_FIRST_REG_DATE,JASO_LAST_REG_DATE)
+        VALUES (#{memberId}, #{jasoFirstRegDate}, #{jasoLastRegDate})
+    </insert>
+    
+    
+	<!-- 자소서_파일  -->
+	<insert id="addFile" parameterType="com.fourdrone.dakcheerup.domain.jaso.File">
+        INSERT INTO  TB_JASO_FILE (MEMBER_ID, GROUP_NO, FILE_NAME,	FILE_TRASH_YN, FILE_INTEREST_YN, FILE_REG_DATE)
+        VALUES (#{memberId}, #{groupNo}, #{fileName}, #{fileTrashYn}, #{fileInterestYn}, #{fileRegDate})
+    </insert>  
+
+    
+    <!-- 자소서_문항  -->
+	<insert id="addQna" parameterType="com.fourdrone.dakcheerup.domain.jaso.Qna">
+        INSERT INTO  TB_JASO_QNA (MEMBER_ID, FILE_NO, QNA_QUESTION,	QNA_ANSWER,	QNA_INTEREST_YN, QNA_REG_DATE)
+        VALUES (#{memberId}, #{fileNo}, #{qnaQuestion}, #{qnaAnswer}, #{qnaInterestYn}, #{qnaRegDate})
+    </insert>
+
+    
+    <!-- 자소서_문항_로그 -->
+	<insert id="addQnaLog" parameterType="com.fourdrone.dakcheerup.domain.jaso.QnaLog">
+        INSERT INTO  TB_JASO_QNA_LOG	 (QNA_NO,	QNA_LOG_STATE,	QNA_LOG_TMP_QUESTION,	QNA_LOG_TMP_ANSWER,	QNA_LOG_REG_DATE)
+        VALUES (#{qnaNo}, #{qnaLogState}, #{qnaLogTmpQuestion}, #{qnaLogTmpAnswer}, #{qnaLogRegDate})
+    </insert>
+      
+       
+    <!-- 자소서_그룹 -->
+	<insert id="addGroup" parameterType="com.fourdrone.dakcheerup.domain.jaso.Group">
+        INSERT INTO  TB_JASO_GROUP (MEMBER_ID,	GROUP_NAME,	GROUP_REG_DATE)
+        VALUES (#{memberId}, #{groupName}, #{groupRegDate})
+    </insert>
+    
+  
+	
+	
+	
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * *
+	 *                                                   *
+	 *               MOD RESUME                          * 
+	 *                                                   *
+	 * * * * * * * * * * * * * * * * * * * * * * * * * -->	 
+	<!-- 회원의 자소서   -->
+	<update id="modJaso" parameterType="com.fourdrone.dakcheerup.domain.Jaso">
+        UPDATE  TB_JASO 
+		SET 	JASO_LAST_REG_DATE = #{jasoLastRegDate}
+        WHERE 	MEMBER_ID = #{memberId}
+    </update>
+    
+    
+	<!-- 자소서_파일  -->
+	<update id="modFile" parameterType="com.fourdrone.dakcheerup.domain.jaso.File">
+        UPDATE  TB_JASO_FILE 
+     	SET 	FILE_NAME = #{fileName},
+        		FILE_TRASH_YN = #{fileTrashYn},
+				FILE_TRASH_DATE = #{fileTrashDate}, 
+				FILE_INTEREST_YN = #{fileInterestYn},
+				FILE_INTEREST_DATE = #{fileInterestDate}, 
+				FILE_DEADLINE_DATE = #{fileDeadlineDate},
+				FILE_EDIT_DATE = #{fileEditDate} 
+        WHERE 	FILE_NO = #{fileNo}   
+     </update>  
+
+    
+    <!-- 자소서_문항  -->
+	<update id="modQna" parameterType="com.fourdrone.dakcheerup.domain.jaso.Qna">
+        UPDATE  TB_JASO_QNA 
+		SET 	QNA_QUESTION = #{qnaQuestion},
+        		QNA_ANSWER = #{qnaAnswer},
+				QNA_INTEREST_YN = #{qnaInterestYn}, 
+				QNA_INTEREST_DATE = #{qnaInterestDate},
+				QNA_EDIT_DATE = #{qnaEditDate}
+        WHERE 	QNA_NO = #{qnaNo}
+	</update>
+
+    
+    <!-- 자소서_문항_로그 -->
+	<update id="modQnaLog" parameterType="com.fourdrone.dakcheerup.domain.jaso.QnaLog">
+        UPDATE  TB_JASO_QNA_LOG
+		SET 	QNA_LOG_STATE = #{qnaLogState},
+        		QNA_LOG_TMP_QUESTION = #{qnaLogTmpQuestion},
+				QNA_LOG_TMP_ANSWER = #{qnaLogTmpAnswer}
+        WHERE 	QNA_LOG_NO = #{qnaLogNo}
+    </update>
+      
+       
+    <!-- 자소서_그룹 -->
+	<update id="modGroup" parameterType="com.fourdrone.dakcheerup.domain.jaso.Group">
+        UPDATE  TB_JASO_GROUP 
+		SET 	GROUP_NAME = #{groupName}
+        WHERE 	GROUP_NO = #{groupNo}
+    </update>
+    
+    
+
+
+
+	<!-- * * * * * * * * * * * * * * * * * * * * * * * * *
+	 *                                                   *
+	 *               DEL RESUME                          * 
+	 *                                                   *
+	 * * * * * * * * * * * * * * * * * * * * * * * * * -->	 
+	<!-- 회원의 자소서   -->
+	<delete id="delJaso" parameterType="String">
+        DELETE 	FROM  TB_JASO 
+        WHERE 	MEMBER_ID = #{memberId}
+    </delete>
+    
+    
+	<!-- 자소서_파일  -->
+	<delete id="delFile" parameterType="Integer">
+        DELETE 	FROM  TB_JASO_FILE 
+        WHERE 	FILE_NO = #{fileNo}   
+     </delete>  
+
+    
+    <!-- 자소서_문항  -->
+	<delete id="delQna" parameterType="Integer">
+        DELETE 	FROM  TB_JASO_QNA 
+        WHERE 	QNA_NO = #{qnaNo}
+	</delete>
+
+    
+    <!-- 자소서_문항_로그 -->
+	<delete id="delQnaLog" parameterType="Integer">
+        DELETE 	FROM  TB_JASO_QNA_LOG
+        WHERE 	QNA_LOG_NO = #{qnaLogNo}
+    </delete>
+      
+       
+    <!-- 자소서_그룹 -->
+	<delete id="delGroup" parameterType="Integer">
+        DELETE 	FROM  TB_JASO_GROUP 
+        WHERE 	GROUP_NO = #{groupNo}
+    </delete>
+   
+
+</mapper>

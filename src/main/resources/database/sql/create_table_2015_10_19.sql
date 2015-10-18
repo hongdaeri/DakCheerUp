@@ -56,7 +56,7 @@ CREATE TABLE TB_RESUME_EDUCATION (
 	EDUCATION_NO       INT         NOT NULL, -- 교육이수_번호
 	EDUCATION_PERIOD   VARCHAR(17) NULL,     -- 교육이수_기간
 	EDUCATION_NAME     VARCHAR(40) NULL,     -- 교육이수_명
-	EDUCATION_ORG      VARCHAR(50) NULL,     -- 교육이수_기관
+	EDUCATION_ORG      VARCHAR(30) NULL,     -- 교육이수_기관
 	EDUCATION_REG_DATE TIMESTAMP   NOT NULL, -- 교육이수_등록일
 	MEMBER_ID          VARCHAR(20) NULL      -- 회원_아이디
 );
@@ -333,12 +333,12 @@ ALTER TABLE TB_RESUME_CAREER
 
 -- 이력서_봉사활동
 CREATE TABLE TB_RESUME_VOLUNTARY (
-	VOLUNTARY_NO       INT         NOT NULL, -- 봉사홛동_번호
-	VOLUNTARY_PERIOD   VARCHAR(17) NULL,     -- 봉사홛동_기간
-	VOLUNTARY_ORG      VARCHAR(50) NULL,     -- 봉사홛동_기관
+	VOLUNTARY_NO       INT          NOT NULL, -- 봉사홛동_번호
+	VOLUNTARY_PERIOD   VARCHAR(17)  NULL,     -- 봉사홛동_기간
+	VOLUNTARY_ORG      VARCHAR(50)  NULL,     -- 봉사홛동_기관
 	VOLUNTARY_CONTENT  VARCHAR(100) NULL,     -- 봉사활동_내용
-	VOLUNTARY_REG_DATE TIMESTAMP   NOT NULL, -- 봉사활동_등록일
-	MEMBER_ID          VARCHAR(20) NULL      -- 회원_아이디
+	VOLUNTARY_REG_DATE TIMESTAMP    NOT NULL, -- 봉사활동_등록일
+	MEMBER_ID          VARCHAR(20)  NULL      -- 회원_아이디
 );
 
 -- 이력서_봉사활동
@@ -353,13 +353,13 @@ ALTER TABLE TB_RESUME_VOLUNTARY
 
 -- 이력서_글로벌경험
 CREATE TABLE TB_RESUME_GLOBAL (
-	GLOBAL_NO       INT         NOT NULL, -- 글로벌경험_번호
-	GLOBAL_PERIOD   VARCHAR(17) NULL,     -- 글로벌경험_기간
-	GLOBAL_NATION   VARCHAR(20) NULL,     -- 글로벌경험_국가
-	GLOBAL_PURPOSE  VARCHAR(8)  NULL,     -- 글로벌경험_목적
+	GLOBAL_NO       INT          NOT NULL, -- 글로벌경험_번호
+	GLOBAL_PERIOD   VARCHAR(17)  NULL,     -- 글로벌경험_기간
+	GLOBAL_NATION   VARCHAR(20)  NULL,     -- 글로벌경험_국가
+	GLOBAL_PURPOSE  VARCHAR(8)   NULL,     -- 글로벌경험_목적
 	GLOBAL_CONTENT  VARCHAR(100) NULL,     -- 글로벌경험_내용
-	GLOBAL_REG_DATE TIMESTAMP   NOT NULL, -- 글로벌경험_등록일
-	MEMBER_ID       VARCHAR(20) NULL      -- 회원_아이디
+	GLOBAL_REG_DATE TIMESTAMP    NOT NULL, -- 글로벌경험_등록일
+	MEMBER_ID       VARCHAR(20)  NULL      -- 회원_아이디
 );
 
 -- 이력서_글로벌경험
@@ -387,38 +387,6 @@ ALTER TABLE TB_RESUME_STRENGTH
 			MEMBER_ID -- 회원_아이디
 		);
 
--- 이력서_성격
-CREATE TABLE TB_RESUME_CHARACTER (
-	CHARACTER_NO       INT         NOT NULL, -- 성격_번호
-	CHARACTER_ITEM     VARCHAR(30) NULL,     -- 성격_항목
-	CHARACTER_REG_DATE TIMESTAMP   NULL      -- 성격_등록일
-);
-
--- 이력서_성격
-ALTER TABLE TB_RESUME_CHARACTER
-	ADD CONSTRAINT PK_TB_RESUME_CHARACTER -- 이력서_성격 기본키
-		PRIMARY KEY (
-			CHARACTER_NO -- 성격_번호
-		);
-
-ALTER TABLE TB_RESUME_CHARACTER
-	MODIFY COLUMN CHARACTER_NO INT NOT NULL AUTO_INCREMENT;
-
--- 회원
-CREATE TABLE TB_MEMBERS (
-	MEMBER_ID INT NOT NULL -- 멤버ID
-);
-
--- 회원
-ALTER TABLE TB_MEMBERS
-	ADD CONSTRAINT PK_TB_MEMBERS -- 회원 기본키
-		PRIMARY KEY (
-			MEMBER_ID -- 멤버ID
-		);
-
-ALTER TABLE TB_MEMBERS
-	MODIFY COLUMN MEMBER_ID INT NOT NULL AUTO_INCREMENT;
-
 -- 자소서_그룹
 CREATE TABLE TB_JASO_GROUP (
 	GROUP_NO       INT         NOT NULL, -- 그룹_번호
@@ -433,6 +401,9 @@ ALTER TABLE TB_JASO_GROUP
 		PRIMARY KEY (
 			GROUP_NO -- 그룹_번호
 		);
+
+ALTER TABLE TB_JASO_GROUP
+	MODIFY COLUMN GROUP_NO INT NOT NULL AUTO_INCREMENT;
 
 -- 자소서_파일
 CREATE TABLE TB_JASO_FILE (
@@ -461,15 +432,15 @@ ALTER TABLE TB_JASO_FILE
 
 -- 자소서_문항
 CREATE TABLE TB_JASO_QNA (
-	QNA_NO                  INT         NOT NULL, -- 문항_번호
-	FILE_NO                 INT         NULL,     -- 파일_번호
-	MEMBER_ID               VARCHAR(20) NULL,     -- 회원_아이디
-	QNA_QUESTION            VARCHAR(100) NULL,    -- 문항_질문
-	QNA_ANSWER              TEXT        NULL,     -- 문항_답변
-	QNA_INTEREST_YN         VARCHAR(1)  NULL,     -- 문항_관심_유무
-	QNA_INTEREST_DATE       TIMESTAMP   NULL,     -- 문항_관심_저장일
-	QNA_REG_DATE            TIMESTAMP   NULL,     -- 문항_생성일
-	QNA_EDIT_DATE           TIMESTAMP   NULL      -- 문항_수정일
+	QNA_NO            INT          NOT NULL, -- 문항_번호
+	FILE_NO           INT          NULL,     -- 파일_번호
+	MEMBER_ID         VARCHAR(20)  NULL,     -- 회원_아이디
+	QNA_QUESTION      VARCHAR(100) NULL,     -- 문항_질문
+	QNA_ANSWER        TEXT         NULL,     -- 문항_답변
+	QNA_INTEREST_YN   VARCHAR(1)   NULL,     -- 문항_관심_유무
+	QNA_INTEREST_DATE TIMESTAMP    NULL,     -- 문항_관심_저장일
+	QNA_REG_DATE      TIMESTAMP    NULL,     -- 문항_생성일
+	QNA_EDIT_DATE     TIMESTAMP    NULL      -- 문항_수정일
 );
 
 -- 자소서_문항
@@ -481,7 +452,6 @@ ALTER TABLE TB_JASO_QNA
 
 ALTER TABLE TB_JASO_QNA
 	MODIFY COLUMN QNA_NO INT NOT NULL AUTO_INCREMENT;
-
 
 -- 자소서
 CREATE TABLE TB_JASO (
@@ -497,17 +467,26 @@ ALTER TABLE TB_JASO
 			MEMBER_ID -- 회원_아이디
 		);
 
-
-
 -- 자소서_문항_로그
 CREATE TABLE TB_JASO_QNA_LOG (
-	QNA_LOG_NO           INT         NOT NULL, -- 문항_로그_번호
-	QNA_NO               INT         NULL,     -- 문항_번호
-	QNA_LOG_STATE        VARCHAR(6)  NULL,     -- 문항_로그_상태
+	QNA_LOG_NO           INT          NOT NULL, -- 문항_로그_번호
+	QNA_NO               INT          NULL,     -- 문항_번호
+	QNA_LOG_STATE        VARCHAR(6)   NULL,     -- 문항_로그_상태
 	QNA_LOG_TMP_QUESTION VARCHAR(100) NULL,     -- 문항_로그_임시저장_질문
-	QNA_LOG_TMP_ANSWER   TEXT        NULL,     -- 문항_로그_임시저장_답변
-	QNA_LOG_REG_DATE     TIMESTAMP   NULL      -- 문항_로그_저장일
+	QNA_LOG_TMP_ANSWER   TEXT         NULL,     -- 문항_로그_임시저장_답변
+	QNA_LOG_REG_DATE     TIMESTAMP    NULL      -- 문항_로그_저장일
 );
+
+-- 자소서_문항_로그
+ALTER TABLE TB_JASO_QNA_LOG
+	ADD CONSTRAINT PK_TB_JASO_QNA_LOG -- 새 테이블3 기본키
+		PRIMARY KEY (
+			QNA_LOG_NO -- 문항_로그_번호
+		);
+
+ALTER TABLE TB_JASO_QNA_LOG
+	MODIFY COLUMN QNA_LOG_NO INT NOT NULL AUTO_INCREMENT;
+
 
 
 -- 이력서_학력
@@ -582,15 +561,6 @@ ALTER TABLE TB_RESUME_CONFIG
 		PRIMARY KEY (
 			MEMBER_ID -- 회원_아이디
 		);
-
--- 이력서_설정_뷰아이템
-CREATE TABLE TB_RESUME_CONFIG_VIEW_ITEM (
-	VIEW_ITEM_NO   INT         NULL, -- 아이템번호
-	VIEW_ITEM_NAME INT         NULL, -- 아이템이름
-	MEMBER_ID      VARCHAR(20) NULL  -- 회원_아이디
-);
-
-
 
 -- 이력서_기본인적사항
 ALTER TABLE TB_RESUME_PROFILE
@@ -822,8 +792,6 @@ ALTER TABLE TB_JASO_QNA
 			MEMBER_ID -- 회원_아이디
 		);
 
-
-
 -- 자소서
 ALTER TABLE TB_JASO
 	ADD CONSTRAINT FK_TB_MEMBER_TO_TB_JASO -- 회원테이블 -> 자소서
@@ -833,21 +801,6 @@ ALTER TABLE TB_JASO
 		REFERENCES TB_MEMBER ( -- 회원테이블
 			MEMBER_ID -- 회원_아이디
 		);
-
-
-
--- 자소서_관심
-ALTER TABLE TB_JASO_INTEREST
-	ADD CONSTRAINT FK_TB_JASO_TO_TB_JASO_INTEREST -- 자소서 -> 자소서_관심
-		FOREIGN KEY (
-			MEMBER_ID -- 회원_아이디
-		)
-		REFERENCES TB_JASO ( -- 자소서
-			MEMBER_ID -- 회원_아이디
-		);
-
-
-
 
 -- 자소서_문항_로그
 ALTER TABLE TB_JASO_QNA_LOG
@@ -898,14 +851,3 @@ ALTER TABLE TB_RESUME_CONFIG
 		REFERENCES TB_RESUME ( -- 이력서
 			MEMBER_ID -- 회원_아이디
 		);
-
--- 이력서_설정_뷰아이템
-ALTER TABLE TB_RESUME_CONFIG_VIEW_ITEM
-	ADD CONSTRAINT FK_TB_RESUME_CONFIG_TO_TB_RESUME_CONFIG_VIEW_ITEM -- 이력서_설정 -> 이력서_설정_뷰아이템
-		FOREIGN KEY (
-			MEMBER_ID -- 회원_아이디
-		)
-		REFERENCES TB_RESUME_CONFIG ( -- 이력서_설정
-			MEMBER_ID -- 회원_아이디
-		);
-        
