@@ -33,7 +33,7 @@
 		                    <div class="vertical-box-cell">
 								<div class="vertical-box-inner-cell">
 									<div data-scrollbar="true" data-height="100%" class="wrapper">
-										<form id="JasoUpdate" method="post" action="/jaso/Update">
+										<form id="JasoUpdate" method="post" action="/jaso/update">
 										<!-- begin col-6 -->
 									    <div class="col-md-12">
 											<div class="panel panel-inverse panel-with-tabs">
@@ -60,7 +60,7 @@
 													<c:forEach items="${qnaListFromFile}" var="qna" varStatus="status">				                                   		
 														<div class="tab-pane fade active in " id="nav-tab-${status.count}">
 															<div class="table-responsive">
-																<table id="resume-family-table" class="table table-condensed table-valign-middle text-center">															
+																<table id="jaso-qna-table" class="table table-condensed table-valign-middle text-center">															
 																	<tbody>																	
 																		<tr>
 																			<td>

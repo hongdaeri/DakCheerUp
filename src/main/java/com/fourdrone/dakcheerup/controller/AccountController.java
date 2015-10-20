@@ -137,7 +137,7 @@ public class AccountController {
 
         // 세션 삭제.
         session.setAttribute("memberLoginInfo", null);
-        return "account/account";
+        return "redirect:";
     }
 
     //회원가입 처리

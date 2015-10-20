@@ -146,4 +146,47 @@ public class JasoController {
 	    }
 		return "jaso/jaso-open";
 	}
+	
+
+	@RequestMapping(value="/update", method = RequestMethod.POST)
+	public String postJasoUpdate(ModelMap model, HttpServletRequest request) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		int fileNo = Integer.parseInt(request.getParameter("fileNo"));
+		String[] qnaNo = request.getParameterValues("qnaNo");
+		String[] question = request.getParameterValues("qnaQuestion");
+		String[] answer = request.getParameterValues("qnaAnswer");
+		
+		
+		// qna 항목 업데이트 루틴 (메소드로 빼내서 특정 이벤트 발생때마다 저장하도록 하자.
+		for(int i=0; i<qnaNo.length; i++)
+		{
+			Qna qna = new Qna();
+			qna.setFileNo(fileNo);
+			qna.setMemberId(memberId);
+			qna.setQnaNo(Integer.parseInt(qnaNo[i]));
+			qna.setQnaQuestion(question[i]);
+			qna.setQnaAnswer(answer[i]);
+			// qna interest부분은 따로 빼내서 클릭즉시 그 항목만 업데이트 되도록 하자.
+			//qna.setQnaInterestYn(qnaInterestYn); 
+			//qna.setQnaInterestDate(new Timestamp(System.currentTimeMillis()));
+			qna.setQnaEditDate(new Timestamp(System.currentTimeMillis()));
+			
+			this.jasoService.modQna(qna);
+		}
+		
+		File file = new File();
+		file.setMemberId(memberId);
+		file.setFileNo(fileNo);
+		file.setFileEditDate(new Timestamp(System.currentTimeMillis()));
+		file.setFileName(request.getParameter("fileName"));
+		
+		this.jasoService.modFile(file);
+		
+		// trash 부분과 interest 부분은 jasoMapper 에 따로 메소드를 만들어서 관리하자.
+		
+		// qna 항목 업데이트 루틴 끝.
+		    	
+		return "redirect:";
+	}
+
 }
