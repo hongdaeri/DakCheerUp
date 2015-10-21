@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,12 +23,14 @@ import com.fourdrone.dakcheerup.domain.resume.Profile;
 import com.fourdrone.dakcheerup.service.JasoService;
 
 @Controller
+@Transactional (propagation=Propagation.SUPPORTS)
 @RequestMapping("/jaso")
 public class JasoController {
 
 	@Autowired private JasoService jasoService;
 	@Autowired private HttpSession session;
-		
+	
+	// 자기소개서 불러오기
 	@RequestMapping(value="", method = RequestMethod.GET)
 	public String getJaso(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
@@ -55,6 +59,8 @@ public class JasoController {
 	    return "jaso/jaso-open";
 	}
 	
+	//파일생성
+	@Transactional(propagation=Propagation.REQUIRED)
 	@RequestMapping(value="/new-file", method = RequestMethod.POST)
 	public String postNewFile(ModelMap model, HttpServletRequest request) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
@@ -85,6 +91,7 @@ public class JasoController {
 		return "redirect:";
 	}
 	
+	//그룹생성 
 	@RequestMapping(value="/new-group", method = RequestMethod.POST)
 	public String postNewGroup(@ModelAttribute("group") Group group) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
@@ -97,6 +104,7 @@ public class JasoController {
 	    return "redirect:";
 	}
 	
+	// 자소서 열기 (문항불러오기)
 	@RequestMapping(value="/open/{fileNo}", method = RequestMethod.GET)
 	public String getFile(ModelMap model, @PathVariable("fileNo") int fileNo) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
@@ -147,17 +155,27 @@ public class JasoController {
 		return "jaso/jaso-open";
 	}
 	
-
+	// 자소서 업데이트 
+	@Transactional(propagation=Propagation.REQUIRED)
 	@RequestMapping(value="/update", method = RequestMethod.POST)
 	public String postJasoUpdate(ModelMap model, HttpServletRequest request) {
+		updateJaso(request);
+		
+		String actionMethod = request.getParameter("actionMethod");
+		System.out.println("actionMethod : " + actionMethod);
+		
+		return "redirect:";
+	}
+	
+	@Transactional(propagation=Propagation.REQUIRED)
+	private void updateJaso(HttpServletRequest request) {
+		// qna 항목 업데이트 루틴 (메소드로 빼내서 특정 이벤트 발생때마다 저장하도록 하자.
 		String memberId = (String)session.getAttribute("memberLoginInfo");
 		int fileNo = Integer.parseInt(request.getParameter("fileNo"));
 		String[] qnaNo = request.getParameterValues("qnaNo");
 		String[] question = request.getParameterValues("qnaQuestion");
 		String[] answer = request.getParameterValues("qnaAnswer");
 		
-		
-		// qna 항목 업데이트 루틴 (메소드로 빼내서 특정 이벤트 발생때마다 저장하도록 하자.
 		for(int i=0; i<qnaNo.length; i++)
 		{
 			Qna qna = new Qna();
@@ -166,9 +184,6 @@ public class JasoController {
 			qna.setQnaNo(Integer.parseInt(qnaNo[i]));
 			qna.setQnaQuestion(question[i]);
 			qna.setQnaAnswer(answer[i]);
-			// qna interest부분은 따로 빼내서 클릭즉시 그 항목만 업데이트 되도록 하자.
-			//qna.setQnaInterestYn(qnaInterestYn); 
-			//qna.setQnaInterestDate(new Timestamp(System.currentTimeMillis()));
 			qna.setQnaEditDate(new Timestamp(System.currentTimeMillis()));
 			
 			this.jasoService.modQna(qna);
@@ -179,14 +194,9 @@ public class JasoController {
 		file.setFileNo(fileNo);
 		file.setFileEditDate(new Timestamp(System.currentTimeMillis()));
 		file.setFileName(request.getParameter("fileName"));
-		
 		this.jasoService.modFile(file);
 		
-		// trash 부분과 interest 부분은 jasoMapper 에 따로 메소드를 만들어서 관리하자.
-		
 		// qna 항목 업데이트 루틴 끝.
-		    	
-		return "redirect:";
 	}
 
 }

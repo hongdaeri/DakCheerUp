@@ -39,6 +39,7 @@
             <bean class="com.fourdrone.dakcheerup.interceptor.LoginInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
-
+    
+    
 
 </beans>

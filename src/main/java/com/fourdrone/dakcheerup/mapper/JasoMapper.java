@@ -74,12 +74,17 @@ public interface JasoMapper {
     
     // 파일
     void modFile(File file);								//파일 단일항목
+    void modFileTrash(File file);							//파일 휴지통 
+    void modFileInterest(File file);						//파일 관심파일 
     
     // 그룹
     void modGroup(Group group);								//그룹 단일항목
     
     // 문항
     void modQna(Qna qna);									//문항 단일항목
+    void modQnaInterest(Qna qna);							//문항 관심문항
+    void modQnaTrash(Qna qna);								//문항_휴지통 
+    
     
     // 문항로그 
     void modQnaLog(QnaLog qnaLog);							//문항 _ 로그_ 단일항목

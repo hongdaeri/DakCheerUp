@@ -83,10 +83,13 @@
 																				<div class="col-xs-3 m-0 p-0  text-left"> 
 																					바이트 수 : <span id="charNumByte"></span> 
 						                                						</div>
-						                                						<div class="col-xs-3 m-0 p-0 text-right"> 
-																					<a href="javascript:;" class="btn btn-white"><i class="fa fa-heart-o"></i></a>
+						                                						<div class="col-xs-3 m-0 p-0 text-right">
+						                                							<input type="hidden" name="qnaNo" value="${qna.qnaNo}">
+						                                							<input type="hidden" name="qnaInterestYn" value="${qna.qnaInterestYn}">
+						                                							<input type="hidden" name="qnaTrash" value="${qna.qnaTrash}">
+																					<a id="qna-interest" href="#" class="btn btn-white"><i class="fa fa-heart-o"></i></a>
 																					&nbsp;
-																					<a href="javascript:;" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+																					<a id="qna-delete" href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a>
 						                                						</div>
 																			</td>																													
 																		</tr>
@@ -99,8 +102,10 @@
 										</div>
 									</div>
 					   				 <!-- end col-6 -->   
+					   				 <input type="hidden" name="actionMethod"/>
 					   				 <input type="hidden" name="newFileName"/>  
-					   				 <input type="hidden" name="fileInterestYn">
+					   			 
+					   				 <input type="hidden" name="fileInterestYn" value="${file.fileInterestYn}">
 					   				</form>
 				    			</div>
 							</div>

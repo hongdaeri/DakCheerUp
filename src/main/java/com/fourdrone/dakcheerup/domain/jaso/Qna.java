@@ -20,118 +20,80 @@ public class Qna{
 	private String qnaInterestYn;			//문항_관심_유무 
 	private Timestamp qnaInterestDate;		//문항_관심_등록일 	
 	
+	private String qnaTrash;
+	private String qnaTrashDate;
+	
 	private Timestamp qnaRegDate;			//문항_등록일 
 	private Timestamp qnaEditDate;			//문항_수정
 	
-	/**
-	 * @return the memberId
-	 */
+	
 	public String getMemberId() {
 		return memberId;
 	}
-	/**
-	 * @return the qnaNo
-	 */
-	public int getQnaNo() {
-		return qnaNo;
-	}
-	/**
-	 * @return the fileNo
-	 */
-	public int getFileNo() {
-		return fileNo;
-	}
-	/**
-	 * @return the qnaQuestion
-	 */
-	public String getQnaQuestion() {
-		return qnaQuestion;
-	}
-	/**
-	 * @return the qnaAnswer
-	 */
-	public String getQnaAnswer() {
-		return qnaAnswer;
-	}
-	
-	/**
-	 * @return the qnaInterestYn
-	 */
-	public String isQnaInterestYn() {
-		return qnaInterestYn;
-	}
-	/**
-	 * @return the qnaInterestDate
-	 */
-	public Timestamp getQnaInterestDate() {
-		return qnaInterestDate;
-	}
-	/**
-	 * @return the qnaRegDate
-	 */
-	public Timestamp getQnaRegDate() {
-		return qnaRegDate;
-	}
-	/**
-	 * @return the qnaEditDate
-	 */
-	public Timestamp getQnaEditDate() {
-		return qnaEditDate;
-	}
-	/**
-	 * @param memberId the memberId to set
-	 */
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	/**
-	 * @param qnaNo the qnaNo to set
-	 */
+	public int getQnaNo() {
+		return qnaNo;
+	}
 	public void setQnaNo(int qnaNo) {
 		this.qnaNo = qnaNo;
 	}
-	/**
-	 * @param fileNo the fileNo to set
-	 */
+	public int getFileNo() {
+		return fileNo;
+	}
 	public void setFileNo(int fileNo) {
 		this.fileNo = fileNo;
 	}
-	/**
-	 * @param qnaQuestion the qnaQuestion to set
-	 */
+	public String getQnaQuestion() {
+		return qnaQuestion;
+	}
 	public void setQnaQuestion(String qnaQuestion) {
 		this.qnaQuestion = qnaQuestion;
 	}
-	/**
-	 * @param qnaAnswer the qnaAnswer to set
-	 */
+	public String getQnaAnswer() {
+		return qnaAnswer;
+	}
 	public void setQnaAnswer(String qnaAnswer) {
 		this.qnaAnswer = qnaAnswer;
 	}
-	
-	/**
-	 * @param qnaInterestYn the qnaInterestYn to set
-	 */
+	public String getQnaInterestYn() {
+		return qnaInterestYn;
+	}
 	public void setQnaInterestYn(String qnaInterestYn) {
 		this.qnaInterestYn = qnaInterestYn;
 	}
-	/**
-	 * @param qnaInterestDate the qnaInterestDate to set
-	 */
+	public Timestamp getQnaInterestDate() {
+		return qnaInterestDate;
+	}
 	public void setQnaInterestDate(Timestamp qnaInterestDate) {
 		this.qnaInterestDate = qnaInterestDate;
 	}
-	/**
-	 * @param qnaRegDate the qnaRegDate to set
-	 */
+	public String getQnaTrash() {
+		return qnaTrash;
+	}
+	public void setQnaTrash(String qnaTrash) {
+		this.qnaTrash = qnaTrash;
+	}
+	public String getQnaTrashDate() {
+		return qnaTrashDate;
+	}
+	public void setQnaTrashDate(String qnaTrashDate) {
+		this.qnaTrashDate = qnaTrashDate;
+	}
+	public Timestamp getQnaRegDate() {
+		return qnaRegDate;
+	}
 	public void setQnaRegDate(Timestamp qnaRegDate) {
 		this.qnaRegDate = qnaRegDate;
 	}
-	/**
-	 * @param qnaEditDate the qnaEditDate to set
-	 */
+	public Timestamp getQnaEditDate() {
+		return qnaEditDate;
+	}
 	public void setQnaEditDate(Timestamp qnaEditDate) {
 		this.qnaEditDate = qnaEditDate;
 	}
+	
+	
 
 }

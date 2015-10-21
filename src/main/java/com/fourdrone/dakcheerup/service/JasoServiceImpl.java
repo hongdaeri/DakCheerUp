@@ -163,6 +163,18 @@ public class JasoServiceImpl implements JasoService {
 		JasoMapper jasoMapper = sqlSession.getMapper(JasoMapper.class);
 		jasoMapper.modFile(file);		
 	}
+	
+	@Override
+	public void modFileTrash(File file) {
+		JasoMapper jasoMapper = sqlSession.getMapper(JasoMapper.class);
+		jasoMapper.modFileTrash(file);		
+	}
+
+	@Override
+	public void modFileInterest(File file) {
+		JasoMapper jasoMapper = sqlSession.getMapper(JasoMapper.class);
+		jasoMapper.modFileInterest(file);		
+	}
 
 	@Override
 	public void modGroup(Group group) {
@@ -175,6 +187,19 @@ public class JasoServiceImpl implements JasoService {
 		JasoMapper jasoMapper = sqlSession.getMapper(JasoMapper.class);
 		jasoMapper.modQna(qna);		
 	}
+
+	@Override
+	public void modQnaInterest(Qna qna) {
+		JasoMapper jasoMapper = sqlSession.getMapper(JasoMapper.class);
+		jasoMapper.modQnaInterest(qna);	
+	}
+	
+	@Override
+	public void modQnaTrash(Qna qna) {
+		JasoMapper jasoMapper = sqlSession.getMapper(JasoMapper.class);
+		jasoMapper.modQnaTrash(qna);			
+	}
+
 
 	@Override
 	public void modQnaLog(QnaLog qnaLog) {
@@ -218,8 +243,6 @@ public class JasoServiceImpl implements JasoService {
 		jasoMapper.delQnaLog(qnaLogNo);		
 	}
 
-	
-
-	
+		
 
 }

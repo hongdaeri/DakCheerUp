@@ -22,6 +22,10 @@ import com.fourdrone.dakcheerup.service.ResumeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +44,7 @@ import java.util.List;
 import com.fourdrone.dakcheerup.util.DES;
 
 @Controller
+@Transactional (propagation=Propagation.SUPPORTS)
 @RequestMapping("/account")
 public class AccountController {
 
@@ -141,6 +146,7 @@ public class AccountController {
     }
 
     //회원가입 처리
+    @Transactional(propagation=Propagation.REQUIRED)
     @RequestMapping(value ="/signUp", method = RequestMethod.POST)
     public String signUp(@ModelAttribute("member") Member member) {
     	
@@ -150,6 +156,7 @@ public class AccountController {
     	// 현재시각 구하기.
     	Timestamp time = new Timestamp(System.currentTimeMillis());
 		
+    	
     	// MEMBER 테이블 생성.
         member.setRegDate(time);
         this.accountService.addMember(member);

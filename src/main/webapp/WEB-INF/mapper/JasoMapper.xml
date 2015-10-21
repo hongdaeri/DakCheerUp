@@ -45,6 +45,8 @@
         <result property="qnaAnswer" column="QNA_ANSWER" />
         <result property="qnaInterestYn" column="QNA_INTEREST_YN" />
         <result property="qnaInterestDate" column="QNA_INTEREST_DATE" />
+        <result property="qnaTrash" column="QNA_TRASH_YN" />
+        <result property="qnaTrashDate" column="QNA_TRASH_DATE" />
         <result property="qnaRegDate" column="QNA_REG_DATE" />
         <result property="qnaEditDate" column="QNA_EDIT_DATE" />
     </resultMap>
@@ -221,14 +223,27 @@
 	<update id="modFile" parameterType="com.fourdrone.dakcheerup.domain.jaso.File">
         UPDATE  TB_JASO_FILE 
      	SET 	FILE_NAME = #{fileName},
-        		FILE_TRASH_YN = #{fileTrashYn},
-				FILE_TRASH_DATE = #{fileTrashDate}, 
-				FILE_INTEREST_YN = #{fileInterestYn},
-				FILE_INTEREST_DATE = #{fileInterestDate}, 
-				FILE_DEADLINE_DATE = #{fileDeadlineDate},
 				FILE_EDIT_DATE = #{fileEditDate} 
         WHERE 	FILE_NO = #{fileNo}   
-     </update>  
+     </update>
+     
+     <!-- 자소서_파일_휴지통 -->
+	<update id="modFileTrash" parameterType="com.fourdrone.dakcheerup.domain.jaso.File">
+        UPDATE  TB_JASO_FILE 
+     	SET 	FILE_TRASH_YN = #{fileTrashYn},
+				FILE_TRASH_DATE = #{fileTrashDate}, 
+				FILE_EDIT_DATE = #{fileEditDate} 
+        WHERE 	FILE_NO = #{fileNo}   
+     </update> 
+     
+     <!-- 자소서_파일_관심파일   -->
+	<update id="modFileInterest" parameterType="com.fourdrone.dakcheerup.domain.jaso.File">
+        UPDATE  TB_JASO_FILE 
+     	SET 	FILE_INTEREST_YN = #{fileInterestYn},
+				FILE_INTEREST_DATE = #{fileInterestDate}, 
+				FILE_EDIT_DATE = #{fileEditDate} 
+        WHERE 	FILE_NO = #{fileNo}   
+     </update> 
 
     
     <!-- 자소서_문항  -->
@@ -236,12 +251,29 @@
         UPDATE  TB_JASO_QNA 
 		SET 	QNA_QUESTION = #{qnaQuestion},
         		QNA_ANSWER = #{qnaAnswer},
-				QNA_INTEREST_YN = #{qnaInterestYn}, 
+				QNA_EDIT_DATE = #{qnaEditDate}
+        WHERE 	QNA_NO = #{qnaNo}
+	</update>
+	
+	<!-- 자소서 관심문항  -->
+	<update id="modQnaInterest" parameterType="com.fourdrone.dakcheerup.domain.jaso.Qna">
+        UPDATE  TB_JASO_QNA 
+		SET 	QNA_INTEREST_YN = #{qnaInterestYn}, 
 				QNA_INTEREST_DATE = #{qnaInterestDate},
 				QNA_EDIT_DATE = #{qnaEditDate}
         WHERE 	QNA_NO = #{qnaNo}
 	</update>
-
+	
+	<!-- 자소서 문항_휴지통   -->
+	<update id="modQnaTrash" parameterType="com.fourdrone.dakcheerup.domain.jaso.Qna">
+        UPDATE  TB_JASO_QNA 
+		SET 	QNA_TRASH_YN = #{qnaTrash}, 
+				QNA_TRASH_DATE = #{qnaTrashDate},
+				QNA_EDIT_DATE = #{qnaEditDate}
+        WHERE 	QNA_NO = #{qnaNo}
+	</update>
+	
+				
     
     <!-- 자소서_문항_로그 -->
 	<update id="modQnaLog" parameterType="com.fourdrone.dakcheerup.domain.jaso.QnaLog">

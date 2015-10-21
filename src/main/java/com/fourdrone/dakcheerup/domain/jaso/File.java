@@ -29,136 +29,69 @@ public class File {
 	
 	private int qnaTotalCount;			//총질문수
 	private int qnaAnswerCount;			//답변수
-	
-	/**
-	 * @return the fileNo
-	 */
 	public int getFileNo() {
 		return fileNo;
 	}
-	/**
-	 * @return the groupNo
-	 */
-	public int getGroupNo() {
-		return groupNo;
-	}
-	/**
-	 * @return the memberId
-	 */
-	public String getMemberId() {
-		return memberId;
-	}
-	/**
-	 * @return the fileName
-	 */
-	public String getFileName() {
-		return fileName;
-	}
-	/**
-	 * @return the fileTrashYn
-	 */
-	public String isFileTrashYn() {
-		return fileTrashYn;
-	}
-	/**
-	 * @return the fileTrashDate
-	 */
-	public Timestamp getFileTrashDate() {
-		return fileTrashDate;
-	}
-	/**
-	 * @return the fileInterestYn
-	 */
-	public String isFileInterestYn() {
-		return fileInterestYn;
-	}
-	/**
-	 * @return the fileInterestDate
-	 */
-	public Timestamp getFileInterestDate() {
-		return fileInterestDate;
-	}
-	/**
-	 * @return the fileRegDate
-	 */
-	public Timestamp getFileRegDate() {
-		return fileRegDate;
-	}
-	/**
-	 * @return the fileEditDate
-	 */
-	public Timestamp getFileEditDate() {
-		return fileEditDate;
-	}
-	/**
-	 * @return the fileDeadlineDate
-	 */
-	public Timestamp getFileDeadlineDate() {
-		return fileDeadlineDate;
-	}
-	/**
-	 * @param fileNo the fileNo to set
-	 */
 	public void setFileNo(int fileNo) {
 		this.fileNo = fileNo;
 	}
-	/**
-	 * @param groupNo the groupNo to set
-	 */
+	public int getGroupNo() {
+		return groupNo;
+	}
 	public void setGroupNo(int groupNo) {
 		this.groupNo = groupNo;
 	}
-	/**
-	 * @param memberId the memberId to set
-	 */
+	public String getMemberId() {
+		return memberId;
+	}
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	/**
-	 * @param fileName the fileName to set
-	 */
+	public String getFileName() {
+		return fileName;
+	}
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-	/**
-	 * @param fileTrashYn the fileTrashYn to set
-	 */
+	public String getFileTrashYn() {
+		return fileTrashYn;
+	}
 	public void setFileTrashYn(String fileTrashYn) {
 		this.fileTrashYn = fileTrashYn;
 	}
-	/**
-	 * @param fileTrashDate the fileTrashDate to set
-	 */
+	public Timestamp getFileTrashDate() {
+		return fileTrashDate;
+	}
 	public void setFileTrashDate(Timestamp fileTrashDate) {
 		this.fileTrashDate = fileTrashDate;
 	}
-	/**
-	 * @param fileInterestYn the fileInterestYn to set
-	 */
+	public String getFileInterestYn() {
+		return fileInterestYn;
+	}
 	public void setFileInterestYn(String fileInterestYn) {
 		this.fileInterestYn = fileInterestYn;
 	}
-	/**
-	 * @param fileInterestDate the fileInterestDate to set
-	 */
+	public Timestamp getFileInterestDate() {
+		return fileInterestDate;
+	}
 	public void setFileInterestDate(Timestamp fileInterestDate) {
 		this.fileInterestDate = fileInterestDate;
 	}
-	/**
-	 * @param fileRegDate the fileRegDate to set
-	 */
+	public Timestamp getFileRegDate() {
+		return fileRegDate;
+	}
 	public void setFileRegDate(Timestamp fileRegDate) {
 		this.fileRegDate = fileRegDate;
 	}
-	/**
-	 * @param fileEditDate the fileEditDate to set
-	 */
+	public Timestamp getFileEditDate() {
+		return fileEditDate;
+	}
 	public void setFileEditDate(Timestamp fileEditDate) {
 		this.fileEditDate = fileEditDate;
 	}
-	/**
-	 * @param fileDeadlineDate the fileDeadlineDate to set
-	 */
+	public Timestamp getFileDeadlineDate() {
+		return fileDeadlineDate;
+	}
 	public void setFileDeadlineDate(Timestamp fileDeadlineDate) {
 		this.fileDeadlineDate = fileDeadlineDate;
 	}
