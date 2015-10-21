@@ -159,12 +159,102 @@ public class JasoController {
 	@Transactional(propagation=Propagation.REQUIRED)
 	@RequestMapping(value="/update", method = RequestMethod.POST)
 	public String postJasoUpdate(ModelMap model, HttpServletRequest request) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		
+		//현재까지 작업한 자소서 저장(업데이트) 
 		updateJaso(request);
 		
-		String actionMethod = request.getParameter("actionMethod");
-		System.out.println("actionMethod : " + actionMethod);
+		String[] qnaNo = request.getParameterValues("qnaNo");
+		String[] qnaInterest; 
+		String[] qnaTrash;
+		int targetQnaNo; 
+		String qnaTargetValue;
 		
-		return "redirect:";
+		// 사용자 이벤트 분석 & 처리 구문 
+		switch(request.getParameter("actionMethod"))
+		{
+			case "qnaAdd":			// 새로운 문항 생성  
+				
+				
+				Qna newQna = new Qna();
+				newQna.setFileNo(Integer.parseInt(request.getParameter("fileNo")));
+				newQna.setMemberId(memberId);
+				newQna.setQnaQuestion("");
+		    	newQna.setQnaAnswer("");
+		    	newQna.setQnaInterestYn("N");
+		    	newQna.setQnaRegDate(new Timestamp(System.currentTimeMillis()));
+		    	this.jasoService.addQna(newQna);
+				break;
+				
+			case "qnaInterest":		// 현재 문항 관심문항 등록 
+				qnaInterest = request.getParameterValues("qnaInterestYn");
+				targetQnaNo = Integer.parseInt(request.getParameter("targetQnaNo"))-1;
+				qnaTargetValue = qnaInterest[targetQnaNo];
+				
+				if(qnaTargetValue.equals("N")) 
+					qnaTargetValue = "Y";
+				else
+					qnaTargetValue = "N";
+				
+				Qna interestQna = new Qna();
+				interestQna.setFileNo(Integer.parseInt(request.getParameter("fileNo")));
+				interestQna.setMemberId(memberId);
+				interestQna.setQnaNo(Integer.parseInt(qnaNo[targetQnaNo]));
+		    	interestQna.setQnaInterestYn(qnaTargetValue);
+		    	interestQna.setQnaInterestDate(new Timestamp(System.currentTimeMillis()));
+		    	interestQna.setQnaEditDate(new Timestamp(System.currentTimeMillis()));
+		    	System.out.println("발동됨!!!!" +interestQna.getQnaInterestYn());
+		    	
+		    	this.jasoService.modQnaInterest(interestQna);
+				break;
+				
+			case "qnaTrash":		// 현재 문항 휴지통 (삭제는 아님) 
+				qnaTrash = request.getParameterValues("qnaTrash");
+				targetQnaNo = Integer.parseInt(request.getParameter("targetQnaNo"))-1;
+				qnaTargetValue = qnaTrash[targetQnaNo];
+				
+				if(qnaTargetValue.equals("N")) 
+					qnaTargetValue = "Y";
+				else
+					qnaTargetValue = "N";
+				
+				Qna trashQna = new Qna();
+				trashQna.setFileNo(Integer.parseInt(request.getParameter("fileNo")));
+				trashQna.setMemberId(memberId);
+				trashQna.setQnaNo(Integer.parseInt(qnaNo[targetQnaNo]));
+				trashQna.setQnaTrash(qnaTargetValue);
+				trashQna.setQnaTrashDate(new Timestamp(System.currentTimeMillis()));
+		    	trashQna.setQnaEditDate(new Timestamp(System.currentTimeMillis()));
+		    	System.out.println("발동됨!!!!" +trashQna.getQnaTrash());
+		    	this.jasoService.modQnaTrash(trashQna);
+				break;
+				
+			case "fileInterest":	// 현재 파일 관심파일 등록 
+				
+				File interestFile = new File();
+				interestFile.setMemberId(memberId);
+				interestFile.setGroupNo(Integer.parseInt(request.getParameter("groupNo")));
+				interestFile.setFileName(request.getParameter("fileName"));
+				interestFile.setFileTrashYn("N");
+				interestFile.setFileInterestYn("N");
+				interestFile.setFileEditDate(new Timestamp(System.currentTimeMillis()));
+				this.jasoService.addFile(interestFile);
+				break;
+			case "fileTrash":		// 현재 파일 휴지통 (삭제는 아님) 
+				File trashFile = new File();
+				trashFile.setMemberId(memberId);
+				trashFile.setGroupNo(Integer.parseInt(request.getParameter("groupNo")));
+				trashFile.setFileName(request.getParameter("fileName"));
+				trashFile.setFileTrashYn("N");
+				trashFile.setFileInterestYn("N");
+				trashFile.setFileEditDate(new Timestamp(System.currentTimeMillis()));
+				this.jasoService.addFile(trashFile);
+				break;
+			
+		}
+		
+		// 처리한 파일 로의 분기 
+		return "redirect:open/" + request.getParameter("fileNo");
 	}
 	
 	@Transactional(propagation=Propagation.REQUIRED)
@@ -193,7 +283,7 @@ public class JasoController {
 		file.setMemberId(memberId);
 		file.setFileNo(fileNo);
 		file.setFileEditDate(new Timestamp(System.currentTimeMillis()));
-		file.setFileName(request.getParameter("fileName"));
+		file.setFileName(request.getParameter("newFileName"));
 		this.jasoService.modFile(file);
 		
 		// qna 항목 업데이트 루틴 끝.

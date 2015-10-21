@@ -21,12 +21,10 @@ public class Qna{
 	private Timestamp qnaInterestDate;		//문항_관심_등록일 	
 	
 	private String qnaTrash;
-	private String qnaTrashDate;
+	private Timestamp qnaTrashDate;
 	
 	private Timestamp qnaRegDate;			//문항_등록일 
 	private Timestamp qnaEditDate;			//문항_수정
-	
-	
 	public String getMemberId() {
 		return memberId;
 	}
@@ -75,10 +73,10 @@ public class Qna{
 	public void setQnaTrash(String qnaTrash) {
 		this.qnaTrash = qnaTrash;
 	}
-	public String getQnaTrashDate() {
+	public Timestamp getQnaTrashDate() {
 		return qnaTrashDate;
 	}
-	public void setQnaTrashDate(String qnaTrashDate) {
+	public void setQnaTrashDate(Timestamp qnaTrashDate) {
 		this.qnaTrashDate = qnaTrashDate;
 	}
 	public Timestamp getQnaRegDate() {
@@ -93,7 +91,6 @@ public class Qna{
 	public void setQnaEditDate(Timestamp qnaEditDate) {
 		this.qnaEditDate = qnaEditDate;
 	}
-	
-	
+
 
 }
