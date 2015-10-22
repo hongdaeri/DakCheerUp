@@ -76,6 +76,13 @@ public class JasoServiceImpl implements JasoService {
 		ArrayList<Qna> result = jasoMapper.getQnaListFromFileNo(fileNo);
 	    return result;
 	}
+	
+	@Override
+	public ArrayList<Qna> getQnaListFromTrash(String memberId) {
+		JasoMapper jasoMapper = sqlSession.getMapper(JasoMapper.class);
+		ArrayList<Qna> result = jasoMapper.getQnaListFromTrash(memberId);
+	    return result;
+	}
 
 	@Override
 	public QnaLog getQnaLog(int qnaLogNo) {
@@ -242,6 +249,14 @@ public class JasoServiceImpl implements JasoService {
 		JasoMapper jasoMapper = sqlSession.getMapper(JasoMapper.class);
 		jasoMapper.delQnaLog(qnaLogNo);		
 	}
+
+	@Override
+	public void delQnaOnFile(int fileNo) {
+		JasoMapper jasoMapper = sqlSession.getMapper(JasoMapper.class);
+		jasoMapper.delQnaOnFile(fileNo);
+	}
+
+
 
 		
 

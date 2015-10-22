@@ -19,6 +19,7 @@
 				App.init();
 				
 			});
+			document.getElementById("m_jaso").className = "active";	
 				
 			
 		</script>		

@@ -155,8 +155,13 @@
        	WHERE FILE_NO = #{fileNo}       	
     </select>
     
+    <!-- 휴지통의 문항 리스트   -->
+	<select id="getQnaListFromTrash" resultMap="QnaResult"  parameterType="Integer">
+        SELECT  * FROM  TB_JASO_QNA
+       	WHERE 	MEMBER_ID = #{memberId}
+       	AND 	QNA_TRASH_YN = "Y"      	
+    </select>
     
-   
     
     
     
@@ -319,6 +324,12 @@
 	<delete id="delQna" parameterType="Integer">
         DELETE 	FROM  TB_JASO_QNA 
         WHERE 	QNA_NO = #{qnaNo}
+	</delete>
+	
+	<!-- 파일에 포함된 모든 문항 삭제   -->
+	<delete id="delQnaOnFile" parameterType="Integer">
+        DELETE 	FROM  TB_JASO_QNA 
+        WHERE 	FILE_NO = #{fileNo}
 	</delete>
 
     

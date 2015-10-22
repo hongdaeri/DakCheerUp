@@ -112,12 +112,6 @@ $(document).ready(function() {
 	
 	// 이벤트 처리 : 파일 관심등록 
 	$("#file-interest").click(function(){
-		var target = $(this);
-		var targetValue = target.val();
-		if(targetValue == 'Y')
-			target.val("N");
-		else
-			target.val("Y");
 		
 		// 액션 메서드명 명시 
 		$("input[name='actionMethod']").val("fileInterest");
@@ -130,12 +124,6 @@ $(document).ready(function() {
 	
 	// 이벤트 처리 : 파일 휴지통 
 	$("#file-trash").click(function(){
-		var target = $(this);
-		var targetValue = target.val();
-		if(targetValue == 'Y')
-			target.val("N");
-		else
-			target.val("Y");
 		
 		// 액션 메서드명 명시 
 		$("input[name='actionMethod']").val("fileTrash");

@@ -78,7 +78,9 @@ public class AccountController {
             //로그인 처리 하기. ( 세션만들기) 
             Member loginMember = this.accountService.getMemberForLogin(member);
             session.setAttribute("memberLoginInfo", loginMember.getMemberId());
-            return "redirect:test";
+            session.setAttribute("memberName", loginMember.getMemberName());
+           
+            return "redirect:/";
         }
         else
         {
@@ -121,6 +123,9 @@ public class AccountController {
             }
             // 세션등록 
             session.setAttribute("memberLoginInfo",loginMember.getMemberId());
+            session.setAttribute("memberName", loginMember.getMemberName());
+           
+            
             return "redirect:/";
         }
         else {
@@ -142,6 +147,7 @@ public class AccountController {
 
         // 세션 삭제.
         session.setAttribute("memberLoginInfo", null);
+        session.setAttribute("memberName", null);
         return "redirect:";
     }
 

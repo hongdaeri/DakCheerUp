@@ -4,6 +4,7 @@
 
 <c:choose>
 	<c:when test="${not empty file}"> 
+		<c:if test="${file.fileTrashYn eq 'N'}">
     	<!--  파일 뷰  -->
 	    <div class="vertical-box-column">
 	    	<div class="vertical-box">
@@ -135,11 +136,22 @@
 				</div>
 			</div>		
 		</div> <!--  파일 뷰 끝 -->
+		</c:if>
+		<c:if test="${file.fileTrashYn eq 'Y'}">
+			<div class="col-md-12">
+	        	<!-- begin error -->
+		  		<div class="text-center m-t-40"><h1><br><br>${memberName}님, 잘못된 접근 방법입니다. <i class="fa fa-warning"></i></h1></div>
+	          		<div class="text-center">
+	                <h3>문제가 지속 될 시 관리자에게 연락주세요.</h3>
+	            </div>		    
+		        <!-- end error -->			
+			</div> 
+		</c:if>
 		</c:when>
 		<c:when test="${empty file}">  	    
 		    <div class="col-md-12">
 	        	<!-- begin error -->
-		  		<div class="text-center m-t-40"><h1><br><br>잘못된 접근 방법입니다. <i class="fa fa-warning"></i></h1></div>
+		  		<div class="text-center m-t-40"><h1><br><br>${memberName}님, 잘못된 접근 방법입니다. <i class="fa fa-warning"></i></h1></div>
 	          		<div class="text-center">
 	                <h3>문제가 지속 될 시 관리자에게 연락주세요.</h3>
 	            </div>		    

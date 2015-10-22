@@ -155,6 +155,105 @@ public class JasoController {
 		return "jaso/jaso-open";
 	}
 	
+	// 자소서 휴지통 불러오기 
+	@RequestMapping(value="/trash", method = RequestMethod.GET)
+	public String getTrash(ModelMap model) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		
+		/* 메뉴구성을 위한 액션 */
+			//자소서 불러오기
+			Jaso jaso = this.jasoService.getJaso(memberId);
+		    model.addAttribute("jaso", jaso);	 
+		    
+		    //그룹 리스트 불러오기
+		    List<Group> groupList = this.jasoService.getGroupList(memberId);
+		    model.addAttribute("groupList", groupList);
+		    
+		    //파일 리스트 불러오기
+		    List<File> fileList = this.jasoService.getFileList(memberId);
+			    //파일별 항목 갯수 계산
+			    for(int i=0; i<fileList.size(); i++)
+			    {
+			    	int count = this.jasoService.getQnaListFromFileNo(fileList.get(i).getFileNo()).size();
+			    	fileList.get(i).setQnaTotalCount(count);
+			    }
+		    model.addAttribute("fileList", fileList);
+		    
+		   
+		 /* 메뉴구성을 위한 액션 끝 */   
+		
+		    
+	    List<Qna> trashQnaList = this.jasoService.getQnaListFromTrash(memberId);
+	    model.addAttribute("trashQnaList", trashQnaList);
+	    
+	    
+		
+		return "jaso/jaso-trash";
+	}
+	
+	// 자소서 휴지통 복원하기 
+	@RequestMapping(value="/trash/restore", method = RequestMethod.GET)
+	public String trashRestore(ModelMap model, HttpServletRequest request) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		String target = request.getParameter("target");
+		int no = Integer.parseInt(request.getParameter("no"));
+		
+		switch(target)
+		{
+			case "qna":
+				Qna trashQna = this.jasoService.getQna(no);
+				if(trashQna.getMemberId().equals(memberId))
+				{
+					trashQna.setMemberId(memberId);
+					trashQna.setQnaNo(no);
+					trashQna.setQnaTrash("N");
+					trashQna.setQnaTrashDate(new Timestamp(System.currentTimeMillis()));
+			    	trashQna.setQnaEditDate(new Timestamp(System.currentTimeMillis()));
+			    	this.jasoService.modQnaTrash(trashQna);
+				}
+				break;
+			case "file":
+				File trashFile = this.jasoService.getFile(no);
+				if(trashFile.getMemberId().equals(memberId))
+				{
+					trashFile.setMemberId(memberId);
+					trashFile.setFileNo(no);
+					trashFile.setFileTrashYn("N");
+					trashFile.setFileTrashDate(new Timestamp(System.currentTimeMillis()));
+					trashFile.setFileEditDate(new Timestamp(System.currentTimeMillis()));
+					this.jasoService.modFileTrash(trashFile);
+				}
+				break;
+		}
+		
+		return "redirect:";
+	}
+	
+	// 자소서 휴지통 삭제하기 
+	@RequestMapping(value="/trash/delete", method = RequestMethod.GET)
+	public String trashDelete(ModelMap model, HttpServletRequest request) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		String target = request.getParameter("target");
+		int no = Integer.parseInt(request.getParameter("no"));
+		
+		switch(target)
+		{
+			case "qna":
+				Qna trashQna = this.jasoService.getQna(no);
+				if(trashQna.getMemberId().equals(memberId))
+					this.jasoService.delQna(no);
+				break;
+			case "file":
+				File trashFile = this.jasoService.getFile(no);
+				if(trashFile.getMemberId().equals(memberId))
+					this.jasoService.delQnaOnFile(no);
+					this.jasoService.delFile(no);
+				break;
+		}
+		
+		return "redirect:";
+	}						
+
 	// 자소서 업데이트 
 	@Transactional(propagation=Propagation.REQUIRED)
 	@RequestMapping(value="/update", method = RequestMethod.POST)
@@ -203,7 +302,6 @@ public class JasoController {
 		    	interestQna.setQnaInterestYn(qnaTargetValue);
 		    	interestQna.setQnaInterestDate(new Timestamp(System.currentTimeMillis()));
 		    	interestQna.setQnaEditDate(new Timestamp(System.currentTimeMillis()));
-		    	System.out.println("발동됨!!!!" +interestQna.getQnaInterestYn());
 		    	
 		    	this.jasoService.modQnaInterest(interestQna);
 				break;
@@ -225,30 +323,41 @@ public class JasoController {
 				trashQna.setQnaTrash(qnaTargetValue);
 				trashQna.setQnaTrashDate(new Timestamp(System.currentTimeMillis()));
 		    	trashQna.setQnaEditDate(new Timestamp(System.currentTimeMillis()));
-		    	System.out.println("발동됨!!!!" +trashQna.getQnaTrash());
 		    	this.jasoService.modQnaTrash(trashQna);
 				break;
 				
 			case "fileInterest":	// 현재 파일 관심파일 등록 
+				String fileInterest = request.getParameter("fileInterestYn");
+				if(fileInterest.equals("Y"))
+					fileInterest = "N";
+				else
+					fileInterest = "Y";
 				
 				File interestFile = new File();
 				interestFile.setMemberId(memberId);
-				interestFile.setGroupNo(Integer.parseInt(request.getParameter("groupNo")));
-				interestFile.setFileName(request.getParameter("fileName"));
-				interestFile.setFileTrashYn("N");
-				interestFile.setFileInterestYn("N");
+				interestFile.setFileNo(Integer.parseInt(request.getParameter("fileNo")));
+				interestFile.setFileName(request.getParameter("newFileName"));
+				interestFile.setFileInterestYn(fileInterest);
+				interestFile.setFileInterestDate(new Timestamp(System.currentTimeMillis()));
 				interestFile.setFileEditDate(new Timestamp(System.currentTimeMillis()));
-				this.jasoService.addFile(interestFile);
+				this.jasoService.modFileInterest(interestFile);
 				break;
+				
 			case "fileTrash":		// 현재 파일 휴지통 (삭제는 아님) 
+				String fileTrash = request.getParameter("fileTrashYn");
+				if(fileTrash.equals("Y"))
+					fileTrash = "N";
+				else
+					fileTrash = "Y";
+				
 				File trashFile = new File();
 				trashFile.setMemberId(memberId);
-				trashFile.setGroupNo(Integer.parseInt(request.getParameter("groupNo")));
+				trashFile.setFileNo(Integer.parseInt(request.getParameter("fileNo")));
 				trashFile.setFileName(request.getParameter("fileName"));
-				trashFile.setFileTrashYn("N");
-				trashFile.setFileInterestYn("N");
+				trashFile.setFileTrashYn(fileTrash);
+				trashFile.setFileTrashDate(new Timestamp(System.currentTimeMillis()));
 				trashFile.setFileEditDate(new Timestamp(System.currentTimeMillis()));
-				this.jasoService.addFile(trashFile);
+				this.jasoService.modFileTrash(trashFile);
 				break;
 			
 		}

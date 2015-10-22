@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 public class LoginInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
-       System.out.println("로그인 세션 체크 이벤트 발동");
 
         HttpSession session = request.getSession();
         String memberId = (String) session.getAttribute("memberLoginInfo");

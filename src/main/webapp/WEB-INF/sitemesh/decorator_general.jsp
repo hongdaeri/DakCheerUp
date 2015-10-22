@@ -49,7 +49,7 @@
 			<div class="container-fluid">
 				<!-- begin mobile sidebar expand / collapse button -->
 				<div class="navbar-header">
-					<a href="/" class="navbar-brand f-w-200"><span class="navbar-logo"></span>닥치고취업하자</a>
+					<a href="/" class="navbar-brand f-w-200"><span class="navbar-logo"></span>닥치고취업하자&nbsp;<small>Beta</small></a>
 					<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -74,12 +74,12 @@
 							<span class="label">5</span>
 						</a>
 						<ul class="dropdown-menu media-list pull-right animated fadeInDown">
-                            <li class="dropdown-header">Notifications (5)</li>
+                            <li class="dropdown-header">알림 (5)</li>
                             <li class="media">
                                 <a href="javascript:;">
                                     <div class="media-left"><i class="fa fa-bug media-object bg-red"></i></div>
                                     <div class="media-body">
-                                        <h6 class="media-heading">Server Error Reports</h6>
+                                        <h6 class="media-heading">4DRONE, 채용공고 시작</h6>
                                         <div class="text-muted f-s-11">3 minutes ago</div>
                                     </div>
                                 </a>
@@ -88,8 +88,8 @@
                                 <a href="javascript:;">
                                     <div class="media-left"><img src="/resources/img/user-1.jpg" class="media-object" alt="" /></div>
                                     <div class="media-body">
-                                        <h6 class="media-heading">John Smith</h6>
-                                        <p>Quisque pulvinar tellus sit amet sem scelerisque tincidunt.</p>
+                                        <h6 class="media-heading">홍바울님의 메세지</h6>
+                                        <p>안녕하세요. ${memberName}님! 반가워요!</p>
                                         <div class="text-muted f-s-11">25 minutes ago</div>
                                     </div>
                                 </a>
@@ -98,8 +98,8 @@
                                 <a href="javascript:;">
                                     <div class="media-left"><img src="/resources/img/user-2.jpg" class="media-object" alt="" /></div>
                                     <div class="media-body">
-                                        <h6 class="media-heading">Olivia</h6>
-                                        <p>Quisque pulvinar tellus sit amet sem scelerisque tincidunt.</p>
+                                        <h6 class="media-heading">이푸름님의 메세지</h6>
+                                        <p>화랑가실분 모집합니다.</p>
                                         <div class="text-muted f-s-11">35 minutes ago</div>
                                     </div>
                                 </a>
@@ -108,7 +108,7 @@
                                 <a href="javascript:;">
                                     <div class="media-left"><i class="fa fa-plus media-object bg-green"></i></div>
                                     <div class="media-body">
-                                        <h6 class="media-heading"> New User Registered</h6>
+                                        <h6 class="media-heading">등록 자소서, 2개 마감임박!</h6>
                                         <div class="text-muted f-s-11">1 hour ago</div>
                                     </div>
                                 </a>
@@ -117,7 +117,7 @@
                                 <a href="javascript:;">
                                     <div class="media-left"><i class="fa fa-envelope media-object bg-blue"></i></div>
                                     <div class="media-body">
-                                        <h6 class="media-heading"> New Email From John</h6>
+                                        <h6 class="media-heading">다음카카오, 신입사원 채용공고 등록</h6>
                                         <div class="text-muted f-s-11">2 hour ago</div>
                                     </div>
                                 </a>
@@ -130,16 +130,16 @@
 					<li class="dropdown navbar-user"> <!-- 헤더_로그인 -->
 						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
 							<img src="/resources/img/user-13.jpg" alt="" />
-							<span class="hidden-xs">Adam Schwartz</span> <b class="caret"></b>
+							<span class="hidden-xs">${memberName} 님</span> <b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu animated fadeInLeft">
 							<li class="arrow"></li>
-							<li><a href="javascript:;">Edit Profile</a></li>
-							<li><a href="javascript:;"><span class="badge badge-danger pull-right">2</span> Inbox</a></li>
-							<li><a href="javascript:;">Calendar</a></li>
-							<li><a href="javascript:;">Setting</a></li>
+							<li><a href="/resume">이력서</a></li>
+							<li><a href="/jaso"><span class="badge badge-danger pull-right">2</span> 자기소개서</a></li>
+							<li><a href="/calendar">취업달력</a></li>
 							<li class="divider"></li>
-							<li><a href="/account/logout">Log Out</a></li>
+							<li><a href="#">계정정보 수정</a></li>
+							<li><a href="/account/logout">로그아웃</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -160,8 +160,8 @@
 							<a href="javascript:;"><img src="/resources/img/user-13.jpg" alt="" /></a>
 						</div>
 						<div class="info">
-							바울 홍
-							<small>Front end developer</small>
+							${memberName}
+							<small>취업준비생</small>
 						</div>
 					</li>
 				</ul>
@@ -169,20 +169,14 @@
 				<!-- begin sidebar nav -->
 				<ul class="nav">
 					<li class="nav-header">Navigation</li>
-					<li id="m_drop" class="has-sub">
-						<a href="javascript:;">
-						    <b class="caret pull-right"></b>
-						    <i class="fa fa-laptop"></i>
-						    <span>드롭메뉴</span>
-					    </a>
-						<ul class="sub-menu">
-						    <li><a href="index.html">드롭메뉴 1</a></li>
-						    <li><a href="index_v2.html">드롭메뉴 2</a></li>
-						</ul>
+					<li id="m_index">
+						<a href="/">
+							<i class="fa fa-home"></i> <span>${memberName}</span>
+						</a>
 					</li>
 					<li id="m_resume">
 						<a href="/resume">
-							<i class="fa fa-star"></i> <span>이력서</span>
+							<i class="fa fa-user"></i> <span>이력서</span>
 						</a>
 					</li>
 					<li id="m_jaso" class="">
@@ -192,19 +186,20 @@
 					</li>
 					<li id="m_calendar">
 						<a href="/calendar">
-							<i class="fa fa-calendar"></i> <span>취업달력</span>
+							<i class="fa fa-calendar-o"></i> <span>취업달력</span>
 						</a>
 					</li>
 					<li id="m_util">
 						<a href="/util">
-							 <i class="fa fa-th"></i> <span>취업도구</span>
+							 <i class="fa fa-lightbulb-o"></i> <span>취업도구</span>
 						</a>
 					</li>
-					<li id="m_etc">
-						<a href="calendar.html">
-							<i class="fa fa-send-o"></i> <span>기타등등</span>
+					<li id="m_community">
+						<a href="/community">
+							 <i class="fa fa-comments-o"></i> <span>커뮤니티</span>
 						</a>
 					</li>
+					
 			        <!-- begin sidebar minify button -->
 					<li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
 			        <!-- end sidebar minify button -->
@@ -236,82 +231,7 @@
 				</div>
 			</div>
 		</div>
-        <!-- begin theme-panel -->
-        <div class="theme-panel">
-            <a href="javascript:;" data-click="theme-panel-expand" class="theme-collapse-btn"><i class="fa fa-cog"></i></a>
-            <div class="theme-panel-content">
-                <h5 class="m-t-0">Color Theme</h5>
-                <ul class="theme-list clearfix">
-                    <li class="active"><a href="javascript:;" class="bg-green" data-theme="default" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Default">&nbsp;</a></li>
-                    <li><a href="javascript:;" class="bg-red" data-theme="red" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Red">&nbsp;</a></li>
-                    <li><a href="javascript:;" class="bg-blue" data-theme="blue" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Blue">&nbsp;</a></li>
-                    <li><a href="javascript:;" class="bg-purple" data-theme="purple" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Purple">&nbsp;</a></li>
-                    <li><a href="javascript:;" class="bg-orange" data-theme="orange" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Orange">&nbsp;</a></li>
-                    <li><a href="javascript:;" class="bg-black" data-theme="black" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Black">&nbsp;</a></li>
-                </ul>
-                <div class="divider"></div>
-                <div class="row m-t-10">
-                    <div class="col-md-5 control-label double-line">Header Styling</div>
-                    <div class="col-md-7">
-                        <select name="header-styling" class="form-control input-sm">
-                            <option value="1">default</option>
-                            <option value="2">inverse</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row m-t-10">
-                    <div class="col-md-5 control-label">Header</div>
-                    <div class="col-md-7">
-                        <select name="header-fixed" class="form-control input-sm">
-                            <option value="1">fixed</option>
-                            <option value="2">default</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row m-t-10">
-                    <div class="col-md-5 control-label double-line">Sidebar Styling</div>
-                    <div class="col-md-7">
-                        <select name="sidebar-styling" class="form-control input-sm">
-                            <option value="1">default</option>
-                            <option value="2">grid</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row m-t-10">
-                    <div class="col-md-5 control-label">Sidebar</div>
-                    <div class="col-md-7">
-                        <select name="sidebar-fixed" class="form-control input-sm">
-                            <option value="1">fixed</option>
-                            <option value="2">default</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row m-t-10">
-                    <div class="col-md-5 control-label double-line">Sidebar Gradient</div>
-                    <div class="col-md-7">
-                        <select name="content-gradient" class="form-control input-sm">
-                            <option value="1">disabled</option>
-                            <option value="2">enabled</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row m-t-10">
-                    <div class="col-md-5 control-label double-line">Content Styling</div>
-                    <div class="col-md-7">
-                        <select name="content-styling" class="form-control input-sm">
-                            <option value="1">default</option>
-                            <option value="2">black</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row m-t-10">
-                    <div class="col-md-12">
-                        <a href="#" class="btn btn-inverse btn-block btn-sm" data-click="reset-local-storage"><i class="fa fa-refresh m-r-3"></i> Reset Local Storage</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- end theme-panel -->
+        
 
 		<!-- begin scroll to top btn -->
 		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>

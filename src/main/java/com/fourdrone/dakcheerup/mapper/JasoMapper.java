@@ -35,6 +35,7 @@ public interface JasoMapper {
     ArrayList<Qna> getQnaList(String memberId);					//문항 리스트
     Qna getQnaLastItem(String memberId);
     ArrayList<Qna> getQnaListFromFileNo(int fileNo);			//파일번호에 대한 문항 리스트
+    ArrayList<Qna> getQnaListFromTrash(String memberId); 		//휴지통의 문항 리스트 
     
     // 문항로그 
     QnaLog getQnaLog(int qnaLogNo);								//문항 _ 로그_ 단일항목
@@ -106,6 +107,7 @@ public interface JasoMapper {
     
     // 문항
     void delQna(int qnaNo);									//문항 단일항목
+    void delQnaOnFile(int fileNo); 							//파일에 포함된 모든 문항 삭제 
     
     // 문항로그 
     void delQnaLog(int qnaLogNo);							//문항 _ 로그_ 단일항목

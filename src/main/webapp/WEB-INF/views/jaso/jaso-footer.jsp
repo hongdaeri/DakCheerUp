@@ -13,12 +13,13 @@
 		<script src="/resources/plugins/switchery/switchery.min.js"></script>
 		<script src="/resources/js/form-slider-switcher.demo.min.js"></script>
 		<script src="/resources/plugins/se2/js/HuskyEZCreator.js"></script>
-		
+		<script src="/resources//js/inbox.demo.min.js"></script>
 		<script>
 		
 			$(document).ready(function() {
 				document.getElementById("m_jaso").className = "active";	
 				App.init();
+				Inbox.init();
 				
 				$('.wysihtml5').wysihtml5({
 					"font-styles": true, //Font styling, e.g. h1, h2, etc. Default true

@@ -49,11 +49,13 @@
 													</a>
 												</h3>
 											</div>
-											<div id="collapse${status.count}" class="panel-collapse collapse in">
+											<div id="collapse${status.count}" class="panel-collapse collapse <c:if test="${status.count eq 1}"> in </c:if>">
 												<div class="panel-body">
 													<c:forEach items="${fileList}" var="file">
 														<c:if test="${file.groupNo eq group.groupNo}">
-															<a href="/jaso/open/${file.fileNo}" class="list-group-item list-group-item-default text-ellipsis"><i class="fa fa-file-text m-r-10"></i><span class="badge badge-success">${file.qnaTotalCount}</span>${file.fileName}</a>
+															<c:if test="${file.fileTrashYn eq 'N'}">
+																<a href="/jaso/open/${file.fileNo}" class="list-group-item list-group-item-default text-ellipsis"><i class="fa fa-file-text m-r-10"></i><span class="badge badge-success">${file.qnaTotalCount}</span>${file.fileName}</a>
+															</c:if>
 														</c:if>
 														<!-- files in group -->												
 													</c:forEach>
@@ -64,8 +66,8 @@
 									</div>
 									<!-- group end -->
 								</c:forEach>
-								<a href="#" class="list-group-item list-group-item-default text-ellipsis"><i class="fa fa-star m-r-10"></i><span class="badge badge-success">20.95%</span>중요 항목</a> 
-								<a href="#" class="list-group-item list-group-item-default text-ellipsis"><i class="fa fa-archive m-r-10"></i><span class="badge badge-success">20.95%</span>휴지통</a> 
+								<a href="#" class="list-group-item list-group-item-default text-ellipsis"><i class="fa fa-star m-r-10"></i>중요 항목</a> 
+								<a href="/jaso/trash" class="list-group-item list-group-item-default text-ellipsis"><i class="fa fa-archive m-r-10"></i>휴지통</a> 
 								<div class="hr"></div>
 								<a id="sajun-up" href="#" class="list-group-item list-group-item-default text-ellipsis"><i class="fa fa-book m-r-10"></i>사전</a> 
 								<a id="note-up" href="#" class="list-group-item list-group-item-default text-ellipsis"><i class="fa fa-paperclip m-r-10"></i>노트(Todo,note)</a> 
