@@ -23,7 +23,8 @@
   <!-- Exclude path from decoration. : 적용하지 않을 경로 지정.  -->
 
 	<mapping path="/account" exclude="true"/>
-	<mapping path="/account/*" exclude="true"/>
-
+	<mapping path="/account/login" exclude="true"/>
+	<mapping path="/account/logout" exclude="true"/>
+	<mapping path="/account/signUp" exclude="true"/>
 	
 </sitemesh>

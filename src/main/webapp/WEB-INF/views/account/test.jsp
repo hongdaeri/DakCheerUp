@@ -29,7 +29,7 @@
 </table>
 
 <%
-  System.out.println((String)session.getAttribute("memberLoginInfo"));
+  	System.out.println((String)session.getAttribute("memberLoginInfo"));
 
 %>
 

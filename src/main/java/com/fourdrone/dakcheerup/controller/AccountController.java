@@ -51,7 +51,7 @@ public class AccountController {
     @Autowired  private AccountService accountService;
     @Autowired private ResumeService resumeService;
     @Autowired private JasoService jasoService;
-
+    @Autowired private HttpSession session;
 
     // 로그인 화면 처리
     @RequestMapping(method = RequestMethod.GET)
@@ -89,12 +89,17 @@ public class AccountController {
    }
 
     //테스트
-    @RequestMapping(value="/test", method = RequestMethod.GET)
+    @RequestMapping(value="/modify", method = RequestMethod.GET)
     public String test(ModelMap model) {
-        List<Member> memberList = this.accountService.getMemberList();
-        model.addAttribute("result", memberList);
-
-        return "account/test";
+    	String memberId = (String)session.getAttribute("memberLoginInfo");
+		
+		Profile profile = this.resumeService.getProfile(memberId);
+	    model.addAttribute("profile", profile);  
+	    
+	    Member member = this.accountService.getMember(memberId);
+	    model.addAttribute("member", member);
+	    
+        return "account/modify";
     }
 
     //로그인 처리
