@@ -66,7 +66,7 @@
 									</div>
 									<!-- group end -->
 								</c:forEach>
-								<a href="#" class="list-group-item list-group-item-default text-ellipsis"><i class="fa fa-star m-r-10"></i>중요 항목</a> 
+								<a href="/jaso/interest" class="list-group-item list-group-item-default text-ellipsis"><i class="fa fa-star m-r-10"></i>중요 항목</a> 
 								<a href="/jaso/trash" class="list-group-item list-group-item-default text-ellipsis"><i class="fa fa-archive m-r-10"></i>휴지통</a> 
 								<div class="hr"></div>
 								<a id="sajun-up" href="#" class="list-group-item list-group-item-default text-ellipsis"><i class="fa fa-book m-r-10"></i>사전</a> 

@@ -115,6 +115,20 @@ public class JasoController {
 		return "jaso/jaso-open";
 	}
 	
+	// 자소서 관심항목 불러오기 
+	@RequestMapping(value="/interest", method = RequestMethod.GET)
+	public String getInterest(ModelMap model) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		
+		//메뉴구성을 위한 메소드 호출 
+		createMenuInfo(model); 
+		
+	    List<Qna> interestQnaList = this.jasoService.getQnaListFromInterest(memberId);
+	    model.addAttribute("interestQnaList", interestQnaList);
+		
+		return "jaso/jaso-interest";
+	}
+	
 	// 자소서 휴지통 불러오기 
 	@RequestMapping(value="/trash", method = RequestMethod.GET)
 	public String getTrash(ModelMap model) {
