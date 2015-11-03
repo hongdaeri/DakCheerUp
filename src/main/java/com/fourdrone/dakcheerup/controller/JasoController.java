@@ -33,28 +33,8 @@ public class JasoController {
 	// 자기소개서 불러오기
 	@RequestMapping(value="", method = RequestMethod.GET)
 	public String getJaso(ModelMap model) {
-		String memberId = (String)session.getAttribute("memberLoginInfo");
-		
-		//자소서 불러오기
-		Jaso jaso = this.jasoService.getJaso(memberId);
-	    model.addAttribute("jaso", jaso);	 
-	    
-	    //그룹 리스트 불러오기
-	    List<Group> groupList = this.jasoService.getGroupList(memberId);
-	    model.addAttribute("groupList", groupList);
-	    
-	    //파일 리스트 불러오기
-	    List<File> fileList = this.jasoService.getFileList(memberId);
-		    //파일별 항목 갯수 계산
-		    for(int i=0; i<fileList.size(); i++)
-		    {
-		    	int count = this.jasoService.getQnaListFromFileNo(fileList.get(i).getFileNo()).size();
-		    	fileList.get(i).setQnaTotalCount(count);
-		    }
-	    model.addAttribute("fileList", fileList);
-	    
-	   
-	   
+		//메뉴구성을 위한 메소드 호출 
+		createMenuInfo(model);    
 	    
 	    return "jaso/jaso-open";
 	}
@@ -109,28 +89,8 @@ public class JasoController {
 	public String getFile(ModelMap model, @PathVariable("fileNo") int fileNo) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
 		
-		/* 메뉴구성을 위한 액션 */
-			//자소서 불러오기
-			Jaso jaso = this.jasoService.getJaso(memberId);
-		    model.addAttribute("jaso", jaso);	 
-		    
-		    //그룹 리스트 불러오기
-		    List<Group> groupList = this.jasoService.getGroupList(memberId);
-		    model.addAttribute("groupList", groupList);
-		    
-		    //파일 리스트 불러오기
-		    List<File> fileList = this.jasoService.getFileList(memberId);
-			    //파일별 항목 갯수 계산
-			    for(int i=0; i<fileList.size(); i++)
-			    {
-			    	int count = this.jasoService.getQnaListFromFileNo(fileList.get(i).getFileNo()).size();
-			    	fileList.get(i).setQnaTotalCount(count);
-			    }
-		    model.addAttribute("fileList", fileList);
-		    
-		 /* 메뉴구성을 위한 액션 끝 */   
-		
-	    
+		//메뉴구성을 위한 메소드 호출 
+		createMenuInfo(model);      
 	    
 		//파일 불러오기
 	    File file = this.jasoService.getFile(fileNo);
@@ -160,33 +120,11 @@ public class JasoController {
 	public String getTrash(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
 		
-		/* 메뉴구성을 위한 액션 */
-			//자소서 불러오기
-			Jaso jaso = this.jasoService.getJaso(memberId);
-		    model.addAttribute("jaso", jaso);	 
-		    
-		    //그룹 리스트 불러오기
-		    List<Group> groupList = this.jasoService.getGroupList(memberId);
-		    model.addAttribute("groupList", groupList);
-		    
-		    //파일 리스트 불러오기
-		    List<File> fileList = this.jasoService.getFileList(memberId);
-			    //파일별 항목 갯수 계산
-			    for(int i=0; i<fileList.size(); i++)
-			    {
-			    	int count = this.jasoService.getQnaListFromFileNo(fileList.get(i).getFileNo()).size();
-			    	fileList.get(i).setQnaTotalCount(count);
-			    }
-		    model.addAttribute("fileList", fileList);
-		    
-		   
-		 /* 메뉴구성을 위한 액션 끝 */   
+		//메뉴구성을 위한 메소드 호출 
+		createMenuInfo(model); 
 		
-		    
 	    List<Qna> trashQnaList = this.jasoService.getQnaListFromTrash(memberId);
 	    model.addAttribute("trashQnaList", trashQnaList);
-	    
-	    
 		
 		return "jaso/jaso-trash";
 	}
@@ -396,6 +334,53 @@ public class JasoController {
 		this.jasoService.modFile(file);
 		
 		// qna 항목 업데이트 루틴 끝.
+	}
+	
+	// 메뉴정보 구성 메서드 
+	@Transactional(propagation=Propagation.REQUIRED)
+	private void createMenuInfo(ModelMap model)
+	{
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		/* 메뉴구성을 위한 액션 */
+		//자소서 상태객체 
+		JasoState jasoState = new JasoState();
+		
+		//자소서 불러오기
+		Jaso jaso = this.jasoService.getJaso(memberId);
+	    model.addAttribute("jaso", jaso);	 
+	    
+	    //그룹 리스트 불러오기
+	    List<Group> groupList = this.jasoService.getGroupList(memberId);
+	    model.addAttribute("groupList", groupList);
+	    
+	    //파일 리스트 불러오기
+	    List<File> fileList = this.jasoService.getFileList(memberId);
+	    //파일별 항목 갯수 계산
+	    for(int i=0; i<fileList.size(); i++)
+	    {
+	    	int count = this.jasoService.getQnaListFromFileNo(fileList.get(i).getFileNo()).size();
+	    	fileList.get(i).setQnaTotalCount(count);
+	    	if(fileList.get(i).getFileTrashYn().equals("Y"))	    	
+	    		jasoState.setTotalFileInTrash(jasoState.getTotalFileInTrash() + 1);
+	    	
+	    	if(fileList.get(i).getFileInterestYn().equals("Y"))	    	
+	    		jasoState.setTotalFileInInterest(jasoState.getTotalFileInInterest() + 1);	    	
+	    }
+	    model.addAttribute("fileList", fileList);
+	    
+	    //qna 전체가져오기
+		List<Qna> qnaList = this.jasoService.getQnaList(memberId);
+		for(int i=0; i<qnaList.size(); i++)
+		{
+			if(qnaList.get(i).getQnaTrash().equals("Y"))			
+	    		jasoState.setTotalQnaInTrash(jasoState.getTotalQnaInTrash() + 1);
+			
+			if(qnaList.get(i).getQnaInterestYn().equals("Y"))
+	    		jasoState.setTotalQnaInInterest(jasoState.getTotalQnaInInterest() + 1);
+		}				    
+	    model.addAttribute("jasoState", jasoState);
+	    
+	 /* 메뉴구성을 위한 액션 끝 */   
 	}
 
 }

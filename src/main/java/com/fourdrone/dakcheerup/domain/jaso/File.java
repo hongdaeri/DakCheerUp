@@ -29,6 +29,7 @@ public class File {
 	
 	private int qnaTotalCount;			//총질문수
 	private int qnaAnswerCount;			//답변수
+
 	public int getFileNo() {
 		return fileNo;
 	}

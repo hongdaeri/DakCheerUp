@@ -25,6 +25,7 @@ public class Qna{
 	
 	private Timestamp qnaRegDate;			//문항_등록일 
 	private Timestamp qnaEditDate;			//문항_수정
+	
 	public String getMemberId() {
 		return memberId;
 	}

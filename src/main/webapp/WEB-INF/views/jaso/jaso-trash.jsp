@@ -10,8 +10,8 @@
 		<div class="row">
 			<div class="col-md-8">
 				<ul class="nav nav-pills">
-					<li class="active"><a href="#trash-file-tab" data-toggle="tab">자기소개서 파일 <span class="m-l-10 badge badge-success">20</span></a></li>
-					<li><a href="#trash-qna-tab" data-toggle="tab">자기소개서 문항 <span class="m-l-10 badge badge-success">5</span></a></li>
+					<li class="active"><a href="#trash-file-tab" data-toggle="tab">자기소개서 파일 <span class="m-l-10 badge badge-success">${jasoState.totalFileInTrash }</span></a></li>
+					<li><a href="#trash-qna-tab" data-toggle="tab">자기소개서 문항 <span class="m-l-10 badge badge-success">${jasoState.totalQnaInTrash }</span></a></li>
 				</ul>
 			</div>
 			<div class="col-md-4 text-right">
