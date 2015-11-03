@@ -12,8 +12,10 @@ public interface AccountService {
 
     void addMember(Member member);
 
-    void modMember(String memberId);
-
+    void modMember(Member member);
+    
+    void modMemberSignOut(Member member);
+    
     void delMember(String memberId);
 
     ArrayList<Member> getMemberList();

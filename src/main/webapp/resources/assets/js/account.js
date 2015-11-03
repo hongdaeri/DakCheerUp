@@ -57,6 +57,30 @@ function signup_validate(form)
 }
 
 
+function modify_validate(form)
+{
+	
+   
+    if(form.newPassword.value.length >= 1)
+    {
+    	if(form.newPassword.value!=form.newPassword_re.value)
+        {
+            alert('패스워드 입력값이 서로 다릅니다.');
+            form.newPassword.focus();
+            return true;
+        } 
+    	else if(form.newPassword.value.length < 6)
+        {
+			 alert('비밀번호는 최소 6자리 이상이어야 합니다.');
+		     form.newPassword.focus();
+		     return true;
+        }
+    }
+   
+	form.submit();
+    
+}
+
 function login_validate(form)
 {
     if(!form.memberId.value)
@@ -75,6 +99,11 @@ function login_validate(form)
     {
         form.submit();
     }
+}
+
+function signOut_alert()
+{
+    alert("고객님의 정보는 3일 뒤 완전 삭제되며, 그 이전에 얼마든지 탈퇴 취소하실 수 있습니다.");
 }
 
 

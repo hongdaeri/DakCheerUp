@@ -10,6 +10,8 @@
         <result property="memberPassword" column="MEMBER_PASSWORD" />
         <result property="memberName" column="MEMBER_NAME" />
         <result property="regDate" column="MEMBER_REG_DATE" />
+        <result property="memberSignOutRequest" column="MEMBER_SIGNOUT_REQUEST" />
+        <result property="memberSignOutRequestDate" column="MEMBER_SIGNOUT_REQUEST_DATE" />
     </resultMap>
 
     <select id="getMemberList" resultMap="MemberResult">
@@ -32,11 +34,16 @@
         WHERE member_id = #{memberId}
     </update>
 
+    <update id="modMemberSignOut" parameterType="com.fourdrone.dakcheerup.domain.member.Member">
+        UPDATE TB_MEMBER
+        SET MEMBER_SIGNOUT_REQUEST = #{memberSignOutRequest} , MEMBER_SIGNOUT_REQUEST_DATE=#{memberSignOutRequestDate}
+        WHERE member_id = #{memberId}
+    </update>
+
 
     <delete id="delMember" parameterType="String">
         DELETE FROM TB_MEMBER WHERE member_id = #{memberId}
     </delete>
-
 
 
     <select id="getMemberForLogin" parameterType="com.fourdrone.dakcheerup.domain.member.Member" resultMap="MemberResult">

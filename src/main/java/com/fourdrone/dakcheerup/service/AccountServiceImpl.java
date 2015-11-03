@@ -31,9 +31,9 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void modMember(String memberId) {
+    public void modMember(Member member) {
         AccountMapper accountMapper = sqlSession.getMapper(AccountMapper.class);
-        accountMapper.modMember(memberId);
+        accountMapper.modMember(member);
 
     }
 
@@ -56,4 +56,11 @@ public class AccountServiceImpl implements AccountService {
         AccountMapper accountMapper = sqlSession.getMapper(AccountMapper.class);
         return accountMapper.getMemberForLogin(member);
     }
+
+	@Override
+	public void modMemberSignOut(Member member) {
+		AccountMapper accountMapper = sqlSession.getMapper(AccountMapper.class);
+        accountMapper.modMemberSignOut(member);
+		
+	}
 }

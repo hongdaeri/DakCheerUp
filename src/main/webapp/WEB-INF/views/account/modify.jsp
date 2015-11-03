@@ -88,11 +88,7 @@
                                           <td colspan="2" class="p-0">
                                           	<div id="mod-password" class="collapse" style="border-bottom:1px solid #ccc">
 												<table class="table table-profile m-b-0">								                
-													<tbody>
-									                	<tr>
-									                		<td class="field">현재 비밀번호</td>
-									                		<td><input type="text" name="memberPassword" class="form-control input-xs input-inline " /></td>
-									                	</tr>
+													<tbody>									                	
 									                	<tr>
 									                		<td class="field">새 비밀번호</td>
 									                		<td><input type="text" name="newPassword" class="form-control input-xs input-inline " /></td>
@@ -127,14 +123,22 @@
                                       </tr>
                                       <tr class="highlight">
                                           <td class="field">계정삭제</td>
-                                          <td><a href="#sign-out" data-toggle="modal">저는 닥취업에서 탈퇴 하겠습니다.</a></td>
+                                          <td>
+                                          	<c:if test="${member.memberSignOutRequest eq 'N'}">
+                                          		<a href="#sign-out" data-toggle="modal">저는 닥취업에서 탈퇴 하겠습니다.</a>
+                                          	</c:if>
+                                          	<c:if test="${member.memberSignOutRequest ne 'N'}">
+                                          		탈퇴신청 중입니다. (신청일 : <fmt:formatDate pattern="yyyy년 MM월 dd일 kk시 mm분" value="${member.memberSignOutRequestDate}" />)
+                                          		&nbsp;&nbsp;&nbsp;<a href="/account/signOut" class="btn btn-info btn-xs">탈퇴취소</a>
+                                          	</c:if>
+                                          </td>
                                       </tr>                                      
                                   </tbody>
                               </table>  
-                              </form>                            
 				              <div class="m-t-0 m-b-10 text-right">
-					            <a href="#" onclick="document.getElementById('member-info-modify').submit()" class="btn btn-warning btn-sm">&nbsp; 수정완료 &nbsp;</a>
+				              	<button type="button" onClick="modify_validate(this.form);" class="btn btn-warning btn-sm">&nbsp; 수정완료 &nbsp;</button>
 					          </div>
+					          </form>  
                           </div>
                           <!-- end table -->
                       </div>
@@ -145,39 +149,14 @@
               <!-- end profile-section -->             
           </div>
 	<!-- end profile-container -->
-	<!-- #modal-alert -->
-	<div class="modal fade" id="sign-out">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					<h4 class="modal-title">닥취업 탈퇴선언!</h4>
-				</div>
-				<div class="modal-body">
-					<div class="alert alert-danger m-b-0">
-						<h4><i class="fa fa-info-circle"></i>&nbsp;탈퇴 전 확인하세요.</h4>
-						<p>정말 탈퇴 하실 건가요? 닥취업이 충분한 서비스를 제공하지 못하였나 보군요.</p>
-						<p><strong>${member.memberName}</strong>님의 마음이 변할지도 모르니, 회원탈퇴는 탈퇴요청 3일 후에 완료 됩니다.</p>
-						<p>3일간의 유예기간 동안은 언제든지 탈퇴취소를 요청하실 수 있으며, </p>
-						<p>회원 탈퇴 시 <strong>${member.memberName}</strong>님의 소중한 정보는 티끌 없이 모두 삭제 되며 따로 보관하지 않으니,</p>
-						<p>개인정보 수집에 대한 걱정은 안하셔도 됩니다.</p>
-						<p>더 나은 서비스를 제공하지 못하여 죄송합니다.</p>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">탈퇴안할게요</a>
-					<a href="javascript:;" class="btn btn-sm btn-danger" data-dismiss="modal">탈퇴합니다</a>
-				</div>
-			</div>
-		</div>
-	</div>
+
 
 		
 	
 
 	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
 	<div id="siteMeshJavaScript">
-	
+		<script src="/resources/js/account.js"></script>
 			
 		<script>		
 			$(document).ready(function() {

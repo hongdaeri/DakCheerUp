@@ -138,7 +138,7 @@
 							<li><a href="/jaso"><span class="badge badge-danger pull-right">2</span> 자기소개서</a></li>
 							<li><a href="/calendar">취업달력</a></li>
 							<li class="divider"></li>
-							<li><a href="#">계정정보 수정</a></li>
+							<li><a href="/account/modify">계정정보 수정</a></li>
 							<li><a href="/account/logout">로그아웃</a></li>
 						</ul>
 					</li>
@@ -243,7 +243,35 @@
 
 
 
-
+	<!-- ============BEGIN MODAL ZONE ========================== -->
+	<!-- #modal-alert -->
+	<div class="modal fade" id="sign-out">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title">닥취업 탈퇴선언!</h4>
+				</div>
+				<div class="modal-body">
+					<div class="alert alert-danger m-b-0">
+						<h4><i class="fa fa-info-circle"></i>&nbsp;탈퇴 전 확인하세요.</h4>
+						<p>정말 탈퇴 하실 건가요? 닥취업이 충분한 서비스를 제공하지 못하였나 보군요.</p>
+						<p><strong>${member.memberName}</strong>님의 마음이 변할지도 모르니, 회원탈퇴는 탈퇴요청 3일 후에 완료 됩니다.</p>
+						<p>3일간의 유예기간 동안은 언제든지 탈퇴취소를 요청하실 수 있으며, </p>
+						<p>회원 탈퇴 시 <strong>${member.memberName}</strong>님의 소중한 정보는 티끌 없이 모두 삭제 되며 따로 보관하지 않으니,</p>
+						<p>개인정보 수집에 대한 걱정은 안하셔도 됩니다.</p>
+						<p>더 나은 서비스를 제공하지 못하여 죄송합니다.</p>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">탈퇴안할게요</a>
+					<a href="/account/signOut" class="btn btn-sm btn-danger">탈퇴합니다</a>
+				</div>
+			</div>
+		</div>
+	</div>
+		<!-- ============END MODAL ZONE ========================== -->
+	
 	<!-- ================== BEGIN BASE JS ================== -->
 		<script src="/resources/plugins/jquery/jquery-1.9.1.min.js"></script>
 

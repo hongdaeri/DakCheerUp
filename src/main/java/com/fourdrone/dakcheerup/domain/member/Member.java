@@ -6,8 +6,8 @@ public class Member {
 	private String memberPassword;	// 회원_비밀번호	
 	private String memberName;		// 회원_이름
 	private Timestamp regDate;		// 회원_가입
-	
-	
+	private String memberSignOutRequest;		// 탈퇴요청  Y,N
+	private Timestamp memberSignOutRequestDate;	// 탈퇴요청일 
 	
 	
 	public String getMemberId() {
@@ -34,6 +34,20 @@ public class Member {
 	public void setRegDate(Timestamp regDate) {
 		this.regDate = regDate;
 	}
+	public String getMemberSignOutRequest() {
+		return memberSignOutRequest;
+	}
+	public void setMemberSignOutRequest(String memberSignOutRequest) {
+		this.memberSignOutRequest = memberSignOutRequest;
+	}
+	public Timestamp getMemberSignOutRequestDate() {
+		return memberSignOutRequestDate;
+	}
+	public void setMemberSignOutRequestDate(Timestamp memberSignOutRequestDate) {
+		this.memberSignOutRequestDate = memberSignOutRequestDate;
+	} 
+	
+	
 	
 	
 

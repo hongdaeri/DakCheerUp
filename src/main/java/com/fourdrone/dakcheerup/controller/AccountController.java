@@ -88,19 +88,70 @@ public class AccountController {
         }
    }
 
-    //테스트
+    //회원정보 수정 
     @RequestMapping(value="/modify", method = RequestMethod.GET)
-    public String test(ModelMap model) {
+    public String getModify(ModelMap model) {
     	String memberId = (String)session.getAttribute("memberLoginInfo");
 		
 		Profile profile = this.resumeService.getProfile(memberId);
 	    model.addAttribute("profile", profile);  
 	    
 	    Member member = this.accountService.getMember(memberId);
-	    model.addAttribute("member", member);
+	    model.addAttribute("member", member);	    
 	    
         return "account/modify";
     }
+    @RequestMapping(value="/modify", method = RequestMethod.POST)
+    public String postModify(ModelMap model,  HttpServletRequest request) {
+    	String memberId = (String)session.getAttribute("memberLoginInfo");
+		
+    	// member table update
+    	String memberName = request.getParameter("memberName");
+    	String newPassword = request.getParameter("newPassword");
+    	Member member = this.accountService.getMember(memberId);
+    	member.setMemberName(memberName);
+    	if(newPassword!=null) { member.setMemberPassword(newPassword); }    	
+    	this.accountService.modMember(member);
+    	
+    	//profile table update
+    	String profileName = memberName;    	
+    	String profilePhone = request.getParameter("profilePhone");
+    	String profileEmail = request.getParameter("profileEmail");
+    	String profileJuminFront = request.getParameter("profileJuminFront");
+		Profile profile = this.resumeService.getProfile(memberId);
+		profile.setProfileName(profileName);
+		profile.setProfilePhone(profilePhone);
+		profile.setProfileEmail(profileEmail);
+		profile.setProfileJuminFront(profileJuminFront);		
+		this.resumeService.modProfile(profile);
+	  
+	    
+        return "redirect:/account/modify";
+    }
+    
+    // 회원 탈퇴 처리 (토글)
+    @RequestMapping(value="/signOut", method = RequestMethod.GET)
+    public String signOut(ModelMap model,  HttpServletRequest request) {
+    	String memberId = (String)session.getAttribute("memberLoginInfo");
+		
+    	// member table update
+    	Member member = this.accountService.getMember(memberId);
+    	String state = member.getMemberSignOutRequest();
+    	if(state.equals("Y"))
+    		member.setMemberSignOutRequest("N");
+    	else
+    		member.setMemberSignOutRequest("Y");
+    	
+    	member.setMemberSignOutRequestDate(new Timestamp(System.currentTimeMillis()));
+    	
+    	this.accountService.modMemberSignOut(member);
+    	
+	    
+        return "redirect:/account/modify";
+    }
+    
+    
+    
 
     //로그인 처리
     @RequestMapping(value ="/login", method = RequestMethod.POST)
