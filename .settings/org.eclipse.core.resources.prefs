@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
 encoding//src/main/webapp/WEB-INF/views/jaso/jaso-footer.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/util/config/util_footer.jsp=UTF-8
 encoding/<project>=UTF-8
 separateDerivedEncodings=true
