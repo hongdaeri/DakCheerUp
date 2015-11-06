@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.fourdrone.dakcheerup.domain.Jaso;
 import com.fourdrone.dakcheerup.domain.jaso.File;
 import com.fourdrone.dakcheerup.domain.jaso.Group;
+import com.fourdrone.dakcheerup.domain.jaso.Note;
 import com.fourdrone.dakcheerup.domain.jaso.Qna;
 import com.fourdrone.dakcheerup.domain.jaso.QnaLog;
 import com.fourdrone.dakcheerup.mapper.JasoMapper;
@@ -35,6 +36,12 @@ public class JasoServiceImpl implements JasoService {
 	public File getFile(int fileNo) {
 		JasoMapper jasoMapper = sqlSession.getMapper(JasoMapper.class);
 	    return jasoMapper.getFile(fileNo);
+	}
+	
+	@Override
+	public File getFileLastWork(String memberId) {
+		JasoMapper jasoMapper = sqlSession.getMapper(JasoMapper.class);
+	    return jasoMapper.getFileLastWork(memberId);
 	}
 
 	@Override
@@ -123,6 +130,19 @@ public class JasoServiceImpl implements JasoService {
 	    return jasoMapper.getQnaLastItem(memberId);
 	}
 	
+	@Override
+	public Note getNote(int noteNo) {
+		JasoMapper jasoMapper = sqlSession.getMapper(JasoMapper.class);
+	    return jasoMapper.getNote(noteNo);
+	}
+
+	@Override
+	public ArrayList<Note> getNoteList(String memberId) {
+		JasoMapper jasoMapper = sqlSession.getMapper(JasoMapper.class);
+		ArrayList<Note> result = jasoMapper.getNoteList(memberId);
+	    return result;
+	}
+	
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * *
 	 *                                                   *
 	 *               ADD JASO                          	 * 
@@ -132,8 +152,6 @@ public class JasoServiceImpl implements JasoService {
 	public void addJaso(Jaso jaso) {
 		JasoMapper jasoMapper = sqlSession.getMapper(JasoMapper.class);
 		jasoMapper.addJaso(jaso);
-		
-		
 	}
 
 	@Override
@@ -160,6 +178,12 @@ public class JasoServiceImpl implements JasoService {
 		jasoMapper.addQnaLog(qnaLog);		
 	}
 
+	@Override
+	public void addNote(Note note) {
+		JasoMapper jasoMapper = sqlSession.getMapper(JasoMapper.class);
+		jasoMapper.addNote(note);
+		
+	}
 	
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * *
 	 *                                                   *
@@ -221,6 +245,12 @@ public class JasoServiceImpl implements JasoService {
 		jasoMapper.modQnaLog(qnaLog);		
 	}
 
+	@Override
+	public void modNote(Note note) {
+		JasoMapper jasoMapper = sqlSession.getMapper(JasoMapper.class);
+		jasoMapper.modNote(note);
+		
+	}
 	
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * *
 	 *                                                   *
@@ -262,5 +292,20 @@ public class JasoServiceImpl implements JasoService {
 		JasoMapper jasoMapper = sqlSession.getMapper(JasoMapper.class);
 		jasoMapper.delQnaOnFile(fileNo);
 	}
+
+	@Override
+	public void delNote(int noteNo) {
+		JasoMapper jasoMapper = sqlSession.getMapper(JasoMapper.class);
+		jasoMapper.delNote(noteNo);
+	}
+
+	@Override
+	public void delnoteAll(String memberId) {
+		JasoMapper jasoMapper = sqlSession.getMapper(JasoMapper.class);
+		jasoMapper.delnoteAll(memberId);
+		
+	}
+
+	
 
 }

@@ -24,6 +24,7 @@ public interface JasoMapper {
     File getFile(int fileNo);									//파일 단일항목
     ArrayList<File> getFileList(String memberId);				//파일 리스트
     File getFileLastItem(String memberId);
+    File getFileLastWork(String memberId);						//마지막 작업파일 
     
     // 그룹
     Group getGroup(int groupNo);								//그룹 단일항목
@@ -42,6 +43,10 @@ public interface JasoMapper {
     QnaLog getQnaLog(int qnaLogNo);								//문항 _ 로그_ 단일항목
     ArrayList<QnaLog> getQnaLogList(String memberId);			//문항 _ 로그 _ 리스트
     
+    
+    //노트
+    Note getNote(int noteNo);									// 노트_단일항목 
+    ArrayList<Note> getNoteList(String memberId);				// 노트_리스트
 	
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * *
 	 *                                                   *
@@ -63,8 +68,8 @@ public interface JasoMapper {
     // 문항로그 
     void addQnaLog(QnaLog qnaLog);							//문항 _ 로그_ 단일항목
     
-    
-    
+    // 노트 
+    void addNote(Note note);								// 노트
 	
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * *
 	 *                                                   *
@@ -87,9 +92,11 @@ public interface JasoMapper {
     void modQnaInterest(Qna qna);							//문항 관심문항
     void modQnaTrash(Qna qna);								//문항_휴지통 
     
-    
     // 문항로그 
     void modQnaLog(QnaLog qnaLog);							//문항 _ 로그_ 단일항목
+    
+    //노트
+    void modNote(Note note);								//노트 
     
 	
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -112,5 +119,9 @@ public interface JasoMapper {
     
     // 문항로그 
     void delQnaLog(int qnaLogNo);							//문항 _ 로그_ 단일항목
+    
+    //노트 
+    void delNote(int noteNo);								//노트단일 
+    void delnoteAll(String memberId);						//노트 전체 지우기 
 
 }

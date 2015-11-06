@@ -32,8 +32,9 @@
 				});
 				
 				FormSliderSwitcher.init();
-				
-			});	
+			
+			});				
+			
 		</script>		
 	</div>
 	<!-- ================== END PAGE LEVEL JS ================== -->

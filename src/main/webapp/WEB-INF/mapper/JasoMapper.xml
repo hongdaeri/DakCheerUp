@@ -62,6 +62,13 @@
         <result property="qnaLogRegDate" column="QNA_LOG_REG_DATE" />
     </resultMap>
     
+    <!-- 노트    -->
+	<resultMap type="com.fourdrone.dakcheerup.domain.jaso.Note" id="NoteResult">
+        <result property="memberId" column="MEMBER_ID" />
+        <result property="noteNo" column="NOTE_NO" />
+        <result property="noteContents" column="NOTE_CONTENTS" />
+        <result property="noteRegDate" column="NOTE_REG_DATE" />
+    </resultMap>
        
  
     
@@ -82,6 +89,15 @@
         SELECT  * FROM  TB_JASO_FILE
         WHERE FILE_NO = #{fileNo}
     </select>  
+    
+    <!-- 자소서_파일_마지막작업 파일 단일항목  -->
+    <select id="getFileLastWork" resultMap="FileResult"  parameterType="String">
+        SELECT  * FROM  TB_JASO_FILE
+        WHERE MEMBER_ID = #{memberId}
+        ORDER BY FILE_EDIT_DATE DESC 
+        LIMIT 1
+    </select> 
+    
     <!-- 자소서_파일 _리스트 -->
 	<select id="getFileList" resultMap="FileResult"  parameterType="String">
         SELECT  * FROM  TB_JASO_FILE
@@ -170,6 +186,17 @@
     </select>
     
     
+     <!-- 노트 단일항목   -->
+	<select id="getNote" resultMap="NoteResult"  parameterType="Integer">
+        SELECT  * FROM  TB_JASO_NOTE
+       	WHERE 	NOTE_NO = #{noteNo}       	    	
+    </select>
+     <!-- 노트 리스트   -->
+	<select id="getNoteList" resultMap="NoteResult"  parameterType="String">
+        SELECT  * FROM  TB_JASO_NOTE
+       	WHERE 	MEMBER_ID = #{memberId}      
+       	ORDER BY	NOTE_NO DESC; 	    	
+    </select>
     
     
 	
@@ -214,7 +241,12 @@
         VALUES (#{memberId}, #{groupName}, #{groupRegDate})
     </insert>
     
-  
+  	<!-- 노트 -->
+	<insert id="addNote" parameterType="com.fourdrone.dakcheerup.domain.jaso.Note">
+        INSERT INTO  TB_JASO_NOTE (MEMBER_ID,	NOTE_CONTENTS,	NOTE_REG_DATE)
+        VALUES (#{memberId}, #{noteContents}, #{noteRegDate})
+        
+    </insert>
 	
 	
 	
@@ -305,7 +337,12 @@
     </update>
     
     
-
+	 <!-- 노트 수정 -->
+	<update id="modNote" parameterType="com.fourdrone.dakcheerup.domain.jaso.Note">
+        UPDATE  TB_JASO_Note 
+		SET 	NOTE_CONTENTS = #{noteContents}, NOTE_REG_DATE = #{noteRegDate}
+        WHERE 	NOTE_NO = #{noteNo}
+    </update>
 
 
 	<!-- * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -351,6 +388,18 @@
 	<delete id="delGroup" parameterType="Integer">
         DELETE 	FROM  TB_JASO_GROUP 
         WHERE 	GROUP_NO = #{groupNo}
+    </delete>
+    
+    <!-- 노트 -->
+	<delete id="delNote" parameterType="Integer">
+        DELETE 	FROM  TB_JASO_NOTE
+        WHERE 	NOTE_NO = #{noteNo}
+    </delete>
+    
+    <!-- 노트, 전체지우기 -->
+	<delete id="delNoteAll" parameterType="String">
+        DELETE 	FROM  TB_JASO_NOTE
+        WHERE 	MEMBER_ID = #{memberId}
     </delete>
    
 

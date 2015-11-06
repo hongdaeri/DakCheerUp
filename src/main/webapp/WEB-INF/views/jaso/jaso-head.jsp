@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -120,13 +121,17 @@
                			<a id="close-note-div" href="#"><i class="fa fa-angle-left fa-lg pull-left"></i></a> &nbsp;&nbsp;&nbsp;
                			<i class="fa-paperclip fa"></i>&nbsp; 노트                 			
                		</h5>
-               	 	<form class="form-horizontal ">
+               		
+               	 	<form class="form-horizontal" id="jaso-note" name="note" method="post" action="/jaso/note">
                	 		<div class="form-group">
                             <div class="col-md-12">
-                            	<textarea class="form-control" placeholder="남기실 노트를 작성하세요." rows="5"></textarea>
+                            	<textarea name="noteContents" class="form-control" placeholder="남기실 노트를 작성하세요." rows="5"></textarea>
                             </div>
                         </div>
-						
+						<div class="alert alert-warning fade in m-b-15">
+							<strong>주의!</strong> &nbsp; 작성 중인 자기소개서의 저장을 먼저하세요. 작성 중인 내용이 손실 될 수 있습니다.
+							<span class="close" data-dismiss="alert">&times;</span>
+						</div>
 						<div class="form-group">
 							<div class="col-md-8">
 						        <a href="javascript:;" class="btn btn-inverse btn-sm"><i class="fa fa-camera"></i></a>
@@ -135,11 +140,27 @@
 						    </div>												
 						    <div class="col-md-4">
 						        <button type="submit" class="btn btn-sm btn-warning btn-block">노트 작성</button>
-						    </div>
-						</div>
-						
-						<hr style="border:1px solid #000;"/>
+						    </div>						    
+						</div>						
+						<hr style="border:1px solid #000;"/>						
                 	</form>
+                	
+                	<!-- Begin Note List  -->
+                	<div class="row">
+                		<div class="col-xs-12">
+                			<c:forEach items="${noteList}" var="note">
+	                			<div class="note-box">  
+	                				<div class="note-date"><fmt:formatDate pattern="yy/MM/dd kk:mm" value="${note.noteRegDate}"/></div>           				
+									<div class="note-contents">
+										${note.noteContents}
+										<span class="note-btn"><a href="/jaso/note/delete/${note.noteNo}" class="btn btn-xs btn-icon btn-inverse"><i class="fa fa-trash"></i></a></span>
+									</div>	
+								</div>
+							</c:forEach>	
+							
+                		</div>                		
+                	</div>
+                	<!--  End Note List -->
                 </div>                                        
 			</div>
         </div>
@@ -168,11 +189,16 @@
 						        </select>
 						    </div>
 						</div>
-						<div class="form-group m-t-40">												
+						<div class="alert alert-warning fade in">
+							<strong>주의!</strong> &nbsp; 작성 중인 자기소개서의 저장을 먼저하세요. 작성 중인 내용이 손실 될 수 있습니다.
+							<span class="close" data-dismiss="alert">&times;</span>
+						</div>
+						<div class="form-group ">												
 						    <div class="col-md-12">
 						        <button type="submit" class="btn btn-sm btn-warning btn-block">자기소개서 생성</button>
 						    </div>
 						</div>
+						
                 	</form>
                 </div>                                        
 			</div>
@@ -180,11 +206,12 @@
          <!--  hide menu (new-group) start-->
         <div id="new-group-div" class="vertical-box-column width-300 border-right">
             <div class="vertical-box">
-                <div class="wrapper">
+                <div class="wrapper">                
                 	<h5>
                			<a id="close-new-group-div" href="#"><i class="fa fa-angle-left fa-lg pull-left"></i></a> &nbsp;&nbsp;&nbsp;
                			<i class="icon-folder-alt"></i>&nbsp; 그룹 생성                 			
                		</h5>
+               		
                	 	<form id="group" name="group" class="form-horizontal" method="post" action="/jaso/new-group">
                	 		<div class="form-group m-t-20 m-r-5">
 						    <label class="col-md-3 control-label">그룹명</label>
@@ -192,12 +219,16 @@
 						        <input name="groupName" type="text" class="form-control" maxlength="15"/>
 						    </div>
 						</div>
-						
+						<div class="alert alert-warning fade in m-t-10 m-b-15">
+							<strong>주의!</strong> &nbsp; 작성 중인 자기소개서의 저장을 먼저하세요. 작성 중인 내용이 손실 될 수 있습니다.
+							<span class="close" data-dismiss="alert">&times;</span>
+						</div>
 						<div class="form-group m-t-20">
 						    <div class="col-md-12 text-right">
 						        <button type="submit" class="btn btn-sm btn-warning btn-block">그룹 생성</button>
 						    </div>
 						</div>
+						
                 	</form>
                 </div>                                        
 			</div>

@@ -121,3 +121,28 @@ textarea { resize:none; }
 	background: #f4f6f7;
 	border : none;	
 }
+
+.note-box
+{
+	
+	border-left: 5px solid #666;
+	padding-left: 10px;
+	padding-bottom: 5px;
+}
+.note-contents
+{
+	margin-top:5px;
+	margin-bottom: 5px;
+	background:#fff;
+	border : 1px solid #333;
+	padding: 10px;
+}
+.note-btn {
+	float:right;
+	text-align:right;
+}
+.note-date
+{
+	text-align:right;
+	margin-bottom:5px;
+}

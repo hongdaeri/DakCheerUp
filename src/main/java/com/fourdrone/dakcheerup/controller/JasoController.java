@@ -33,10 +33,17 @@ public class JasoController {
 	// 자기소개서 불러오기
 	@RequestMapping(value="", method = RequestMethod.GET)
 	public String getJaso(ModelMap model) {
+		
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		
 		//메뉴구성을 위한 메소드 호출 
-		createMenuInfo(model);    
-	    
-	    return "jaso/jaso-open";
+		createMenuInfo(model);    	    
+		
+		// (임시) 마지막 작업 파일로 가기. 
+		File file = this.jasoService.getFileLastWork(memberId);
+		int fileNo = file.getFileNo();
+		
+	    return "redirect:/jaso/open/" + fileNo;
 	}
 	
 	//파일생성
@@ -44,7 +51,7 @@ public class JasoController {
 	@RequestMapping(value="/new-file", method = RequestMethod.POST)
 	public String postNewFile(ModelMap model, HttpServletRequest request) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
-		
+	
 		// 파일생성
 		File file = new File();
 		file.setMemberId(memberId);
@@ -73,8 +80,9 @@ public class JasoController {
 	
 	//그룹생성 
 	@RequestMapping(value="/new-group", method = RequestMethod.POST)
-	public String postNewGroup(@ModelAttribute("group") Group group) {
+	public String postNewGroup(@ModelAttribute("group") Group group, HttpServletRequest request) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
+	
 		
 		// 그룹 생성
 		group.setMemberId(memberId);
@@ -82,6 +90,32 @@ public class JasoController {
         this.jasoService.addGroup(group);
         
 	    return "redirect:";
+	}
+	
+	//노트 생성 
+	@RequestMapping(value="/note", method = RequestMethod.POST)
+	public String postNewNote(@ModelAttribute("note") Note note, HttpServletRequest request) {
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+	
+		// 노트 생성
+		note.setMemberId(memberId);
+		note.setNoteRegDate(new Timestamp(System.currentTimeMillis()));		
+        this.jasoService.addNote(note);
+        
+	    return "redirect:";
+	}
+	//노트 삭제 
+	@RequestMapping(value="/note/delete/{noteNo}", method = RequestMethod.GET)
+	public String deleteNote(ModelMap model, @PathVariable("noteNo") int noteNo) {
+
+		String memberId = (String)session.getAttribute("memberLoginInfo");
+		Note note = this.jasoService.getNote(noteNo);
+		
+		if(note.getMemberId().equals(memberId))		
+			this.jasoService.delNote(noteNo);
+		
+		System.out.println("tㅏㄱ제됨");
+		return "redirect:/jaso";
 	}
 	
 	// 자소서 열기 (문항불러오기)
@@ -393,6 +427,11 @@ public class JasoController {
 	    		jasoState.setTotalQnaInInterest(jasoState.getTotalQnaInInterest() + 1);
 		}				    
 	    model.addAttribute("jasoState", jasoState);
+	    
+	    
+	    //노트 가져오기 
+	    List<Note> noteList = this.jasoService.getNoteList(memberId);
+	    model.addAttribute("noteList", noteList);
 	    
 	 /* 메뉴구성을 위한 액션 끝 */   
 	}
