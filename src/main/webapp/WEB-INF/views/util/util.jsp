@@ -1,40 +1,40 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-	<link href="/resources/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
-	<!-- =================== ETC ======================================= -->
-</head>
-<body>
-	 <div class="col-md-12">
-		<!-- begin error -->
-		
-		<div class="text-center"><h1><br><br>죄송합니다. 준비중입니다.</h1></div>
-			<div class="text-center">
-			    <h3>빠른시일 내에 해당 서비스를 제공하겠습니다.</h3>
-			</div>		    
-		<!-- end error -->			
-		</div> 
-		<div class="text-right error-code"><br><br><br> <i class="fa fa-warning m-r-100"></i>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:include page="./config/util_head.jsp" flush="false" />
 
-	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-	<div id="siteMeshJavaScript">
-		<script src="/resources/plugins/fullcalendar/fullcalendar/fullcalendar.js"></script>
-		<script src="/resources/js/calendar.demo.min.js"></script>
-			
-		<script>		
-			$(document).ready(function() {
-				App.init();
-				Calendar.init();
-				document.getElementById("m_util").className = "active";	
-				
-			});
-				
-			
-		</script>		
+<div data-scrollbar="true" data-height="100%" class="m-l-15 m-r-15">
+	<div class="row">
+		<div class="col-md-12" data-spy="scroll" data-target="util-menu">
+			<!-- begin panel -->
+			<div class="panel panel-inverse" data-height="100%"
+				data-sortable-id="ui-widget-1">
+				<div class="panel-heading">
+					<div class="panel-heading-btn">
+						<a href="javascript:"
+							class="btn btn-xs btn-icon btn-circle btn-default"
+							data-click="panel-expand"><i class="fa fa-expand"></i></a> <a
+							href="javascript:"
+							class="btn btn-xs btn-icon btn-circle btn-success"
+							data-click="panel-reload"><i class="fa fa-repeat"></i></a> <a
+							href="javascript:"
+							class="btn btn-xs btn-icon btn-circle btn-warning"
+							data-click="panel-collapse"><i class="fa fa-minus"></i></a> <a
+							href="javascript:"
+							class="btn btn-xs btn-icon btn-circle btn-danger"
+							data-click="panel-remove"><i class="fa fa-times"></i></a>
+					</div>
+					<h4 class="panel-title">실 급여 계산기</h4>
+				</div>
+				<div class="panel-body p-b-0">
+					
+					
+					
+				</div>
+			</div>
+			<!-- end panel -->			
+		</div>
 	</div>
-	<!-- ================== END PAGE LEVEL JS ================== -->
- 	
-</body>
-</html>
+</div>
 
+
+<jsp:include page="./config/util_footer.jsp" flush="false" />
