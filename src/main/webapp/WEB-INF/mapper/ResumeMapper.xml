@@ -661,7 +661,7 @@
         		PROFILE_PHONE = #{profilePhone}, 			PROFILE_EMAIL = #{profileEmail}, 			PROFILE_ADDR = #{profileAddr}, 				PROFILE_HOBBY = #{profileHobby}, 				PROFILE_FORTE = #{profileForte},
         		PROFILE_RELIGION = #{profileReligion}, 		PROFILE_VETERANS = #{profileVeterans},		PROFILE_MARRIAGE = #{profileMarriage}, 		PROFILE_WEBSITE = #{profileWebsite}, 			PROFILE_DISABILITY = #{profileDisability}, 
         		PROFILE_NAVER_BLOG = #{profileNaverBlog},	PROFILE_TISTORY = #{profileTistory},		PROFILE_INSTAGRAM = #{profileInstagram}, 	PROFILE_FACEBOOK = #{profileFacebook}, 			PROFILE_PINTEREST = #{profilePinterest},
-        		PROFILE_TWITTER = #{profileTwitter},		PROFILE_TUMBLR = #{profileTumblr},			PROFILE_YOUTUBE = #{profileYoutube},		PROFILE_REG_DATE = #{profileRegDate}
+        		PROFILE_TWITTER = #{profileTwitter},		PROFILE_TUMBLR = #{profileTumblr},			PROFILE_YOUTUBE = #{profileYoutube},		PROFILE_REG_DATE = #{profileRegDate},			PROFILE_NAME = #{profileName}
         WHERE 	MEMBER_ID = #{memberId}
     </update>
     

@@ -67,7 +67,7 @@
                                      
                                       <tr>
                                           <td class="field">휴대전화</td>
-                                          <td><input type="text" name="profilePhone" value="${profile.profilePhone}" class="form-control input-xs input-inline " /></td>
+                                          <td><input type="text" name="profilePhone" value="${profile.profilePhone}" class="form-control input-xs input-inline masked-input-phone" /></td>
                                       </tr>
                                       <tr>
                                           <td class="field">이메일</td>
@@ -156,12 +156,14 @@
 
 	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
 	<div id="siteMeshJavaScript">
+		<script src="/resources/plugins/masked-input/masked-input.min.js"></script>
 		<script src="/resources/js/account.js"></script>
 			
-		<script>		
+		<script>	
+		
 			$(document).ready(function() {
 				App.init();
-				
+				$(".masked-input-phone").mask("999-9999-9999");	
 			});			
 			
 		</script>		

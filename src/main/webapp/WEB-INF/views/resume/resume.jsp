@@ -32,7 +32,7 @@
 							<tbody>
 								<tr>
 									<td class="warning ">이름</td>
-									<td class="text-left"><strong>${profile.profileName}</strong></td>
+									<td class="text-center"><strong>${profile.profileName}</strong></td>
 									<td class="warning text-center ">한문</td>
 									<td><strong>${profile.profileCname}</strong></td>
 									<td class="warning text-center ">영문</td>

@@ -109,6 +109,7 @@ public class ResumeController {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
 		
     	// PROFILE 테이블 업데이트
+		
 		profile.setMemberId(memberId);
     	profile.setProfileRegDate(new Timestamp(System.currentTimeMillis()));
         this.resumeService.modProfile(profile);
