@@ -64,30 +64,30 @@ var handleCalendarDemo = function () {
 		editable: true,
 		events: [
 			{
-				title: 'Event',
+				title: '점심약속',
 				start: new Date(y, m, 0),
 				end: new Date(y, m, 1),
 				className: 'bg-purple',
 				media: '<i class="fa fa-trophy"></i>',
-				description: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
+				description: '지원이랑 저녁 7시 - 공룡뒷고기'
 			},
 			{
-				title: 'Daily Meeting',
+				title: '주간회의',
 				start: new Date(y, m, 10),
 				end: new Date(y, m, 12),
 				allDay: false,
 				className: 'bg-blue',
 				media: '<i class="fa fa-users"></i>',
-				description: 'Lorem ipsum dolor sit amet adipiscing elit.'
+				description: '서류 꼼꼼히 챙길것'
 			},
 			{
-				title: 'Click for Google',
+				title: '구글 링크',
 				start: new Date(y, m, 15),
 				end: new Date(y, m, 17),
 				url: 'http://google.com/',
 				className: 'bg-green',
 				media: '<i class="fa fa-google-plus"></i>',
-				description: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.'
+				description: '구글 즐겨찾기'
 			}
 		]
 	});
