@@ -54,6 +54,7 @@
                   <td class="warning ">휴대폰</td>
                   <td>
                     <input type="text"  name="profilePhone" class="form-control input-sm masked-input-phone" value="${profile.profilePhone}"/>
+                    
                   </td>
                   <td class="warning ">이메일</td>
                   <td>

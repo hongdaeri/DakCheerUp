@@ -22,26 +22,22 @@
   <script>
     //example
 
-    var handleFormMaskedInput = function() {
-      "use strict";
-      $(".masked-input-phone").mask("999-9999-9999");
-      $(".masked-input-yyyy-mm-dd").mask("9999.99.99");
-      $(".masked-input-yyyy-mm").mask("9999.99");
-      $(".masked-input-period").mask("9999.99 - 9999.99");
-      $("#masked-input-pno").mask("aaa-9999-a");
-      $("#masked-input-pkey").mask("a*-999-a999");
-    };
+   
     $(document).ready(function() {
       App.init();
       FormWysihtml5.init();
       FormSliderSwitcher.init();
 
       document.getElementById("m_resume").className = "active";
-      resumeBtnToolTipAndAction();
-      handleFormMaskedInput();
+      resumeBtnToolTipAndAction();     
+      
+      
     });
 
-
+    $(".masked-input-phone").mask("999-9999-9999");
+    $(".masked-input-yyyy-mm-dd").mask("9999.99.99");
+    $(".masked-input-yyyy-mm").mask("9999.99");
+    $(".masked-input-period").mask("9999.99 - 9999.99");
 
 
 
