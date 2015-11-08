@@ -103,7 +103,7 @@
 							<div class="pay-head">
 								<h4 class="m-t-10"><i class="fa fa-chevron-right"></i> 나의 예상 실수령액은?</h4>
 							</div>
-							<div id="result_box" class="pay-contents-result">
+							<div id="result_box" class="pay-contents-result text-center">
 								<form class="form-horizontal">
 									<table class="table">
 										<tbody>											
