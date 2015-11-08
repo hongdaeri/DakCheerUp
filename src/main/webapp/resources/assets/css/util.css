@@ -1,0 +1,47 @@
+@charset "euc-kr";
+
+
+
+p, dl, dt, dd, ul, ol, li, form, fieldset {margin:0; padding:0;}
+ul, ol, li {list-style:none;}
+legend, caption, hr {display:none;}
+table {border-collapse:collapse; margin:0; padding:0; border-spacing:0; font-size:12px; font-family:arial, "±¼¸²", Gulim;}
+input {margin:0; padding:0; font-size:12px; font-family:arial, "±¼¸²", Gulim;}
+
+
+/* ½Ç±Þ¿© °è»ê±â */
+.pay-contents { border:1px solid #DF8F19; margin:20px 20px;}
+.pay-contents-result  { border:1px solid #cfcfcf; margin:20px 20px;}
+.result_box_active { border:2px solid #DF8F19; }
+.pay-center-arrow { height:400px;}
+.pay-center-arrow > IMG { margin-top: 180px; vertical-align:middle; }
+
+
+.pay-head { margin-left:20px; }
+.pay-head i {color:#DF8F19;}
+.i_style01 {height:20px; padding:0 5px; border:1px solid #cfcfcf; line-height:20px; vertical-align:middle; background:#f3f3f3;}
+.i_style02 {height:20px; padding:0 5px; border:1px solid #DF8F19; line-height:20px; vertical-align:middle;}
+.i_style03 {height:20px; padding:0 5px; border:1px solid #DF8F19; line-height:20px; vertical-align:middle;}
+.i_style04 {height:20px; padding:0 5px; border:1px solid #cfcfcf; line-height:20px; vertical-align:middle; background:#f3f3f3;}
+.i_style05 {height:20px; padding:0 5px; border:1px solid #DF8F19; line-height:20px; vertical-align:middle; color:#DF8F19; }
+
+.f11 {font:11px "µ¸¿ò" ,Dotum; color:#444;}
+* html .f11 {position:relative; top:-2px;}
+.ul01 {overflow:hidden; width:100%; padding-top:5px;}
+.ul01 li {float:left; margin-right:33px; color:#444}
+.ul01 input {position:relative; top:-1px; width:13px; height:13px; margin-right:4px; vertical-align:middle;}
+* +html .ul01 input {top:0px;}
+.ul01 .end {margin-right:0;}
+.ul02 {overflow:hidden; width:100%; padding-top:5px;}
+.ul02 li {float:left; margin-right:5px; color:#444; _font-family:"±¼¸²", Gulim;}
+.ul02 input {position:relative; top:-1px; width:13px; height:13px; margin-right:3px; vertical-align:middle;}
+* +html .ul02 input {top:0px;}
+.ul02 .end {margin-right:0;}
+.ul02 span {position:relative; top:-2px; _top:-1px;}
+.side_input02 {margin-top:4px; font:11px "µ¸¿ò", Dotum; color:#858585;}
+.side_input02 span {color:#DF8F19;}
+
+
+
+.table-th { width:130px; }
+

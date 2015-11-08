@@ -7,7 +7,7 @@
   <link href="/resources/plugins/bootstrap-wysihtml5/src/bootstrap-wysihtml5.css" rel="stylesheet" />
   <link href="/resources/plugins/ionicons/css/ionicons.min.css" rel="stylesheet" />
   <link href="/resources/plugins/switchery/switchery.min.css" rel="stylesheet" />
-  <link href="/resources/css/resume.css" rel="stylesheet" />
+  <link href="/resources/css/util.css" rel="stylesheet" />
   <!-- =================== ETC ======================================= -->
 </head>
 <body>
