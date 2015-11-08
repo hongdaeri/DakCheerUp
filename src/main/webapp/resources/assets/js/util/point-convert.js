@@ -2,6 +2,8 @@
 *	학점 변환
 */
 function fn_points_convert() {
+	
+	
 	var perfect_point = $("select[id=point_type] option:selected").text();
 	
 	if(fn_chk_numeric_point($("#cur_point"))) {
@@ -72,6 +74,7 @@ function fn_points_convert() {
 			}
 		});
 	}
+	$("#result_box").addClass("result_box_active");
 }
 
 

@@ -145,3 +145,82 @@ $(document).ready(function() {
 	});
 
 });
+
+
+
+
+/*
+*	팝업 메뉴
+*/
+function fn_pop(num) {
+	num = num || 1;
+	if(num == 1) {
+		var popWin1 = window.open(" http://speller.cs.pusan.ac.kr/","popWin2","width=437,height=543, scrollbars=yes");
+		popWin1.focus();
+	} else if(num==2) {
+		var popWin2 = window.open("http://loanword.cs.pusan.ac.kr/","popWin1","width=437,height=585,scrollbars=yes");
+		popWin2.focus();
+	} else if(num==3) {
+		var popWin3 = window.open("http://s.lab.naver.com/autospacing/","popWin3","width=823,height=662,scrollbars=yes");
+		popWin3.focus();
+	} else if(num==4) {
+		window.open("/info/data/list_intro.asp");
+	}
+}
+
+
+
+/*
+*	글자수 체크
+*/
+function fn_letters_count(obj, tabNum) {
+	obj = obj || $("#input_letters");
+	var str = $(obj).val();
+	var strtrim = str.split(" ").join("");
+	var tab = "#nav-tab-" + tabNum;
+	
+	// 공백포함 글자수 & 바이트 수 
+	$(tab + " #charNum").text(commify(str.length));
+	$(tab + " #charNumByte").text(commify(calByte(str)));
+	
+	//공백 미포함 글자수 
+	$(tab + " #charNumNS").text(commify(strtrim.length));
+	$(tab + " #charNumNSByte").text(commify(calByte(strtrim)));
+}
+
+
+/*
+ *  바이트 카운터
+ */
+
+function calByte(str) 
+{
+    var tcount = 0;
+    var onechar;
+    for (i=0;i<str.length;i++) 
+    {
+        if (str.charCodeAt(i) > 128) {
+            tcount += 2;
+        } else {
+            tcount++;
+        }
+    }
+
+    return tcount;
+}
+
+
+/*
+*	숫자 단위 comma 표시
+*/
+function commify(n) {
+	var reg = /(^[+-]?\d+)(\d{3})/;	// 정규식
+	n += '';									// 숫자를 문자열로 변환
+
+	while (reg.test(n))
+		n = n.replace(reg, '$1' + ',' + '$2');
+
+	return n;
+}
+
+

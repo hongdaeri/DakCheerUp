@@ -86,21 +86,18 @@
 																		</tr>
 																		<tr>	
 																			<td>
-																				<textarea name="qnaAnswer" id="answer" class="qna-textarea textarea form-control" rows="12"  placeholder="답변을 입력하세요.">${qna.qnaAnswer}</textarea>
+																				<textarea name="qnaAnswer" id="answer" class="qna-textarea textarea form-control" rows="12"  placeholder="답변을 입력하세요."  onFocus="fn_letters_count(this,${index});" onkeyup="fn_letters_count(this,${index});" onkeypress="fn_letters_count(this,${index});">${qna.qnaAnswer}</textarea>
 																			</td>																													
 																		</tr>
 																		<tr>	
 																			<td>																	
-																				<div class="col-xs-3 m-0 p-0 text-left">
-																					글자수 : <span id="charNum"></span> 
+																				<div class="col-xs-4 m-0 p-0 text-left">
+																					공백 포함 : <span id="charNum">0</span>자 &nbsp;( <span id="charNumByte">0</span>Byte )
 																				</div>
-																				<div class="col-xs-3 m-0 p-0 text-left">
-																					공백 미포함 : <span id="charNumNS"></span> 
-																				</div>
-																				<div class="col-xs-3 m-0 p-0  text-left"> 
-																					바이트 수 : <span id="charNumByte"></span>
-																				</div>
-						                                						<div class="col-xs-3 m-0 p-0 text-right">
+																				<div class="col-xs-4 m-0 p-0 text-left">
+																					공백 미포함 : <span id="charNumNS">0</span>자 &nbsp;( <span id="charNumNSByte">0</span>Byte )
+																				</div>																				
+						                                						<div class="col-xs-4 m-0 p-0 text-right">
 						                              
 						                                							<input type="hidden" name="qnaNo" value="${qna.qnaNo}">
 						                                							<input type="hidden" name="qnaInterestYn" value="${qna.qnaInterestYn}">

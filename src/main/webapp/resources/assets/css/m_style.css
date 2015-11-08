@@ -149,6 +149,11 @@ textarea { resize:none; }
 
 
 
+/* 자기소개서 */
+
+#charNum, #charNumNS { color:#DF8F19; }
+#charNumByte, #charNumNSByte { color:#00acac; }
+
 
 
 
