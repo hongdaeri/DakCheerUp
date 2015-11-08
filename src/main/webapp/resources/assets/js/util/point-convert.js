@@ -1,6 +1,11 @@
 /*
 *	학점 변환
 */
+
+$("#cur_point").click(function(){
+	$("#result_box").removeClass("result_box_active");
+});
+
 function fn_points_convert() {
 	
 	

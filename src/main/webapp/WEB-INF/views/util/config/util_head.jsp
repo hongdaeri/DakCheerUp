@@ -29,7 +29,7 @@
                 <div class="list-group f-s-12">
                   <a href="/util/pay" class="list-group-item list-group-item-inverse text-ellipsis">실 급여 계산기</a>
                   <a href="/util/hakjum" class="list-group-item list-group-item-inverse text-ellipsis">학점 계산기</a>
-                  <a href="/util/photo" class="list-group-item list-group-item-inverse text-ellipsis">증명사진 크기조정</a>
+                  <a href="/util/english-converter" class="list-group-item list-group-item-inverse text-ellipsis">어학점수 변환기</a>
                   <a href="/util/4bohum" class="list-group-item list-group-item-inverse text-ellipsis">4대보험 계산기</a>               
                 </div>
               </div>

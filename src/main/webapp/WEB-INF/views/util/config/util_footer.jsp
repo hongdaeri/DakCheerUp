@@ -18,6 +18,8 @@
    <script src="/resources/js/util/pay.js"></script>
    <script src="/resources/js/util/point-arrays.js"></script>
    <script src="/resources/js/util/point-convert.js"></script>
+   <script src="/resources/js/util/english-arrays.js"></script>
+   <script src="/resources/js/util/english-converter.js"></script>
 
   <script>
     //example
