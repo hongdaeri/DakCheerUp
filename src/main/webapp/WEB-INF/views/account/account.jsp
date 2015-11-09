@@ -150,7 +150,9 @@
 		</div>
 	</div>
 	
-
+<div id="LoadMsgDiv">		
+		<h2></h2>
+	</div>
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="/resources/plugins/jquery/jquery-1.9.1.min.js"></script>
 	<script src="/resources/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
@@ -183,7 +185,13 @@
 			$("#autoLogin").click(function() {
 				$("#autoLogin-label").toggle();
 			})
+			
+			$("#LoadMsgDiv").hide();			
+			var msg = "${loadMsg}";			
+			getEffect(msg);
 		});
+		
+		
 	</script>
 </body>
 </html>

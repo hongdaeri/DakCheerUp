@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="ko" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -270,11 +273,15 @@
 			</div>
 		</div>
 	</div>
+	
+	<div id="LoadMsgDiv">		
+		<h2></h2>
+	</div>
 		<!-- ============END MODAL ZONE ========================== -->
 	
 	<!-- ================== BEGIN BASE JS ================== -->
+		<script src="/resources/js/basic.js"></script>
 		<script src="/resources/plugins/jquery/jquery-1.9.1.min.js"></script>
-
 		<script src="/resources/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
 		<script src="/resources/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
 		<script src="/resources/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -286,6 +293,17 @@
 		<script src="/resources/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 		<script src="/resources/plugins/jquery-cookie/jquery.cookie.js"></script>
 		<script src="/resources/js/apps.min.js"></script>
+		
+		<script>		
+			$(document).ready(function() {
+				$("#LoadMsgDiv").hide();			
+				var msg = "${loadMsg}";			
+				getEffect(msg);
+			});					
+		</script>
+		
+		
+		
 	<!-- ================== END BASE JS ================== -->
 	
 	<!-- ================== BEGIN PAGE LEVEL JS ================== -->

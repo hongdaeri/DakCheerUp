@@ -1,5 +1,6 @@
 package com.fourdrone.dakcheerup.interceptor;
 
+import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import java.io.PrintWriter;
@@ -21,9 +22,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             // memberLoginInfo 세션값이 null 일 경우
         if(memberId == null)
         {
-        	PrintWriter writer=response.getWriter();
-        	writer.println("<script>alert('로그인이 필요한 서비스 입니다. 로그인 페이지로 이동합니다.');</script>");
-            //로그인 페이지로 redirect
+        	response.addHeader("loginCheck", "YES");
             response.sendRedirect("/account");
             return false;
 
@@ -32,6 +31,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         }
 
     }
+    
+  
 
 
 }

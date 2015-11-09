@@ -13,7 +13,12 @@
 
 }
 select option {text-align:center;}
-<!-- site theme-->
+
+/* 저장되었습니다 DIV */
+#LoadMsgDiv { position: absolute; top:45%; left:45%; }
+
+
+<!-- site theme -->
 #sign_up A:link { text-decoration:none; }
 #sign_up A:visited { text-decoration:none; } 
 #sign_up A:active { text-decoration:none; }

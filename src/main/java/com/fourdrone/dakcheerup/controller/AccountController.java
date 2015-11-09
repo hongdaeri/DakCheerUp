@@ -57,6 +57,8 @@ public class AccountController {
     @RequestMapping(method = RequestMethod.GET)
     public String getAccount(@RequestParam(value="error", required=false) String error, ModelMap model, HttpServletRequest request, HttpSession session) {
 
+    	String a = request.getHeader("loginCheck");
+    	System.out.println("a : " + a);
         // 자동로그인 - Id, Pw 쿠키 존재하면 자동로그인
         String memberId = null;
         String memberPassword = null;
@@ -125,6 +127,7 @@ public class AccountController {
 		profile.setProfileJuminFront(profileJuminFront);		
 		this.resumeService.modProfile(profile);
 	  
+		session.setAttribute("loadMsg", "member-modify");
 	    
         return "redirect:/account/modify";
     }
@@ -145,7 +148,7 @@ public class AccountController {
     	member.setMemberSignOutRequestDate(new Timestamp(System.currentTimeMillis()));
     	
     	this.accountService.modMemberSignOut(member);
-    	
+    	session.setAttribute("loadMsg", "member-modify");
 	    
         return "redirect:/account/modify";
     }
@@ -180,7 +183,7 @@ public class AccountController {
             // 세션등록 
             session.setAttribute("memberLoginInfo",loginMember.getMemberId());
             session.setAttribute("memberName", loginMember.getMemberName());
-           
+            session.setAttribute("loadMsg", "login");
             
             return "redirect:/";
         }
@@ -204,6 +207,7 @@ public class AccountController {
         // 세션 삭제.
         session.setAttribute("memberLoginInfo", null);
         session.setAttribute("memberName", null);
+        session.setAttribute("loadMsg", "logout");
         return "redirect:";
     }
 
@@ -348,7 +352,7 @@ public class AccountController {
         	qna.setQnaQuestion("입사 후 포부에 대하여 구체적으로 기술해 주십시오.");      
         	this.jasoService.addQna(qna);
         	
-        	
+        	session.setAttribute("loadMsg", "member-join");
         	
         /* 자소서 기본 그룹 및 기본 파일, 자소문항 생성  끝 */
         

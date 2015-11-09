@@ -99,6 +99,7 @@ public class ResumeController {
 		
 		Profile profile = this.resumeService.getProfile(memberId);
 	    model.addAttribute("profile", profile);  
+	    createLoadMsg(model);
 	    
 	    return "resume/resume-profile";
 	}
@@ -113,6 +114,7 @@ public class ResumeController {
 		profile.setMemberId(memberId);
     	profile.setProfileRegDate(new Timestamp(System.currentTimeMillis()));
         this.resumeService.modProfile(profile);
+        session.setAttribute("loadMsg", "save");
                 
         return "resume/resume-profile";
     }
@@ -130,6 +132,8 @@ public class ResumeController {
 	    //병역 불러오기
 	    Military military = this.resumeService.getMilitary(memberId);
 	    model.addAttribute("military", military);	
+	    
+	    createLoadMsg(model);
 	    
 	    return "resume/resume-addtion-profile";
 	}
@@ -210,6 +214,8 @@ public class ResumeController {
 		military.setMilitaryReason(request.getParameter("militaryReason"));	
 		this.resumeService.modMilitary(military);
 		
+		session.setAttribute("loadMsg", "save");
+		
 		return "redirect:/resume/addtion-profile";
 	}
 	
@@ -220,6 +226,8 @@ public class ResumeController {
 		Family family = this.resumeService.getFamily(familyNo);
 		if(family.getMemberId().equals(memberId))
 			this.resumeService.delFamily(familyNo);
+		
+		session.setAttribute("loadMsg", "delete");
 	    
 	    return "redirect:/resume/addtion-profile";
 	}
@@ -236,6 +244,7 @@ public class ResumeController {
 	    List<AcademicUniv> academicUnivList = this.resumeService.getAcademicUnivList(memberId);
 	    model.addAttribute("academicUnivList", academicUnivList);
 	    	    	    
+	    createLoadMsg(model);
 	    return "resume/resume-academic";
 	}
 	
@@ -330,7 +339,7 @@ public class ResumeController {
 		}
 				
 		
-		
+		session.setAttribute("loadMsg", "save");
 		return "redirect:/resume/academic";
 	}
 	
@@ -342,6 +351,8 @@ public class ResumeController {
 		if(academicUniv.getMemberId().equals(memberId))
 			this.resumeService.delAcademicUniv(academicUnivNo);
 	    
+		
+		session.setAttribute("loadMsg", "delete");
 	    return "redirect:/resume/academic";
 	}
 	
@@ -355,6 +366,7 @@ public class ResumeController {
 		
 		OA oa = this.resumeService.getOA(memberId);
 	    model.addAttribute("oa", oa);     
+	    createLoadMsg(model);
 	    return "resume/resume-oa";
 	}
 	
@@ -367,6 +379,7 @@ public class ResumeController {
 		oa.setMemberId(memberId);
 		oa.setOaRegDate(new Timestamp(System.currentTimeMillis()));
 		this.resumeService.modOA(oa);
+		session.setAttribute("loadMsg", "save");
 		
 		return "resume/resume-oa";
 	}
@@ -378,7 +391,8 @@ public class ResumeController {
 	public String getResumeCharacter(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
 		Profile profile = this.resumeService.getProfile(memberId);
-	    model.addAttribute("profile", profile);	    
+	    model.addAttribute("profile", profile);	 
+	    createLoadMsg(model);
 	    return "resume/resume-strength";
 	}
 	
@@ -388,7 +402,8 @@ public class ResumeController {
 	public String getResumeLicense(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
 		List<License> licenseList = this.resumeService.getLicenseList(memberId);
-	    model.addAttribute("licenseList", licenseList);     
+	    model.addAttribute("licenseList", licenseList);
+	    createLoadMsg(model);
 	    return "resume/resume-license";
 	}
 	// 자격증 면허증 데이터 처리
@@ -441,7 +456,7 @@ public class ResumeController {
 			}
 		}
 				
-		
+		session.setAttribute("loadMsg", "save");
 		
 		return "redirect:/resume/license";
 	}
@@ -454,6 +469,8 @@ public class ResumeController {
 		
 		if(license.getMemberId().equals(memberId))
 			this.resumeService.delLicense(licenseNo);
+		
+		session.setAttribute("loadMsg", "delete");
 	    
 	    return "redirect:/resume/license";
 	}
@@ -465,6 +482,7 @@ public class ResumeController {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
 		List<LanguageAbility> languageAbilityList = this.resumeService.getLanguageAbilityList(memberId);
 	    model.addAttribute("languageAbilityList", languageAbilityList);	 
+	    createLoadMsg(model);
 	    return "resume/resume-lang-ability";
 	}
 	
@@ -517,7 +535,7 @@ public class ResumeController {
 				this.resumeService.addLanguageAbility(languageAbility);		
 			}
 		}
-		
+		session.setAttribute("loadMsg", "save");
 		return "redirect:/resume/lang-ability";
 	}
 	
@@ -529,6 +547,7 @@ public class ResumeController {
 		if(languageAbility.getMemberId().equals(memberId))
 			this.resumeService.delLanguageAbility(langAbilityNo);
 	    
+		session.setAttribute("loadMsg", "delete");
 	    return "redirect:/resume/lang-ability";
 	}
 	
@@ -537,7 +556,8 @@ public class ResumeController {
 	public String getResumeLangExam(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
 		List<LanguageExam> languageExamList = this.resumeService.getLanguageExamList(memberId);
-	    model.addAttribute("languageExamList", languageExamList);	 
+	    model.addAttribute("languageExamList", languageExamList);	
+	    createLoadMsg(model);
 	    return "resume/resume-lang-exam";
 	}
 	
@@ -596,6 +616,8 @@ public class ResumeController {
 			}
 		}
 		
+		session.setAttribute("loadMsg", "save");
+		
 		return "redirect:/resume/lang-exam";
 	}
 	// 어학시험 삭제
@@ -606,6 +628,8 @@ public class ResumeController {
 		if(languageExam.getMemberId().equals(memberId))
 			this.resumeService.delLanguageExam(langExamNo);
 	    
+		session.setAttribute("loadMsg", "delete");
+		
 	    return "redirect:/resume/lang-exam";
 	}
 	
@@ -616,6 +640,7 @@ public class ResumeController {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
 		List<Award> awardList = this.resumeService.getAwardList(memberId);
 	    model.addAttribute("awardList", awardList);	
+	    createLoadMsg(model);
 	    return "resume/resume-award";
 	}
 	// 수상내역 데이터처리
@@ -668,6 +693,8 @@ public class ResumeController {
 				this.resumeService.addAward(award);
 			}
 		}
+		
+		session.setAttribute("loadMsg", "save");
 	    return "redirect:/resume/award";
 	}
 	
@@ -678,7 +705,9 @@ public class ResumeController {
 		Award award = this.resumeService.getAward(awardNo);		
 		if(award.getMemberId().equals(memberId))
 			this.resumeService.delAward(awardNo);
-			   
+			
+		
+		session.setAttribute("loadMsg", "delete");
 	    return "redirect:/resume/award";
 	}
 	
@@ -688,7 +717,8 @@ public class ResumeController {
 	public String getResumeCareer(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
 		List<Career> careerList = this.resumeService.getCareerList(memberId);
-	    model.addAttribute("careerList", careerList);	
+	    model.addAttribute("careerList", careerList);
+	    createLoadMsg(model);
 	    return "resume/resume-career";
 	}
 	
@@ -746,6 +776,9 @@ public class ResumeController {
 				this.resumeService.addCareer(career);
 			}
 		}
+		
+		session.setAttribute("loadMsg", "save");
+		
 		return "redirect:/resume/career";
 	}
 	
@@ -756,7 +789,9 @@ public class ResumeController {
 		Career career = this.resumeService.getCareer(careerNo);
 		if(career.getMemberId().equals(memberId))
 			this.resumeService.delCareer(careerNo);
-			   
+			
+		session.setAttribute("loadMsg", "delete");
+		
 	    return "redirect:/resume/career";
 	}
 	
@@ -766,6 +801,7 @@ public class ResumeController {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
 		List<Voluntary> voluntaryList = this.resumeService.getVoluntaryList(memberId);
 	    model.addAttribute("voluntaryList", voluntaryList);
+	    createLoadMsg(model);
 	    return "resume/resume-voluntary";
 	}
 	//봉사활동 데이터처리
@@ -814,6 +850,9 @@ public class ResumeController {
 				this.resumeService.addVoluntary(voluntary);
 			}
 		}
+		
+		session.setAttribute("loadMsg", "save");
+		
 	    return "redirect:/resume/voluntary";
 	}
 	//봉사활동 항목 삭제
@@ -824,6 +863,8 @@ public class ResumeController {
 		if(voluntary.getMemberId().equals(memberId))
 			this.resumeService.delVoluntary(voluntaryNo);
 					   
+		
+		session.setAttribute("loadMsg", "delete");
 	    return "redirect:/resume/voluntary";
 	}
 	
@@ -833,6 +874,7 @@ public class ResumeController {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
 		List<Education> educationList = this.resumeService.getEducationList(memberId);
 	    model.addAttribute("educationList", educationList);
+	    createLoadMsg(model);
 	    return "resume/resume-education";
 	}
 	// 교육이수 데이터처리
@@ -881,6 +923,9 @@ public class ResumeController {
 				this.resumeService.addEducation(education);
 			}
 		}
+		
+		
+		session.setAttribute("loadMsg", "save");
 	    return "redirect:/resume/education";
 	}
 	
@@ -892,6 +937,8 @@ public class ResumeController {
 		if(education.getMemberId().equals(memberId))
 			this.resumeService.delEducation(educationNo);
 		
+		session.setAttribute("loadMsg", "delete");
+		
 	    return "redirect:/resume/education";
 	}
 	
@@ -901,6 +948,8 @@ public class ResumeController {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
 		List<Project> projectList = this.resumeService.getProjectList(memberId);
 	    model.addAttribute("projectList", projectList);
+	    
+	    createLoadMsg(model);
 	    return "resume/resume-project";
 	}
 	// 프로젝트경험 데이터처리
@@ -953,6 +1002,8 @@ public class ResumeController {
 				this.resumeService.addProject(project);
 			}
 		}
+		
+		session.setAttribute("loadMsg", "save");
 	    return "redirect:/resume/project";
 	}
 	// 프로젝트경험 항목 삭제
@@ -962,6 +1013,8 @@ public class ResumeController {
 		Project project = this.resumeService.getProject(projectNo);
 		if(project.getMemberId().equals(memberId))
 			this.resumeService.delProject(projectNo);
+		
+		session.setAttribute("loadMsg", "delete");
 	    return "redirect:/resume/project";
 	}
 	
@@ -971,6 +1024,8 @@ public class ResumeController {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
 		List<Write> writeList = this.resumeService.getWriteList(memberId);
 	    model.addAttribute("writeList", writeList);
+	    
+	    createLoadMsg(model);
 	    return "resume/resume-write";
 	}
 	//저술내역 데이터처리
@@ -1023,6 +1078,8 @@ public class ResumeController {
 				this.resumeService.addWrite(write);
 			}
 		}
+		session.setAttribute("loadMsg", "save");
+		
 	    return "redirect:/resume/write";
 	}
 	//저술내역 항목삭제
@@ -1032,6 +1089,9 @@ public class ResumeController {
 		Write write = this.resumeService.getWrite(writeNo);
 		if(write.getMemberId().equals(memberId))
 			this.resumeService.delWrite(writeNo);
+		
+		session.setAttribute("loadMsg", "delete");
+		
 	    return "redirect:/resume/write";
 	}
 	
@@ -1041,6 +1101,8 @@ public class ResumeController {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
 		List<Global> globalList = this.resumeService.getGlobalList(memberId);
 	    model.addAttribute("globalList", globalList);
+	    
+	    createLoadMsg(model);
 	    return "resume/resume-global";
 	}
 	//글로벌경험 데이터처리
@@ -1093,6 +1155,9 @@ public class ResumeController {
 				this.resumeService.addGlobal(global);
 			}
 		}
+		
+		session.setAttribute("loadMsg", "save");
+		
 	    return "redirect:/resume/global";
 	}
 	//글로벌경험 항목삭제
@@ -1102,6 +1167,9 @@ public class ResumeController {
 		Global global = this.resumeService.getGlobal(globalNo);
 		if(global.getMemberId().equals(memberId))
 			this.resumeService.delGlobal(globalNo);
+		
+		session.setAttribute("loadMsg", "delete");
+		
 	    return "redirect:/resume/global";
 	}
 	
@@ -1111,10 +1179,11 @@ public class ResumeController {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
 		Swot swot = this.resumeService.getSwot(memberId);
 	    model.addAttribute("swot", swot);
+	    createLoadMsg(model);
 	    return "resume/resume-swot";
 	}
 	
-	// 기본인적사항 데이터 처리
+	// SWOT 데이터 처리
 	@RequestMapping(value ="/swot", method = RequestMethod.POST)
     public String postResumeSwot(@ModelAttribute("swot") Swot swot) {  	    	
 		String memberId = (String)session.getAttribute("memberLoginInfo");
@@ -1124,6 +1193,7 @@ public class ResumeController {
 		swot.setSwotRegDate(new Timestamp(System.currentTimeMillis()));
         this.resumeService.modSwot(swot);
                 
+        session.setAttribute("loadMsg", "save");
         return "redirect:/resume/swot";
     }
 	
@@ -1135,5 +1205,17 @@ public class ResumeController {
 	    return "resume/resume-config";
 	}
 	
+	
+	
+	// 로딩 메시지 구성
+	private void createLoadMsg(ModelMap model)
+	{
+		String loadMsg = (String) session.getAttribute("loadMsg");
+	    if(loadMsg!=null)
+	    {
+	    	model.addAttribute("loadMsg", loadMsg);	    	
+	    	session.removeAttribute("loadMsg");
+	    }
+	}
 	
 }

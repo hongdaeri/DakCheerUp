@@ -75,6 +75,7 @@ public class JasoController {
     	qna.setQnaRegDate(new Timestamp(System.currentTimeMillis()));
     	this.jasoService.addQna(qna);
     	
+    	session.setAttribute("loadMsg", "create-jaso");
 		return "redirect:";
 	}
 	
@@ -89,6 +90,7 @@ public class JasoController {
 		group.setGroupRegDate(new Timestamp(System.currentTimeMillis()));		
         this.jasoService.addGroup(group);
         
+        session.setAttribute("loadMsg", "create-group");
 	    return "redirect:";
 	}
 	
@@ -101,7 +103,7 @@ public class JasoController {
 		note.setMemberId(memberId);
 		note.setNoteRegDate(new Timestamp(System.currentTimeMillis()));		
         this.jasoService.addNote(note);
-        
+        session.setAttribute("loadMsg", "create-note");
 	    return "redirect:";
 	}
 	//노트 삭제 
@@ -114,7 +116,7 @@ public class JasoController {
 		if(note.getMemberId().equals(memberId))		
 			this.jasoService.delNote(noteNo);
 		
-		System.out.println("tㅏㄱ제됨");
+		session.setAttribute("loadMsg", "delete");
 		return "redirect:/jaso";
 	}
 	
@@ -146,6 +148,8 @@ public class JasoController {
 		    List<Qna> qnaListFromFile = this.jasoService.getQnaListFromFileNo(file.getFileNo());
 		    model.addAttribute("qnaListFromFile", qnaListFromFile);
 	    }
+	    
+	    createLoadMsg(model);
 		return "jaso/jaso-open";
 	}
 	
@@ -159,7 +163,7 @@ public class JasoController {
 		
 	    List<Qna> interestQnaList = this.jasoService.getQnaListFromInterest(memberId);
 	    model.addAttribute("interestQnaList", interestQnaList);
-		
+	    createLoadMsg(model);
 		return "jaso/jaso-interest";
 	}
 	
@@ -173,7 +177,7 @@ public class JasoController {
 		
 	    List<Qna> trashQnaList = this.jasoService.getQnaListFromTrash(memberId);
 	    model.addAttribute("trashQnaList", trashQnaList);
-		
+	    createLoadMsg(model);
 		return "jaso/jaso-trash";
 	}
 	
@@ -212,6 +216,8 @@ public class JasoController {
 				break;
 		}
 		
+		session.setAttribute("loadMsg", "restore");
+		
 		return "redirect:";
 	}
 	
@@ -237,6 +243,8 @@ public class JasoController {
 				break;
 		}
 		
+		session.setAttribute("loadMsg", "delete");
+		
 		return "redirect:";
 	}						
 
@@ -258,9 +266,7 @@ public class JasoController {
 		// 사용자 이벤트 분석 & 처리 구문 
 		switch(request.getParameter("actionMethod"))
 		{
-			case "qnaAdd":			// 새로운 문항 생성  
-				
-				
+			case "qnaAdd":			// 새로운 문항 생성  				
 				Qna newQna = new Qna();
 				newQna.setFileNo(Integer.parseInt(request.getParameter("fileNo")));
 				newQna.setMemberId(memberId);
@@ -269,6 +275,7 @@ public class JasoController {
 		    	newQna.setQnaInterestYn("N");
 		    	newQna.setQnaRegDate(new Timestamp(System.currentTimeMillis()));
 		    	this.jasoService.addQna(newQna);
+		    	session.setAttribute("loadMsg", "create-qna");
 				break;
 				
 			case "qnaInterest":		// 현재 문항 관심문항 등록 
@@ -290,6 +297,7 @@ public class JasoController {
 		    	interestQna.setQnaEditDate(new Timestamp(System.currentTimeMillis()));
 		    	
 		    	this.jasoService.modQnaInterest(interestQna);
+		    	session.setAttribute("loadMsg", "interest");
 				break;
 				
 			case "qnaTrash":		// 현재 문항 휴지통 (삭제는 아님) 
@@ -310,6 +318,7 @@ public class JasoController {
 				trashQna.setQnaTrashDate(new Timestamp(System.currentTimeMillis()));
 		    	trashQna.setQnaEditDate(new Timestamp(System.currentTimeMillis()));
 		    	this.jasoService.modQnaTrash(trashQna);
+		    	session.setAttribute("loadMsg", "delete");
 				break;
 				
 			case "fileInterest":	// 현재 파일 관심파일 등록 
@@ -327,6 +336,7 @@ public class JasoController {
 				interestFile.setFileInterestDate(new Timestamp(System.currentTimeMillis()));
 				interestFile.setFileEditDate(new Timestamp(System.currentTimeMillis()));
 				this.jasoService.modFileInterest(interestFile);
+				session.setAttribute("loadMsg", "interest");
 				break;
 				
 			case "fileTrash":		// 현재 파일 휴지통 (삭제는 아님) 
@@ -344,9 +354,15 @@ public class JasoController {
 				trashFile.setFileTrashDate(new Timestamp(System.currentTimeMillis()));
 				trashFile.setFileEditDate(new Timestamp(System.currentTimeMillis()));
 				this.jasoService.modFileTrash(trashFile);
+				session.setAttribute("loadMsg", "delete");
 				break;
+				
+			 default: 
+				 session.setAttribute("loadMsg", "save");
 			
 		}
+		
+		
 		
 		// 처리한 파일 로의 분기 
 		return "redirect:open/" + request.getParameter("fileNo");
@@ -434,6 +450,18 @@ public class JasoController {
 	    model.addAttribute("noteList", noteList);
 	    
 	 /* 메뉴구성을 위한 액션 끝 */   
+	}
+	
+	
+	// 로딩 메시지 구성
+	private void createLoadMsg(ModelMap model)
+	{
+		String loadMsg = (String) session.getAttribute("loadMsg");
+	    if(loadMsg!=null)
+	    {
+	    	model.addAttribute("loadMsg", loadMsg);	    	
+	    	session.removeAttribute("loadMsg");
+	    }
 	}
 
 }
