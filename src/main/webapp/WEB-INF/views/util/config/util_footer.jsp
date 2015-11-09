@@ -15,12 +15,13 @@
   <script src="/resources/plugins/switchery/switchery.min.js"></script>
   <script src="/resources/js/form-slider-switcher.demo.min.js"></script>
   
-   <script src="/resources/js/util/pay.js"></script>
-   <script src="/resources/js/util/point-arrays.js"></script>
-   <script src="/resources/js/util/point-convert.js"></script>
-   <script src="/resources/js/util/english-arrays.js"></script>
-   <script src="/resources/js/util/english-converter.js"></script>
-
+    <script src="/resources/js/util/pay.js"></script>
+    <script src="/resources/js/util/point-arrays.js"></script>
+    <script src="/resources/js/util/point-convert.js"></script>
+    <script src="/resources/js/util/english-arrays.js"></script>
+    <script src="/resources/js/util/english-converter.js"></script>
+	
+	
   <script>
     //example
 

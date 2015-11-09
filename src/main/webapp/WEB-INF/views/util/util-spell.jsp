@@ -23,12 +23,16 @@
 							class="btn btn-xs btn-icon btn-circle btn-danger"
 							data-click="panel-remove"><i class="fa fa-times"></i></a>
 					</div>
-					<h4 class="panel-title">4대 보험 계산기</h4>
+					<h4 class="panel-title">맞춤법/문법 검사기</h4>
 				</div>
 				<div class="panel-body p-b-0">
-					
-					
-					
+					<div class="row">
+						<div class="col-xs-12 text-center">
+							<iframe id="spell-frame" src="http://speller.cs.pusan.ac.kr/"></iframe>
+
+							
+						</div>					
+					</div>
 				</div>
 			</div>
 			<!-- end panel -->			

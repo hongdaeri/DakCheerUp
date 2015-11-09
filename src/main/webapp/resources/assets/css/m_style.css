@@ -162,6 +162,9 @@ textarea { resize:none; }
 
 
 
+/* 맞춤법 검사 */
+
+#spell-frame { border:none; width:850px; height:720px;}
 
 
 

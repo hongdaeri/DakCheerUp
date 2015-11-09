@@ -26,19 +26,7 @@ function getEffect(msg)
 		break;
 	case "interest":
 		$("#LoadMsgDiv h2").html("<i class='fa fa-star'> 등록되었습니다.</i>");
-		break;
-	case "login":
-		$("#LoadMsgDiv h2").html("<i class='fa fa-key'> 로그인되었습니다.</i>");
-		break;
-	case "logout":
-		$("#LoadMsgDiv h2").html("<i class='fa fa-sign-out'> 로그아웃되었습니다.</i>");
-		break;
-	case "member-join":
-		$("#LoadMsgDiv h2").html("<i class='fa fa-sign-in'> 가입되었습니다.</i>");
-		break;
-	case "member-modify":
-		$("#LoadMsgDiv h2").html("<i class='fa fa-user'> 회원정보가 변경되었습니다.</i>");
-		break;
+		break;	
 		
 	}
 	

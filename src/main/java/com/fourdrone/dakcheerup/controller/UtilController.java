@@ -33,10 +33,10 @@ public class UtilController {
         return "util/util-hakjum";
     }
 	
-	@RequestMapping(value="/4bohum", method = RequestMethod.GET)
-    public String get4Bohum(ModelMap model) {
+	@RequestMapping(value="/spell", method = RequestMethod.GET)
+    public String getSpell(ModelMap model) {
     	
-        return "util/util-4bohum";
+        return "util/util-spell";
     }
 	
 	@RequestMapping(value="/english-converter", method = RequestMethod.GET)

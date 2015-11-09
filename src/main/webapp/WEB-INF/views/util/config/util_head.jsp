@@ -27,10 +27,10 @@
                   <h4 class="panel-title">취업도구</h4>
                 </div>
                 <div class="list-group f-s-12">
-                  <a href="/util/pay" class="list-group-item list-group-item-inverse text-ellipsis">실 급여 계산기</a>
-                  <a href="/util/hakjum" class="list-group-item list-group-item-inverse text-ellipsis">학점 계산기</a>
-                  <a href="/util/english-converter" class="list-group-item list-group-item-inverse text-ellipsis">어학점수 변환기</a>
-                  <a href="/util/4bohum" class="list-group-item list-group-item-inverse text-ellipsis">4대보험 계산기</a>               
+                  <a href="/util/pay" class="list-group-item list-group-item-inverse text-ellipsis">실 급여 계산</a>
+                  <a href="/util/hakjum" class="list-group-item list-group-item-inverse text-ellipsis">학점 계산</a>
+                  <a href="/util/english-converter" class="list-group-item list-group-item-inverse text-ellipsis">어학점수 변환</a>
+                  <a href="/util/spell" class="list-group-item list-group-item-inverse text-ellipsis">맞춤법/문법 검사</a>               
                 </div>
               </div>
             </div>
