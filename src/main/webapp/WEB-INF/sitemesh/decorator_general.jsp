@@ -197,9 +197,9 @@
 							 <i class="fa fa-lightbulb-o"></i> <span>취업도구</span>
 						</a>
 					</li>
-					<li id="m_community">
-						<a href="/community">
-							 <i class="fa fa-comments-o"></i> <span>커뮤니티</span>
+					<li id="m_print">
+						<a href="/print">
+							 <i class="fa fa-print"></i> <span>프린트</span>
 						</a>
 					</li>
 					

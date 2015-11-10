@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/community")
-public class CommunityController {
+@RequestMapping("/print")
+public class PrintController {
     @RequestMapping(method = RequestMethod.GET)
-    public String getCommunity(ModelMap model) {
+    public String getPrint(ModelMap model) {
     	
-        return "community/community";
+        return "print/print";
     }
 }
