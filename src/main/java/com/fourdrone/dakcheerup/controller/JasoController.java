@@ -106,6 +106,7 @@ public class JasoController {
         session.setAttribute("loadMsg", "create-note");
 	    return "redirect:";
 	}
+	
 	//노트 삭제 
 	@RequestMapping(value="/note/delete/{noteNo}", method = RequestMethod.GET)
 	public String deleteNote(ModelMap model, @PathVariable("noteNo") int noteNo) {

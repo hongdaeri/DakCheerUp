@@ -32,6 +32,7 @@ public class ResumeController {
 	public String getResume(ModelMap model) {
 		String memberId = (String)session.getAttribute("memberLoginInfo");
 		
+		//기본인적사항 불러오기
 		Profile profile = this.resumeService.getProfile(memberId);
 	    model.addAttribute("profile", profile);  
 	    
@@ -52,6 +53,7 @@ public class ResumeController {
 	    List<AcademicUniv> academicUnivList = this.resumeService.getAcademicUnivList(memberId);
 	    model.addAttribute("academicUnivList", academicUnivList);
 	    
+	    //OA 능력불러오기 
 	    OA oa = this.resumeService.getOA(memberId);
 	    model.addAttribute("oa", oa);  
 	    

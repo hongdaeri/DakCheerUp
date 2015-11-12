@@ -191,12 +191,15 @@
         SELECT  * FROM  TB_JASO_NOTE
        	WHERE 	NOTE_NO = #{noteNo}       	    	
     </select>
-     <!-- 노트 리스트   -->
+    
+    <!-- 노트 리스트   -->
 	<select id="getNoteList" resultMap="NoteResult"  parameterType="String">
         SELECT  * FROM  TB_JASO_NOTE
        	WHERE 	MEMBER_ID = #{memberId}      
        	ORDER BY	NOTE_NO DESC; 	    	
     </select>
+    
+    
     
     
 	

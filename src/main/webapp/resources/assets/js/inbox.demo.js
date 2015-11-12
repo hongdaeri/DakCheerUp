@@ -30,6 +30,7 @@ var handleSelectSingle = function () {
     });
 };
 
+
 var handleEmailRemove = function () {
 	"use strict";
     $('[data-click=email-remove]').click(function(e) { 
@@ -60,6 +61,7 @@ var Inbox = function () {
             handleSelectSingle();
             handleEmailRemove();
             handleEmailHighlight();
+         
         }
     };
 }();

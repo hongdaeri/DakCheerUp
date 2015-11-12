@@ -56,9 +56,7 @@ public class AccountController {
     // 로그인 화면 처리
     @RequestMapping(method = RequestMethod.GET)
     public String getAccount(@RequestParam(value="error", required=false) String error, ModelMap model, HttpServletRequest request, HttpSession session) {
-
-    	String a = request.getHeader("loginCheck");
-    	System.out.println("a : " + a);
+    	
         // 자동로그인 - Id, Pw 쿠키 존재하면 자동로그인
         String memberId = null;
         String memberPassword = null;
