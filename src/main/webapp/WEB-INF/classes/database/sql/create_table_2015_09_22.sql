@@ -56,7 +56,7 @@ CREATE TABLE TB_RESUME_EDUCATION (
 	EDUCATION_NO       INT         NOT NULL, -- 교육이수_번호
 	EDUCATION_PERIOD   VARCHAR(17) NULL,     -- 교육이수_기간
 	EDUCATION_NAME     VARCHAR(40) NULL,     -- 교육이수_명
-	EDUCATION_ORG      VARCHAR(30) NULL,     -- 교육이수_기관
+	EDUCATION_ORG      VARCHAR(50) NULL,     -- 교육이수_기관
 	EDUCATION_REG_DATE TIMESTAMP   NOT NULL, -- 교육이수_등록일
 	MEMBER_ID          VARCHAR(20) NULL      -- 회원_아이디
 );
@@ -75,7 +75,7 @@ ALTER TABLE TB_RESUME_EDUCATION
 CREATE TABLE TB_RESUME_PROJECT (
 	PROJECT_NO       INT         NOT NULL, -- 프로젝트_번호
 	PROJECT_PERIOD   VARCHAR(17) NULL,     -- 프로젝트_기간
-	PROJECT_NAME     VARCHAR(40) NULL,     -- 프로젝트_명
+	PROJECT_NAME     VARCHAR(60) NULL,     -- 프로젝트_명
 	PROJECT_CONTEXT  TEXT        NULL,     -- 프로젝트_세부내용
 	PROJECT_SECTION  VARCHAR(4)  NULL,     -- 프로젝트_구분
 	PROJECT_REG_DATE TIMESTAMP   NOT NULL, -- 프로젝트_등록일
@@ -134,7 +134,7 @@ CREATE TABLE TB_RESUME_WRITE (
 	WRITE_NO       INT         NOT NULL, -- 저술내역_번호
 	WRITE_DATE     VARCHAR(7)  NULL,     -- 저술내역_발행일
 	WRITE_SECTION  VARCHAR(10) NULL,     -- 저술내역_분류
-	WRITE_NAME     VARCHAR(40) NULL,     -- 저술내역_저술명
+	WRITE_NAME     VARCHAR(60) NULL,     -- 저술내역_저술명
 	WRITE_ORG      VARCHAR(40) NULL,     -- 저술내역_발행처
 	WRITE_REG_DATE TIMESTAMP   NULL,     -- 저술내역_등록일
 	MEMBER_ID      VARCHAR(20) NULL      -- 회원_아이디
@@ -335,8 +335,8 @@ ALTER TABLE TB_RESUME_CAREER
 CREATE TABLE TB_RESUME_VOLUNTARY (
 	VOLUNTARY_NO       INT         NOT NULL, -- 봉사홛동_번호
 	VOLUNTARY_PERIOD   VARCHAR(17) NULL,     -- 봉사홛동_기간
-	VOLUNTARY_ORG      VARCHAR(30) NULL,     -- 봉사홛동_기관
-	VOLUNTARY_CONTENT  VARCHAR(50) NULL,     -- 봉사활동_내용
+	VOLUNTARY_ORG      VARCHAR(50) NULL,     -- 봉사홛동_기관
+	VOLUNTARY_CONTENT  VARCHAR(100) NULL,     -- 봉사활동_내용
 	VOLUNTARY_REG_DATE TIMESTAMP   NOT NULL, -- 봉사활동_등록일
 	MEMBER_ID          VARCHAR(20) NULL      -- 회원_아이디
 );
@@ -357,7 +357,7 @@ CREATE TABLE TB_RESUME_GLOBAL (
 	GLOBAL_PERIOD   VARCHAR(17) NULL,     -- 글로벌경험_기간
 	GLOBAL_NATION   VARCHAR(20) NULL,     -- 글로벌경험_국가
 	GLOBAL_PURPOSE  VARCHAR(8)  NULL,     -- 글로벌경험_목적
-	GLOBAL_CONTENT  VARCHAR(50) NULL,     -- 글로벌경험_내용
+	GLOBAL_CONTENT  VARCHAR(100) NULL,     -- 글로벌경험_내용
 	GLOBAL_REG_DATE TIMESTAMP   NOT NULL, -- 글로벌경험_등록일
 	MEMBER_ID       VARCHAR(20) NULL      -- 회원_아이디
 );
@@ -464,11 +464,8 @@ CREATE TABLE TB_JASO_QNA (
 	QNA_NO                  INT         NOT NULL, -- 문항_번호
 	FILE_NO                 INT         NULL,     -- 파일_번호
 	MEMBER_ID               VARCHAR(20) NULL,     -- 회원_아이디
-	QNA_QUESTION            VARCHAR(60) NULL,     -- 문항_질문
+	QNA_QUESTION            VARCHAR(100) NULL,    -- 문항_질문
 	QNA_ANSWER              TEXT        NULL,     -- 문항_답변
-	QNA_TEXT_LIMIT          INT         NULL,     -- 문항_글자수_제한
-	QNA_TEXT_LIMIT_TYPE     VARCHAR(4)  NULL,     -- 문항_글자수_제한_형식
-	QNA_TEXT_LIMIT_SPACE_YN VARCHAR(1)  NULL,     -- 문항_글자수_공백_포함여부
 	QNA_INTEREST_YN         VARCHAR(1)  NULL,     -- 문항_관심_유무
 	QNA_INTEREST_DATE       TIMESTAMP   NULL,     -- 문항_관심_저장일
 	QNA_REG_DATE            TIMESTAMP   NULL,     -- 문항_생성일
@@ -485,22 +482,6 @@ ALTER TABLE TB_JASO_QNA
 ALTER TABLE TB_JASO_QNA
 	MODIFY COLUMN QNA_NO INT NOT NULL AUTO_INCREMENT;
 
--- 자소_문항버전
-CREATE TABLE TB_JASO_QNA_VERSIONS (
-	QNA_V_NO        INT         NOT NULL, -- 문항버전_번호
-	QNA_V_QUESTION  VARCHAR(60) NULL,     -- 문항버전_질문
-	QNA_V_ANSWER    TEXT        NULL,     -- 문항버전_답변
-	QNA_V_REG_DATE  TIMESTAMP   NULL,     -- 문항버전_등록일
-	QNA_V_EDIT_DATE TIMESTAMP   NULL,     -- 문항버전_수정일
-	QNA_NO          INT         NULL      -- 문항_번호
-);
-
--- 자소_문항버전
-ALTER TABLE TB_JASO_QNA_VERSIONS
-	ADD CONSTRAINT PK_TB_JASO_QNA_VERSIONS -- 자소_문항버전 기본키
-		PRIMARY KEY (
-			QNA_V_NO -- 문항버전_번호
-		);
 
 -- 자소서
 CREATE TABLE TB_JASO (
@@ -516,39 +497,6 @@ ALTER TABLE TB_JASO
 			MEMBER_ID -- 회원_아이디
 		);
 
--- 자소서_휴지통
-CREATE TABLE TB_JASO_TRASH (
-	MEMBER_ID VARCHAR(20) NOT NULL -- 회원_아이디
-);
-
--- 자소서_휴지통
-ALTER TABLE TB_JASO_TRASH
-	ADD CONSTRAINT PK_TB_JASO_TRASH -- 자소서_휴지통 기본키
-		PRIMARY KEY (
-			MEMBER_ID -- 회원_아이디
-		);
-
--- 자소서_관심
-CREATE TABLE TB_JASO_INTEREST (
-	MEMBER_ID VARCHAR(20) NOT NULL -- 회원_아이디
-);
-
--- 자소서_관심
-ALTER TABLE TB_JASO_INTEREST
-	ADD CONSTRAINT PK_TB_JASO_INTEREST -- 자소서_관심 기본키
-		PRIMARY KEY (
-			MEMBER_ID -- 회원_아이디
-		);
-
--- 자소서_휴지통_항목
-CREATE TABLE TB_JASO_TRASH_ITEM (
-	MEMBER_ID VARCHAR(20) NULL -- 회원_아이디
-);
-
--- 자소서_관심_항목
-CREATE TABLE TB_JASO_INTEREST_ITEM (
-	MEMBER_ID VARCHAR(20) NULL -- 회원_아이디
-);
 
 
 -- 자소서_문항_로그
@@ -556,7 +504,7 @@ CREATE TABLE TB_JASO_QNA_LOG (
 	QNA_LOG_NO           INT         NOT NULL, -- 문항_로그_번호
 	QNA_NO               INT         NULL,     -- 문항_번호
 	QNA_LOG_STATE        VARCHAR(6)  NULL,     -- 문항_로그_상태
-	QNA_LOG_TMP_QUESTION VARCHAR(60) NULL,     -- 문항_로그_임시저장_질문
+	QNA_LOG_TMP_QUESTION VARCHAR(100) NULL,     -- 문항_로그_임시저장_질문
 	QNA_LOG_TMP_ANSWER   TEXT        NULL,     -- 문항_로그_임시저장_답변
 	QNA_LOG_REG_DATE     TIMESTAMP   NULL      -- 문항_로그_저장일
 );
@@ -601,13 +549,13 @@ CREATE TABLE TB_RESUME_ACADEMIC_UNIVERSITY (
 	ACADEMIC_UNIV_PERIOD_FIRST_OPTION VARCHAR(4)  NULL,     -- 학력_대학교_재학기간_첫번째_구분
 	ACADEMIC_UNIV_PERIOD_LAST         VARCHAR(7)  NULL,     -- 학력_대학교_재학기간_마지막
 	ACADEMIC_UNIV_PERIOD_LAST_OPTION  VARCHAR(8)  NULL,     -- 학력_대학교_재학기간_마지막_구분
-	ACADEMIC_UNIV_NAME                VARCHAR(30) NULL,     -- 학력_대학교_학교명
+	ACADEMIC_UNIV_NAME                VARCHAR(50) NULL,     -- 학력_대학교_학교명
 	ACADEMIC_UNIV_DEGREE              VARCHAR(8)  NULL,     -- 학력_대학교_학위
-	ACADEMIC_UNIV_MAJOR               VARCHAR(30) NULL,     -- 학력_대학교_전공
+	ACADEMIC_UNIV_MAJOR               VARCHAR(50) NULL,     -- 학력_대학교_전공
 	ACADEMIC_UNIV_SCORE               VARCHAR(5)  NULL,     -- 학력_대학교_학점
 	ACADEMIC_UNIV_SCORE_OPTION        VARCHAR(7)  NULL,     -- 학력_대학교_학점_구분
 	ACADEMIC_UNIV_DOUBLE_OPTION       VARCHAR(8)  NULL,     -- 학력_대학교_부_복수전공_구분
-	ACADEMIC_UNIV_DOUBLE_NAME         VARCHAR(30) NULL,     -- 학력_대학교_부_복수전공
+	ACADEMIC_UNIV_DOUBLE_NAME         VARCHAR(50) NULL,     -- 학력_대학교_부_복수전공
 	ACADEMIC_UNIV_REG_DATE            TIMESTAMP   NULL      -- 학력_대학교_등록일
 );
 
@@ -874,15 +822,7 @@ ALTER TABLE TB_JASO_QNA
 			MEMBER_ID -- 회원_아이디
 		);
 
--- 자소_문항버전
-ALTER TABLE TB_JASO_QNA_VERSIONS
-	ADD CONSTRAINT FK_TB_JASO_QNA_SECTION_TO_TB_JASO_QNA_VERSIONS -- 자소서_문항 -> 자소_문항버전
-		FOREIGN KEY (
-			QNA_NO -- 문항_번호
-		)
-		REFERENCES TB_JASO_QNA ( -- 자소서_문항
-			QNA_NO -- 문항_번호
-		);
+
 
 -- 자소서
 ALTER TABLE TB_JASO
@@ -894,15 +834,7 @@ ALTER TABLE TB_JASO
 			MEMBER_ID -- 회원_아이디
 		);
 
--- 자소서_휴지통
-ALTER TABLE TB_JASO_TRASH
-	ADD CONSTRAINT FK_TB_JASO_TO_TB_JASO_TRASH -- 자소서 -> 자소서_휴지통
-		FOREIGN KEY (
-			MEMBER_ID -- 회원_아이디
-		)
-		REFERENCES TB_JASO ( -- 자소서
-			MEMBER_ID -- 회원_아이디
-		);
+
 
 -- 자소서_관심
 ALTER TABLE TB_JASO_INTEREST
@@ -914,25 +846,7 @@ ALTER TABLE TB_JASO_INTEREST
 			MEMBER_ID -- 회원_아이디
 		);
 
--- 자소서_휴지통_항목
-ALTER TABLE TB_JASO_TRASH_ITEM
-	ADD CONSTRAINT FK_TB_JASO_TRASH_TO_TB_JASO_TRASH_ITEM -- 자소서_휴지통 -> 자소서_휴지통_항목
-		FOREIGN KEY (
-			MEMBER_ID -- 회원_아이디
-		)
-		REFERENCES TB_JASO_TRASH ( -- 자소서_휴지통
-			MEMBER_ID -- 회원_아이디
-		);
 
--- 자소서_관심_항목
-ALTER TABLE TB_JASO_INTEREST_ITEM
-	ADD CONSTRAINT FK_TB_JASO_INTEREST_TO_TB_JASO_INTEREST_ITEM -- 자소서_관심 -> 자소서_관심_항목
-		FOREIGN KEY (
-			MEMBER_ID -- 회원_아이디
-		)
-		REFERENCES TB_JASO_INTEREST ( -- 자소서_관심
-			MEMBER_ID -- 회원_아이디
-		);
 
 
 -- 자소서_문항_로그

@@ -268,7 +268,7 @@ public class ResumeController {
 		
 		
 		// 대학교 항목 업데이트
-		String[] academicUnivNoList = request.getParameterValues("academicUnivPeriodNo");
+		String[] academicUnivNoList = request.getParameterValues("academicUnivNo");
 		String[] academicUnivPeriodFirstList = request.getParameterValues("academicUnivPeriodFirst");
 		String[] academicUnivPeriodFirstOptionList = request.getParameterValues("academicUnivPeriodFirstOption");
 		String[] academicUnivPeriodLastList = request.getParameterValues("academicUnivPeriodLast");
@@ -281,7 +281,8 @@ public class ResumeController {
 		String[] academicUnivDoubleNameList = request.getParameterValues("academicUnivDoubleName");
 		String[] academicUnivDoubleOptionList = request.getParameterValues("academicUnivDoubleOption");
 		
-		if(request.getParameterValues("academicUnivPeriodNo") != null)
+
+		if(academicUnivNoList != null)
 		{
 			for(int i=0; i<academicUnivNoList.length; i++)
 			{
@@ -301,6 +302,7 @@ public class ResumeController {
 				academicUniv.setAcademicUnivDoubleName(academicUnivDoubleNameList[i]);
 				academicUniv.setAcademicUnivDoubleOption(academicUnivDoubleOptionList[i]);
 				this.resumeService.modAcademicUniv(academicUniv);
+				System.out.println("업데이트 2");
 			}
 		}
 		
@@ -317,8 +319,8 @@ public class ResumeController {
 		String[] newAcademicUnivDoubleNameList = request.getParameterValues("newAcademicUnivDoubleName");
 		String[] newAcademicUnivDoubleOptionList = request.getParameterValues("newAcademicUnivDoubleOption");
 		
-		
-		if(request.getParameterValues("newAcademicUnivPeriodFirst") != null)
+
+		if(newAcademicUnivPeriodFirstList != null)
 		{
 			for(int i=0; i<newAcademicUnivPeriodFirstList.length; i++)
 			{
@@ -337,6 +339,7 @@ public class ResumeController {
 				academicUniv.setAcademicUnivDoubleName(newAcademicUnivDoubleNameList[i]);
 				academicUniv.setAcademicUnivDoubleOption(newAcademicUnivDoubleOptionList[i]);
 				this.resumeService.addAcademicUniv(academicUniv);
+				System.out.println("test2");
 			}
 		}
 				

@@ -27,7 +27,10 @@
                            <h4 class="panel-title">프린트 마법사 </h4>
                        </div>
                        <div class="panel-body">
-                           <form action="/" method="GET">
+                           <form id="print-form" name="printForm" action="/print/preview" method="POST"  target="_blank">
+                           	<input type="hidden" name="print-action" id="print-action" value=""/>
+                           	<input type="hidden" name="print-template" id="print-template" value=""/>
+                           
 							<div id="wizard">
 								<ol>
 									<li>
@@ -137,112 +140,112 @@
 																	</tr>
 																	<c:if test="${regItemState.family eq 1}">
 																		<tr>
-													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="resume-family"/></td>
+													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="family"/></td>
 																			<td class="print-subject">가족관계</td>
 																			<td class="print-date">단일(선택)</td>
 																		</tr>
 																	</c:if>														
 																	<c:if test="${regItemState.military eq 1}">
 																		<tr>
-													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="resume-military"/></td>
+													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="military"/></td>
 																			<td class="print-subject">병역사항</td>
 																			<td class="print-date">단일(선택)</td>
 																		</tr>																		
 																	</c:if>	
 																	<c:if test="${regItemState.academic eq 1}">
 																		<tr>
-													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="resume-academic" /></td>
+													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="academic" /></td>
 																			<td class="print-subject">학력사항</td>
 																			<td class="print-date">단일(선택)</td>
 																		</tr>																																		
 																	</c:if>	
 																	<c:if test="${regItemState.oa eq 1}">
 																		<tr>
-													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item"  value="resume-oa" /></td>
+													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item"  value="oa" /></td>
 																			<td class="print-subject">OA능력</td>
 																			<td class="print-date">단일(선택)</td>
 																		</tr>																		
 																	</c:if>	
 																	<c:if test="${regItemState.strength eq 1}">
 																		<tr>
-													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="resume-strength" /></td>
+													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="rstrength" /></td>
 																			<td class="print-subject">강점/성격</td>
 																			<td class="print-date">단일(선택)</td>
 																		</tr>																		
 																	</c:if>	
 																	<c:if test="${regItemState.license eq 1}">
 																		<tr>
-													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="resume-license" /></td>
+													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="license" /></td>
 																			<td class="print-subject">자격증/면허증</td>
 																			<td class="print-date">${licenseSize}개</td>
 																		</tr>																																		
 																	</c:if>	
 																	<c:if test="${regItemState.langAbility eq 1}">
 																		<tr>
-													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="resume-langAbility" /></td>
+													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="langAbility" /></td>
 																			<td class="print-subject">어학능력</td>
 																			<td class="print-date">${languageAbilitySize}개</td>
 																		</tr>																													
 																	</c:if>	
 																	<c:if test="${regItemState.langExam eq 1}">
 																		<tr>
-													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="resume-langExam" /></td>
+													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="langExam" /></td>
 																			<td class="print-subject">어학시험</td>
 																			<td class="print-date">${languageExamSize}개</td>
 																		</tr>																																	
 																	</c:if>	
 																	<c:if test="${regItemState.award eq 1}">
 																		<tr>
-													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="resume-award" /></td>
+													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="award" /></td>
 																			<td class="print-subject">수상내역/공모전</td>
 																			<td class="print-date">${awardSize}개</td>
 																		</tr>																
 																	</c:if>	
 																	<c:if test="${regItemState.career eq 1}">
 																		<tr>
-													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="resume-career" /></td>
+													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="career" /></td>
 																			<td class="print-subject">경력/실습사항</td>
 																			<td class="print-date">${careerSize}개</td>
 																		</tr>																																		
 																	</c:if>																
 																	<c:if test="${regItemState.voluntary eq 1}">
 																		<tr>
-													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="resume-voluntary" /></td>
+													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="voluntary" /></td>
 																			<td class="print-subject">봉사활동/대외활동</td>
 																			<td class="print-date">${voluntarySize}개</td>
 																		</tr>																																		
 																	</c:if>
 																	<c:if test="${regItemState.education eq 1}">
 																		<tr>
-													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="resume-education" /></td>
+													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="education" /></td>
 																			<td class="print-subject">교육이수내역</td>
 																			<td class="print-date">${educationSize}개</td>
 																		</tr>																																		
 																	</c:if>
 																	<c:if test="${regItemState.project eq 1}">
 																		<tr>
-													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="resume-project" /></td>
+													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="project" /></td>
 																			<td class="print-subject">참여프로젝트</td>
 																			<td class="print-date">${projectSize}개 </td>
 																		</tr>														
 																	</c:if>
 																	<c:if test="${regItemState.write eq 1}">
 																		<tr>
-													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="resume-write" /></td>
+													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="write" /></td>
 																			<td class="print-subject">저술내역</td>
 																			<td class="print-date">${writeSize}개</td>
 																		</tr>																																		
 																	</c:if>
 																	<c:if test="${regItemState.global eq 1}">
 																		<tr>
-													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="resume-global" /></td>
+													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="global" /></td>
 																			<td class="print-subject">글로벌경험</td>
 																			<td class="print-date">${globalSize}개</td>
 																		</tr>																													
 																	</c:if>
 																	<c:if test="${regItemState.swot eq 1}">
 																		<tr>
-													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="resume-swot" /></td>
+													                    	<td class="print-select-resume"><input type="checkbox" name="resume-print-item" value="swot" /></td>
 																			<td class="print-subject">SWOT분석</td>
 																			<td class="print-date">단일(선택)</td>
 																		</tr>																		
@@ -269,7 +272,7 @@
 							                            <h4 class="panel-title">자기소개서 출력대상 선택</h4>
 							                        </div>
 							                        <div id="print-jaso-contents" class="panel-body">							                                      	
-							                        <c:if test="${not empty qnaList}">
+							                        <c:if test="${empty qnaList}">
 							                        	<div class="note note-danger m-t-10">																				
 															<p>작성하신 자기소개서가 존재하지 않습니다. 자소서를 먼저 작성해주세요.</p>
 														</div>
@@ -289,7 +292,7 @@
                															<c:forEach items="${qnaList}" var="qna">
                																<tr>
                																	<td class="print-select-jaso"> 
-               																		<input type="checkbox" name="jaso-print-item" value="jaso-qna-${qna.qnaNo }"/>
+               																		<input type="checkbox" name="jaso-print-item" value="${qna.qnaNo }"/>
                																	</td>																						
 																				<td class="print-subject">
 																					<c:forEach items="${fileList}" var="file">
@@ -314,7 +317,7 @@
                                             <!-- end col-12 -->
                                             <div class="col-xs-12 col-md-12">
                                             	<div class="note note-warning m-t-10">																				
-													<p>출력대상 항목은, <b>${profile.profileName}</b>님이 닥취업의 이력서와 자기소서 서비스를 통해 작성하신 항목만 자동으로 구분됩니다. <input type="submit" value="test" class="hide"> </p>
+													<p>출력대상 항목은, <b>${profile.profileName}</b>님이 닥취업의 이력서와 자기소서 서비스를 통해 작성하신 항목만 자동으로 구분됩니다.  </p>
 												</div>
                                             </div>
                                       	</div>
@@ -335,7 +338,17 @@
                                            		
                                                <!-- begin col-12 -->
                                                <div class="col-md-12">
-													
+													<div class="row">
+														<div id="print-template-tumb" class="col-xs-3"> 
+															<a href="#" id="pt1"><img id="pt1-tumb" src="/resources/img/print/pt1-resume.png" class="img-responsive print-template-select-n"></a>
+														</div>
+														<div id="print-template-preview" class="col-xs-9">	
+															<div class="row" id="pt1-preview">
+																<div class="col-xs-6"><img src="/resources/img/print/pt1-resume.png" class="img-responsive"></div>
+																<div class="col-xs-6"><img src="/resources/img/print/pt1-jaso.png" class="img-responsive"></div>
+															</div>													
+														</div>
+													</div>
 												</div>
                                                <!-- end col-12 -->
                                            </div>
@@ -357,7 +370,7 @@
                                                <div class="col-md-6">
 													<div class="m-t-10 p-20 jumbotron m-b-0 text-center">								    	
 				                                        <h2><i class="icon-printer"></i> 프린트로 출력</h2>
-				                                        <div class="col-md-12 col-xs-12 m-b-20 m-t-20"><a href="/jaso" class="btn btn-warning btn-lg btn-block" role="button"><i class="fa fa-desktop"></i>&nbsp;미리보기</a></div>
+				                                        <div class="col-md-12 col-xs-12 m-b-20 m-t-20"><a id="print-btn-preview" href="#" class="btn btn-warning btn-lg btn-block" role="button"><i class="fa fa-desktop"></i>&nbsp;미리보기</a></div>
 				                                        <div class="col-md-12 col-xs-12"><a href="/jaso" class="btn btn-success btn-lg btn-block" role="button"><i class="fa fa-printer"></i>&nbsp;프린터기로 출력하기</a></div>
 			                                    	</div>
 												</div>
@@ -400,7 +413,7 @@
 				App.init();		
 				FormWizard.init();				
 				document.getElementById("m_print").className = "active";	
-				
+				$("#pt1-preview").hide();
 				
 			});
 				

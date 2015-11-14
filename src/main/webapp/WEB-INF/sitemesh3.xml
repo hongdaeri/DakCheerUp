@@ -27,5 +27,5 @@
 	<mapping path="/account/login" exclude="true"/>
 	<mapping path="/account/logout" exclude="true"/>
 	<mapping path="/account/signUp" exclude="true"/>
-	
+	<mapping path="/print/preview" exclude="true"/>
 </sitemesh>

@@ -24,7 +24,7 @@
                 <tr class="warning">
                   <td>문서작성<br>(한글 / MS-Word)</td>
                   <td>스프레드시트<br>(EXCEL)</td>
-                  <td>프리젠테이션(Power Point)<br>(Power Point)</td>
+                  <td>프리젠테이션<br>(Power Point)</td>
                   <td>인터넷활용<br>(정보검색 / 블로깅)</td>
                   <td>그래픽<br>(Photoshop / Illustrator)</td>
                 </tr>

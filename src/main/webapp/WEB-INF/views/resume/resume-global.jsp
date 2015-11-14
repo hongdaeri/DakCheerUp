@@ -28,7 +28,7 @@
                   <td class="width-160">기간</td>
                   <td class="width-170">국가</td>
                   <td class="width-130">사유(목적)</td>
-                  <td>활동내용</td>
+                  <td>경험내용</td>
                 </tr>
                 <c:choose>
                 	<c:when test="${empty globalList}">

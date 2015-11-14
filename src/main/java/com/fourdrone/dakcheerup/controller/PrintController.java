@@ -1,12 +1,16 @@
 package com.fourdrone.dakcheerup.controller;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,9 +44,12 @@ import com.fourdrone.dakcheerup.service.ResumeService;
 @RequestMapping("/print")
 public class PrintController {
 	
+	private static final Logger logger = LoggerFactory.getLogger(PrintController.class);
+	
 	@Autowired private ResumeService resumeService;
 	@Autowired private JasoService jasoService;
 	@Autowired private HttpSession session;
+	
 	
     @RequestMapping(method = RequestMethod.GET)
     public String getPrint(ModelMap model) {
@@ -231,12 +238,129 @@ public class PrintController {
     	model.addAttribute("qnaList", qnaList); 
     	model.addAttribute("qnaSize", qnaList.size()); 
 	    
-	    
- 	    
-		
-    	
         return "print/print";
     }
     
+    // 프린트를 위한 폼생성 프리뷰 
+    @RequestMapping(value="/preview", method = RequestMethod.POST)
+    public String getPreview(ModelMap model, HttpServletRequest request) {
+    	
+    	String memberId = (String)session.getAttribute("memberLoginInfo");    	
+    	String printResumeOption = request.getParameter("printResumeOption");    	
+    	String[] resumePrintItemList = request.getParameterValues("resume-print-item");
+    	String printJasoOption = request.getParameter("printJasoOption");    
+    	String[] jasoPrintItemList = request.getParameterValues("jaso-print-item");
+    	String printTemplate = request.getParameter("print-template");
+    	String printAction = request.getParameter("print-action");
+    	
+    	
+    	model.addAttribute("printResumeOption", printResumeOption);
+    	model.addAttribute("printJasoOption", printJasoOption);
+    	
+    	//미리보기버튼을 누르면 이 메소드에서 파일생성 처리를 하고
+    	//javascript로  프린트버튼, pdf버튼 등이 보임.
+    	
+    	if(printResumeOption.equals("true"))
+    	{
+    		Profile profile = this.resumeService.getProfile(memberId);
+    		// 나이계산 
+    		int birth = Integer.parseInt( profile.getProfileJuminFront().substring(0, 2));
+    		int age = 0;
+    		if(birth > 15)
+    		{
+    			age = 2015 - 1900 - birth;
+    		}
+    		else
+    		{
+    			age = 2015 - 2000 - birth;
+    		}
+    	
+
+    		model.addAttribute("today", new Timestamp(System.currentTimeMillis())); 
+    		model.addAttribute("profile", profile); 
+    		model.addAttribute("age", age); 
+    		model.addAttribute("familyList", this.resumeService.getFamilyList(memberId)); 
+    		
+    		
+    		
+    		
+    		if(resumePrintItemList!=null)
+    		{
+	    		for(int i=0; i<resumePrintItemList.length; i++)
+	    		{
+	    			if(resumePrintItemList[i].equals("military")) { model.addAttribute("military", this.resumeService.getMilitary(memberId));  }
+	    			else if(resumePrintItemList[i].equals("academic")) 	{ 
+	    				model.addAttribute("academicPrint", true);
+	    				model.addAttribute("academicHigh", this.resumeService.getAcademicHigh(memberId)); 
+	    				model.addAttribute("academicUnivList", this.resumeService.getAcademicUnivList(memberId)); 
+	    				
+	    			}
+	    			else if(resumePrintItemList[i].equals("oa")) 		{ model.addAttribute("oa", this.resumeService.getOA(memberId));  }
+	    			else if(resumePrintItemList[i].equals("license")) 	{ model.addAttribute("licenseList", this.resumeService.getLicenseList(memberId));  }
+	    			else if(resumePrintItemList[i].equals("langAbility")) { model.addAttribute("langAbilityList", this.resumeService.getLanguageAbilityList(memberId));  }
+	    			else if(resumePrintItemList[i].equals("langExam")) 	{ model.addAttribute("languageExamList", this.resumeService.getLanguageExamList(memberId));  }
+	    			else if(resumePrintItemList[i].equals("award")) 	{ model.addAttribute("awardList", this.resumeService.getAwardList(memberId));  }
+	    			else if(resumePrintItemList[i].equals("career")) 	{ model.addAttribute("careerList", this.resumeService.getCareerList(memberId));  }
+	    			else if(resumePrintItemList[i].equals("voluntary")) { model.addAttribute("voluntaryList", this.resumeService.getVoluntaryList(memberId));  }
+	    			else if(resumePrintItemList[i].equals("education")) { model.addAttribute("educationList", this.resumeService.getEducationList(memberId));  }
+	    			else if(resumePrintItemList[i].equals("project")) 	{ model.addAttribute("projectList", this.resumeService.getProjectList(memberId));  }
+	    			else if(resumePrintItemList[i].equals("write")) 	{ model.addAttribute("writeList", this.resumeService.getWriteList(memberId));  }
+	    			else if(resumePrintItemList[i].equals("global")) 	{ model.addAttribute("globalList", this.resumeService.getGlobalList(memberId));  }
+	    			else if(resumePrintItemList[i].equals("swot")) 		{ model.addAttribute("swot", this.resumeService.getSwot(memberId));  }
+	    		}
+    		}
+
+    	}
+    	else
+    	{
+    		
+    	}
+    	
+    	if(printJasoOption.equals("true"))
+    	{
+    		
+    		if(jasoPrintItemList!=null)
+    		{
+	    		List<Qna> qnaList = new ArrayList<Qna>();
+	    		for(int i=0; i<jasoPrintItemList.length; i++)
+	    		{
+	    			qnaList.add(this.jasoService.getQna(Integer.parseInt(jasoPrintItemList[i])));
+	    		}
+	    		model.addAttribute("qnaList", qnaList); 	    		
+    		}
+    		
+    	}
+    	else
+    	{
+    		
+    	}
+    	
+    	
+//    	String printResumeOption=true
+//    	String resume-print-item=resume-military
+//    	String resume-print-item=resume-academic
+//    	String resume-print-item=resume-oa
+//    	String resume-print-item=resume-license
+//    	String resume-print-item=resume-langExam
+//    	String resume-print-item=resume-award
+//    	String resume-print-item=resume-career
+//    	String resume-print-item=resume-voluntary
+//    	String resume-print-item=resume-education
+//    	String resume-print-item=resume-project
+//    	String resume-print-item=resume-write
+//    	String resume-print-item=resume-global
+//    	String resume-print-item=resume-swot
+//    	String printJasoOption=true
+//    	String jaso-print-item=145
+//    	String jaso-print-item=146
+//    	String jaso-print-item=147
+//    	String jaso-print-item=148
+//    	String print-template=pt1;
+    	
+	    
+        return "print/print-preview";
+    }
+    
+ 
     
 }

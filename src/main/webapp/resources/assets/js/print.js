@@ -78,5 +78,59 @@
          }
     });
 
+    
+    
+    // 템플릿양식선택 - 템플릿 선택 - pt1    
+    $('#pt1').click(function(e) {    
+    	$("#print-template").val("pt1");
+    	$("#pt1-tumb").removeClass("print-template-select-n");
+    	$("#pt1-tumb").addClass("print-template-select-y");
+    	$("#pt1-preview").animate({width:'toggle'},350).show();
+	    	
+    });
+    
+    // 프린트 미리보기 버튼 클릭 --> 유효성 체크 --> 폼전송
+    $('#print-btn-preview').click(function(e) {    
+    	if($("#print-template").val().length < 1)
+    	{
+    		alert("Step 3. 템플릿 양식을 먼저 선택해 주세요.");
+    		return true;
+    	}
+    	else
+    	{
+	    	$("#print-action").val("print");
+	    	$('#print-form').submit();
+    	}
+	    	
+    });
+
+    
+// 프린트 메서드 
+function printHTML() {
+  Pwin = window.open("/print/preview","","width=780,height=600,scrollbars=1");
+  wdata ="<HTML>";
+  wdata += document.getElementById("print").innerHTML;
+  wdata += "";
+  Pwin.document.write(wdata);
+  Pwin.window.print();
+  Pwin.window.location.reload();
+}
+
+function print() {
+	window.print();
+}
+// 프린트 폼 Post전송 메서드
+function onSubmit(){
+	 var myForm = document.printForm;
+	 var url = "/print/preview";
+	 window.open("" ,"preview", 
+	   "toolbar=no, width=800, height=600, directories=no, status=no,    scrollorbars=1"); 
+	 myForm.action =url; 
+	 myForm.method="post";
+	 myForm.target="printForm";
+	 myForm.submit();
+	 
+	 
+}
 	
 	
