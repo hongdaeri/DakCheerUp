@@ -71,65 +71,7 @@
 							</div>
 						</form>
 					</li>
-					<li class="dropdown">
-						<a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle f-s-14">
-							<i class="fa fa-bell-o"></i>
-							<span class="label">5</span>
-						</a>
-						<ul class="dropdown-menu media-list pull-right animated fadeInDown">
-                            <li class="dropdown-header">알림 (5)</li>
-                            <li class="media">
-                                <a href="javascript:;">
-                                    <div class="media-left"><i class="fa fa-bug media-object bg-red"></i></div>
-                                    <div class="media-body">
-                                        <h6 class="media-heading">4DRONE, 채용공고 시작</h6>
-                                        <div class="text-muted f-s-11">3 minutes ago</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="media">
-                                <a href="javascript:;">
-                                    <div class="media-left"><img src="/resources/img/user-1.jpg" class="media-object" alt="" /></div>
-                                    <div class="media-body">
-                                        <h6 class="media-heading">홍바울님의 메세지</h6>
-                                        <p>안녕하세요. ${memberName}님! 반가워요!</p>
-                                        <div class="text-muted f-s-11">25 minutes ago</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="media">
-                                <a href="javascript:;">
-                                    <div class="media-left"><img src="/resources/img/user-2.jpg" class="media-object" alt="" /></div>
-                                    <div class="media-body">
-                                        <h6 class="media-heading">이푸름님의 메세지</h6>
-                                        <p>화랑가실분 모집합니다.</p>
-                                        <div class="text-muted f-s-11">35 minutes ago</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="media">
-                                <a href="javascript:;">
-                                    <div class="media-left"><i class="fa fa-plus media-object bg-green"></i></div>
-                                    <div class="media-body">
-                                        <h6 class="media-heading">등록 자소서, 2개 마감임박!</h6>
-                                        <div class="text-muted f-s-11">1 hour ago</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="media">
-                                <a href="javascript:;">
-                                    <div class="media-left"><i class="fa fa-envelope media-object bg-blue"></i></div>
-                                    <div class="media-body">
-                                        <h6 class="media-heading">다음카카오, 신입사원 채용공고 등록</h6>
-                                        <div class="text-muted f-s-11">2 hour ago</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="dropdown-footer text-center">
-                                <a href="javascript:;">View more</a>
-                            </li>
-						</ul>
-					</li>
+					
 					<li class="dropdown navbar-user"> <!-- 헤더_로그인 -->
 						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
 							<img src="/resources/img/user-13.jpg" alt="" />
@@ -194,7 +136,7 @@
 					</li>
 					<li id="m_util">
 						<a href="/util">
-							 <i class="fa fa-lightbulb-o"></i> <span>취업도구</span>
+							 <i class="fa fa-calculator"></i> <span>취업도구</span>
 						</a>
 					</li>
 					<li id="m_print">

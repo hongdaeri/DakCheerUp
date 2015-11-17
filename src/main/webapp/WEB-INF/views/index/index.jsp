@@ -141,9 +141,9 @@
         <div id="about" class="content" data-scrollview="true">
             <!-- begin container -->
             <div class="container" data-animation="true" data-animation-type="fadeInDown">
-                <h2 class="content-title">지구에서 가장 편하고 쉽게 취업준비 하기!</h2>
+                <h2 class="content-title">닥치고취업하자의 목표</h2>
                 <p class="content-desc">
-                    취업준비 시, 오직 닥취업만 있으면 되도록 취업준비와 관련된 모든 행동 편의체계를 제공하는 것이 우리의 목표입니다.
+                    취업준비 시, 오직 닥취업만 있으면 되도록 취업준비와 관련된 모든 행동 편의체계를 제공하는 것이 목표입니다.
                 </p>
                 <!-- begin row -->
                 <div class="row">
@@ -191,24 +191,25 @@
                     </div>
                     <!-- end col-4 -->
                     <!-- begin col-4 -->
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-4 col-sm-12 text-center">
                         <h3>그래서 만들었습니다</h3>
-                        <!-- begin skills -->
-                        <div class="skills">
-                          <img src="/resources/for-index/img/dakcheerup-make.jpg" class="img-responsive"/><br>                       
-                            <div class="skills-name">약 2달 반의 제작 기간 / </div>
+                        <!-- begin skills -->   
+                        <div class="col-xs-12">
+                        	<img src="/resources/for-index/img/dakcheerup-make.jpg" align="center" class="img-responsive"/><br>  
+                        </div>     
+                         <div class="col-xs-12">                        	 
                             <div class="progress progress-striped">
-                                <div class="progress-bar progress-bar-success" style="width: 95%">
-                                    <span class="progress-number">95%</span>
+                                <div class="progress-bar progress-bar-success" style="width: 10%">
+                                    <span class="progress-number">10%</span> 
                                 </div>
-                            </div>
-                            <div class="skills-name">Programming</div>
-                            <div class="progress progress-striped">
-                                <div class="progress-bar progress-bar-success" style="width: 90%">
-                                    <span class="progress-number">90%</span>
-                                </div>
-                            </div>                           
-                        </div>
+                                프로젝트 진행도
+                            </div>                          
+                        </div>                
+                        <div class="col-xs-12">
+                        	<p>약 2달 반의 제작 기간 / 스프링 프레임워크 / 29개의 DB테이블 <br>53개의 클래스 / 1,092개의 메서드 / 16,366줄의 순수 자바코드</p>
+                        	<p><a>이제 10%일 뿐입니다. 아직 보여줄 90%가 더 남았습니다.</a> </p>
+                        </div> 
+                                   
                         <!-- end skills -->
                     </div>
                     <!-- end col-4 -->
@@ -251,31 +252,22 @@
         <div id="service" class="content" data-scrollview="true">
             <!-- begin container -->
             <div class="container">
-                <h2 class="content-title">Our Services</h2>
+                <h2 class="content-title">지구에서 가장 편하고 쉽게 취업준비 하기!</h2>
                 <p class="content-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consectetur eros dolor,<br />
-                    sed bibendum turpis luctus eget
+                    닥취업은 지구에서 가장 편하고 쉽게 취업준비를 도우는 툴을 목표로, 다음과 같은 기능을 제공하고 있습니다.
                 </p>
                 <!-- begin row -->
                 <div class="row">
                     <!-- begin col-4 -->
                     <div class="col-md-4 col-sm-4">
                         <div class="service">
-                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-cog"></i></div>
+                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-user"></i></div>
                             <div class="info">
-                                <h4 class="title">Easy to Customize</h4>
-                                <p class="desc">Duis in lorem placerat, iaculis nisi vitae, ultrices tortor. Vestibulum molestie ipsum nulla. Maecenas nec hendrerit eros, sit amet maximus leo.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col-4 -->
-                    <!-- begin col-4 -->
-                    <div class="col-md-4 col-sm-4">
-                        <div class="service">
-                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-paint-brush"></i></div>
-                            <div class="info">
-                                <h4 class="title">Clean & Careful Design</h4>
-                                <p class="desc">Etiam nulla turpis, gravida et orci ac, viverra commodo ipsum. Donec nec mauris faucibus, congue nisi sit amet, lobortis arcu.</p>
+                                <h4 class="title">이력서 통합 관리</h4>
+                                <p class="desc">
+                                자격증, 토익, 봉사활동 등 매 이력서 작성마다 채워 넣어야 하는 내 스펙들.. 
+                                매번 쓰면서도 잊어버리기 부지기수이고 귀찮은 반복 작성은 이제 그만! <br>
+                                <a>닥취업으로 이제 이력서 고민 끝!</a></p>
                             </div>
                         </div>
                     </div>
@@ -285,8 +277,22 @@
                         <div class="service">
                             <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-file"></i></div>
                             <div class="info">
-                                <h4 class="title">Well Documented</h4>
-                                <p class="desc">Ut vel laoreet tortor. Donec venenatis ex velit, eget bibendum purus accumsan cursus. Curabitur pulvinar iaculis diam.</p>
+                                <h4 class="title">자기소개서 통합 관리</h4>
+                                <p class="desc">
+                                매번 기업마다 다른 자기소개서를 작성하여 관리하고, 글자수도 맞추어야하고, 힘들게 쓴 자기소개서 한 번의 실수로 날아가버리기라도 한다면!?(으악) <br>
+                                <a>닥취업으로 이제 자기소개서 고민 끝!</a> </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col-4 -->
+                    <!-- begin col-4 -->
+                    <div class="col-md-4 col-sm-4">
+                        <div class="service">
+                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-calendar"></i></div>
+                            <div class="info">
+                                <h4 class="title">Smart 채용달력</h4>
+                                <p class="desc">빠르고 쉽게 한눈에 보는 채용공고, 수 많은 기업들의 채용공고 및 마감일, 접수방법등의 정보를 확인하느라 여기가고, 저기가고...
+                                기업별 자기소개서 문항은 어디서 찾지?<br><a>닥취업으로 이제 채용정보 고민 끝!</a></p>
                             </div>
                         </div>
                     </div>
@@ -298,10 +304,14 @@
                     <!-- begin col-4 -->
                     <div class="col-md-4 col-sm-4">
                         <div class="service">
-                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-code"></i></div>
+                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-print"></i></div>
                             <div class="info">
-                                <h4 class="title">Re-usable Code</h4>
-                                <p class="desc">Aenean et elementum dui. Aenean massa enim, suscipit ut molestie quis, pretium sed orci. Ut faucibus egestas mattis.</p>
+                                <h4 class="title">커스터마이징 출력</h4>
+                                <p class="desc">이력서 양식을 다운받고, 자기소개서 양식을 다운받고..<br>
+                                이건 나한테 필요한 이력서 항목이 아닌데 (눈물)<br>
+                                닥취업의 커스터마이징 출력 기능을 이용하면 사용자가 작성한 이력서, 자기소개서를 추적하여 자동으로 이력서 양식을 만들어주고 출력할수 있다구!
+                               <br><a>닥취업으로 이력서 양식 및 출력 고민 끝!</a>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -309,10 +319,14 @@
                     <!-- begin col-4 -->
                     <div class="col-md-4 col-sm-4">
                         <div class="service">
-                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-shopping-cart"></i></div>
+                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-calculator"></i></div>
                             <div class="info">
-                                <h4 class="title">Online Shop</h4>
-                                <p class="desc">Quisque gravida metus in sollicitudin feugiat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                                <h4 class="title">다양한 부가 편의 유틸리티</h4>
+                                <p class="desc">
+                                	내가 받을 연봉의 세금 땐 실수령액은 얼마일까?<br>
+                                	내 어학점수를 다른 어학시험으로 변환하면 몇점일까?<br>
+                                	내가 지원하려는 기업에서는 학점을 다른식으로 표기하네, 근데 어떻게 계산하지?<br>
+                                	<a>닥취업으로 각종 계산 고민 끝!</a></p>
                             </div>
                         </div>
                     </div>
@@ -320,10 +334,15 @@
                     <!-- begin col-4 -->
                     <div class="col-md-4 col-sm-4">
                         <div class="service">
-                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-heart"></i></div>
+                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-cloud-upload"></i></div>
                             <div class="info">
-                                <h4 class="title">Free Support</h4>
-                                <p class="desc">Integer consectetur, massa id mattis tincidunt, sapien erat malesuada turpis, nec vehicula lacus felis nec libero. Fusce non lorem nisl.</p>
+                                <h4 class="title">Easy to 파일관리</h4>
+                                <p class="desc">
+                                	여기는 성적증명서랑 4대보험가입확인서를 요구하네? 근데 내가 그것들을 어디에다 뒀더라..?<br>
+                                	닥취업의 웹 스토리지 기능을 이용하여 입사지원시 필요한 각종 파일들을 한곳에 모아놓고 관리할수 있다구!<br>
+                                	<a>닥취업으로 각종 파일 고민 끝!</a>
+                                
+                                </p>
                             </div>
                         </div>
                     </div>
