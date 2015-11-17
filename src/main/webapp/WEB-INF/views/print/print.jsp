@@ -340,7 +340,7 @@
                                                <div class="col-md-12">
 													<div class="row">
 														<div id="print-template-tumb" class="col-xs-3"> 
-															<a href="#" id="pt1"><img id="pt1-tumb" src="/resources/img/print/pt1-resume.png" class="img-responsive print-template-select-n"></a>
+															<a href="#" id="pt1"><img id="pt1-tumb" src="/resources/img/print/pt1-tumb.png" class="img-responsive print-template-select-n"></a>
 														</div>
 														<div id="print-template-preview" class="col-xs-9">	
 															<div class="row" id="pt1-preview">

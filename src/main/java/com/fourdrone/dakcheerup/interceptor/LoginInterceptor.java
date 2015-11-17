@@ -23,7 +23,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         if(memberId == null)
         {
         	response.addHeader("loginCheck", "YES");
-            response.sendRedirect("/account");
+            response.sendRedirect("/index");
             return false;
 
         } else {
