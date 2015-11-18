@@ -16,6 +16,8 @@ public interface AccountMapper {
     
     void modMemberSignOut(Member member);
     
+    void modPhoto(Member member);
+    
     void delMember(String memberId);
 
     ArrayList<Member> getMemberList();

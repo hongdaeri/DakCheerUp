@@ -181,7 +181,7 @@ public class AccountController {
             // 세션등록 
             session.setAttribute("memberLoginInfo",loginMember.getMemberId());
             session.setAttribute("memberName", loginMember.getMemberName());
-            session.setAttribute("loadMsg", "login");
+            session.setAttribute("memberPhoto", loginMember.getMemberPhoto());
             
             return "redirect:/";
         }
@@ -223,6 +223,7 @@ public class AccountController {
     	
     	// MEMBER 테이블 생성.
         member.setRegDate(time);
+        member.setMemberPhoto("/resources/img/default_profile.jpg");
         this.accountService.addMember(member);
         
         // RESUME 테이블 생성.
@@ -356,5 +357,6 @@ public class AccountController {
         
         return "redirect:";
     }
+    
 
 }

@@ -42,7 +42,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="index.html" class="navbar-brand">
+                    <a href="/index" class="navbar-brand">
                         <span class="brand-logo"></span>
                         <span class="brand-text">
                             <span class="text-theme">닥치고취업하자</span> <small>Beta</small>
@@ -206,7 +206,7 @@
                             </div>                          
                         </div>                
                         <div class="col-xs-12">
-                        	<p>약 2달 반의 제작 기간 / 스프링 프레임워크 / 29개의 DB테이블 <br>53개의 클래스 / 1,092개의 메서드 / 16,366줄의 순수 자바코드</p>
+                        	<p>약 2달 반의 제작 기간 / 61번의 commit / 29개의 DB테이블 <br>53개의 클래스 / 1,092개의 메서드 / 16,366줄의 순수 자바코드</p>
                         	<p><a>이제 10%일 뿐입니다. 아직 보여줄 90%가 더 남았습니다.</a> </p>
                         </div> 
                                    

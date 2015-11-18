@@ -24,7 +24,7 @@
                       </div>
                       <!-- end profile-image -->
                       <div class="m-b-10">
-                          <a href="#" class="btn btn-warning btn-block btn-sm">사진 변경</a>
+                          <a href="#image-crop" data-toggle="modal" class="btn btn-warning btn-block btn-sm">사진 변경</a>
                       </div>
                       <!-- begin profile-highlight -->
                       <div class="profile-highlight">

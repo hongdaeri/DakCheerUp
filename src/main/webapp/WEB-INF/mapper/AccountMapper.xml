@@ -12,6 +12,7 @@
         <result property="regDate" column="MEMBER_REG_DATE" />
         <result property="memberSignOutRequest" column="MEMBER_SIGNOUT_REQUEST" />
         <result property="memberSignOutRequestDate" column="MEMBER_SIGNOUT_REQUEST_DATE" />
+        <result property="memberPhoto" column="MEMBER_PHOTO" />
     </resultMap>
 
     <select id="getMemberList" resultMap="MemberResult">
@@ -24,13 +25,19 @@
 
 
     <insert id="addMember" parameterType="com.fourdrone.dakcheerup.domain.member.Member"> <!-- useGeneratedKeys="true" keyProperty="id"> -->
-        INSERT INTO TB_MEMBER (member_id, member_name, member_password, member_reg_date)
-        VALUES (#{memberId}, #{memberName}, #{memberPassword}, #{regDate})
+        INSERT INTO TB_MEMBER (member_id, member_name, member_password, member_reg_date , member_photo)
+        VALUES (#{memberId}, #{memberName}, #{memberPassword}, #{regDate}, #{memberPhoto})
     </insert>
 
     <update id="modMember" parameterType="com.fourdrone.dakcheerup.domain.member.Member">
         UPDATE TB_MEMBER
         SET member_password = #{memberPassword} , member_name=#{memberName}
+        WHERE member_id = #{memberId}
+    </update>
+    
+    <update id="modPhoto" parameterType="com.fourdrone.dakcheerup.domain.member.Member">
+        UPDATE TB_MEMBER
+        SET member_photo = #{memberPhoto}
         WHERE member_id = #{memberId}
     </update>
 

@@ -26,6 +26,7 @@
 	<link href="/resources/css/style.css" rel="stylesheet" />
 	<link href="/resources/css/style-responsive.min.css" rel="stylesheet" />
 	<link href="/resources/css/theme/default.css" rel="stylesheet" id="theme" />
+	
 	<!-- ================== END BASE CSS STYLE ================== -->
 
 	<!-- ================== BEGIN BASE JS ================== -->
@@ -215,7 +216,37 @@
 			</div>
 		</div>
 	</div>
+	<!--  end #modal-alert -->
 	
+	<!-- #modal-image -->
+	<div class="modal fade" id="image-crop">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title">닥취업 탈퇴선언!</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-xs-12">
+							
+						</div>
+					
+					</div>
+
+				
+						
+					
+					
+				</div>
+				<div class="modal-footer">
+					<a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">탈퇴안할게요</a>
+					<a href="/account/signOut" class="btn btn-sm btn-danger">탈퇴합니다</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--  end #modal-alert -->
 	<div id="LoadMsgDiv">		
 		<h2></h2>
 	</div>

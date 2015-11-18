@@ -8,7 +8,7 @@ public class Member {
 	private Timestamp regDate;		// 회원_가입
 	private String memberSignOutRequest;		// 탈퇴요청  Y,N
 	private Timestamp memberSignOutRequestDate;	// 탈퇴요청일 
-	
+	private String memberPhoto;
 	
 	public String getMemberId() {
 		return memberId;
@@ -45,6 +45,12 @@ public class Member {
 	}
 	public void setMemberSignOutRequestDate(Timestamp memberSignOutRequestDate) {
 		this.memberSignOutRequestDate = memberSignOutRequestDate;
+	}
+	public String getMemberPhoto() {
+		return memberPhoto;
+	}
+	public void setMemberPhoto(String memberPhoto) {
+		this.memberPhoto = memberPhoto;
 	} 
 	
 	

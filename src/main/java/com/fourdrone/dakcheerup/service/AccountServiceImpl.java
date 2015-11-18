@@ -63,4 +63,11 @@ public class AccountServiceImpl implements AccountService {
         accountMapper.modMemberSignOut(member);
 		
 	}
+
+	@Override
+	public void modPhoto(Member member) {
+		AccountMapper accountMapper = sqlSession.getMapper(AccountMapper.class);
+        accountMapper.modPhoto(member);
+		
+	}
 }
