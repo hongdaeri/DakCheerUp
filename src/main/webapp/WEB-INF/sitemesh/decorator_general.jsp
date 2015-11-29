@@ -75,7 +75,7 @@
 					
 					<li class="dropdown navbar-user"> <!-- 헤더_로그인 -->
 						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-							<img src="/resources/img/user-13.jpg" alt="" />
+							<img src="${memberPhoto}" alt="" />
 							<span class="hidden-xs">${memberName} 님</span> <b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu animated fadeInLeft">
@@ -219,33 +219,30 @@
 	<!--  end #modal-alert -->
 	
 	<!-- #modal-image -->
+	<form id="uploadForm" name="uploadForm" method="post" enctype="multipart/form-data" action="/photo/tempSave" target="procFrame" onsubmit="return false;">
+	
 	<div class="modal fade" id="image-crop">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					<h4 class="modal-title">닥취업 탈퇴선언!</h4>
+					<h4 class="modal-title">사진변경</h4>
 				</div>
 				<div class="modal-body">
-					<div class="row">
-						<div class="col-xs-12">
-							
-						</div>
-					
-					</div>
-
-				
-						
+								
+		          <input type="file" id="uploadFile" name="uploadFile" />
+	                                	
 					
 					
 				</div>
 				<div class="modal-footer">
-					<a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">탈퇴안할게요</a>
-					<a href="/account/signOut" class="btn btn-sm btn-danger">탈퇴합니다</a>
+					<a href="javascript:fn_temp_upload(this.form);" class="btn btn-sm btn-white">변경완료</a>
+					
 				</div>
 			</div>
 		</div>
 	</div>
+	</form>
 	<!--  end #modal-alert -->
 	<div id="LoadMsgDiv">		
 		<h2></h2>
@@ -272,7 +269,27 @@
 				$("#LoadMsgDiv").hide();			
 				var msg = "${loadMsg}";			
 				getEffect(msg);
-			});					
+			});	
+			// 이미지 업로드 함수
+			function fn_temp_upload(formobj) {
+				formobj = formobj || document.uploadForm;
+				
+				var filepath = formobj.uploadFile.value;
+				var validate_str = /\.(gif|jpg|jpeg)$/gi;
+				
+				if(filepath.trim()=='') {
+					alert('사진첨부를 해주십시오.');
+					return;
+				}
+				
+				if(validate_str.test(filepath)) {
+					$('#dummy').val( Math.random()*99999 );
+					formobj.submit();
+				} else {
+					alert('사진파일은 jpg, gif만 업로드가 가능합니다.');
+					return;
+				}
+			}
 		</script>
 		
 		

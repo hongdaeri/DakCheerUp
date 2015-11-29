@@ -19,7 +19,7 @@
                   <div class="profile-left">
                       <!-- begin profile-image -->
                       <div class="profile-image">
-                          <img src="/resources/img/profile-cover.jpg" />
+                          <img src="${memberPhoto}" />
                           <i class="fa fa-user hide"></i>
                       </div>
                       <!-- end profile-image -->
